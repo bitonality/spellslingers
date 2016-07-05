@@ -27,15 +27,17 @@ public class CastListener : MonoBehaviour {
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
 		DebugLogger(e.controllerIndex, "TRIGGER", "pressed down", e);
+	
 	}
+
 
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
 	{
 		DebugLogger(e.controllerIndex, "TRIGGER", "released", e);
-		GameObject go = (GameObject)sender;
+	
+		GameObject go = this.gameObject;
 		Spell hex = new Hex ();
 		hex.cast (go);
-	}
 
-
+}
 }
