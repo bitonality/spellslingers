@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CastListener.cs" />
+     <Compile Include="Assets\Scripts\HexCollide.cs" />
      <Compile Include="Assets\Scripts\Spells\Hex.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
