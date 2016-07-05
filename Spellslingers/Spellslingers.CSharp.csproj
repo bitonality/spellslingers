@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CastListener.cs" />
+    <Compile Include="Assets\Scripts\HexCollide.cs" />
     <Compile Include="Assets\Scripts\Spells\Hex.cs" />
     <Compile Include="Assets\Scripts\Spells\Spell.cs" />
     <Compile Include="Assets\Scripts\rockEvent.cs" />
@@ -169,6 +170,8 @@
     <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_RoomExtender.cs" />
     <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_SimplePointer.cs" />
     <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
+    <Compile Include="Assets\deleteObjects.cs" />
+    <Compile Include="Assets\destroyObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
