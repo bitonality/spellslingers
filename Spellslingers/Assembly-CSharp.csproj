@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\HexCollide.cs" />
      <Compile Include="Assets\Scripts\Spells\Hex.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
+     <Compile Include="Assets\Scripts\rockEvent.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
