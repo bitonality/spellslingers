@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LavaMotion.cs" />
      <Compile Include="Assets\Scripts\CastListener.cs" />
      <Compile Include="Assets\Scripts\HexCollide.cs" />
      <Compile Include="Assets\Scripts\Spells\Hex.cs" />
@@ -140,6 +141,8 @@
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_RoomExtender.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_SimplePointer.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
+     <Compile Include="Assets\deleteObjects.cs" />
+     <Compile Include="Assets\destroyObject.cs" />
      <None Include="Assets\SteamVR_Unity_Toolkit\Version.txt" />
      <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
      <None Include="Assets\SteamVR\Resources\SteamVR_BlitFlip.shader" />

@@ -18,6 +18,8 @@ public class Hex : Spell {
 
 
 	public override void cast (GameObject castController) {
+		if (castController.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject () == null)
+			return;
 		GameObject projectile = (GameObject)Instantiate(Resources.Load("Hex"));
 		projectile.transform.position = castController.transform.position;
 		projectile.GetComponent<Rigidbody> ().velocity = castController.transform.GetComponent<Rigidbody> ().velocity;

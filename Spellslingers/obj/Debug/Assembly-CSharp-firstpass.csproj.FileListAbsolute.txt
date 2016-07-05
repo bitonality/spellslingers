@@ -40,3 +40,24 @@ C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Un
 C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
 C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.Networking.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Unity.SerializationLogic.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Unity.UNetWeaver.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Unity.CecilTools.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Mono.Cecil.Mdb.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.xml
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEditor.xml
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.UI.xml
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.Networking.xml
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Carlo\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.pdb
