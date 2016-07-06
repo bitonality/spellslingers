@@ -4,6 +4,9 @@ using VRTK;
 
 public class CastListener : MonoBehaviour {
 
+	public GameObject testHex;
+	public GameObject hexTemplate;
+
 	// Use this for initialization
 	void Start () {
 		if (GetComponent<VRTK_ControllerEvents>() == null)
@@ -24,7 +27,7 @@ public class CastListener : MonoBehaviour {
 	void ObjectGrabbed(object sender, ObjectInteractEventArgs e) {
 		//If player grabs the wand, make it a kinematic object
 		if (e.target.tag == "Wand") {
-			e.target.GetComponent<Rigidbody> ().isKinematic = true;
+			e.target.GetComponent<BoxCollider> ().isTrigger = true;
 		}
 	}
 
@@ -32,7 +35,7 @@ public class CastListener : MonoBehaviour {
 		//If player drops the wand or is forced to drop it, disable the kinematic properties
 
 		if (e.target.tag == "Wand") {
-			e.target.GetComponent<Rigidbody> ().isKinematic = false;
+			e.target.GetComponent<BoxCollider> ().isTrigger = false;
 		}
 	}
 
@@ -53,8 +56,16 @@ public class CastListener : MonoBehaviour {
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
 	{
 		//DebugLogger(e.controllerIndex, "TRIGGER", "released", e);
-		Hex hex = new Disarm();
-		hex.cast (this.gameObject);
+		castHex();
 
+	}
+
+
+	private void castHex(){
+		GameObject newProjectile = Instantiate<GameObject>(hexTemplate) as GameObject;
+		Hex uniqueHexProperties = testHex.GetComponent<Hex> ();
+		uniqueHexProperties = newProjectile.AddComponent<Hex> ();
+		Hex hex = newProjectile.GetComponent<Hex> ();
+		hex.cast (gameObject);
 	}
 }

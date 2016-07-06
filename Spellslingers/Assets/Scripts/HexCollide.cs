@@ -15,14 +15,10 @@ public class HexCollide : MonoBehaviour
 
 	void OnCollisionEnter (Collision col)
 	{
-		//If we register a collision on a wall
-		if (col.gameObject.tag == "Wand") {
-			return;
-		}
+
 		//If we've hit the player
 		if (col.gameObject.tag == "MainCamera") {
-			Hex hex = new Disarm();
-			Debug.Log (col.gameObject);
+			Hex hex = this.GetComponent<Hex> ();
 			hex.playerCollide (col.gameObject);
 			//Destroy (this.gameObject);
 			return;

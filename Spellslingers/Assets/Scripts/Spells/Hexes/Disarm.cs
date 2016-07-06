@@ -5,14 +5,6 @@ using VRTK;
 public class Disarm : Hex {
 
 
-	public double SETTING_DAMAGE = 5;
-	public double SETTING_VELOCITY = 2;
-
-
-	public Disarm() {
-		damage = SETTING_DAMAGE;
-		velocity = SETTING_VELOCITY;
-	}
 
 	public override void playerCollide (GameObject playerCameraRig)
 	{
@@ -27,8 +19,7 @@ public class Disarm : Hex {
 
 	// Use this for initialization
 	void Start () {
-		damage = SETTING_DAMAGE;
-		velocity = SETTING_VELOCITY;
+
 	}
 	
 	// Update is called once per frame

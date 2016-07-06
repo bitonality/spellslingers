@@ -13,29 +13,24 @@ public abstract class Hex : Spell {
 	//speed multiplier
 	public double velocity;
 
-	//projectile prefab that will spawn once the spell is cast
-	private GameObject projectile;
-
-
 	public override void cast (GameObject castController) {
 		if ( castController == null)
 			return;
-		GameObject projectile = GameObject.Instantiate(Resources.Load("Hex")) as GameObject;
 		//Finds the wand in a roundabout way... Change later
-		projectile.transform.position = castController.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
-		launch (castController, projectile);
+		gameObject.transform.position = castController.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
+		launch (castController);
 	}
 
-	private void launch(GameObject controller, GameObject projectile) {
+	private void launch(GameObject controller) {
 		SteamVR_TrackedObject trackedObj = controller.GetComponent<SteamVR_TrackedObject> ();
 		Transform origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
 		if (origin != null) {
 			
-			projectile.GetComponent<Rigidbody>().velocity = origin.TransformVector ((SteamVR_Controller.Input((int)trackedObj.index).velocity) * (float) velocity );
-			projectile.GetComponent<Rigidbody>().angularVelocity = origin.TransformVector (SteamVR_Controller.Input((int)trackedObj.index).angularVelocity);
+			gameObject.GetComponent<Rigidbody>().velocity = origin.TransformVector ((SteamVR_Controller.Input((int)trackedObj.index).velocity) * (float) velocity );
+			gameObject.GetComponent<Rigidbody>().angularVelocity = origin.TransformVector (SteamVR_Controller.Input((int)trackedObj.index).angularVelocity);
 		} else {
-			projectile.GetComponent<Rigidbody> ().velocity = (SteamVR_Controller.Input ((int)trackedObj.index).velocity) * (float) velocity;
-			projectile.GetComponent<Rigidbody> ().angularVelocity = SteamVR_Controller.Input ((int)trackedObj.index).angularVelocity;
+			gameObject.GetComponent<Rigidbody> ().velocity = (SteamVR_Controller.Input ((int)trackedObj.index).velocity) * (float) velocity;
+			gameObject.GetComponent<Rigidbody> ().angularVelocity = SteamVR_Controller.Input ((int)trackedObj.index).angularVelocity;
 
 		}
 	}
