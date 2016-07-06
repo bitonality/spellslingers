@@ -15,8 +15,26 @@ public class CastListener : MonoBehaviour {
 		//Setup controller event listeners
 		GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(DoTriggerPressed);
 		GetComponent<VRTK_ControllerEvents>().TriggerReleased += new ControllerInteractionEventHandler(DoTriggerReleased);
+		GetComponent<VRTK_InteractGrab> ().ControllerGrabInteractableObject += new ObjectInteractEventHandler (ObjectGrabbed);
+		GetComponent<VRTK_InteractGrab> ().ControllerUngrabInteractableObject += new ObjectInteractEventHandler (ObjectReleased);
 
 	}
+
+
+	void ObjectGrabbed(object sender, ObjectInteractEventArgs e) {
+		//If player grabs the wand, make it a kinematic object
+		if (e.target.tag == "Wand") {
+			e.target.GetComponent<Rigidbody> ().isKinematic = true;
+		}
+	}
+
+	void ObjectReleased(object sender, ObjectInteractEventArgs e) {
+		//If player drops the wand or is forced to drop it, disable the kinematic properties
+		if (e.target.tag == "Wand") {
+			e.target.GetComponent<Rigidbody> ().isKinematic = false;
+		}
+	}
+
 
 	void DebugLogger(uint index, string button, string action, ControllerInteractionEventArgs e)
 	{
@@ -26,18 +44,16 @@ public class CastListener : MonoBehaviour {
 
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
-		DebugLogger(e.controllerIndex, "TRIGGER", "pressed down", e);
+		//DebugLogger(e.controllerIndex, "TRIGGER", "pressed down", e);
 	
 	}
 
 
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
 	{
-		DebugLogger(e.controllerIndex, "TRIGGER", "released", e);
-	
-		GameObject go = this.gameObject;
-		Spell hex = new Hex ();
-		hex.cast (go);
+		//DebugLogger(e.controllerIndex, "TRIGGER", "released", e);
+		Spell hex = new Disarm ();
+		hex.cast (this.gameObject);
 
-}
+	}
 }
