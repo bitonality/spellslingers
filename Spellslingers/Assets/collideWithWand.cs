@@ -8,9 +8,9 @@ public class collideWithWand : MonoBehaviour {
 	
 	}
 	
-	void OnCollisionEnter(Collider col) {
+	void OnColliderEnter(Collider col) {
 		if (col.GetComponent<GameObject> ().tag == "Wand") {
-
+			Camera.main.ResetFieldOfView ();
 		}
 	}
 }
