@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hex
+  - Wand
   layers:
   - Default
   - TransparentFX

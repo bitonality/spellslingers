@@ -266,6 +266,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 969745002}
+    - target: {fileID: 187578, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
   m_IsPrefabParent: 0
@@ -386,18 +390,6 @@ MonoBehaviour:
   headsetYOffset: 0
   ignoreGrabbedCollisions: 1
   resetPositionOnCollision: 0
---- !u!114 &391519563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 391519561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2befe67703285a94abf0267f9039d834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100002, guid: e48c7d7ec43014ad882cf23f3bb48ac8, type: 2}
 --- !u!54 &391519565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -536,7 +528,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11467542, guid: 3bc60f6512bcebe4aac5f63c775b63db, type: 2}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 155548, guid: d50f5f5d5a171443fa76bc1f6fc90473, type: 2}
+    - target: {fileID: 11467542, guid: 3bc60f6512bcebe4aac5f63c775b63db, type: 2}
+      propertyPath: numCollisions
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11469352, guid: 3bc60f6512bcebe4aac5f63c775b63db, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3bc60f6512bcebe4aac5f63c775b63db, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &518863870
@@ -1257,7 +1258,7 @@ GameObject:
   - 114: {fileID: 1644510483}
   m_Layer: 0
   m_Name: Wand
-  m_TagString: Untagged
+  m_TagString: Wand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
