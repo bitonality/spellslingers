@@ -3,8 +3,8 @@ using System.Collections;
 
 public class rockEvent : MonoBehaviour {
     System.Random rnd = new System.Random();
-    int minTimeBetween = 10; //seconds
-    int maxTimeBetween = 21; //seconds
+    int minTimeBetween = 1; //seconds
+    int maxTimeBetween = 2; //seconds
 
     void Start()
     {

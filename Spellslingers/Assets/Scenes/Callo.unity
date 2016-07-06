@@ -173,7 +173,7 @@ GameObject:
   - 65: {fileID: 728833963}
   m_Layer: 0
   m_Name: Left Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,7 +248,7 @@ GameObject:
   - 65: {fileID: 846381740}
   m_Layer: 0
   m_Name: Back Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,6 +384,7 @@ GameObject:
   - 23: {fileID: 1537809604}
   - 114: {fileID: 1537809608}
   - 54: {fileID: 1537809609}
+  - 114: {fileID: 1537809610}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Untagged
@@ -443,11 +444,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1537809603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.34, y: -7.09, z: 0}
+  m_LocalPosition: {x: 4.34, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1537809608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +475,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1537809610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537809603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8c9992cd75b5244ae6e528285e7526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1890638563
 Prefab:
   m_ObjectHideFlags: 0
@@ -483,15 +495,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 446384, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.88
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 446384, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.1
+      value: 2.51
       objectReference: {fileID: 0}
     - target: {fileID: 446384, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -64.49
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 446384, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
       propertyPath: m_LocalRotation.x
@@ -511,7 +523,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 446384, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 446384, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -537,7 +549,7 @@ GameObject:
   - 23: {fileID: 1933473661}
   m_Layer: 0
   m_Name: AI Stand
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -613,7 +625,7 @@ GameObject:
   - 23: {fileID: 2018518402}
   m_Layer: 0
   m_Name: Human Stand
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -675,7 +687,7 @@ Transform:
   m_LocalScale: {x: 4, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &2024834464
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +701,7 @@ GameObject:
   - 65: {fileID: 2024834466}
   m_Layer: 0
   m_Name: Right Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -851,7 +863,7 @@ GameObject:
   - 65: {fileID: 2119887550}
   m_Layer: 0
   m_Name: Forward Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
