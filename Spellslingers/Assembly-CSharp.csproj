@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\CastListener.cs" />
      <Compile Include="Assets\Scripts\HexCollide.cs" />
      <Compile Include="Assets\Scripts\Spells\Hex.cs" />
+     <Compile Include="Assets\Scripts\Spells\Hexes\Disarm.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
      <Compile Include="Assets\Scripts\rockEvent.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />

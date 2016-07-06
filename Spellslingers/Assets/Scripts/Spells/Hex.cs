@@ -4,26 +4,25 @@ using System.Collections.Generic;
 using VRTK;
 
 
-public class Hex : Spell {
+public abstract class Hex : Spell {
 
 
 	//out of 100
-	double damage;
+	public double damage;
 
 	//speed multiplier
-	double velocity = 2;
+	public double velocity;
 
 	//projectile that will spawn once the spell is cast
-	GameObject projectile;
+	private GameObject projectile;
 
 
 	public override void cast (GameObject castController) {
 		if ( castController == null)
 			return;
 		GameObject projectile = (GameObject)Instantiate(Resources.Load("Hex"));
-		VRTK_InteractGrab controller = castController.GetComponent<VRTK_InteractGrab> ();
-		GameObject wand = controller.GetGrabbedObject ();
-		projectile.transform.position = wand.transform.FindChild ("WandLaunchPoint").transform.position;
+		//Finds the wand in a roundabout way... Change later
+		projectile.transform.position = castController.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
 		projectile.GetComponent<Rigidbody> ().velocity = castController.transform.GetComponent<Rigidbody> ().velocity;
 		projectile.GetComponent<Rigidbody> ().angularVelocity = castController.transform.GetComponent<Rigidbody> ().angularVelocity;
 		launch (castController, projectile);
@@ -43,6 +42,7 @@ public class Hex : Spell {
 		}
 	}
 
+	public abstract void playerCollide (GameObject playerCameraRig);
 
 	//Initialization (to avoid NPE)
 	void Awake() {
