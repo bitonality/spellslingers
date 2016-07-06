@@ -8,8 +8,9 @@ public class collideWithWand : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnCollisionEnter(Collider col) {
+		if (col.GetComponent<GameObject> ().tag == "Wand") {
+
+		}
 	}
 }

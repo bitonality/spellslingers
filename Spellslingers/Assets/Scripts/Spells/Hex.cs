@@ -18,10 +18,12 @@ public class Hex : Spell {
 
 
 	public override void cast (GameObject castController) {
-		if (castController.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject () == null)
+		if ( castController == null)
 			return;
 		GameObject projectile = (GameObject)Instantiate(Resources.Load("Hex"));
-		projectile.transform.position = castController.transform.position;
+		VRTK_InteractGrab controller = castController.GetComponent<VRTK_InteractGrab> ();
+		GameObject wand = controller.GetGrabbedObject ();
+		projectile.transform.position = wand.transform.FindChild ("WandLaunchPoint").transform.position;
 		projectile.GetComponent<Rigidbody> ().velocity = castController.transform.GetComponent<Rigidbody> ().velocity;
 		projectile.GetComponent<Rigidbody> ().angularVelocity = castController.transform.GetComponent<Rigidbody> ().angularVelocity;
 		launch (castController, projectile);

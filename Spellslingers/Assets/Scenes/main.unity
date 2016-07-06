@@ -526,6 +526,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cbfd6232476459e49961795acf399177, type: 2}
+    - target: {fileID: 2058468, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058468, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
   m_IsPrefabParent: 0
@@ -847,8 +855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feb609ae52444541a8f206fac9c6f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBetween: 1
-  maxTimeBetween: 2
 --- !u!1 &2119887548
 GameObject:
   m_ObjectHideFlags: 0
