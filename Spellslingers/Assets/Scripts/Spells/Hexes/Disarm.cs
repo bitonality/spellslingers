@@ -9,6 +9,10 @@ public class Disarm : Hex {
 	public double SETTING_VELOCITY = 2;
 
 
+	public Disarm() {
+		damage = SETTING_DAMAGE;
+		velocity = SETTING_VELOCITY;
+	}
 
 	public override void playerCollide (GameObject playerCameraRig)
 	{
@@ -17,7 +21,7 @@ public class Disarm : Hex {
 		foreach (VRTK_InteractGrab controller in controllers) {
 			GameObject wand = controller.GetGrabbedObject ();
 			controller.ForceRelease();
-			wand.GetComponent<Rigidbody> ().AddForce (new Vector3 (0, 5, 0));
+			wand.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 5, 0);
 		}
 	}
 

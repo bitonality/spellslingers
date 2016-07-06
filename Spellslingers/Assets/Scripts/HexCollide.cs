@@ -9,32 +9,36 @@ public class HexCollide : MonoBehaviour
 
 
 	//Nullable
-	public int? numLegalCollisions;
-	public int numCollisions = 0;
+	public int numLegalCollisions;
+	private int numCollisions = 0;
 
 
 	void OnCollisionEnter (Collision col)
 	{
-
+		//If we register a collision on a wall
+		if (col.gameObject.tag == "Wand") {
+			return;
+		}
 		//If we've hit the player
 		if (col.gameObject.tag == "MainCamera") {
-			Hex hex = this.gameObject.GetComponent<Hex> ();
+			Hex hex = new Disarm();
+			Debug.Log (col.gameObject);
 			hex.playerCollide (col.gameObject);
-			Destroy (this.gameObject);
+			//Destroy (this.gameObject);
 			return;
 		}
 			
-		if (numLegalCollisions != null && numCollisions <= numLegalCollisions) { 
+		if (numCollisions < numLegalCollisions) { 
 			//Processing for under or at collision limit
-			Instantiate (explosion, transform.position, transform.rotation);
-
+			numCollisions++;
 		} else {
 			//Processing for above collision limit
-			Instantiate (explosion, transform.position, transform.rotation);
 			Destroy (this.gameObject);
 
 		}
 
+		GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
+		Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
 
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using VRTK;
 
 
-public abstract class Spell : MonoBehaviour {
+public abstract class Spell  {
 
 	long cooldown;
 

@@ -13,18 +13,16 @@ public abstract class Hex : Spell {
 	//speed multiplier
 	public double velocity;
 
-	//projectile that will spawn once the spell is cast
+	//projectile prefab that will spawn once the spell is cast
 	private GameObject projectile;
 
 
 	public override void cast (GameObject castController) {
 		if ( castController == null)
 			return;
-		GameObject projectile = (GameObject)Instantiate(Resources.Load("Hex"));
+		GameObject projectile = GameObject.Instantiate(Resources.Load("Hex")) as GameObject;
 		//Finds the wand in a roundabout way... Change later
 		projectile.transform.position = castController.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
-		projectile.GetComponent<Rigidbody> ().velocity = castController.transform.GetComponent<Rigidbody> ().velocity;
-		projectile.GetComponent<Rigidbody> ().angularVelocity = castController.transform.GetComponent<Rigidbody> ().angularVelocity;
 		launch (castController, projectile);
 	}
 

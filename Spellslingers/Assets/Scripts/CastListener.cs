@@ -30,6 +30,7 @@ public class CastListener : MonoBehaviour {
 
 	void ObjectReleased(object sender, ObjectInteractEventArgs e) {
 		//If player drops the wand or is forced to drop it, disable the kinematic properties
+
 		if (e.target.tag == "Wand") {
 			e.target.GetComponent<Rigidbody> ().isKinematic = false;
 		}
@@ -52,7 +53,7 @@ public class CastListener : MonoBehaviour {
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
 	{
 		//DebugLogger(e.controllerIndex, "TRIGGER", "released", e);
-		Spell hex = new Disarm ();
+		Hex hex = new Disarm();
 		hex.cast (this.gameObject);
 
 	}
