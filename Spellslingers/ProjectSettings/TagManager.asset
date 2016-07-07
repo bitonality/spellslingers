@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Hex
+  - Wand
+  - PlayerPhysics
   layers:
   - Default
   - TransparentFX

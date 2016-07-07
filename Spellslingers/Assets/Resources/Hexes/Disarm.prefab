@@ -14,6 +14,7 @@ GameObject:
   - 54: {fileID: 5409424}
   - 114: {fileID: 11455792}
   - 96: {fileID: 9649832}
+  - 114: {fileID: 11449188}
   m_Layer: 0
   m_Name: Disarm
   m_TagString: Hex
@@ -120,9 +121,9 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: 1
-  m_StartWidth: 1
-  m_EndWidth: 1
+  m_Time: 3
+  m_StartWidth: 0.25
+  m_EndWidth: 0.25
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
@@ -141,6 +142,19 @@ TrailRenderer:
       rgba: 16373227
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &11449188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db44f8394807d674092403e59f290127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  velocity: 4
 --- !u!114 &11455792
 MonoBehaviour:
   m_ObjectHideFlags: 1

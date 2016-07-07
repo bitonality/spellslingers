@@ -13,7 +13,8 @@ public class Disarm : Hex {
 		foreach (VRTK_InteractGrab controller in controllers) {
 			GameObject wand = controller.GetGrabbedObject ();
 			controller.ForceRelease();
-			wand.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 5, 0);
+			wand.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 10, 0);
+			wand.GetComponent<Rigidbody> ().angularVelocity = new Vector3 (90, 90, 90);
 		}
 
 

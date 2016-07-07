@@ -75,6 +75,7 @@
             bc = this.gameObject.AddComponent<BoxCollider>();
             bc.center = new Vector3(0f, 1f, 0f);
             bc.size = new Vector3(0.25f, 1f, 0.25f);
+		
 
             this.gameObject.layer = 2;
         }
@@ -87,6 +88,7 @@
 
             bc.size = new Vector3(bc.size.x, newBCYSize, bc.size.z);
             bc.center = new Vector3(headset.localPosition.x, newBCYCenter, headset.localPosition.z);
+
         }
 
         private void SetHeadsetY()

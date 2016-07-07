@@ -15,6 +15,8 @@ public class HexCollide : MonoBehaviour
 
 	void OnCollisionEnter (Collision col)
 	{
+		GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
+		Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
 
 		//If we've hit the player
 		if (col.gameObject.tag == "MainCamera") {
@@ -24,7 +26,13 @@ public class HexCollide : MonoBehaviour
 			Debug.Log ("Player was hit");
 			return;
 		}
-			
+
+		if (col.gameObject.tag == "Finish") {
+			Destroy (this.gameObject);
+			Destroy (col.gameObject);
+			return;
+		}
+
 		if (numCollisions < numLegalCollisions) { 
 			//Processing for under or at collision limit
 			numCollisions++;
@@ -34,8 +42,7 @@ public class HexCollide : MonoBehaviour
 
 		}
 
-		GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
-		Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
+
 
 	}
 }
