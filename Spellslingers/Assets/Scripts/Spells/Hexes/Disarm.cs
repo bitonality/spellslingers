@@ -15,6 +15,8 @@ public class Disarm : Hex {
 			controller.ForceRelease();
 			wand.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 5, 0);
 		}
+
+
 	}
 
 	// Use this for initialization

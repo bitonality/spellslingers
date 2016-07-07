@@ -20,7 +20,8 @@ public class HexCollide : MonoBehaviour
 		if (col.gameObject.tag == "MainCamera") {
 			Hex hex = this.GetComponent<Hex> ();
 			hex.playerCollide (col.gameObject);
-			//Destroy (this.gameObject);
+			Destroy (this.gameObject);
+			Debug.Log ("Player was hit");
 			return;
 		}
 			

@@ -4,7 +4,6 @@ using VRTK;
 
 public class CastListener : MonoBehaviour {
 
-	public GameObject testHex;
 	public GameObject hexTemplate;
 
 	// Use this for initialization
@@ -25,14 +24,14 @@ public class CastListener : MonoBehaviour {
 
 
 	void ObjectGrabbed(object sender, ObjectInteractEventArgs e) {
-		//If player grabs the wand, make it a kinematic object
+		//If player grabs the wand, make it not collide
 		if (e.target.tag == "Wand") {
 			e.target.GetComponent<BoxCollider> ().isTrigger = true;
 		}
 	}
 
 	void ObjectReleased(object sender, ObjectInteractEventArgs e) {
-		//If player drops the wand or is forced to drop it, disable the kinematic properties
+		//If player drops the wand or is forced to drop it, enable collision
 
 		if (e.target.tag == "Wand") {
 			e.target.GetComponent<BoxCollider> ().isTrigger = false;
@@ -56,16 +55,12 @@ public class CastListener : MonoBehaviour {
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
 	{
 		//DebugLogger(e.controllerIndex, "TRIGGER", "released", e);
-		castHex();
-
-	}
-
-
-	private void castHex(){
 		GameObject newProjectile = Instantiate<GameObject>(hexTemplate) as GameObject;
-		Hex uniqueHexProperties = testHex.GetComponent<Hex> ();
-		uniqueHexProperties = newProjectile.AddComponent<Hex> ();
-		Hex hex = newProjectile.GetComponent<Hex> ();
-		hex.cast (gameObject);
+		Hex h = newProjectile.GetComponent<Hex> ();
+		h.cast (this.gameObject);
+
 	}
+
+
+
 }
