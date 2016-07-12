@@ -34,7 +34,7 @@ public class CastListener : MonoBehaviour {
 	void ObjectReleased(object sender, ObjectInteractEventArgs e) {
 		//If player drops the wand or is forced to drop it, enable collision
 
-		if (e.target.tag == "Wand") {
+		if (e.target != null && e.target.tag == "Wand") {
 			e.target.GetComponent<BoxCollider> ().isTrigger = false;
 		}
 	}

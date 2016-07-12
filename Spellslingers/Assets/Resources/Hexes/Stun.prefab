@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   velocity: 3
-  duration: 5
+  duration: 5000
 --- !u!114 &11443152
 MonoBehaviour:
   m_ObjectHideFlags: 1
