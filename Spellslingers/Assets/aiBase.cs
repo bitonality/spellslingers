@@ -2,8 +2,24 @@
 using System.Collections;
 
 public class aiBase : MonoBehaviour {
+	public Rigidbody rb = GetComponent<Rigidbody>();
+	public void move(Vector3 goal, double time){
+		rb.isKinematic = true;
+		rb.detectCollisions = true;
+		rb.drag = 0;
+		rb.angularDrag = 0;
+		double xDistance = (transform.position.x - goal.x)/time;
+		double yDistance = (transform.position.y - goal.y)/time;
+		double zDistance = (transform.position.z - goal.z)/time;
+		rb.velocity = new Vector3 (xDistance, yDistance, zDistance);
+		WaitForSeconds (10);
+		rb.velocity = new Vector3 (0,0,0);
+
+	}
 	/*
-	 * public void move(Vector3 position, double time)
+	 * public void move(Vector3 position, double time){
+	 * 
+	 * }
 	 * public bool isInDanger()
 	 * public vector3 getPos()
 	 * public vector3 getVolocity()
