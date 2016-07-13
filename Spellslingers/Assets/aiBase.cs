@@ -32,15 +32,13 @@ public class aiBase : MonoBehaviour {
 			}
 	}
 	public Vector3 getPos(GameObject ai){
-		Rigidbody rb = ai.GetComponent<Rigidbody>();
+		Rigidbody rb = ai.GetComponent<Rigidbody> ().transform.position;
 	}
-		
+
 	/*
 	 * 
 	 * }
 	 * public bool isInDanger()
-	 * public vector3 getPos()
-	 * public bool isMoving()
 	 * public void shootSpell(spell type, double x, double y, double z, double velocity) //George will do this
  	 */
 
