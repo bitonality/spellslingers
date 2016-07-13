@@ -3,7 +3,7 @@ using System.Collections;
 
 public class aiBase : MonoBehaviour {
 	/*
-	 * public void move(double x, double y, double z, double time)
+	 * public void move(Vector3 position, double time)
 	 * public bool isInDanger()
 	 * public vector3 getPos()
 	 * public vector3 getVolocity()
@@ -14,18 +14,21 @@ public class aiBase : MonoBehaviour {
 	public void Start() {
 		//GameObject go = 
 		//move (new GameObject, new Vector3, 5.0);
+		move(this.gameObject, new Vector3(100F, 100F, 100F), 10F);
 	}
 
-	//If called with a double, will call with the float but calculate speed first
-	public void move(GameObject AI, Vector3 direction, double time) {
-		//Calculate speed
-		//Get AI position
-		float distance = Vector3.Distance(AI.transform.position, direction);
-		float velocity = distance / time;
-		move (AI, direction, velocity);
+	//TODO: Make this not broken
+	public void move(GameObject AI, Vector3 direction, float velocity) {
+		Debug.Log ("Direction: " + direction + ", velocity: " + velocity);
+		Vector3 endPosition = AI.transform.position + direction;
+		AI.transform.position  = Vector3.Lerp(AI.transform.position, endPosition, velocity * Time.deltaTime);
+
 	}
 
-	public void move(GameObject AI, Vector3 direction, float speed) {
-		AI.transform.Translate(direction * speed);
+	public bool isInDanger() {
+		//Get all spells
+		//Georgie said this like would be STC
+		GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
+
 	}
 }
