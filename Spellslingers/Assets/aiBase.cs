@@ -24,15 +24,11 @@ public class aiBase : MonoBehaviour {
 
 	public bool isMoving(GameObject ai){
 		Rigidbody rb = ai.GetComponent<Rigidbody>();
-		if(rb.velocity.y==0 && rb.velocity.x == 0 && rb.velocity.z == 0){
-			return false;
-			}
-		else{
-			return true;
-			}
+		return (rb.velocity.y == 0 && rb.velocity.x == 0 && rb.velocity.z == 0);
 	}
+
 	public Vector3 getPos(GameObject ai){
-		Rigidbody rb = ai.GetComponent<Rigidbody>();
+		return ai.GetComponent<Rigidbody>().transform.position;
 	}
 		
 	/*
@@ -48,14 +44,6 @@ public class aiBase : MonoBehaviour {
 		//GameObject go = 
 		//move (new GameObject, new Vector3, 5.0);
 		move(this.gameObject, new Vector3(100F, 100F, 100F), 10F);
-	}
-
-	//TODO: Make this not broken
-	public void move(GameObject AI, Vector3 direction, float velocity) {
-		Debug.Log ("Direction: " + direction + ", velocity: " + velocity);
-		Vector3 endPosition = AI.transform.position + direction;
-		AI.transform.position  = Vector3.Lerp(AI.transform.position, endPosition, velocity * Time.deltaTime);
-
 	}
 
 	public bool isInDanger() {
