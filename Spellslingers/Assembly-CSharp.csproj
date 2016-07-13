@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Spells\Hexes\Disarm.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\Stun.cs" />
+     <Compile Include="Assets\Scripts\TrailTest.cs" />
      <Compile Include="Assets\Scripts\rockEvent.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
