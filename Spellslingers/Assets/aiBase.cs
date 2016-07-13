@@ -62,6 +62,6 @@ public class aiBase : MonoBehaviour {
 		//Get all spells
 		//Georgie said this like would be STC
 		GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
-
+		return true;
 	}
 }

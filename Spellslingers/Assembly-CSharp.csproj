@@ -54,8 +54,8 @@
      <Compile Include="Assets\Scripts\Spells\Hex.cs" />
      <Compile Include="Assets\Scripts\Spells\Hexes\Damage.cs" />
      <Compile Include="Assets\Scripts\Spells\Hexes\Disarm.cs" />
+     <Compile Include="Assets\Scripts\Spells\Hexes\Stun.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
-     <Compile Include="Assets\Scripts\Spells\Stun.cs" />
      <Compile Include="Assets\Scripts\TrailTest.cs" />
      <Compile Include="Assets\Scripts\rockEvent.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
@@ -148,10 +148,12 @@
      <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_RoomExtender.cs" />
      <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_SimplePointer.cs" />
      <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
+     <Compile Include="Assets\TestLauncher.cs" />
      <Compile Include="Assets\aiBase.cs" />
      <Compile Include="Assets\collideWithWand.cs" />
      <Compile Include="Assets\deleteObjects.cs" />
      <Compile Include="Assets\destroyObject.cs" />
+     <Compile Include="Assets\script.cs" />
      <None Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Version.txt" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
@@ -193,7 +195,6 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
-     <None Include="Assets\Resources\MotionBlur.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />

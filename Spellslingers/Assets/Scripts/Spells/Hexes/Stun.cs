@@ -29,18 +29,18 @@ public class Stun : Hex {
 
 	}
 
-
+	public override void destroy() {
+		this.gameObject.SetActive(false);
+	}
 
 	 void FadeBlur() {
 		this.blur.blurAmount =  (float) (this.blur.blurAmount - this.interval);
-		Debug.Log (this.blur.blurAmount);
 		if (this.blur.blurAmount <= 0) {
 			Destroy (this.gameObject);
 		}
 	}
 
 	 void ScheduleBlur() {
-		Debug.Log ("Schedule blur start. RR: " + repeatRate);
 		InvokeRepeating("FadeBlur", 1.0F, repeatRate);
 	}
 

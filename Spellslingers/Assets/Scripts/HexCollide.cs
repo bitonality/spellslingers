@@ -8,29 +8,25 @@ public class HexCollide : MonoBehaviour
 	public GameObject explosion;
 
 
-	//Nullable
 	public int numLegalCollisions;
 	private int numCollisions = 0;
 
 
 	void OnCollisionEnter (Collision col)
 	{
-		GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
-		Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
+		//GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
+		//Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
 
 		//If we've hit a player
 		if (col.gameObject.GetComponent<Player>() != null) {
 			Hex hex = this.GetComponent<Hex> ();
 			hex.playerCollide (col.gameObject);
-			//Destroy (this.gameObject);
-			this.gameObject.SetActive(false);
-			Debug.Log ("Player was hit");
-	
+			hex.destroy ();
 			return;
 		}
 
 		if (col.gameObject.tag == "Finish") {
-			Destroy (this.gameObject);
+			this.GetComponent<Hex> ().destroy();
 			Destroy (col.gameObject);
 			return;
 		}
@@ -40,7 +36,7 @@ public class HexCollide : MonoBehaviour
 			numCollisions++;
 		} else {
 			//Processing for above collision limit
-			Destroy (this.gameObject);
+			this.GetComponent<Hex> ().destroy();
 
 		}
 
