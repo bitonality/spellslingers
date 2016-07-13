@@ -142,6 +142,7 @@
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_RoomExtender.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_SimplePointer.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
+     <Compile Include="Assets\aiBase.cs" />
      <Compile Include="Assets\collideWithWand.cs" />
      <Compile Include="Assets\deleteObjects.cs" />
      <Compile Include="Assets\destroyObject.cs" />
