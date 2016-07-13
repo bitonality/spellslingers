@@ -24,15 +24,10 @@ public class aiBase : MonoBehaviour {
 
 	public bool isMoving(GameObject ai){
 		Rigidbody rb = ai.GetComponent<Rigidbody>();
-		if(rb.velocity.y==0 && rb.velocity.x == 0 && rb.velocity.z == 0){
-			return false;
-			}
-		else{
-			return true;
-			}
+		return (rb.velocity.y == 0 && rb.velocity.x == 0 && rb.velocity.z == 0);
 	}
 	public Vector3 getPos(GameObject ai){
-		Rigidbody rb = ai.GetComponent<Rigidbody> ().transform.position;
+		return ai.GetComponent<Rigidbody> ().transform.position;
 	}
 
 	/*
