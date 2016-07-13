@@ -3,8 +3,9 @@ using System.Collections;
 using VRTK;
 
 public class CastListener : MonoBehaviour {
-
-	public GameObject hexTemplate;
+	public DPad dpad;
+	public GameObject leftTemplate;
+	public GameObject rightTemplate;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +34,7 @@ public class CastListener : MonoBehaviour {
 	void ObjectReleased(object sender, ObjectInteractEventArgs e) {
 		//If player drops the wand or is forced to drop it, enable collision
 
-		if (e.target.tag == "Wand") {
+		if (e.target != null && e.target.tag == "Wand") {
 			e.target.GetComponent<BoxCollider> ().isTrigger = false;
 		}
 	}
@@ -54,8 +55,21 @@ public class CastListener : MonoBehaviour {
 
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
 	{
-		//DebugLogger(e.controllerIndex, "TRIGGER", "released", e);
-		GameObject newProjectile = Instantiate<GameObject>(hexTemplate) as GameObject;
+
+
+		DPad_Direction? direction = DPad.GetButtonPressed (SteamVR_Controller.Input ((int)e.controllerIndex));
+		GameObject newProjectile = null;
+		switch (direction) {
+		case DPad_Direction.LEFT:
+			newProjectile = Instantiate<GameObject> (leftTemplate) as GameObject;
+			break;
+		case DPad_Direction.RIGHT:
+			newProjectile = Instantiate<GameObject> (rightTemplate) as GameObject;
+			break;
+		case null:
+			return;
+		}
+			
 		Hex h = newProjectile.GetComponent<Hex> ();
 		h.cast (this.gameObject);
 

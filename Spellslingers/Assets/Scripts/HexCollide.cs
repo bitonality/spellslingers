@@ -18,12 +18,13 @@ public class HexCollide : MonoBehaviour
 		GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
 		Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
 
-		//If we've hit the player
-		if (col.gameObject.tag == "MainCamera") {
+		//If we've hit a player
+		if (col.gameObject.GetComponent<Player>() != null) {
 			Hex hex = this.GetComponent<Hex> ();
 			hex.playerCollide (col.gameObject);
 			Destroy (this.gameObject);
 			Debug.Log ("Player was hit");
+	
 			return;
 		}
 
