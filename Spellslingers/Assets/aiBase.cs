@@ -31,9 +31,6 @@ public class aiBase : MonoBehaviour {
 	}
 
 	/*
-	 * 
-	 * }
-	 * public bool isInDanger()
 	 * public void shootSpell(spell type, double x, double y, double z, double velocity) //George will do this
  	 */
 
@@ -51,10 +48,17 @@ public class aiBase : MonoBehaviour {
 
 	}
 
+	//Assumes AI and spells are on their own layer
 	public bool isInDanger() {
 		//Get all spells
 		//Georgie said this like would be STC
 		GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
-
+		foreach (GameObject spell in spells) {
+			//TODO: Un-hardcode max length (100 right now)
+			//TODO: Un-hardcode layer ID. Assuming 1 for now because we only have two layers
+			if (Physics.Raycast (spell.transform.position, spell.GetComponent<Rigidbody> ().velocity, 100F, 1)) {
+				return true;
+			}
+		}
 	}
 }
