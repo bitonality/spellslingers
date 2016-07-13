@@ -22,7 +22,8 @@ public class HexCollide : MonoBehaviour
 		if (col.gameObject.GetComponent<Player>() != null) {
 			Hex hex = this.GetComponent<Hex> ();
 			hex.playerCollide (col.gameObject);
-			Destroy (this.gameObject);
+			//Destroy (this.gameObject);
+			this.gameObject.SetActive(false);
 			Debug.Log ("Player was hit");
 	
 			return;

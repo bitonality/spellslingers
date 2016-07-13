@@ -9,9 +9,9 @@ public class Stun : Hex {
 	public double duration;
 
 	//How often the decrement will run
-	private float repeatRate = 0.5F;
+	private float repeatRate = 0.2F;
 	//calculated value for how much to decrease the blur size by
-	private double interval;
+	public double interval;
 	private MotionBlur blur;
 
 	public override void playerCollide (GameObject playerCameraRig)
@@ -19,29 +19,29 @@ public class Stun : Hex {
 		
 
 
-		MotionBlur blur = playerCameraRig.GetComponentInChildren<SteamVR_Camera> ().gameObject.AddComponent<MotionBlur> ();
+			MotionBlur blur = playerCameraRig.GetComponentInChildren<MotionBlur> ();
 				this.blur = blur;
-		blur.enabled = true;
-				Destroy (blur, (float) (duration / 1000));
+				blur.blurAmount = 0.92F; 
 				double iterations = (duration/1000) / repeatRate;
 				interval = this.blur.blurAmount / iterations;
-				//ScheduleBlur ();
-				return;
-
+				ScheduleBlur ();
 
 
 	}
 
 
 
-	private void FadeBlur() {
-		this.blur.blurAmount -= (float) this.interval;
+	 void FadeBlur() {
+		this.blur.blurAmount =  (float) (this.blur.blurAmount - this.interval);
 		Debug.Log (this.blur.blurAmount);
-
+		if (this.blur.blurAmount <= 0) {
+			Destroy (this.gameObject);
+		}
 	}
 
-	private void ScheduleBlur() {
-		InvokeRepeating("FadeBlur", 0, repeatRate);
+	 void ScheduleBlur() {
+		Debug.Log ("Schedule blur start. RR: " + repeatRate);
+		InvokeRepeating("FadeBlur", 1.0F, repeatRate);
 	}
 
 
