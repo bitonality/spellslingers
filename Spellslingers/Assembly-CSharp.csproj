@@ -168,6 +168,7 @@
      <Compile Include="Assets\aiBase.cs" />
      <Compile Include="Assets\aibasetestgodhelpme.cs" />
      <Compile Include="Assets\destroyObject.cs" />
+     <Compile Include="Assets\spell.cs" />
      <None Include="Assets\SteamVR_Unity_Toolkit\Version.txt" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
