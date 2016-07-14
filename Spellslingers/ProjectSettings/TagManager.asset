@@ -8,6 +8,7 @@ TagManager:
   - Hex
   - Wand
   - PlayerPhysics
+  - CastTriggerZone
   layers:
   - Default
   - TransparentFX
