@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class ai : MonoBehaviour {
+	/*
 	//Level is 1/2/3, set somewhere else but set here for now.
 	static int level = 1; 
 	//Speed is 5/5.5/6 m/s
@@ -53,4 +54,5 @@ public class ai : MonoBehaviour {
 			}
 		}
 	}
+		*/
 }
