@@ -2,18 +2,18 @@
 using System.Collections;
 
 public class aiBase : MonoBehaviour {
-	public void move(GameObject ai, Vector3 goal, double time){
-		Rigidbody rb = GameObject.GetComponent<Rigidbody>();
+	public void move(GameObject ai, Vector3 goal, float time){
+		Rigidbody rb = ai.GetComponent<Rigidbody>();
 		Vector3 current = ai.transform.position;
 		rb.isKinematic = true;
 		rb.detectCollisions = true;
 		rb.drag = 0;
 		rb.angularDrag = 0;
-		double xDistance = (current.x - goal.x)/time;
-		double yDistance = (current.y - goal.y)/time;
-		double zDistance = (current.z - goal.z)/time;
-	    rb.velocity = new Vector3 (xDistance, yDistance, zDistance);
-		WaitForSeconds (time);
+		float xDistance = (current.x - goal.x)/time;
+		float yDistance = (current.y - goal.y)/time;
+		float zDistance = (current.z - goal.z)/time;
+		rb.velocity = new Vector3 (xDistance, yDistance, zDistance);
+		new WaitForSeconds (time);
 		rb.velocity = new Vector3 (0,0,0);
 
 	}
@@ -48,6 +48,9 @@ public class aiBase : MonoBehaviour {
 			if (Physics.Raycast (spell.transform.position, spell.GetComponent<Rigidbody> ().velocity, 100F, 1)) {
 				return true;
 			}
-		}
+
+		
 	}
+		return false;
+}
 }
