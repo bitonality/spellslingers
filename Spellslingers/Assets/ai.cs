@@ -3,9 +3,8 @@ using System.Collections;
 
 public class ai : MonoBehaviour {
 	//Level is 1/2/3, set somewhere else but set here for now.
-	int level = 1; 
+	static int level = 1; 
 	//Speed is 5/5.5/6 m/s
-	float speed = 4.5 + (0.5 * level);
 
 	void Start () {
 		//If level 3 (hardest), immediately shoot a dizzy spell
@@ -26,7 +25,6 @@ public class ai : MonoBehaviour {
 		checkSafety(0.33);
 	}
 
-	/*
 	IEnumerator shootSpellRepeat(float secondsBetween, spell spellType)
 	{
 		while(true)
@@ -35,7 +33,7 @@ public class ai : MonoBehaviour {
 			aiBase.shootSpell (spellType); //Again, georgie does this
 		}
 	}
-	*/
+
 	IEnumerator checkSafety(float secondsBetween)
 	{
 		while(true)
