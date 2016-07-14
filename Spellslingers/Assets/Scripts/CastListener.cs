@@ -6,23 +6,38 @@ public class CastListener : MonoBehaviour {
 	public DPad dpad;
 	public GameObject leftTemplate;
 	public GameObject rightTemplate;
+	public GameObject collisionZone;
+
+
+	private bool inZone;
+	private GameObject queuedSpell;
 
 	// Use this for initialization
 	void Start () {
-		if (GetComponent<VRTK_ControllerEvents>() == null)
-		{
-			Debug.LogError("VRTK_ControllerEvents_ListenerExample is required to be attached to a SteamVR Controller that has the VRTK_ControllerEvents script attached to it");
+		if (GetComponent<VRTK_ControllerEvents> () == null) {
+			Debug.LogError ("VRTK_ControllerEvents_ListenerExample is required to be attached to a SteamVR Controller that has the VRTK_ControllerEvents script attached to it");
 			return;
 		}
 
 		//Setup controller event listeners
-		GetComponent<VRTK_ControllerEvents>().TriggerReleased += new ControllerInteractionEventHandler(DoTriggerReleased);
+		GetComponent<VRTK_ControllerEvents> ().GripPressed += new ControllerInteractionEventHandler (DoGripPress);
+		GetComponent<VRTK_ControllerEvents> ().GripReleased += new ControllerInteractionEventHandler (DoGripRelease);
+
+		GetComponent<VRTK_ControllerEvents> ().TriggerPressed += new ControllerInteractionEventHandler (DoTriggerPressed);
+		GetComponent<VRTK_ControllerEvents> ().TriggerReleased += new ControllerInteractionEventHandler (DoTriggerReleased);
 		GetComponent<VRTK_InteractGrab> ().ControllerGrabInteractableObject += new ObjectInteractEventHandler (ObjectGrabbed);
 		GetComponent<VRTK_InteractGrab> ().ControllerUngrabInteractableObject += new ObjectInteractEventHandler (ObjectReleased);
 
 
 	}
 
+	void DoGripPress(object sender, ControllerInteractionEventArgs e) {
+		//gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().GetComponent<BoxCollider>().
+	}
+
+	void DoGripRelease(object sender, ControllerInteractionEventArgs e) {
+
+	}
 
 	void ObjectGrabbed(object sender, ObjectInteractEventArgs e) {
 		//If player grabs the wand, make it not collide
@@ -37,6 +52,10 @@ public class CastListener : MonoBehaviour {
 		if (e.target.tag == "Wand") {
 			e.target.GetComponent<BoxCollider> ().isTrigger = false;
 		}
+	}
+
+	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e) {
+		Debug.Log(Quaternion.Inverse(gameObject.transform.rotation* gameObject.GetComponentInParent<Player>().gameObject.transform.rotation));
 	}
 		
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
