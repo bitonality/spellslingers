@@ -5,6 +5,7 @@ public class ai : MonoBehaviour {
 	//Level is 1/2/3, set somewhere else but set here for now.
 	static int level = 1; 
 	//Speed is 5/5.5/6 m/s
+	float speed = (4.5 + (0.5F * level);
 
 	void Start () {
 		//If level 3 (hardest), immediately shoot a dizzy spell
