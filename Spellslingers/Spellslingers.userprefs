@@ -1,9 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\aibasetestgodhelpme.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\aiBase.cs">
     <Files>
-      <File FileName="Assets\aibasetestgodhelpme.cs" Line="6" Column="16" />
-      <File FileName="Assets\aiBase.cs" Line="100" Column="1" />
+      <File FileName="Assets\ai.cs" Line="30" Column="16" />
+      <File FileName="Assets\aiBase.cs" Line="18" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
