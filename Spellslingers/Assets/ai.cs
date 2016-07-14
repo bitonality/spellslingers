@@ -26,6 +26,7 @@ public class ai : MonoBehaviour {
 		checkSafety(0.33);
 	}
 
+	/*
 	IEnumerator shootSpellRepeat(float secondsBetween, spell spellType)
 	{
 		while(true)
@@ -34,7 +35,7 @@ public class ai : MonoBehaviour {
 			aiBase.shootSpell (spellType); //Again, georgie does this
 		}
 	}
-
+	*/
 	IEnumerator checkSafety(float secondsBetween)
 	{
 		while(true)
