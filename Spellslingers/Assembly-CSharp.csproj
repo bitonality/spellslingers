@@ -164,8 +164,10 @@
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_UIPointer.cs" />
      <Compile Include="Assets\TestLauncher.cs" />
-     <Compile Include="Assets\ai.cs" />
+     <Compile Include="Assets\collideWithWand.cs" />
+     <Compile Include="Assets\deleteObjects.cs" />
      <Compile Include="Assets\destroyObject.cs" />
+     <Compile Include="Assets\script.cs" />
      <None Include="Assets\SteamVR_Unity_Toolkit\Version.txt" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
