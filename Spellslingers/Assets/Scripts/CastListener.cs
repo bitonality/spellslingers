@@ -6,11 +6,10 @@ public class CastListener : MonoBehaviour {
 	public DPad dpad;
 	public GameObject leftTemplate;
 	public GameObject rightTemplate;
-	public GameObject collisionZone;
+
+	private Vector3 travel;
 
 
-	private bool inZone;
-	private GameObject queuedSpell;
 
 	// Use this for initialization
 	void Start () {
@@ -50,15 +49,20 @@ public class CastListener : MonoBehaviour {
 		//If player drops the wand or is forced to drop it, enable collision
 
 		if (e.target.tag == "Wand") {
-			e.target.GetComponent<BoxCollider> ().isTrigger = false;
+		e.target.GetComponent<BoxCollider> ().isTrigger = false;
+
 		}
 	}
 
-	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e) {
-		Debug.Log(Quaternion.Inverse(gameObject.transform.rotation* gameObject.GetComponentInParent<Player>().gameObject.transform.rotation));
+
+
+	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e) {
+
+
+
 	}
 		
-	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e)
+	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
 
 

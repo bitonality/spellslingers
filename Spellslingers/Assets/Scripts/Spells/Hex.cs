@@ -8,9 +8,6 @@ public abstract class Hex : Spell {
 	//num seconds until clean up
 	private float timeout = 20;
 
-	//represents the minimum velocity for the spell to move to be casted
-	private double minVelocity = 2;
-
 	//out of 100
 	public double damage;
 
@@ -26,18 +23,7 @@ public abstract class Hex : Spell {
 	}
 
 	private void launch(GameObject controller) {
-		SteamVR_TrackedObject trackedObj = controller.GetComponent<SteamVR_TrackedObject> ();
-		Transform origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
-		//We use the quicker squared magnitude call to avoid the expensive sqrt call
-		if (origin != null && SteamVR_Controller.Input((int)trackedObj.index).velocity.sqrMagnitude > (damage*damage)) {
-			gameObject.GetComponent<Rigidbody>().velocity = origin.TransformVector ((SteamVR_Controller.Input((int)trackedObj.index).velocity) * (float) velocity );
-			gameObject.GetComponent<Rigidbody>().angularVelocity = origin.TransformVector (SteamVR_Controller.Input((int)trackedObj.index).angularVelocity);
-		} else {
-			gameObject.GetComponent<Rigidbody> ().velocity = (SteamVR_Controller.Input ((int)trackedObj.index).velocity) * (float) velocity;
-			gameObject.GetComponent<Rigidbody> ().angularVelocity = SteamVR_Controller.Input ((int)trackedObj.index).angularVelocity;
-
-		}
-
+		gameObject.GetComponent<Rigidbody>().AddForce(controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().transform.FindChild ("WandLaunchPoint").transform.forward * (float) velocity);
 		Destroy (this.gameObject, timeout);
 	}
 
