@@ -61,7 +61,7 @@ public class ai : MonoBehaviour {
 				framework.move(this.gameObject, newPosition, (Vector3.Distance(position, newPosition) / speed));
 			} else {
 				Debug.Log ("No longer in danger");
-				framework.cancelMove (this.gameObject.GetComponent<Rigidbody>(), 0F);
+				framework.cancelMove (this.gameObject);
 			}
 		}
 	}

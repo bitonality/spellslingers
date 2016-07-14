@@ -14,10 +14,14 @@ public class aiBase : MonoBehaviour {
 		float yDistance = (goal.y - current.y)/time;
 		float zDistance = (goal.z -current.z)/time;
 		rb.velocity = new Vector3 (xDistance, yDistance, zDistance); // This calculation has a .05% deviation from the goal, call accordingly or ignore, not terribly mathematically significant.
-		Debug.Log (time);
-		StartCoroutine(MovePause(ai, time));
-
+		StartCoroutine(scheduleCancelMove(ai, time));
 	}
+
+	public IEnumerator scheduleCancelMove(GameObject ai, float time) {
+		yield return new WaitForSeconds(time);
+		cancelMove(ai);
+	}
+
 	public Vector3 getVelocity(GameObject ai){
 		return ai.GetComponent<Rigidbody>().velocity;
 	}
@@ -31,16 +35,15 @@ public class aiBase : MonoBehaviour {
 		Rigidbody rb = ai.GetComponent<Rigidbody>();
 		return (rb.velocity.y == 0 && rb.velocity.x == 0 && rb.velocity.z == 0);
 	}
+
 	public Vector3 getPos(GameObject ai){
 		return ai.GetComponent<Rigidbody> ().transform.position;
 	}
 
-	/*
-	 * public void shootSpell(spell type, double x, double y, double z, double velocity) //George will do this
- 	 */
-
-	public void Start() {
-
+	//TODO: Make georgie do this
+	public void shootSpell(spell type, Vector3 endpoint)
+	{
+		return;
 	}
 
 	//Assumes AI and spells are on their own layer
@@ -59,45 +62,9 @@ public class aiBase : MonoBehaviour {
 		}
 		return false;
 	}
-	public void stopMovement(GameObject GO){
-		GO.GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 0);
-		
-	}
-	IEnumerator MovePause(GameObject GO,float time){
-		for(int i=0; i<time;i++){
-			Debug.Log ("Position is " +GO.GetComponent<Rigidbody>().transform.position);
-			yield return new WaitForSeconds (1);
-		}
+
+	public void cancelMove(GameObject GO) {
 		GO.GetComponent<Rigidbody>().velocity=new Vector3(0,0,0);
+		return;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
