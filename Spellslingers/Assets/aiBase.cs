@@ -10,12 +10,12 @@ public class aiBase : MonoBehaviour {
 		rb.useGravity = false;
 		rb.drag = 0;
 		rb.angularDrag = 0;
-		float xDistance = (current.x - goal.x)/time;
-		float yDistance = (current.y - goal.y)/time;
-		float zDistance = (current.z - goal.z)/time;
-		rb.velocity = new Vector3 (xDistance, yDistance, zDistance);
+		float xDistance = (goal.x - current.x)/time;
+		float yDistance = (goal.y - current.y)/time;
+		float zDistance = (goal.z -current.z)/time;
+		rb.velocity = new Vector3 (xDistance, yDistance, zDistance); // This calculation has a .05% deviation from the goal, call accordingly or ignore, not terribly mathematically significant.
 		Debug.Log (time);
-		StartCoroutine(MovePause(rb, time));
+		StartCoroutine(MovePause(ai, time));
 
 	}
 	public Vector3 getVelocity(GameObject ai){
@@ -59,12 +59,16 @@ public class aiBase : MonoBehaviour {
 		}
 		return false;
 	}
-	IEnumerator MovePause(Rigidbody rb,float time){
+	public void stopMovement(GameObject GO){
+		GO.GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 0);
+		
+	}
+	IEnumerator MovePause(GameObject GO,float time){
 		for(int i=0; i<time;i++){
-			Debug.Log ("Position is " + rb.transform.position);
+			Debug.Log ("Position is " +GO.GetComponent<Rigidbody>().transform.position);
 			yield return new WaitForSeconds (1);
 		}
-		rb.velocity=new Vector3(0,0,0);
+		GO.GetComponent<Rigidbody>().velocity=new Vector3(0,0,0);
 	}
 }
 

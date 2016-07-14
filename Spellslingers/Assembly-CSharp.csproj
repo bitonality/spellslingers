@@ -166,7 +166,7 @@
      <Compile Include="Assets\TestLauncher.cs" />
      <Compile Include="Assets\ai.cs" />
      <Compile Include="Assets\aiBase.cs" />
-     <Compile Include="Assets\aibasetestgodhelpme.cs" />
+     <Compile Include="Assets\aibasetest.cs" />
      <Compile Include="Assets\destroyObject.cs" />
      <Compile Include="Assets\spell.cs" />
      <None Include="Assets\SteamVR_Unity_Toolkit\Version.txt" />
