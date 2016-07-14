@@ -5,20 +5,26 @@ public class aiBase : MonoBehaviour {
 	public void move(GameObject ai, Vector3 goal, float time){
 		Rigidbody rb = ai.GetComponent<Rigidbody>();
 		Vector3 current = ai.transform.position;
-		rb.isKinematic = true;
+		rb.isKinematic = false;
 		rb.detectCollisions = true;
+		rb.useGravity = false;
 		rb.drag = 0;
 		rb.angularDrag = 0;
 		float xDistance = (current.x - goal.x)/time;
 		float yDistance = (current.y - goal.y)/time;
 		float zDistance = (current.z - goal.z)/time;
 		rb.velocity = new Vector3 (xDistance, yDistance, zDistance);
-		new WaitForSeconds (time);
-		rb.velocity = new Vector3 (0,0,0);
+		Debug.Log (time);
+		StartCoroutine(MovePause(rb, time));
 
 	}
 	public Vector3 getVelocity(GameObject ai){
 		return ai.GetComponent<Rigidbody>().velocity;
+	}
+
+	public override string ToString ()
+	{
+		return string.Format ("[aiBase]");
 	}
 
 	public bool isMoving(GameObject ai){
@@ -49,8 +55,45 @@ public class aiBase : MonoBehaviour {
 				return true;
 			}
 
-		
-	}
+
+		}
 		return false;
+	}
+	IEnumerator MovePause(Rigidbody rb,float time){
+		for(int i=0; i<time;i++){
+			Debug.Log ("Position is " + rb.transform.position);
+			yield return new WaitForSeconds (1);
+		}
+		rb.velocity=new Vector3(0,0,0);
+	}
 }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
