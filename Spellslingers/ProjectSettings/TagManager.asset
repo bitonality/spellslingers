@@ -9,6 +9,7 @@ TagManager:
   - Wand
   - PlayerPhysics
   - CastTriggerZone
+  - AI
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - AIRaycast
   - 
   - 
   - 
