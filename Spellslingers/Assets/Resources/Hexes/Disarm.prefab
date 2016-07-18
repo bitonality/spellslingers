@@ -105,7 +105,7 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 070021aaabe0e6f4a815c955ee00a400, type: 2}
+  - {fileID: 2100000, guid: c3e8c49724e736148a594536e30063b4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -154,9 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 2
+  name: Disarm
   timeout: 20
-  damage: 5
-  velocity: 240
+  damage: 20
+  velocity: 200
   AiDisarmTime: 0
 --- !u!114 &11455792
 MonoBehaviour:

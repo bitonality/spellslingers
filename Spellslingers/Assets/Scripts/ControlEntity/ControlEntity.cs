@@ -11,23 +11,17 @@ public abstract class ControlEntity : MonoBehaviour {
 	public abstract bool CanShoot(Hex h, GameObject launchPoint);
 
 	//<Hex, CastTime>
-	public Dictionary<Hex, float> cooldown {
+	public Dictionary<string, float> cooldown {
 		get;
 		set;
 	}
 
 	//out of 100
-	public double health {
-		get;
-		set;
-	}
+	public double health;
 
 	public bool IsDead()
 	{
-		if (health <= 0) {
-			return true;
-		} else {
-			return false;
-		}
+
+		return(health <= 0);
 	}
 }

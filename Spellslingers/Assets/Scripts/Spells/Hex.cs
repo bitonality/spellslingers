@@ -5,6 +5,8 @@ using VRTK;
 
 
 public abstract class Hex : Spell {
+
+	public string name;
 	//num seconds until clean up
 	public float timeout = 20;
 

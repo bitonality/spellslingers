@@ -5,6 +5,7 @@ using UnityStandardAssets.ImageEffects;
 
 public class Stun : Hex {
 
+
 	//duration of stun in ms
 	public double duration;
 

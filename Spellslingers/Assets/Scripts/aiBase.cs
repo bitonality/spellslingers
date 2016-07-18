@@ -33,7 +33,7 @@ public class aiBase {
 		foreach (GameObject spell in spells) {
 			//TODO: Un-hardcode max length (100 right now)
 			//TODO: Un-hardcode layer ID. Assuming 1 for now because we only have two layers
-			if (Physics.Raycast (spell.transform.position, spell.GetComponent<Rigidbody> ().velocity, 50F, 1 << 8)) {
+			if (Physics.Raycast (spell.transform.position, spell.gameObject.GetComponent<Rigidbody> ().velocity.normalized, 50F, 1 << 8)) {
 				dangerousSpells.Add (spell);
 			}
 		}

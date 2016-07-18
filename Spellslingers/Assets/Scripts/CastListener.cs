@@ -60,25 +60,24 @@ public class CastListener : MonoBehaviour {
 		
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
+		Player p = gameObject.GetComponentInParent<Player> ();
 		DPad_Direction? direction = DPad.GetButtonPressed (SteamVR_Controller.Input ((int)e.controllerIndex));
 		GameObject newProjectile = null;
 		switch (direction) {
 		case DPad_Direction.LEFT:
-			newProjectile = Instantiate<GameObject> (leftTemplate) as GameObject;
-			break;
+			if (p.CanShoot (leftTemplate.GetComponent<Hex> (), gameObject)) {
+				newProjectile = Instantiate<GameObject> (leftTemplate) as GameObject;	
+				p.CastHex (newProjectile.GetComponent<Hex> (), gameObject, new Vector3 (0, 0, 0));
+			}
+			break;	
 		case DPad_Direction.RIGHT:
-			newProjectile = Instantiate<GameObject> (rightTemplate) as GameObject;
+			if (p.CanShoot (rightTemplate.GetComponent<Hex> (), gameObject)) {
+				newProjectile = Instantiate<GameObject> (rightTemplate) as GameObject;
+				p.CastHex (newProjectile.GetComponent<Hex> (), gameObject, new Vector3 (0, 0, 0));
+			}
 			break;
-		case null:
+		default:
 			return;
 		}
-			
-	
-		Player p = gameObject.GetComponentInParent<Player> ();
-		if(p.CanShoot(newProjectile.GetComponent<Hex>(), gameObject)) p.CastHex (newProjectile.GetComponent<Hex>(), gameObject, new Vector3(0,0,0));
-
 	}
-
-
-
 }
