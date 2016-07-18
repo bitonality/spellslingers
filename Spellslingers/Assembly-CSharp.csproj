@@ -64,10 +64,11 @@
      <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
      <Compile Include="Assets\LavaMotion.cs" />
      <Compile Include="Assets\Scripts\CastListener.cs" />
+     <Compile Include="Assets\Scripts\ControlEntity\ControlEntity.cs" />
+     <Compile Include="Assets\Scripts\ControlEntity\Player.cs" />
      <Compile Include="Assets\Scripts\DPad.cs" />
      <Compile Include="Assets\Scripts\DPad_Direction.cs" />
      <Compile Include="Assets\Scripts\HexCollide.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Spells\Hex.cs" />
      <Compile Include="Assets\Scripts\Spells\Hexes\Damage.cs" />
      <Compile Include="Assets\Scripts\Spells\Hexes\Disarm.cs" />

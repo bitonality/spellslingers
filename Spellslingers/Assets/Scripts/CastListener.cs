@@ -31,12 +31,13 @@ public class CastListener : MonoBehaviour {
 	}
 
 	void DoGripPress(object sender, ControllerInteractionEventArgs e) {
-		//gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().GetComponent<BoxCollider>().
+		
 	}
 
 	void DoGripRelease(object sender, ControllerInteractionEventArgs e) {
 
 	}
+
 
 	void ObjectGrabbed(object sender, ObjectInteractEventArgs e) {
 		//If player grabs the wand, make it not collide
@@ -47,25 +48,18 @@ public class CastListener : MonoBehaviour {
 
 	void ObjectReleased(object sender, ObjectInteractEventArgs e) {
 		//If player drops the wand or is forced to drop it, enable collision
-
 		if (e.target.tag == "Wand") {
-		e.target.GetComponent<BoxCollider> ().isTrigger = false;
-
+			e.target.GetComponent<BoxCollider> ().isTrigger = false;
 		}
 	}
 
 
 
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e) {
-
-
-
 	}
 		
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
-
-
 		DPad_Direction? direction = DPad.GetButtonPressed (SteamVR_Controller.Input ((int)e.controllerIndex));
 		GameObject newProjectile = null;
 		switch (direction) {
@@ -79,8 +73,9 @@ public class CastListener : MonoBehaviour {
 			return;
 		}
 			
-		Hex h = newProjectile.GetComponent<Hex> ();
-		h.cast (this.gameObject);
+	
+		Player p = gameObject.GetComponentInParent<Player> ();
+		if(p.CanShoot(newProjectile.GetComponent<Hex>(), gameObject)) p.CastHex (newProjectile.GetComponent<Hex>(), gameObject, null);
 
 	}
 

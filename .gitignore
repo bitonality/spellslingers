@@ -4,3 +4,9 @@ Spellslingers/Spellslingers.userprefs
 Spellslingers/.vs/Spellslingers/v14/.suo
 Spellslingers/Assembly-CSharp.csproj
 *.userprefs
+Spellslingers/Assets/Scripts/ControlEntity.meta
+*.meta
+Spellslingers/Assets/Scripts/ControlEntity.meta
+*.meta
+*.meta
+Spellslingers/Assets/Models/Decals/*.meta
