@@ -24,21 +24,20 @@ public class aiBase {
 	}
 
 
-
 	//Assumes AI and spells are on their own layer
-	public static bool isInDanger() {
+	public static ArrayList isInDanger() {
 		//Get all spells
 		//Georgie said this like would be STC
 		GameObject[] spells = GameObject.FindGameObjectsWithTag("Hex");
+		ArrayList dangerousSpells = new ArrayList();
 		foreach (GameObject spell in spells) {
 			//TODO: Un-hardcode max length (100 right now)
 			//TODO: Un-hardcode layer ID. Assuming 1 for now because we only have two layers
-			if (Physics.Raycast (spell.transform.position, spell.GetComponent<Rigidbody> ().velocity, 100F, 1 << 8)) {
-				return true;
+			if (Physics.Raycast (spell.transform.position, spell.GetComponent<Rigidbody> ().velocity, 50F, 1 << 8)) {
+				dangerousSpells.Add (spell);
 			}
-
 		}
-		return false;
+		return dangerousSpells;
 	}
 
 	public static void cancelMove(GameObject GO) {
