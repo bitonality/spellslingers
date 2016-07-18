@@ -639,7 +639,7 @@ GameObject:
   - 54: {fileID: 892895578}
   - 114: {fileID: 892895577}
   m_Layer: 8
-  m_Name: Cube
+  m_Name: AI
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -656,10 +656,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c92b9b764e27e4d8ccbffb093b7197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hex1: {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
-  time1: 5
-  hex2: {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
-  time2: 8
+  spookyFactor: []
+  hexes:
+  - {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
+  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
+  times:
+  - 3
+  - 5
 --- !u!54 &892895578
 Rigidbody:
   m_ObjectHideFlags: 0
