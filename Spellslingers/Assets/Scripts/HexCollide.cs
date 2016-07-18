@@ -19,17 +19,11 @@ public class HexCollide : MonoBehaviour
 
 		//If we've hit a player
 		if (col.gameObject.GetComponent<Player>() != null) {
-			Hex hex = this.GetComponent<Hex> ();
-			hex.playerCollide (col.gameObject);
-			hex.destroy ();
+			col.gameObject.GetComponent<Player> ().processHex (this.GetComponent<Hex> ());
 			return;
 		}
+			
 
-		if (col.gameObject.tag == "Finish") {
-			this.GetComponent<Hex> ().destroy();
-			Destroy (col.gameObject);
-			return;
-		}
 
 		if (numCollisions < numLegalCollisions) { 
 			//Processing for under or at collision limit

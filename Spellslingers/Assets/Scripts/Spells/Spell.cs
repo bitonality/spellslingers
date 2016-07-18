@@ -6,9 +6,10 @@ using VRTK;
 
 public abstract class Spell : MonoBehaviour {
 
-	long cooldown;
-
-	public abstract void cast (GameObject castController);
+	public double cooldown {
+		get;
+		set;
+	}
 
 	//Initialization (to avoid NPE)
 	void Awake() {
