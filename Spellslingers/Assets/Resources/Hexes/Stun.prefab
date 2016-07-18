@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142fd4b760071cb408ddaea18d9785e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 5
+  timeout: 20
   damage: 0
   velocity: 240
   duration: 5000

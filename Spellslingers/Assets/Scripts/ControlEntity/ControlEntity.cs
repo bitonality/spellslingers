@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using VRTK;
 
 public abstract class ControlEntity : MonoBehaviour {
 
 
-	public virtual void processHex (Hex h);
-
-	public virtual bool CanShoot(Hex h, GameObject launchPoint);
+	public abstract void CastHex (Hex hex, GameObject source, Vector3 target);
+	public abstract void processHex (Hex h);
+	public abstract bool CanShoot(Hex h, GameObject launchPoint);
 
 	//<Hex, CastTime>
 	public Dictionary<Hex, float> cooldown {
@@ -29,8 +30,4 @@ public abstract class ControlEntity : MonoBehaviour {
 			return false;
 		}
 	}
-
-	public virtual void CastHex (Hex h, GameObject source, Vector3 target);
-
-
 }

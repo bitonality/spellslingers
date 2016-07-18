@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\CastListener.cs" />
      <Compile Include="Assets\Scripts\ControlEntity\ControlEntity.cs" />
      <Compile Include="Assets\Scripts\ControlEntity\Player.cs" />
+     <Compile Include="Assets\Scripts\ControlEntity\ai.cs" />
      <Compile Include="Assets\Scripts\DPad.cs" />
      <Compile Include="Assets\Scripts\DPad_Direction.cs" />
      <Compile Include="Assets\Scripts\HexCollide.cs" />
@@ -75,6 +76,7 @@
      <Compile Include="Assets\Scripts\Spells\Hexes\Stun.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
      <Compile Include="Assets\Scripts\TrailTest.cs" />
+     <Compile Include="Assets\Scripts\aiBase.cs" />
      <Compile Include="Assets\Scripts\rockEvent.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
@@ -182,8 +184,6 @@
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_UIPointer.cs" />
      <Compile Include="Assets\TestLauncher.cs" />
-     <Compile Include="Assets\ai.cs" />
-     <Compile Include="Assets\aiBase.cs" />
      <Compile Include="Assets\destroyObject.cs" />
      <Compile Include="Assets\spell.cs" />
      <None Include="Assets\SteamVR_Unity_Toolkit\Version.txt" />
