@@ -19,7 +19,8 @@ public abstract class Hex : Spell {
 		Destroy (this.gameObject);
 	}
 
-	public abstract void playerCollide (GameObject playerCameraRig);
+	public abstract void playerCollide(GameObject playerCameraRig);
+	public abstract void aiCollide(GameObject aiBody);
 
 
 

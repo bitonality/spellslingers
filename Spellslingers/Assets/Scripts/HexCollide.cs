@@ -18,8 +18,8 @@ public class HexCollide : MonoBehaviour
 		//Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
 
 		//If we've hit a player
-		if (col.gameObject.GetComponent<Player>() != null) {
-			col.gameObject.GetComponent<Player> ().processHex (this.GetComponent<Hex> ());
+		if (col.gameObject.GetComponent<ControlEntity>() != null) {
+			col.gameObject.GetComponent<ControlEntity> ().processHex (this.GetComponent<Hex> ());
 			return;
 		}
 			

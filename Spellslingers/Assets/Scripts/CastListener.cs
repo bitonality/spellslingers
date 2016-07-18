@@ -75,7 +75,7 @@ public class CastListener : MonoBehaviour {
 			
 	
 		Player p = gameObject.GetComponentInParent<Player> ();
-		if(p.CanShoot(newProjectile.GetComponent<Hex>(), gameObject)) p.CastHex (newProjectile.GetComponent<Hex>(), gameObject, null);
+		if(p.CanShoot(newProjectile.GetComponent<Hex>(), gameObject)) p.CastHex (newProjectile.GetComponent<Hex>(), gameObject, new Vector3(0,0,0));
 
 	}
 

@@ -153,8 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db44f8394807d674092403e59f290127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 2
+  timeout: 20
   damage: 5
   velocity: 240
+  AiDisarmTime: 0
 --- !u!114 &11455792
 MonoBehaviour:
   m_ObjectHideFlags: 1

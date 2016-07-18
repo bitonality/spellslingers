@@ -11,7 +11,7 @@ public class Stun : Hex {
 	//How often the decrement will run
 	private float repeatRate = 0.2F;
 	//calculated value for how much to decrease the blur size by
-	public double interval;
+	public double interval = 0;
 	private MotionBlur blur;
 
 	public override void playerCollide (GameObject playerCameraRig)
@@ -29,6 +29,13 @@ public class Stun : Hex {
 
 	}
 
+
+	public override void aiCollide (GameObject aiBody)
+	{
+
+	
+
+	}
 	public override void destroy() {
 		this.gameObject.SetActive(false);
 	}
