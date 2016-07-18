@@ -25,7 +25,7 @@ public class ai : MonoBehaviour {
 
 	void Start () {
 		if (hexes.Length != times.Length) {
-			throw new MissingReferenceException("Hex count does not match time count");
+			throw new MissingReferenceException ("Hex count does not match time count");
 		}
 		for (int i = 0; i < hexes.Length; i++) {
 			spells.Add (hexes [i], times [i]);
@@ -33,26 +33,26 @@ public class ai : MonoBehaviour {
 		Debug.Log ("Started");
 
 		foreach (DictionaryEntry de in spells) {
-			StartCoroutine (ShootSpell ((Hex) de.Key, (float) de.Value));
+			StartCoroutine(spellTimer((Hex) de.Key, (float) de.Value));
 		}
 
 		//Once every 0.33 seconds, check if the AI is in danger
-		InvokeRepeating("checkSafety", 0F, 0.33F);
+		InvokeRepeating ("checkSafety", 0F, 0.33F);
 	}
-
-	IEnumerator ShootSpell(Hex h, float delaytime) {
-		yield return new WaitForSeconds (delaytime);
-		shootSpell (h);
-	}
-
 
 	//TODO: Bad assumption kys
 	void OnTriggerExit(Collider col) {
 		gameObject.GetComponent<Rigidbody> ().velocity *= -1;
 	}
 
-	//TODO: Make georgie do this
-	public  void shootSpell(Hex hex)
+	IEnumerator spellTimer (Hex h, float t) {
+		while (true) {
+			yield return new WaitForSeconds (t);
+			shootSpell (h);
+		}
+	}
+
+	public void shootSpell(Hex hex)
 	{
 		Hex proj = Instantiate (hex, gameObject.transform.position + new Vector3(0, 1F, 0), gameObject.transform.rotation) as Hex;
 		proj.GetComponent<Rigidbody>().velocity = (GameObject.FindGameObjectWithTag("MainCamera").transform.position - gameObject.transform.position- new Vector3(0,1F, 0)).normalized * 10;

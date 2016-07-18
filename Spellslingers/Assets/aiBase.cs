@@ -24,7 +24,6 @@ public class aiBase {
 	}
 
 
-
 	//Assumes AI and spells are on their own layer
 	public static ArrayList isInDanger() {
 		//Get all spells
