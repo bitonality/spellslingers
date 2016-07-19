@@ -50,11 +50,12 @@ public class Player : ControlEntity {
 	
 	// Update is called once per frame
 	void Update () {
+		/*
 		foreach(string spellname in cooldown.Keys.ToString()) {
 			cooldown.Add (cd.Key, cd.Value - Time.deltaTime);
 
 		}
-	
+	*/
 	}
 
 
