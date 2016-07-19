@@ -86,5 +86,5 @@ C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Unity
 C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEditor.xml
 C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.UI.xml
 C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\UnityEngine.Networking.xml
-C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\GETween.dll
-C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\GUIAnimatorFREE.dll
+C:\Users\Frank\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\GETween.dll
+C:\Users\Frank\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\GUIAnimatorFREE.dll

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-
+using System.Linq;
 
 public class ai : ControlEntity {
 	//For stacking of effects that disable shooting
@@ -10,11 +9,11 @@ public class ai : ControlEntity {
 	//Speed it moves at (m/s)
 	public float speed;
 
-	//So that you can order most important->least important spells in the inspector
-	public GameObject[] spookyFactor;
+	private float defaultSpeed;
 
 	//Level is 1/2/3, set somewhere else but set here for now.
-	private static int level = 1;
+	//Unused for right now.
+	//private static int level = 1;
 
 	//Used for movement (so it's unpredictable)
 	private System.Random rnd = new System.Random ();
@@ -22,27 +21,39 @@ public class ai : ControlEntity {
 	//Hex and spells are in their own respective array so they can be in the inspector. Then, they're placed into a hashtable.
 	public GameObject[] hexes;
 
-	public float[] times;
-
-	//load hexes into the hashtable on load
-	private Hashtable spells = new Hashtable();
-
 	void Start () {
-		cooldown = new System.Collections.Generic.Dictionary<string, float> ();
-		if (hexes.Length != times.Length) {
-			throw new MissingReferenceException ("Hex count does not match time count");
+		/* 
+		 * This doesn't work, for MVP leaving in the hardcode.
+		//Convert gameobject to string 
+		for (int i = 0; i < spookyFactor.Length; i++) {
+			spookyStrings.Add(spookyFactor [i].GetComponent<Hex> ().name);
 		}
-		for (int i = 0; i < hexes.Length; i++) {
-			spells.Add (hexes [i], times [i]);
+		for (int i = 0; i < spookyStrings.Count; i++) {
+			Debug.Log("Item " + i + ": " + spookyStrings[i]);
 		}
-		Debug.Log ("Started");
-
-		foreach (DictionaryEntry de in spells) {
-			StartCoroutine(spellTimer((((GameObject) de.Key).GetComponent<Hex>()), (float) de.Value));
+		*/
+		//Record the default speed
+		defaultSpeed = speed;
+		//Start the shooting loop
+		foreach (GameObject currentHex in hexes) {
+			Debug.Log (currentHex.name);
+			StartCoroutine(spellTimer((((GameObject) currentHex).GetComponent<Hex>()), (float) currentHex.GetComponent<Hex>().cooldown));
 		}
 
 		//Once every 0.33 seconds, check if the AI is in danger
 		InvokeRepeating ("checkSafety", 0F, 0.33F);
+	}
+
+	public void setSpeed(int newSpeed) {
+		if (newSpeed >= 0) {
+			speed = newSpeed;
+		} else {
+			speed = defaultSpeed;
+		}
+	}
+
+	public int getDefaultSpeed() {
+		return defaultSpeed;
 	}
 
 	//TODO: Bad assumption kys
@@ -59,15 +70,17 @@ public class ai : ControlEntity {
 		}
 	}
 
-
 	void checkSafety()
 	{
 		ArrayList dangerousSpells = aiBase.isInDanger ();
 		if (dangerousSpells.Count > 0) {
 			//Choose the one that is most important
+			//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
+			//So the spells are actually in alphabetical order. 
+			dangerousSpells.Sort (); 
 			//Move 
 			Vector3 position = this.gameObject.transform.position;
-			Vector3 direction = new Vector3 (0, 0, speed * this.rnd.Next (-2, 0) * 2 + 3);
+			Vector3 direction = new Vector3 (0, 0, speed * ((GameObject)dangerousSpells [0]).transform.position.z);
 			aiBase.move(this.gameObject, direction);
 		} else {
 			aiBase.cancelMove (this.gameObject);
@@ -81,7 +94,6 @@ public class ai : ControlEntity {
 		proj.gameObject.tag = "AIHex";
 		//Destroy (hex.gameObject, hex.timeout);
 	}
-
 
 	//pass null to wand, we don't particularly care about it for the AI context
 	public override bool CanShoot(Hex h, GameObject wand) {
