@@ -6,7 +6,7 @@
     {
         public enum Direction
         {
-            x, y, z // TODO: autodetect not yet done, it's a bit more difficult to get it right
+            x, y, z // TO DO: autodetect not yet done, it's a bit more difficult to get it right
         }
 
         public Direction direction = Direction.x;
@@ -114,7 +114,7 @@
             float lengthNegY = (hitUp.collider != null) ? hitUp.distance : float.MaxValue;
             float lengthNegZ = (hitForward.collider != null) ? hitForward.distance : float.MaxValue;
 
-            // TODO: not yet the right decision strategy, works only partially
+            // TO DO: not yet the right decision strategy, works only partially
             if (Utilities.IsLowest(lengthX, new float[] { lengthY, lengthZ, lengthNegX, lengthNegY, lengthNegZ }))
             {
                 direction = Direction.z;

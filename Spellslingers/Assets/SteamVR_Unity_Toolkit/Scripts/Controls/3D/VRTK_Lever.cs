@@ -99,7 +99,7 @@
         {
             float angle = ((value - min) / (max - min)) * (hj.limits.max - hj.limits.min);
 
-            // TODO: there is no direct setter, one recommendation by Unity staff is to "abuse" min/max which seems the most reliable but not working so far
+            // TO DO: there is no direct setter, one recommendation by Unity staff is to "abuse" min/max which seems the most reliable but not working so far
             JointLimits oldLimits = hj.limits;
             JointLimits tempLimits = hj.limits;
             tempLimits.min = angle;
