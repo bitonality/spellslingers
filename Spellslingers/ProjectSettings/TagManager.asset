@@ -11,6 +11,7 @@ TagManager:
   - CastTriggerZone
   - AI
   - AIHex
+  - Canvas
   layers:
   - Default
   - TransparentFX
