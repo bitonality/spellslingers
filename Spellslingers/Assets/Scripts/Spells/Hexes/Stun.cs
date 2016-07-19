@@ -28,13 +28,13 @@ public class Stun : Hex {
 
 	public override void aiCollide (GameObject aiBody)
 	{
-		int delta = aiBody.GetComponent<ai> ().speed / 2;
+		float delta = aiBody.GetComponent<ai> ().speed / 2;
 		aiBody.GetComponent<ai> ().setSpeed (delta);
 		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<ai>().speed + delta);
 	}
 
-	IEnumerator scheduleSetSpeed(GameObject aiBody, float waitTime, float newSpeed) {
-		yield return new WaitForSeconds(waitTime);
+	IEnumerator scheduleSetSpeed(GameObject aiBody, double waitTime, float newSpeed) {
+		yield return new WaitForSeconds((float) waitTime);
 		aiBody.GetComponent<ai> ().setSpeed (newSpeed);
 	}
 

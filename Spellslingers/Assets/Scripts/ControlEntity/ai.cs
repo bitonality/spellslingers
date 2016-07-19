@@ -44,7 +44,7 @@ public class ai : ControlEntity {
 		InvokeRepeating ("checkSafety", 0F, 0.33F);
 	}
 
-	public void setSpeed(int newSpeed) {
+	public void setSpeed(float newSpeed) {
 		if (newSpeed >= 0) {
 			speed = newSpeed;
 		} else {
@@ -52,7 +52,7 @@ public class ai : ControlEntity {
 		}
 	}
 
-	public int getDefaultSpeed() {
+	public float getDefaultSpeed() {
 		return defaultSpeed;
 	}
 
