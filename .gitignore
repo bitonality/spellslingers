@@ -10,3 +10,8 @@ Spellslingers/Assets/Scripts/ControlEntity.meta
 *.meta
 *.meta
 Spellslingers/Assets/Models/Decals/*.meta
+Spellslingers/Assembly-CSharp-Editor.csproj
+Spellslingers/Assembly-CSharp-firstpass.csproj
+Spellslingers/Assembly-CSharp.csproj
+Spellslingers/Assembly-UnityScript.unityproj
+Spellslingers/Spellslingers.userprefs
