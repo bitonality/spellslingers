@@ -12,19 +12,19 @@ public class CooldownSlider : MonoBehaviour {
 		canvas = GameObject.FindGameObjectWithTag ("Canvas");
 	}
 
-	public void cooldown(Hex hex, float future) {
+	public void cooldown(Hex hex, float cooldown) {
 		Slider s = canvas.GetComponentInChildren<Slider> ();
 		s.value = 0;
 		double incrementValue =  (1/ (double) (hex.cooldown / updateTick));
-		Debug.Log (incrementValue);
-		StartCoroutine(Increment (incrementValue, s, future));
+		StartCoroutine(Increment (incrementValue, s, cooldown));
 	}
 
-	IEnumerator Increment(double increment, Slider s, float future) {
+	IEnumerator Increment(double increment, Slider s, float cooldown) {
 		int i = 0;
-		while (future > Time.time) {
+		while (cooldown >= 0) {
 			s.value += (float) increment;
 			i++;
+			cooldown -= Time.deltaTime;
 			yield return new WaitForSeconds (updateTick);
 		}
 		Debug.Log (i);
