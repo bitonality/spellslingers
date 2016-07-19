@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Linq;
 
-
 public class ai : ControlEntity {
 	//For stacking of effects that disable shooting
 	public float ShootingCycleDisable = 0;
@@ -10,8 +9,7 @@ public class ai : ControlEntity {
 	//Speed it moves at (m/s)
 	public float speed;
 
-	//So that you can order most important->least important spells in the inspector
-	public GameObject[] spookyFactor;
+	private float defaultSpeed;
 
 	//Level is 1/2/3, set somewhere else but set here for now.
 	//Unused for right now.
@@ -24,6 +22,18 @@ public class ai : ControlEntity {
 	public GameObject[] hexes;
 
 	void Start () {
+		/* 
+		 * This doesn't work, for MVP leaving in the hardcode.
+		//Convert gameobject to string 
+		for (int i = 0; i < spookyFactor.Length; i++) {
+			spookyStrings.Add(spookyFactor [i].GetComponent<Hex> ().name);
+		}
+		for (int i = 0; i < spookyStrings.Count; i++) {
+			Debug.Log("Item " + i + ": " + spookyStrings[i]);
+		}
+		*/
+		//Record the default speed
+		defaultSpeed = speed;
 		//Start the shooting loop
 		foreach (GameObject currentHex in hexes) {
 			Debug.Log (currentHex.name);
@@ -32,6 +42,18 @@ public class ai : ControlEntity {
 
 		//Once every 0.33 seconds, check if the AI is in danger
 		InvokeRepeating ("checkSafety", 0F, 0.33F);
+	}
+
+	public void setSpeed(int newSpeed) {
+		if (newSpeed >= 0) {
+			speed = newSpeed;
+		} else {
+			speed = defaultSpeed;
+		}
+	}
+
+	public int getDefaultSpeed() {
+		return defaultSpeed;
 	}
 
 	//TODO: Bad assumption kys
@@ -47,7 +69,6 @@ public class ai : ControlEntity {
 			}
 		}
 	}
-
 
 	void checkSafety()
 	{
@@ -73,7 +94,6 @@ public class ai : ControlEntity {
 		proj.gameObject.tag = "AIHex";
 		//Destroy (hex.gameObject, hex.timeout);
 	}
-
 
 	//pass null to wand, we don't particularly care about it for the AI context
 	public override bool CanShoot(Hex h, GameObject wand) {
