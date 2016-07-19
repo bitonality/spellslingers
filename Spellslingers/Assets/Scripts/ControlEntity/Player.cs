@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using VRTK;
+using System.Collections.Generic;
 
 public class Player : ControlEntity {
-	
+
+	public GameObject slider;
+
 	public override void CastHex (Hex hex, GameObject source, Vector3 target){
 		//Finds the wand in a roundabout way... Change later
 		hex.gameObject.transform.position = source.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
@@ -47,6 +50,14 @@ public class Player : ControlEntity {
 	
 	// Update is called once per frame
 	void Update () {
+		foreach(string spellname in cooldown.Keys.ToString()) {
+			cooldown.Add (cd.Key, cd.Value - Time.deltaTime);
+
+		}
 	
 	}
+
+
+
+
 }
