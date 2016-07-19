@@ -183,6 +183,7 @@
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_SimplePointer.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
      <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_UIPointer.cs" />
+     <Compile Include="Assets\TestBolt.cs" />
      <Compile Include="Assets\TestLauncher.cs" />
      <Compile Include="Assets\destroyObject.cs" />
      <Compile Include="Assets\spell.cs" />
