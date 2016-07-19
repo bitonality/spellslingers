@@ -103,3 +103,5 @@ C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\Unity
 C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
 C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\whats\Documents\GitHub\spellslingers\Spellslingers\obj\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\GETween.dll
+C:\Users\HTC Vive\Documents\GitHub\spellslingers\Spellslingers\Temp\bin\Debug\GUIAnimatorFREE.dll
