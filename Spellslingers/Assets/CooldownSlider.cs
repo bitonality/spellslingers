@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CooldownSlider : MonoBehaviour {
 
 	GameObject canvas;
-	private float updateTick = 0.1F;
+	private float updateTick = 0.05F;
 
 	// Use this for initialization
 	void Start () {
@@ -13,17 +13,21 @@ public class CooldownSlider : MonoBehaviour {
 	}
 
 	public void cooldown(Hex hex, float future) {
-		Slider s = canvas.GetComponent<Slider> ();
+		Slider s = canvas.GetComponentInChildren<Slider> ();
 		s.value = 0;
-		float incrementValue = hex.cooldown / updateTick;
-		StartCoroutine ();
+		double incrementValue =  (1/ (double) (hex.cooldown / updateTick));
+		Debug.Log (incrementValue);
+		StartCoroutine(Increment (incrementValue, s, future));
 	}
 
-	IEnumerator Increment(float increment, Slider s, float future) {
-		while (future >= Time.time) {
+	IEnumerator Increment(double increment, Slider s, float future) {
+		int i = 0;
+		while (future > Time.time) {
+			s.value += (float) increment;
+			i++;
 			yield return new WaitForSeconds (updateTick);
-			s.value += increment;
 		}
+		Debug.Log (i);
 	}
 
 	// Update is called once per frame

@@ -9,7 +9,7 @@ public class Player : ControlEntity {
 		hex.gameObject.transform.position = source.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
 		hex.gameObject.GetComponent<Rigidbody> ().AddForce (source.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().transform.FindChild("WandLaunchPoint").transform.forward.normalized * (float) hex.velocity);
 		//Destroy (hex, hex.timeout);
-		this.GetComponent<CooldownSlider>().cooldown(hex, Time.time + hex.cooldown);
+		this.GetComponent<CooldownSlider>().cooldown(hex, (float) (Time.time + hex.cooldown));
 	}
 
 	public override void processHex(Hex h) {
