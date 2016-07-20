@@ -172,7 +172,7 @@ ParticleSystem:
   speed: 1
   randomSeed: 0
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   moveWithTransform: 1
   scalingMode: 2
@@ -180,7 +180,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 1
+      scalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -474,9 +474,9 @@ ParticleSystem:
     radius: 1
     angle: 25
     length: 5
-    boxX: 0.5
+    boxX: 0.1
     boxY: 2
-    boxZ: 0.5
+    boxZ: 0.1
     arc: 360
     placementMode: 0
     m_Mesh: {fileID: 0}
