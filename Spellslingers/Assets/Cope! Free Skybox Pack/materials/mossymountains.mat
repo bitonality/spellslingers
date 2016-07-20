@@ -26,45 +26,53 @@ Material:
         first:
           name: _FrontTex
         second:
-          m_Texture: {fileID: 2800000, guid: 16c52a4a4048644eebe1435c28a562eb, type: 3}
+          m_Texture: {fileID: 2800000, guid: eba820bcb55f2f543b5233015d057afb, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BackTex
         second:
-          m_Texture: {fileID: 2800000, guid: 5eddd2c61b0a649769adc287d9817dfc, type: 3}
+          m_Texture: {fileID: 2800000, guid: ead738ef361ffaa41b3fde017e1765ff, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _LeftTex
         second:
-          m_Texture: {fileID: 2800000, guid: b398e4f50556e427392e64d487a9678f, type: 3}
+          m_Texture: {fileID: 2800000, guid: 22b15007bec57514f9852a6cc5104664, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _RightTex
         second:
-          m_Texture: {fileID: 2800000, guid: 6a6d1ab5e83aa40b6b93051ef03a140c, type: 3}
+          m_Texture: {fileID: 2800000, guid: 3dc51480896c63e42ac8dfdf2a498e4f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _UpTex
         second:
-          m_Texture: {fileID: 2800000, guid: cd5eee3359ef342d9b509c4ed76bf9c7, type: 3}
+          m_Texture: {fileID: 2800000, guid: 457ba6a452ca6d34eb4f19d750e6042b, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _DownTex
         second:
-          m_Texture: {fileID: 2800000, guid: 5f05612da30ee4b15bd39dc697cac986, type: 3}
+          m_Texture: {fileID: 2800000, guid: 7afa38f86e2aa8d4795e6c9eee1f159f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _Exposure
+        second: 1
+      data:
+        first:
+          name: _Rotation
+        second: 0
     m_Colors:
       data:
         first:

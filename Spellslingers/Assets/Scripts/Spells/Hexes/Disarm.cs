@@ -16,6 +16,7 @@ public class Disarm : Hex {
 				continue;
 			GameObject wand = controller.GetGrabbedObject ();
 			controller.ForceRelease();
+			wand.GetComponent<Rigidbody> ().isKinematic = false;
 			wand.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 10, 0);
 			wand.GetComponent<Rigidbody> ().angularVelocity = new Vector3 (8, 9, 10);
 		}

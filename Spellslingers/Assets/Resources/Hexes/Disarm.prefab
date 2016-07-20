@@ -30,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8, y: 27.6, z: -8.2}
+  m_LocalPosition: {x: 19.48, y: 1.97, z: 0.25}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 2
-  name: 44697361726d
+  name: Disarm
   timeout: 20
   damage: 20
   velocity: 200
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 2}
-  numLegalCollisions: 3
+  numLegalCollisions: 1
 --- !u!198 &19834956
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -180,7 +180,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 0.4
+      scalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -338,13 +338,13 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minColor:
         serializedVersion: 2
-        rgba: 419485951
+        rgba: 4278245631
       maxColor:
         serializedVersion: 2
-        rgba: 671154171
+        rgba: 4278255611
       minMaxState: 2
     startSize:
-      scalar: 2
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -439,7 +439,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startRotation:
-      scalar: 3.1415925
+      scalar: 3.141593
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -450,7 +450,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -461,8 +461,8 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
-      minMaxState: 3
+        m_RotationOrder: 0
+      minMaxState: 0
     randomizeRotationDirection: 0
     gravityModifier: 0
     maxNumParticles: 1000
@@ -471,7 +471,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 5
-    radius: 1
+    radius: 6.45
     angle: 25
     length: 5
     boxX: 0.1
@@ -671,7 +671,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minMaxState: 3
     separateAxes: 0
   ColorModule:
@@ -1297,7 +1297,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     curve:
-      scalar: 0.7853982
+      scalar: 0.7853981
       maxCurve:
         serializedVersion: 2
         m_Curve:

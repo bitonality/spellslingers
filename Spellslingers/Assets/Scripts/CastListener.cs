@@ -71,7 +71,8 @@ public class CastListener : MonoBehaviour {
 			}
 			break;	
 		case DPad_Direction.RIGHT:
-			if (p.CanShoot (rightTemplate.GetComponent<Hex> (), gameObject)) {
+			bool canshoot = p.CanShoot (rightTemplate.GetComponent<Hex> (), gameObject);
+			if (canshoot) {
 				newProjectile = Instantiate<GameObject> (rightTemplate) as GameObject;
 				p.CastHex (newProjectile.GetComponent<Hex> (), gameObject, new Vector3 (0, 0, 0));
 			}

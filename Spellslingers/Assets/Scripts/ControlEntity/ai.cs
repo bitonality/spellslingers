@@ -41,6 +41,8 @@ public class ai : ControlEntity {
 			StartCoroutine(spellTimer((((GameObject) currentHex).GetComponent<Hex>()), (float) currentHex.GetComponent<Hex>().cooldown));
 		}
 
+		cooldown = new System.Collections.Generic.Dictionary<string, float> ();
+
 		//Once every 0.33 seconds, check if the AI is in danger
 		InvokeRepeating ("checkSafety", 0F, 0.33F);
 	}
@@ -81,7 +83,7 @@ public class ai : ControlEntity {
 			dangerousSpells.Sort (); 
 			//Move 
 			Vector3 position = this.gameObject.transform.position;
-			Vector3 direction = new Vector3 (0, 0, speed * ((GameObject)dangerousSpells [0]).transform.position.z);
+			Vector3 direction = new Vector3 ( speed * ((GameObject)dangerousSpells [0]).transform.position.x, 0,0);
 			aiBase.move(this.gameObject, direction);
 		} else {
 			aiBase.cancelMove (this.gameObject);
@@ -101,14 +103,13 @@ public class ai : ControlEntity {
 		if (this.cooldown.ContainsKey (h.name)) {
 			if (Time.time >= this.cooldown [h.name] + h.cooldown) {
 				this.cooldown.Remove (h.name);
-				return true;
 			} else {
 				return false;
 			}
-		} else {
-			this.cooldown.Add (h.name, Time.time);
-			return true;
-		}
+		} 
+		this.cooldown.Add (h.name, Time.time);
+		return true;
+
 
 	}
 

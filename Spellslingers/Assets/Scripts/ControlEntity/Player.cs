@@ -38,15 +38,15 @@ public class Player : ControlEntity {
 			} else {
 				return false;
 			}
-		} else {
+		} 
 			this.cooldown.Add (h.name, Time.time + h.cooldown) ;
-		}
+
 
 
 		Slider slider = sliders [h.name];
-		slider.GetComponent<Slider> ().minValue = 0;
-		slider.GetComponent<Slider> ().maxValue = h.cooldown;
-		slider.GetComponent<Slider> ().value = slider.GetComponent<Slider> ().minValue;
+		slider.minValue = 0;
+		slider.maxValue = h.cooldown;
+		slider.value = slider.minValue;
 		return true;
 	}
 
@@ -58,20 +58,18 @@ public class Player : ControlEntity {
 		//load our map from the inspector
 		sliders = new Dictionary<string, Slider> ();
 		foreach (SliderInsepctorEntry entry in InspectorSliders) {
-			sliders.Add (entry.name, entry.slider.GetComponent<Slider>());
+			sliders.Add (entry.name, entry.slider.GetComponent<Slider> ());
 		}
 	}
+
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
 		foreach(KeyValuePair<string, float> spell in cooldown) {
-			Slider s = sliders [spell.Key];
-			if (Time.time >= spell.Value) {
-					s.value += Time.deltaTime;
-				}
+			if (Time.time <= spell.Value) {
+				sliders [spell.Key].value += Time.fixedDeltaTime;
 			}
-	
+		}
 	}
 
 	[System.Serializable]

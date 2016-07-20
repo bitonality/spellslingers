@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 2}
-  numLegalCollisions: 3
+  numLegalCollisions: 1
 --- !u!198 &19875624
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -335,7 +335,7 @@ ParticleSystem:
         rgba: 1342177280
       minMaxState: 2
     startSize:
-      scalar: 0.1
+      scalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
