@@ -180,7 +180,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 8
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -338,13 +338,13 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minColor:
         serializedVersion: 2
-        rgba: 436207470
+        rgba: 419485951
       maxColor:
         serializedVersion: 2
-        rgba: 677707710
+        rgba: 671154171
       minMaxState: 2
     startSize:
-      scalar: 4
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -355,7 +355,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -367,7 +367,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      minMaxState: 3
+      minMaxState: 0
     startRotationX:
       scalar: 1
       maxCurve:
@@ -469,14 +469,14 @@ ParticleSystem:
     rotation3D: 0
   ShapeModule:
     serializedVersion: 2
-    enabled: 0
-    type: 4
+    enabled: 1
+    type: 5
     radius: 1
     angle: 25
     length: 5
-    boxX: 1
-    boxY: 1
-    boxZ: 1
+    boxX: 0.5
+    boxY: 2
+    boxZ: 0.5
     arc: 360
     placementMode: 0
     m_Mesh: {fileID: 0}
