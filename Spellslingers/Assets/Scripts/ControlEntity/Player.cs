@@ -6,7 +6,8 @@ using System.Collections.Generic;
 
 public class Player : ControlEntity {
 
-	public GameObject slider;
+	public SliderInsepctorEntry[] InspectorSliders;
+	private Dictionary<string, Slider> sliders;
 
 	public override void CastHex (Hex hex, GameObject source, Vector3 target){
 		//Finds the wand in a roundabout way... Change later
@@ -19,8 +20,9 @@ public class Player : ControlEntity {
 	public override void processHex(Hex h) {
 		h.playerCollide (gameObject);
 		this.health -= h.damage;
+		//TODO: magic valu
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.health/100);
 		h.destroy ();
-		Debug.Log ("Player health: " + health);
 		if (this.IsDead ())
 			Destroy (this.gameObject);
 	}
@@ -40,7 +42,8 @@ public class Player : ControlEntity {
 			this.cooldown.Add (h.name, Time.time + h.cooldown) ;
 		}
 
-		Debug.Log ("Time: " + Time.time + " || Cooldown time: " + cooldown [h.name]);
+
+		Slider slider = sliders [h.name];
 		slider.GetComponent<Slider> ().minValue = 0;
 		slider.GetComponent<Slider> ().maxValue = h.cooldown;
 		slider.GetComponent<Slider> ().value = slider.GetComponent<Slider> ().minValue;
@@ -51,19 +54,32 @@ public class Player : ControlEntity {
 	// Use this for initialization
 	void Start () {
 		cooldown = new System.Collections.Generic.Dictionary<string, float> ();
+
+		//load our map from the inspector
+		sliders = new Dictionary<string, Slider> ();
+		foreach (SliderInsepctorEntry entry in InspectorSliders) {
+			sliders.Add (entry.name, entry.slider.GetComponent<Slider>());
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 		foreach(KeyValuePair<string, float> spell in cooldown) {
-			Slider s = slider.GetComponent<Slider> ();
+			Slider s = sliders [spell.Key];
 			if (Time.time >= spell.Value) {
 					s.value += Time.deltaTime;
 				}
 			}
 	
 	}
+
+	[System.Serializable]
+	public class SliderInsepctorEntry {
+		public string name;
+		public GameObject slider;
+	}
+
 
 
 
