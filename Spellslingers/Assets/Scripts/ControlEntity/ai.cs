@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using UnityEngine.UI;
 
 public class ai : ControlEntity {
 	//For stacking of effects that disable shooting
@@ -115,7 +116,7 @@ public class ai : ControlEntity {
 		h.aiCollide (gameObject);
 		this.health -= h.damage;
 		h.destroy ();
-		Debug.Log ("AI Health: " + health);
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.health/100);
 		if (this.IsDead ())
 			Destroy (this.gameObject);
 	}

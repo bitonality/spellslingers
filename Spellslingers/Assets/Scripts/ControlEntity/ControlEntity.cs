@@ -5,7 +5,7 @@ using VRTK;
 
 public abstract class ControlEntity : MonoBehaviour {
 
-
+	public GameObject HealthBar;
 	public abstract void CastHex (Hex hex, GameObject source, Vector3 target);
 	public abstract void processHex (Hex h);
 	public abstract bool CanShoot(Hex h, GameObject launchPoint);
