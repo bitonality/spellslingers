@@ -32,21 +32,19 @@ public class Player : ControlEntity {
 
 		if (this.cooldown.ContainsKey (h.name)) {
 			if (Time.time >= this.cooldown[h.name]) {
-				slider.GetComponent<Slider> ().minValue = 0;
-				slider.GetComponent<Slider> ().maxValue = h.cooldown;
-				slider.GetComponent<Slider> ().value = slider.GetComponent<Slider> ().minValue;
 				this.cooldown.Remove (h.name);
-				return true;
 			} else {
 				return false;
 			}
 		} else {
 			this.cooldown.Add (h.name, Time.time + h.cooldown) ;
-			slider.GetComponent<Slider> ().minValue = 0;
-			slider.GetComponent<Slider> ().maxValue = h.cooldown;
-			slider.GetComponent<Slider> ().value = slider.GetComponent<Slider> ().minValue;
-			return true;
 		}
+
+		Debug.Log ("Time: " + Time.time + " || Cooldown time: " + cooldown [h.name]);
+		slider.GetComponent<Slider> ().minValue = 0;
+		slider.GetComponent<Slider> ().maxValue = h.cooldown;
+		slider.GetComponent<Slider> ().value = slider.GetComponent<Slider> ().minValue;
+		return true;
 	}
 
 
