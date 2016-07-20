@@ -4,5 +4,5 @@ using System.Collections.Generic;
 using VRTK;
 
 public abstract class Spell : MonoBehaviour {
-	public double cooldown;
+	public float cooldown;
 }

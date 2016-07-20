@@ -367,17 +367,6 @@ MonoBehaviour:
   headsetYOffset: 0
   ignoreGrabbedCollisions: 0
   resetPositionOnCollision: 0
---- !u!114 &391519563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 391519561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c38c13ff856ac344a714321e55e5a2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &391519571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  slider: {fileID: 0}
+  slider: {fileID: 1161237800}
 --- !u!114 &391519574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,7 +849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &894923589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,7 +1274,7 @@ RectTransform:
   m_Father: {fileID: 1417079502}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 3, y: 0}
   m_SizeDelta: {x: 10.004055, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

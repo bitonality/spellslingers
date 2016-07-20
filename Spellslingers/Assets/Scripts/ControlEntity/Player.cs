@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using VRTK;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Player : ControlEntity {
@@ -12,7 +13,7 @@ public class Player : ControlEntity {
 		hex.gameObject.transform.position = source.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
 		hex.gameObject.GetComponent<Rigidbody> ().AddForce (source.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().transform.FindChild("WandLaunchPoint").transform.forward.normalized * (float) hex.velocity);
 		//Destroy (hex, hex.timeout);
-		this.GetComponent<CooldownSlider>().cooldown(hex, (float) (hex.cooldown));
+
 	}
 
 	public override void processHex(Hex h) {
@@ -30,14 +31,20 @@ public class Player : ControlEntity {
 		}
 
 		if (this.cooldown.ContainsKey (h.name)) {
-			if (Time.time >= this.cooldown[h.name] + h.cooldown) {
+			if (Time.time >= this.cooldown[h.name]) {
+				slider.GetComponent<Slider> ().minValue = 0;
+				slider.GetComponent<Slider> ().maxValue = h.cooldown;
+				slider.GetComponent<Slider> ().value = slider.GetComponent<Slider> ().minValue;
 				this.cooldown.Remove (h.name);
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			this.cooldown.Add (h.name, Time.time);
+			this.cooldown.Add (h.name, Time.time + h.cooldown) ;
+			slider.GetComponent<Slider> ().minValue = 0;
+			slider.GetComponent<Slider> ().maxValue = h.cooldown;
+			slider.GetComponent<Slider> ().value = slider.GetComponent<Slider> ().minValue;
 			return true;
 		}
 	}
@@ -50,12 +57,14 @@ public class Player : ControlEntity {
 	
 	// Update is called once per frame
 	void Update () {
-		/*
-		foreach(string spellname in cooldown.Keys.ToString()) {
-			cooldown.Add (cd.Key, cd.Value - Time.deltaTime);
-
-		}
-	*/
+		
+		foreach(KeyValuePair<string, float> spell in cooldown) {
+			Slider s = slider.GetComponent<Slider> ();
+			if (Time.time >= spell.Value) {
+					s.value += Time.deltaTime;
+				}
+			}
+	
 	}
 
 
