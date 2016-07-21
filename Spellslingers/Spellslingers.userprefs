@@ -1,13 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ControlEntity\Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spells\Hexes\Stun.cs">
     <Files>
-      <File FileName="Assets\Scripts\ControlEntity\ai.cs" Line="100" Column="1" />
-      <File FileName="Assets\Scripts\Spells\Hex.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ControlEntity\Player.cs" Line="16" Column="5" />
+      <File FileName="Assets\Scripts\ControlEntity\ai.cs" Line="122" Column="78" />
+      <File FileName="Assets\Scripts\Spells\Hex.cs" Line="10" Column="30" />
       <File FileName="Assets\destroyObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\TestLauncher.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ControlEntity\Player.cs" Line="43" Column="80" />
-      <File FileName="Assets\Scripts\CastListener.cs" Line="70" Column="64" />
+      <File FileName="Assets\Scripts\CastListener.cs" Line="9" Column="1" />
+      <File FileName="Assets\Scripts\ControlEntity\ControlEntity.cs" Line="6" Column="32" />
+      <File FileName="Assets\Scripts\DPad.cs" Line="10" Column="1" />
+      <File FileName="Assets\Scripts\Spells\Hexes\Disarm.cs" Line="14" Column="5" />
+      <File FileName="Assets\Scripts\Spells\Hexes\Stun.cs" Line="24" Column="48" />
+      <File FileName="Assets\Scripts\aiBase.cs" Line="36" Column="101" />
+      <File FileName="Assets\Scripts\HexCollide.cs" Line="23" Column="98" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

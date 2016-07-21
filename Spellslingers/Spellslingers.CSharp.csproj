@@ -58,14 +58,14 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="GETween">
+      <HintPath>Assets\GUI Animator\Common\Plugins\GETween.dll</HintPath>
+    </Reference>
+    <Reference Include="GUIAnimatorFREE">
+      <HintPath>Assets\GUI Animator\GUI Animator FREE\Plugins\GUIAnimatorFREE.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -75,18 +75,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CooldownSlider.cs" />
+    <Compile Include="Assets\Elementals\Demo\Scripts\GE_Elementals_Demo.cs" />
+    <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCamera.cs" />
+    <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCameraUI.cs" />
+    <Compile Include="Assets\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
+    <Compile Include="Assets\GE Common Assets\Scripts\GE_UIResponder.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo00.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo01.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo02.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo03.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo04.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo05.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo06.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo07.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo08.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
     <Compile Include="Assets\LavaMotion.cs" />
     <Compile Include="Assets\Scripts\CastListener.cs" />
+    <Compile Include="Assets\Scripts\ControlEntity\ControlEntity.cs" />
+    <Compile Include="Assets\Scripts\ControlEntity\Player.cs" />
+    <Compile Include="Assets\Scripts\ControlEntity\ai.cs" />
     <Compile Include="Assets\Scripts\DPad.cs" />
     <Compile Include="Assets\Scripts\DPad_Direction.cs" />
     <Compile Include="Assets\Scripts\HexCollide.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Spells\Hex.cs" />
     <Compile Include="Assets\Scripts\Spells\Hexes\Damage.cs" />
     <Compile Include="Assets\Scripts\Spells\Hexes\Disarm.cs" />
+    <Compile Include="Assets\Scripts\Spells\Hexes\Stun.cs" />
     <Compile Include="Assets\Scripts\Spells\Spell.cs" />
-    <Compile Include="Assets\Scripts\Spells\Stun.cs" />
-    <Compile Include="Assets\Scripts\TrailTest.cs" />
+    <Compile Include="Assets\Scripts\aiBase.cs" />
     <Compile Include="Assets\Scripts\rockEvent.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
@@ -120,73 +140,91 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\Arrow.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\ArrowNotch.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\ArrowSpawner.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\BowAim.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\BowAnimation.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\BowHandle.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\Follow.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Breakable_Cube.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ButtonReactor.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ControlReactor.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Controller_Menu.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ExcludeTeleport.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Gun.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Lamp.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\LightSaber.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Menu_Color_Changer.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Menu_Container_Object_Colors.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Menu_Object_Spawner.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ModelVillage_TeleportLocation.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Openable_Door.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\RC_Car.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\RC_Car_Controller.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Sphere_Spawner.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Sword.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_ControllerEvents_ListenerExample.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_ControllerInteract_ListenerExample.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_ControllerPointerEvents_ListenerExample.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_RoomExtender_ControllerExample.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Whirlygig.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Abstractions\VRTK_DestinationMarker.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Abstractions\VRTK_WorldPointer.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Controls\VRTK_Button.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Controls\VRTK_Control.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Controls\VRTK_Knob.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Controls\VRTK_Lever.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Controls\VRTK_Slider.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Helper\CurveGenerator.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Helper\DeviceFinder.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Helper\FramsPerSecondViewer.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Helper\Utilities.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Helper\VRTK_RoomExtender_PlayAreaGizmo.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_BasicTeleport.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_BezierPointer.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_ControllerActions.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_ControllerEvents.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_ControllerTooltips.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_HeadsetCollisionFade.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_HeightAdjustTeleport.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractGrab.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractTouch.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractUse.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractableObject.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_ObjectAutoGrab.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_ObjectTooltip.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_PlayerPresence.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_RoomExtender.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_SimplePointer.cs" />
-    <Compile Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
-    <Compile Include="Assets\collideWithWand.cs" />
-    <Compile Include="Assets\deleteObjects.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\Arrow.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\ArrowNotch.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\ArrowSpawner.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\BowAim.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\BowAnimation.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\BowHandle.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Archery\Follow.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Breakable_Cube.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ButtonReactor.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ControlReactor.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Controller_Hand.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Controller_Menu.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ExcludeTeleport.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Gun.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Lamp.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\LightSaber.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Menu_Color_Changer.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Menu_Container_Object_Colors.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Menu_Object_Spawner.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\ModelVillage_TeleportLocation.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Openable_Door.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\RC_Car.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\RC_Car_Controller.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Remote_Beam.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Remote_Beam_Controller.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Sphere_Spawner.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Sword.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\UI_Interactions.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_ControllerAppearance_Example.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_ControllerEvents_ListenerExample.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_ControllerInteract_ListenerExample.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_ControllerPointerEvents_ListenerExample.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\VRTK_RoomExtender_ControllerExample.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Examples\Resources\Scripts\Whirlygig.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Abstractions\VRTK_DestinationMarker.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Abstractions\VRTK_WorldPointer.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\2D\RadialMenu\RadialButtonIcon.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\2D\RadialMenu\RadialMenu.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\2D\RadialMenu\UICircle.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\2D\RadialMenuController.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\3D\VRTK_Button.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\3D\VRTK_Chest.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\3D\VRTK_Drawer.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\3D\VRTK_Knob.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\3D\VRTK_Lever.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\3D\VRTK_Slider.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Controls\VRTK_Control.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\CurveGenerator.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\DeviceFinder.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\FramsPerSecondViewer.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\Utilities.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\VRTK_EventSystemVRInput.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\VRTK_PlayerObject.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\VRTK_RoomExtender_PlayAreaGizmo.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\Helper\VRTK_UIGraphicRaycaster.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_BasicTeleport.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_BezierPointer.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_ControllerActions.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_ControllerEvents.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_ControllerTooltips.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_HeadsetCollisionFade.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_HeightAdjustTeleport.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractGrab.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractTouch.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractUse.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_InteractableObject.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_ObjectAutoGrab.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_ObjectTooltip.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_PlayerPresence.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_RoomExtender.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_SimplePointer.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_TouchpadWalking.cs" />
+    <Compile Include="Assets\SteamVR_Unity_Toolkit\Scripts\VRTK_UIPointer.cs" />
+    <Compile Include="Assets\TestBolt.cs" />
+    <Compile Include="Assets\TestLauncher.cs" />
     <Compile Include="Assets\destroyObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cinema Suite\About\Editor\Resources\BaseProductInfo.xml" />
     <None Include="Assets\Cinema Suite\Cinema Themes\Editor\Resources\CinemaThemesInstalledProductInfo.xml" />
     <None Include="Assets\Cinema Suite\Cinema Themes\ReadMe.txt" />
-    <None Include="Assets\Resources\MotionBlur.shader" />
+    <None Include="Assets\Elementals\Readme.txt" />
+    <None Include="Assets\GE Common Assets\Readme.txt" />
+    <None Include="Assets\GUI Animator\GUI Animator FREE\!How to.txt" />
+    <None Include="Assets\GUI Animator\GUI Animator FREE\Readme.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
@@ -273,10 +311,10 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_HiddenArea.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Overlay.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
-    <None Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Shaders\UIOverlay.shader" />
-    <None Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Scripts\Shaders\Unlit_TransparentColor.shader" />
-    <None Include="Assets\SteamVR\SteamVR_Unity_Toolkit\Version.txt" />
     <None Include="Assets\SteamVR\readme.txt" />
+    <None Include="Assets\SteamVR_Unity_Toolkit\Scripts\Shaders\UIOverlay.shader" />
+    <None Include="Assets\SteamVR_Unity_Toolkit\Scripts\Shaders\Unlit_TransparentColor.shader" />
+    <None Include="Assets\SteamVR_Unity_Toolkit\Version.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
