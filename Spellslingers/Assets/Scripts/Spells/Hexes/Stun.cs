@@ -17,7 +17,7 @@ public class Stun : Hex {
 
 	public override void playerCollide (GameObject playerCameraRig)
 	{
-		playerCameraRig.GetComponent<ParticleSystem> ().enableEmission = true;
+		playerCameraRig.GetComponent<ParticleSystem> ().Play();
 		StartCoroutine(scheduleStop (playerCameraRig));
 	}
 
@@ -40,7 +40,7 @@ public class Stun : Hex {
 
 	IEnumerator scheduleStop(GameObject playerCameraRig) {
 		yield return new WaitForSeconds ((float)duration);
-		playerCameraRig.GetComponent<ParticleSystem> ().enableEmission = false;
+		playerCameraRig.GetComponent<ParticleSystem> ().Stop();
 	}
 
 	
