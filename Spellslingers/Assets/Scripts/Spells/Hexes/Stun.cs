@@ -13,16 +13,12 @@ public class Stun : Hex {
 	private float repeatRate = 0.2F;
 	//calculated value for how much to decrease the blur size by
 	public double interval = 0;
-	private MotionBlur blur;
+
 
 	public override void playerCollide (GameObject playerCameraRig)
 	{
-		MotionBlur blur = playerCameraRig.GetComponentInChildren<MotionBlur> ();
-		this.blur = blur;
-		blur.blurAmount = 0.92F; 
-		double iterations = (duration/1000) / repeatRate;
-		interval = this.blur.blurAmount / iterations;
-		ScheduleBlur ();
+		playerCameraRig.GetComponent<ParticleSystem> ().enableEmission = true;
+		StartCoroutine(scheduleStop (playerCameraRig));
 	}
 
 
@@ -42,16 +38,11 @@ public class Stun : Hex {
 		this.gameObject.SetActive(false);
 	}
 
-	 void FadeBlur() {
-		this.blur.blurAmount =  (float) (this.blur.blurAmount - this.interval);
-		if (this.blur.blurAmount <= 0) {
-			Destroy (this.gameObject);
-		}
+	IEnumerator scheduleStop(GameObject playerCameraRig) {
+		yield return new WaitForSeconds ((float)duration);
+		playerCameraRig.GetComponent<ParticleSystem> ().enableEmission = false;
 	}
 
-	 void ScheduleBlur() {
-		InvokeRepeating("FadeBlur", 1.0F, repeatRate);
-	}
-
+	
 
 }
