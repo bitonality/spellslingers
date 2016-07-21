@@ -7,9 +7,7 @@
      
 	public static DPad_Direction? GetButtonPressed(SteamVR_Controller.Device controller)
         {
-		if (!controller.GetPress (SteamVR_Controller.ButtonMask.Touchpad)) {
-			return null;
-		}
+
        	
                 if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.5f)
                 {

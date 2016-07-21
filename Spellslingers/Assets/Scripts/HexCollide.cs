@@ -20,9 +20,11 @@ public class HexCollide : MonoBehaviour
 		//If we've hit a player
 		if (col.gameObject.GetComponent<ControlEntity>() != null) {
 			col.gameObject.GetComponent<ControlEntity> ().processHex (this.GetComponent<Hex> ());
+			Instantiate (explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
 			return;
 		}
 			
+
 
 
 		if (numCollisions < numLegalCollisions) { 
@@ -30,7 +32,7 @@ public class HexCollide : MonoBehaviour
 			numCollisions++;
 		} else {
 			//Processing for above collision limit
-			this.GetComponent<Hex> ().destroy();
+			this.gameObject.GetComponent<Hex> ().destroy();
 
 		}
 

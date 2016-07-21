@@ -4,6 +4,8 @@ using System.Linq;
 using UnityEngine.UI;
 
 public class ai : ControlEntity {
+
+
 	//For stacking of effects that disable shooting
 	public float ShootingCycleDisable = 0;
 
@@ -22,7 +24,7 @@ public class ai : ControlEntity {
 	//Hex and spells are in their own respective array so they can be in the inspector. Then, they're placed into a hashtable.
 	public GameObject[] hexes;
 
-	void Start () {
+	public void StartAi () {
 		/* 
 		 * This doesn't work, for MVP leaving in the hardcode.
 		//Convert gameobject to string 
@@ -65,7 +67,7 @@ public class ai : ControlEntity {
 	}
 
 	IEnumerator spellTimer (Hex h, float t) {
-		while (true) {
+		while (true) {				
 			yield return new WaitForSeconds (t);
 			if(ShootingCycleDisable <= Time.time && CanShoot(h, null)) {
 				CastHex (h, gameObject.transform.GetChild(0).gameObject, GameObject.FindGameObjectWithTag ("MainCamera").transform.position);
@@ -117,7 +119,7 @@ public class ai : ControlEntity {
 		h.aiCollide (gameObject);
 		this.health -= h.damage;
 		h.destroy ();
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.health/100);
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.health/200);
 		if (this.IsDead ())
 			Destroy (this.gameObject);
 	}

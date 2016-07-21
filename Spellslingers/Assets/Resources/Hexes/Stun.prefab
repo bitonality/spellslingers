@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2befe67703285a94abf0267f9039d834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 2}
-  numLegalCollisions: 1
+  explosion: {fileID: 100006, guid: ec6e75a3654374c7f9c1007063dcd249, type: 2}
+  numLegalCollisions: 0
 --- !u!198 &19875624
 ParticleSystem:
   m_ObjectHideFlags: 1

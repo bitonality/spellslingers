@@ -6,6 +6,7 @@ public class CastListener : MonoBehaviour {
 	public DPad dpad;
 	public GameObject leftTemplate;
 	public GameObject rightTemplate;
+	public GameObject ai;
 
 	private Vector3 travel;
 
@@ -43,6 +44,7 @@ public class CastListener : MonoBehaviour {
 		//If player grabs the wand, make it not collide
 		if (e.target.tag == "Wand") {
 			e.target.GetComponent<BoxCollider> ().isTrigger = true;
+			ai.GetComponent<ai> ().StartAi ();
 		}
 	}
 
