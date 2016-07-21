@@ -3,6 +3,8 @@ using System.Collections;
 using VRTK;
 
 public class CastListener : MonoBehaviour {
+	public GameObject castagonTemplate;
+	private Castagon instantiatedCastagon;
 	public DPad dpad;
 	public GameObject leftTemplate;
 	public GameObject rightTemplate;
@@ -58,10 +60,17 @@ public class CastListener : MonoBehaviour {
 
 
 	void DoTriggerReleased(object sender, ControllerInteractionEventArgs e) {
+		if (instantiatedCastagon != null) {
+			instantiatedCastagon.destroy ();
+		}
 	}
 		
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
+		instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject().transform.FindChild ("CastagonPoint").position, gameObject.transform.rotation) as GameObject).GetComponent<Castagon>();
+
+
+		/*
 		Player p = gameObject.GetComponentInParent<Player> ();
 		DPad_Direction? direction = DPad.GetButtonPressed (SteamVR_Controller.Input ((int)e.controllerIndex));
 		GameObject newProjectile = null;
@@ -82,5 +91,6 @@ public class CastListener : MonoBehaviour {
 		default:
 			return;
 		}
+		*/
 	}
 }
