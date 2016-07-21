@@ -46,7 +46,7 @@ public class CastListener : MonoBehaviour {
 		//If player grabs the wand, make it not collide
 		if (e.target.tag == "Wand") {
 			e.target.GetComponent<BoxCollider> ().isTrigger = true;
-			ai.GetComponent<ai> ().StartAi ();
+		//	ai.GetComponent<ai> ().StartAi ();
 		}
 	}
 
@@ -67,7 +67,8 @@ public class CastListener : MonoBehaviour {
 		
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
-		instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject().transform.FindChild ("CastagonPoint").position, gameObject.transform.rotation) as GameObject).GetComponent<Castagon>();
+		if(gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() != null)
+			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject().transform.FindChild ("CastagonPoint").position, gameObject.transform.rotation) as GameObject).GetComponent<Castagon>();
 
 
 		/*
