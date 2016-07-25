@@ -97,7 +97,7 @@ public class ai : ControlEntity {
 		Hex proj = Instantiate (hex, source.transform.position, new Quaternion(0,0,0,0)) as Hex;
 		proj.gameObject.GetComponent<Rigidbody> ().AddForce ((target-gameObject.transform.position).normalized * (float) hex.velocity);
 		proj.gameObject.tag = "AIHex";
-		//Destroy (hex.gameObject, hex.timeout);
+		Destroy (hex.gameObject, hex.timeout);
 	}
 
 	//pass null to wand, we don't particularly care about it for the AI context
