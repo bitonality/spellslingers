@@ -26,7 +26,6 @@ public abstract class ControlEntity : MonoBehaviour {
 
 	public void CastHex (Hex hex, Vector3 source, Vector3 target) {
 		Hex proj = Instantiate (hex, source, new Quaternion(0,0,0,0)) as Hex;
-		proj.gameObject.GetComponent<Rigidbody> ().AddForce ((target-gameObject.transform.position).normalized * (float) hex.velocity);
-		Destroy (hex.gameObject, hex.timeout);
+		proj.gameObject.GetComponent<Rigidbody> ().AddForce ((target-source).normalized * (float) hex.velocity);
 	}
 }

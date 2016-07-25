@@ -33,6 +33,7 @@ public class Castagon : MonoBehaviour {
 			} else {
 				if (potential.order.Count == 1) {
 					player.queuedSpell = potential.hex.GetComponent<Hex>();
+					this.destroy ();
 				}
 				potential.order.RemoveAt (potential.order.Count - 1);
 			}

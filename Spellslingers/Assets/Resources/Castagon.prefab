@@ -1196,6 +1196,7 @@ MonoBehaviour:
   InspectorSpells:
   - name: Disarm
     order: 01000000040000000500000008000000
+    hex: {fileID: 103302, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
 --- !u!114 &11443628
 MonoBehaviour:
   m_ObjectHideFlags: 1

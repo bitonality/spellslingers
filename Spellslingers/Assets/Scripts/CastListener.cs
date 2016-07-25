@@ -7,7 +7,8 @@ public class CastListener : MonoBehaviour {
 	private Castagon instantiatedCastagon;
 	//public DPad dpad;
 	public GameObject ai;
-
+	public Color good;
+	public Color bad;
 	//cached player on start up
 	private Player player;
 
@@ -65,11 +66,15 @@ public class CastListener : MonoBehaviour {
 
 		if (player.queuedSpell != null) {
 			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
+			wand.GetComponentInChildren<Light>().intensity = 0;
 			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
-			float accuracy = angle / 360;
 			bool canshoot = player.CanShoot (player.queuedSpell, gameObject);
 			if (canshoot) {
-				player.CastHex (player.queuedSpell, wand.transform.Find("WandLaunchPoint").position, new Vector3 (Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy)));
+				player.CastHex (player.queuedSpell, wand.transform.Find("WandLaunchPoint").position, new Vector3 (
+					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15, 
+					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15, 
+					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15
+				) + ai.transform.position);
 				player.queuedSpell = null;
 			}
 		}
@@ -79,7 +84,8 @@ public class CastListener : MonoBehaviour {
 		if (player.queuedSpell != null) {
 			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
 			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
-			wand.GetComponentInChildren<Light> ().color = Color.Lerp (new Color (255, 0, 255), new Color (255, 0, 0), angle / 360);
+			wand.GetComponentInChildren<Light> ().color = Color.Lerp (good, bad, Mathf.InverseLerp(0, 180, angle));
+			wand.GetComponentInChildren<Light> ().intensity = 8;
 		}
 	}
 		
