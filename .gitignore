@@ -12,6 +12,7 @@ obj/
 *.svd
 *.userprefs
 *.pidb
+*.csproj
 *.suo
 /*.sln
 *.user
