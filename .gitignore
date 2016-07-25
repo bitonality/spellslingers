@@ -1,17 +1,31 @@
-Library/
+# =============== #
+# Unity generated #
+# =============== #
 Temp/
-Spellslingers/Spellslingers.userprefs
-Spellslingers/.vs/Spellslingers/v14/.suo
-Spellslingers/Assembly-CSharp.csproj
+Library/
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
 *.userprefs
-Spellslingers/Assets/Scripts/ControlEntity.meta
-*.meta
-Spellslingers/Assets/Scripts/ControlEntity.meta
-*.meta
-*.meta
-Spellslingers/Assets/Models/Decals/*.meta
-Spellslingers/Assembly-CSharp-Editor.csproj
-Spellslingers/Assembly-CSharp-firstpass.csproj
-Spellslingers/Assembly-CSharp.csproj
-Spellslingers/Assembly-UnityScript.unityproj
-Spellslingers/Spellslingers.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
