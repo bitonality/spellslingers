@@ -5,12 +5,11 @@ using VRTK;
 public class CastListener : MonoBehaviour {
 	public GameObject castagonTemplate;
 	private Castagon instantiatedCastagon;
-	public DPad dpad;
-	public GameObject leftTemplate;
-	public GameObject rightTemplate;
+	//public DPad dpad;
 	public GameObject ai;
 
-	private Vector3 travel;
+	//cached player on start up
+	private Player player;
 
 
 
@@ -30,7 +29,7 @@ public class CastListener : MonoBehaviour {
 		GetComponent<VRTK_InteractGrab> ().ControllerGrabInteractableObject += new ObjectInteractEventHandler (ObjectGrabbed);
 		GetComponent<VRTK_InteractGrab> ().ControllerUngrabInteractableObject += new ObjectInteractEventHandler (ObjectReleased);
 
-
+		this.player = gameObject.GetComponentInParent<Player> ();
 	}
 
 	void DoGripPress(object sender, ControllerInteractionEventArgs e) {
@@ -63,13 +62,33 @@ public class CastListener : MonoBehaviour {
 		if (instantiatedCastagon != null) {
 			instantiatedCastagon.destroy ();
 		}
+
+		if (player.queuedSpell != null) {
+			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
+			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
+			float accuracy = angle / 360;
+			bool canshoot = player.CanShoot (player.queuedSpell, gameObject);
+			if (canshoot) {
+				player.CastHex (player.queuedSpell, wand.transform.Find("WandLaunchPoint").position, new Vector3 (Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy)));
+				player.queuedSpell = null;
+			}
+		}
+	}
+
+	void FixedUpdate() {
+		if (player.queuedSpell != null) {
+			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
+			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
+			wand.GetComponentInChildren<Light> ().color = Color.Lerp (new Color (255, 0, 255), new Color (255, 0, 0), angle / 360);
+		}
 	}
 		
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
-		if(gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() != null)
-			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject().transform.FindChild ("CastagonPoint").position, Quaternion.Euler(new Vector3(gameObject.transform.rotation.eulerAngles.x, gameObject.transform.rotation.eulerAngles.y, 0f))) as GameObject).GetComponent<Castagon>();
-
+		if (gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject () != null) {
+			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("CastagonPoint").position, Quaternion.Euler (new Vector3 (gameObject.transform.rotation.eulerAngles.x, gameObject.transform.rotation.eulerAngles.y, 0f))) as GameObject).GetComponent<Castagon> ();
+			instantiatedCastagon.player = gameObject.GetComponentInParent<Player> ();
+		}
 
 		/*
 		Player p = gameObject.GetComponentInParent<Player> ();

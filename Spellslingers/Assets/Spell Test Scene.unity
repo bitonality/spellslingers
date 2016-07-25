@@ -463,9 +463,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castagonTemplate: {fileID: 170634, guid: d0437628d33245341935c6ace0ca8d13, type: 2}
+  instantiatedCastagon: {fileID: 0}
   leftTemplate: {fileID: 103302, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
   rightTemplate: {fileID: 128152, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
   ai: {fileID: 892895576}
+  travel: {x: 0, y: 0, z: 0}
 --- !u!114 &391519557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +495,11 @@ MonoBehaviour:
   grabPressed: 0
   usePressed: 0
   menuPressed: 0
+  trackedController: {fileID: 0}
+  touchpadAxis: {x: 0, y: 0}
+  triggerAxis: {x: 0, y: 0}
+  controllerVelocity: {x: 0, y: 0, z: 0}
+  controllerAngularVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &391519558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,9 +512,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castagonTemplate: {fileID: 170634, guid: d0437628d33245341935c6ace0ca8d13, type: 2}
+  instantiatedCastagon: {fileID: 0}
   leftTemplate: {fileID: 103302, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
   rightTemplate: {fileID: 128152, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
   ai: {fileID: 892895576}
+  travel: {x: 0, y: 0, z: 0}
 --- !u!114 &391519559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +544,11 @@ MonoBehaviour:
   grabPressed: 0
   usePressed: 0
   menuPressed: 0
+  trackedController: {fileID: 0}
+  touchpadAxis: {x: 0, y: 0}
+  triggerAxis: {x: 0, y: 0}
+  controllerVelocity: {x: 0, y: 0, z: 0}
+  controllerAngularVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &391519561 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 187578, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
@@ -553,6 +567,14 @@ MonoBehaviour:
   headsetYOffset: 0
   ignoreGrabbedCollisions: 0
   resetPositionOnCollision: 0
+  headset: {fileID: 0}
+  rb: {fileID: 0}
+  bc: {fileID: 0}
+  lastGoodPosition: {x: 0, y: 0, z: 0}
+  lastGoodPositionSet: 0
+  highestHeadsetY: 0
+  crouchMargin: 0.5
+  lastPlayAreaY: 0
 --- !u!114 &391519571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,9 +589,9 @@ MonoBehaviour:
   HealthBar: {fileID: 275148755}
   health: 200
   InspectorSliders:
-  - name: Disarm
+  - name: 44697361726d
     slider: {fileID: 6770482}
-  - name: Stun
+  - name: 5374756e
     slider: {fileID: 1992524131}
 --- !u!114 &391519574
 MonoBehaviour:
@@ -588,6 +610,13 @@ MonoBehaviour:
   grabPrecognition: 1
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
+  controllerAttachJoint: {fileID: 0}
+  grabbedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  interactTouch: {fileID: 0}
+  controllerActions: {fileID: 0}
+  grabEnabledState: 0
+  grabPrecognitionTimer: 0
 --- !u!114 &391519575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,8 +630,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideControllerOnTouch: 0
   hideControllerDelay: 0
-  globalTouchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  globalTouchHighlightColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   customRigidbodyObject: {fileID: 0}
+  touchedObject: {fileID: 0}
+  lastTouchedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  controllerActions: {fileID: 0}
+  controllerRigidBodyObject: {fileID: 0}
+  triggerRumble: 0
 --- !u!114 &391519576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45c8d32f1d960d4498790bb3961fc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerVisible: 1
+  trackedController: {fileID: 0}
 --- !u!114 &391519577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,6 +672,13 @@ MonoBehaviour:
   grabPrecognition: 1
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
+  controllerAttachJoint: {fileID: 0}
+  grabbedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  interactTouch: {fileID: 0}
+  controllerActions: {fileID: 0}
+  grabEnabledState: 0
+  grabPrecognitionTimer: 0
 --- !u!114 &391519578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,8 +692,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideControllerOnTouch: 0
   hideControllerDelay: 0
-  globalTouchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  globalTouchHighlightColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   customRigidbodyObject: {fileID: 0}
+  touchedObject: {fileID: 0}
+  lastTouchedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  controllerActions: {fileID: 0}
+  controllerRigidBodyObject: {fileID: 0}
+  triggerRumble: 0
 --- !u!114 &391519579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45c8d32f1d960d4498790bb3961fc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerVisible: 1
+  trackedController: {fileID: 0}
 --- !u!1001 &438228771
 Prefab:
   m_ObjectHideFlags: 0
@@ -703,6 +763,68 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e23c5bd6a4264a01b542ac346ba3057, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &442526255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 442526256}
+  - 108: {fileID: 442526257}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &442526256
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442526255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.515, z: 0}
+  m_LocalScale: {x: 1, y: -0.05, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1644510488}
+  m_RootOrder: 0
+--- !u!108 &442526257
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442526255}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 0.8620689, g: 1, b: 0, a: 1}
+  m_Intensity: 8
+  m_Range: 0.1
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &570968138
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +1065,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1644510488}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!65 &860131292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1053,6 +1175,7 @@ MonoBehaviour:
   health: 100
   ShootingCycleDisable: 0
   speed: 7
+  defaultSpeed: 0
   hexes:
   - {fileID: 103302, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
   - {fileID: 128152, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
@@ -1729,7 +1852,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1644510488}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1256401531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,7 +2193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightOnTouch: 1
-  touchHighlightColor: {r: 1, g: 0, b: 0, a: 0}
+  touchHighlightColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 0
   rumbleOnTouch: {x: 0, y: 0}
   allowedTouchControllers: 0
   isGrabbable: 1
@@ -2093,6 +2220,17 @@ MonoBehaviour:
   pointerActivatesUseAction: 0
   rumbleOnUse: {x: 0, y: 0}
   allowedUseControllers: 0
+  rb: {fileID: 0}
+  touchingObject: {fileID: 0}
+  grabbingObject: {fileID: 0}
+  usingObject: {fileID: 0}
+  usingState: 0
+  grabbedSnapHandle: {fileID: 0}
+  trackPoint: {fileID: 0}
+  customTrackPoint: 0
+  previousParent: {fileID: 0}
+  previousKinematicState: 0
+  previousIsGrabbable: 0
 --- !u!54 &1644510484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2164,6 +2302,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.35, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 442526256}
   - {fileID: 1936409851}
   - {fileID: 860131291}
   - {fileID: 1204887839}
@@ -2420,7 +2559,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1644510488}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1001 &1938560417
 Prefab:
   m_ObjectHideFlags: 0

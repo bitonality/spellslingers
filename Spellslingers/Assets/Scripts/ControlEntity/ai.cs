@@ -70,7 +70,7 @@ public class ai : ControlEntity {
 		while (true) {				
 			yield return new WaitForSeconds (t);
 			if(ShootingCycleDisable <= Time.time && CanShoot(h, null)) {
-				CastHex (h, gameObject.transform.GetChild(0).gameObject, GameObject.FindGameObjectWithTag ("MainCamera").transform.position);
+				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform.position);
 			}
 		}
 	}
@@ -92,13 +92,7 @@ public class ai : ControlEntity {
 		}
 	}
 
-	//Source should be the AI specific launch point, target is the player
-	public override void CastHex (Hex hex, GameObject source, Vector3 target) {
-		Hex proj = Instantiate (hex, source.transform.position, new Quaternion(0,0,0,0)) as Hex;
-		proj.gameObject.GetComponent<Rigidbody> ().AddForce ((target-gameObject.transform.position).normalized * (float) hex.velocity);
-		proj.gameObject.tag = "AIHex";
-		Destroy (hex.gameObject, hex.timeout);
-	}
+
 
 	//pass null to wand, we don't particularly care about it for the AI context
 	public override bool CanShoot(Hex h, GameObject wand) {

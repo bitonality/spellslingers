@@ -9,12 +9,11 @@ public class Player : ControlEntity {
 	public SliderInsepctorEntry[] InspectorSliders;
 	private Dictionary<string, Slider> sliders;
 
-	public override void CastHex (Hex hex, GameObject source, Vector3 target){
-		//Finds the wand in a roundabout way... Change later
-		hex.gameObject.transform.position = source.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("WandLaunchPoint").transform.position;
-		hex.gameObject.GetComponent<Rigidbody> ().AddForce (source.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().transform.FindChild("WandLaunchPoint").transform.forward.normalized * (float) hex.velocity);
-		//Destroy (hex, hex.timeout);
 
+	//Represents a properly queued spell from a castagon. Null means no spell queued
+	public Hex queuedSpell {
+		get;
+		set;
 	}
 
 	public override void processHex(Hex h) {
@@ -60,6 +59,8 @@ public class Player : ControlEntity {
 		foreach (SliderInsepctorEntry entry in InspectorSliders) {
 			sliders.Add (entry.name, entry.slider.GetComponent<Slider> ());
 		}
+
+		queuedSpell = null;
 	}
 
 	

@@ -4,8 +4,14 @@ using System.Collections.Generic;
 
 public class Castagon : MonoBehaviour {
 
-	public List<CastagonInsepctorEntry> InspectorSpells;
 
+	public Player player {
+		get;
+		set;
+	}
+
+
+	public List<CastagonInsepctorEntry> InspectorSpells;
 
 	private Queue<CastagonPoint> ActivatedPoints {
 		get;
@@ -26,7 +32,7 @@ public class Castagon : MonoBehaviour {
 				InspectorSpells.RemoveAt (i);
 			} else {
 				if (potential.order.Count == 1) {
-					Debug.Log (potential.name);
+					player.queuedSpell = potential.hex.GetComponent<Hex>();
 				}
 				potential.order.RemoveAt (potential.order.Count - 1);
 			}
@@ -56,6 +62,9 @@ public class Castagon : MonoBehaviour {
 	public class CastagonInsepctorEntry {
 		public string name;
 		public List<int> order;
+		public GameObject hex;
 	}
+
+
 
 }
