@@ -8,6 +8,7 @@ public class CastagonPoint : MonoBehaviour {
 		if (col.gameObject.tag == "Wand") {
 			Castagon c = gameObject.GetComponentInParent<Castagon> ();
 			c.AddPoint (this);
+			this.GetComponentInChildren<Light> ().color = new Color (255, 185, 0);
 		}
 
 	}
