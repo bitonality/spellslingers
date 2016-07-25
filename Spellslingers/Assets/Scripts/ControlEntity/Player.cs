@@ -27,10 +27,8 @@ public class Player : ControlEntity {
 	}
 
 	public override bool CanShoot (Hex h, GameObject controller) {
-		if (controller != null) {
-			if (controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() == null) return false;
-		}
 
+        if (!HoldingWand(controller)) return false;
 		if (this.cooldown.ContainsKey (h.name)) {
 			if (Time.time >= this.cooldown[h.name]) {
 				this.cooldown.Remove (h.name);
@@ -49,6 +47,15 @@ public class Player : ControlEntity {
 		return true;
 	}
 
+    public bool HoldingWand(GameObject controller)
+    {
+
+        if (controller != null)
+        {
+            if (controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() == null) return false;
+        }
+        return true;
+    }
 
 	// Use this for initialization
 	void Start () {
