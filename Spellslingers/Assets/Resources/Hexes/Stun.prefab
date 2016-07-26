@@ -108,10 +108,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 5
-  name: Stun
+  HexName: Stun
   timeout: 20
   damage: 20
-  velocity: 200
+  velocity: 1
   duration: 5000
   interval: 0
 --- !u!114 &11443152

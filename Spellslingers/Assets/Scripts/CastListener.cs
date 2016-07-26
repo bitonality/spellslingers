@@ -92,9 +92,10 @@ public class CastListener : MonoBehaviour {
                 if (player.CanShoot(player.queuedSpell, gameObject)) {
                 // Cast the hex from the wand launch point with random accuracy modifiers.
 				player.CastHex (player.queuedSpell, wand.transform.Find("WandLaunchPoint").position, new Vector3 (
-					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15, 
-					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15, 
-					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15
+					Random.Range(-1, 1) * Random.Range(angle/2, angle)/30, 
+					Random.Range(-1, 1) * Random.Range(angle/2, angle)/30, 
+					Random.Range(-1, 1) * Random.Range(angle/2, angle)/30
+				
 				) + ai.transform.position, controllerVelocity.sqrMagnitude);
 
                 // Reset the queued spell. This will also stop the check in the FixedUpdate() method.
@@ -110,7 +111,7 @@ public class CastListener : MonoBehaviour {
                 // Get the angle between the controller-wand vector and the controller-ai vector.
                 float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
                 // Adjust the color of the wand light based on the accuracy of the direction of the wand
-                wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(0, 180, angle));
+                wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
                 // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
                 wand.GetComponentInChildren<Light>().intensity = 8;
             }

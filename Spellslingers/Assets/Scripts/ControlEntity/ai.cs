@@ -113,7 +113,7 @@ public class ai : ControlEntity {
 		h.aiCollide (gameObject);
 		this.Health -= h.damage;
 		h.destroy ();
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/200);
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
 		if (this.IsDead ())
 			Destroy (this.gameObject);
 	}

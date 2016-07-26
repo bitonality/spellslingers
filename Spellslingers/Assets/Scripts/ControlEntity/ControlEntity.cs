@@ -36,6 +36,10 @@ public abstract class ControlEntity : MonoBehaviour {
     // Instantiates a hex based on a template at source and launches it at target with force modifer forceMod
 	public void CastHex (Hex hex, Vector3 source, Vector3 target, float forceMod) {
 		Hex proj = Instantiate (hex, source, new Quaternion(0,0,0,0)) as Hex;
-		proj.gameObject.GetComponent<Rigidbody> ().AddForce ((target-source).normalized * (float) hex.velocity * forceMod);
+		proj.gameObject.GetComponent<Rigidbody> ().AddForce ((target-source).normalized * hex.velocity * ((forceMod/10) + 1), ForceMode.Impulse);
+	}
+
+	void Start() {
+		this.Health = this.MaxHealth;
 	}
 }
