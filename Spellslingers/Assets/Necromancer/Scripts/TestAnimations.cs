@@ -4,12 +4,15 @@ using System.Collections;
 public class TestAnimations : MonoBehaviour {
     public Animation anim;
     // Use this for initialization
-    void Start () {
-        anim = GetComponent<Animation>();
-        anim.CrossFade("Death1");   
-        anim.CrossFade("Walk");
+    void Start()
+    {
+        StartCoroutine(kms());
     }
 	
 	// Update is called once per frame
-
+    IEnumerator kms(){
+        anim = GetComponent<Animation>();
+        yield return new WaitForSeconds(3);
+        anim.CrossFade("Sits");
+     }
 }

@@ -48,20 +48,28 @@ public class stateAI : ControlEntity {
 
 	//Called only when changing state
 	private object justLeft(validStates oldState, validStates newState) {
-		switch (newState) {
+        if (oldState == validStates.IDLE)
+        {
+            gameObject.GetComponent<Animation>().CrossFade("Idle1");
+        }
+        switch (newState) {
 		case validStates.HIT:
+
 			break;
+                
 		case validStates.IDLE:
 			//Move in a random direction
 			Vector3 Destination = new Vector3(Random.Range(-5f, 5f) * 10, 0, Random.Range(-5f, 5f) * 10);
             this.gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
-            Dodge(Destination); 
-			//Schedule interruptable state change in 3 seconds
-			timeUntilChange = Time.time + 3;
+            Dodge(Destination);
+                //Schedule interruptable state change in 3 seconds
+                timeUntilChange = Time.time + 3;
 			break;
 		case validStates.PRESHOOT:
 			//Stop movement
 			this.GetComponent<Rigidbody>().velocity=new Vector3(0,0,0);
+      
+
 			//Wait for 1 second
 			timeUntilChange = Time.time + 1;
 			break;
@@ -69,8 +77,9 @@ public class stateAI : ControlEntity {
 			//Pick a hex
 			Hex h = pickHex();
 			if (CanShoot (h, this.gameObject)) {
-				//Shoot
-				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
+                    //Shoot
+                    this.GetComponent<Animation>().CrossFade("Magic Attack");
+                    CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
 				//Go back to idle state
 				currentAction.Enqueue (validStates.IDLE);
 			} else {
@@ -162,10 +171,9 @@ public class stateAI : ControlEntity {
     {
         float rotationspeed = 90f;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Destination, transform.position), rotationspeed);
-        gameObject.GetComponent<Animation>().CrossFade("Run");
+        gameObject.GetComponent<Animation>().CrossFade("Walk");
         // Ask Frankie how AI stops moving and work that into the class
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(GameObject.Find("[CameraRig]").transform.position, transform.position), rotationspeed);
-        gameObject.GetComponent<Animation>().CrossFade("Idle1");
     }
 
 }
