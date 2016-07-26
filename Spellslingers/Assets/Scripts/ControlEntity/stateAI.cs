@@ -50,9 +50,12 @@ public class stateAI : ControlEntity {
 	private object justLeft(validStates oldState, validStates newState) {
 		switch (newState) {
 		case validStates.DANGER:
-			break;
+                gameObject.GetComponent<Animation>().CrossFade("Run");
+                break;
 		case validStates.HIT:
-			break;
+                gameObject.GetComponent<Animation>().CrossFade("Sits");
+                gameObject.GetComponent<Animation>().CrossFade("Up");
+                break;
 		case validStates.IDLE:
 			//Move in a random direction
 			Vector3 Destination = new Vector3(Random.Range(-5f, 5f) * 10, 0, Random.Range(-5f, 5f) * 10);
@@ -71,8 +74,9 @@ public class stateAI : ControlEntity {
 			//Pick a hex
 			Hex h = pickHex();
 			if (CanShoot (h, this.gameObject)) {
-				//Shoot
-				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
+                    //Shoot
+                    this.GetComponent<Animation>().CrossFade("Magic Attack");
+                    CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
 				//Go back to idle state
 				currentAction.Enqueue (validStates.IDLE);
 			} else {
@@ -164,7 +168,7 @@ public class stateAI : ControlEntity {
     {
         float rotationspeed = 90f;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Destination, transform.position), rotationspeed);
-        gameObject.GetComponent<Animation>().CrossFade("Run");
+        gameObject.GetComponent<Animation>().CrossFade("Walk");
         // Ask Frankie how AI stops moving and work that into the class
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(GameObject.Find("[CameraRig]").transform.position, transform.position), rotationspeed);
         gameObject.GetComponent<Animation>().CrossFade("Idle1");
