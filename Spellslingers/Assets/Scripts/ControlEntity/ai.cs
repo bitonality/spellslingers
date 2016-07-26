@@ -70,7 +70,7 @@ public class ai : ControlEntity {
 		while (true) {				
 			yield return new WaitForSeconds (t);
 			if(ShootingCycleDisable <= Time.time && CanShoot(h, null)) {
-				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform.position, 1F);
+				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
 			}
 		}
 	}
@@ -113,7 +113,7 @@ public class ai : ControlEntity {
 		h.aiCollide (gameObject);
 		this.Health -= h.damage;
 		h.destroy ();
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/200);
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
 		if (this.IsDead ())
 			Destroy (this.gameObject);
 	}

@@ -369,7 +369,7 @@ namespace UnityStandardAssets.ImageEffects
 
         void StartFrame () {
             // take only x% of positional changes into account (camera motion)
-            // TO DO: possibly do the same for rotational part
+            // TODO: possibly do the same for rotational part
             prevFramePos = Vector3.Slerp(prevFramePos, transform.position, 0.75f);
         }
 
