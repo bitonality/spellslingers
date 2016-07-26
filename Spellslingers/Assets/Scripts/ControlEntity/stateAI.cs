@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class stateAI : ControlEntity {
 
+	public float health = 100;
+
 	//time until next state change 
 	private float timeUntilChange = 0;
 
@@ -24,7 +26,6 @@ public class stateAI : ControlEntity {
         POSTSHOOT,
         DEAD
     }
-
 	public Queue currentAction = new Queue();
 
 	//Called every 0.02 seconds
@@ -63,9 +64,11 @@ public class stateAI : ControlEntity {
 			timeUntilChange = Time.time + 1;
 			break;
 		case validStates.SHOOTING:
-			if (CanShoot ()) {
+			//Pick a hex
+			Hex h = pickHex();
+			if (CanShoot (h, this.gameObject)) {
 				//Shoot
-				CastHex (pickHex(), gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform.position);
+				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
 				//Go back to idle state
 				currentAction.Enqueue (validStates.IDLE);
 			} else {
@@ -85,7 +88,7 @@ public class stateAI : ControlEntity {
 	//Pick the best hex for the situation
 	//TODO: This
 	private Hex pickHex() {
-		return Stun;
+		return new Stun();
 	}
 
 	//Called regardless if a state change occurred, every time. 
@@ -137,7 +140,7 @@ public class stateAI : ControlEntity {
 		}
 	}
     
-	private GameObject[] checkDanger() {
+	private ArrayList checkDanger() {
 		//Get all spells
 		//TODO: Don't iterate over all objects
 		GameObject[] spells = GameObject.FindGameObjectsWithTag("Hex");

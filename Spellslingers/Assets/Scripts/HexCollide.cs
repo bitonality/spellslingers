@@ -2,41 +2,40 @@
 using System.Collections;
 using VRTK;
 
+
+// Class to handle the collision of hexes with objects.
 public class HexCollide : MonoBehaviour
 {
-	//This handles the collisions of hexes... We should try to keep most spell-specific collision processing in each sub-type's collision handler
+    // Particle system to instantiate when the object collides with something.
 	public GameObject explosion;
-
-
+    
+    // Number of physics collisions the hex can have before being destroyed.
 	public int numLegalCollisions;
-	private int numCollisions = 0;
 
+    // Tracks the number of collisions the hex has had.
+    private int numCollisions = 0;
 
 	void OnCollisionEnter (Collision col)
 	{
-		//GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
-		//Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
+        // Create an explosion at the collision point.
+		GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
 
-		//If we've hit a player
+        // Schedule the destruction of the particle system.
+		Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
+
+		// If the spell collides with a ControlEntity.
 		if (col.gameObject.GetComponent<ControlEntity>() != null) {
+            // Process the spell for the specific hex and ControlEntity
 			col.gameObject.GetComponent<ControlEntity> ().processHex (this.GetComponent<Hex> ());
-			Instantiate (explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
 			return;
 		}
-			
-
-
-
+        
 		if (numCollisions < numLegalCollisions) { 
-			//Processing for under or at collision limit
+			// Processing for under or at collision limit.
 			numCollisions++;
 		} else {
-			//Processing for above collision limit
-			this.gameObject.GetComponent<Hex> ().destroy();
-
+            // Processing for above collision limit.
+            this.gameObject.GetComponent<Hex>().destroy();
 		}
-
-
-
 	}
 }
