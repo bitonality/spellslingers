@@ -1,31 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
+using VRTK;
 
 public class HomingProjectile : MonoBehaviour {
 
     private Transform target;
-    private float force = 0.1f;
+	private float sensitivity;
+	private float ConstantMagnitude;
+	private bool update = false;
 
-
-    public void LaunchProjectile(float delay, float interval, Transform target)
+	public void LaunchProjectile(Transform target, Hex h, float sensitivity, Vector3 controller, GameObject c)
     {
+		this.ConstantMagnitude = h.velocity;
         this.target = target;
-        InvokeRepeating("ApplyTorque", delay, interval);
-    }
-
-
-    void ApplyTorque () {
-
-        Vector3 targetDelta = target.position - transform.position;
-
-        //get the angle between transform.forward and target delta
-        float angleDiff = Vector3.Angle(transform.forward, targetDelta);
-
-        // get its cross product, which is the axis of rotation to get from one vector to another
-        Vector3 cross = Vector3.Cross(transform.forward, targetDelta);
-
-        // apply torque along that axis according to the magnitude of the angle.
-        this.gameObject.GetComponent<Rigidbody>().AddTorque(cross * angleDiff * force);
+		this.sensitivity = sensitivity;
+		h.gameObject.GetComponent<Rigidbody> ().AddForce (controller.sqrMagnitude * h.velocity * c.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().transform.FindChild("WandLaunchPoint").transform.forward);
+		update = true;
 
     }
+
+	void FlipUpdate() {
+		update = true;
+	}
+
+
+    void FixedUpdate ()
+	{
+		if (update) {
+			Vector3 relativePosition = target.position - transform.position;
+			Quaternion rotation = Quaternion.LookRotation (relativePosition);
+			transform.rotation = Quaternion.Slerp (transform.rotation, rotation, sensitivity);
+			Vector3 translation = Vector3.forward * ConstantMagnitude * Time.deltaTime;
+			transform.Translate (translation);	
+
+		}
+	}
 }
