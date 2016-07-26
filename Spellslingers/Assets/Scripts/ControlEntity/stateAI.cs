@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class stateAI : ControlEntity {
+public class stateAI : MonoBehaviour {
 
     public enum validStates
     {
@@ -13,14 +13,14 @@ public class stateAI : ControlEntity {
         POSTSHOOT,
         DEAD
     }
-
+    /*
     public Queue<validStates> currentAction = new Queue();
 
 	//Called every 0.02 seconds
 	void FixedUpdate() {
 		if (currentAction.size <= 0) {
 			//Something went wrong with starting the AI
-			Debug.Warning("currentAction size is 0, meaning start() was not called before fixedupdate()");
+		//	Debug.Warning("currentAction size is 0, meaning start() was not called before fixedupdate()");
 			return;
 		}
 		if (currentAction.size != 1) {
@@ -64,4 +64,5 @@ public class stateAI : ControlEntity {
         //Start out the queue with idle
 		currentAction.enque(validStates.IDLE);
 	}
+    */
 }
