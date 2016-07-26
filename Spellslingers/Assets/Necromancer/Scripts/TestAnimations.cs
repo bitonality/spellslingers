@@ -6,12 +6,10 @@ public class TestAnimations : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animation>();
-        anim.CrossFade("Death1");
+        anim.CrossFade("Death1");   
         anim.CrossFade("Walk");
     }
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

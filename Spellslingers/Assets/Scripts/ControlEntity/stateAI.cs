@@ -53,7 +53,9 @@ public class stateAI : ControlEntity {
 			break;
 		case validStates.IDLE:
 			//Move in a random direction
-			this.GetComponent<Rigidbody> ().AddForce (new Vector3 (Random.Range (-5f, 5f) * 10, 0, Random.Range (-5f, 5f) * 10), ForceMode.Impulse); 
+			Vector3 Destination = new Vector3(Random.Range(-5f, 5f) * 10, 0, Random.Range(-5f, 5f) * 10);
+            this.gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
+            Dodge(Destination); 
 			//Schedule interruptable state change in 3 seconds
 			timeUntilChange = Time.time + 3;
 			break;
@@ -155,4 +157,15 @@ public class stateAI : ControlEntity {
 		}
 		return dangerousSpells;
 	}
+
+    private void Dodge(Vector3 Destination)
+    {
+        float rotationspeed = 90f;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Destination, transform.position), rotationspeed);
+        gameObject.GetComponent<Animation>().CrossFade("Run");
+        // Ask Frankie how AI stops moving and work that into the class
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(GameObject.Find("[CameraRig]").transform.position, transform.position), rotationspeed);
+        gameObject.GetComponent<Animation>().CrossFade("Idle1");
+    }
+
 }
