@@ -6,50 +6,60 @@ using System.Collections.Generic;
 
 public class Player : ControlEntity {
 
+    // Serialized inspector friendly entry for mapping spells to their specific cooldown slider UI element.
 	public SliderInsepctorEntry[] InspectorSliders;
-	private Dictionary<string, Slider> sliders;
+
+    // On startup, the InspectorSliders is loaded into this map for fast lookups of the mapping.
+	private Dictionary<string, Slider> Sliders;
 
 
-	//Represents a properly queued spell from a castagon. Null means no spell queued
+	// Represents a properly queued spell from a castagon. Null means no spell queued.
 	public Hex queuedSpell {
 		get;
 		set;
 	}
 
+    // Called when a spell collides with a Player.
 	public override void processHex(Hex h) {
+        // Process the collision with the player.
 		h.playerCollide (gameObject);
-		this.health -= h.damage;
-		//TODO: magic valu
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.health/100);
-		h.destroy ();
+        // Deal damage.
+		this.Health -= h.damage;
+        // Update healthbar UI with new health amount.
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
+        // Destroy the hex.
+        h.destroy();
+        // Process if the player is dead.
 		if (this.IsDead ())
 			Destroy (this.gameObject);
 	}
 
 	public override bool CanShoot (Hex h, GameObject controller) {
-
+        // If the player is holding their wand.
         if (!HoldingWand(controller)) return false;
-		if (this.cooldown.ContainsKey (h.name)) {
-			if (Time.time >= this.cooldown[h.name]) {
-				this.cooldown.Remove (h.name);
+        // Checks if the spell is in cooldown.
+		if (this.cooldown.ContainsKey (h.HexName)) {
+			if (Time.time >= this.cooldown[h.HexName]) {
+				this.cooldown.Remove (h.HexName);
 			} else {
 				return false;
 			}
 		} 
-			this.cooldown.Add (h.name, Time.time + h.cooldown) ;
 
-
-
-		Slider slider = sliders [h.name];
+        // Once we are at this point in the code, we know we will be returning true.
+        // Assume spell is sucessfully cast, so add the spell to the cooldown.
+		this.cooldown.Add (h.HexName, Time.time + h.cooldown) ;
+        // Get the cooldown slider associated with the cast hex.
+		Slider slider = Sliders [h.HexName];
+        // Reset the min and max scale of the slider in case we want to modify cooldown amounts at runtime
 		slider.minValue = 0;
 		slider.maxValue = h.cooldown;
 		slider.value = slider.minValue;
 		return true;
 	}
 
-    public bool HoldingWand(GameObject controller)
-    {
-
+    // If the player is holding their wand.
+    public bool HoldingWand(GameObject controller) {
         if (controller != null)
         {
             if (controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() == null) return false;
@@ -57,32 +67,35 @@ public class Player : ControlEntity {
         return true;
     }
 
-	// Use this for initialization
 	void Start () {
+        // Instantiate the cooldown dictionary.
 		cooldown = new System.Collections.Generic.Dictionary<string, float> ();
 
-		//load our map from the inspector
-		sliders = new Dictionary<string, Slider> ();
+		// Populate our slider map with values from the inspector.
+		Sliders = new Dictionary<string, Slider> ();
 		foreach (SliderInsepctorEntry entry in InspectorSliders) {
-			sliders.Add (entry.name, entry.slider.GetComponent<Slider> ());
+			Sliders.Add (entry.hex.GetComponent<Hex>().HexName, entry.slider.GetComponent<Slider> ());
 		}
 
+        // Initial settting of queuedSpell.
 		queuedSpell = null;
 	}
 
 	
-	// Update is called once per frame
 	void FixedUpdate () {
+        // Iterate over all the sliders and update their value 
 		foreach(KeyValuePair<string, float> spell in cooldown) {
 			if (Time.time <= spell.Value) {
-				sliders [spell.Key].value += Time.fixedDeltaTime;
+				Sliders [spell.Key].value += Time.fixedDeltaTime;
 			}
 		}
 	}
 
+
+    // Represents an inspector friendly way to map spells to sliders
 	[System.Serializable]
 	public class SliderInsepctorEntry {
-		public string name;
+		public GameObject hex;
 		public GameObject slider;
 	}
 

@@ -6,20 +6,24 @@ using VRTK;
 
 public abstract class Hex : Spell {
 
-	public string name;
-	//num seconds until clean up
+
+    // String name of the hex.
+	public string HexName;
+
+	// Seconds to delay the destruction of the Hex.
 	public float timeout = 20;
 
-	//out of 100
-	public double damage;
+	// How much damage to deal to the target.
+	public float damage;
 
-	//speed multiplier
-	public double velocity;
+	// Velocity of the spell.
+	public float velocity;
 
-	//Desfault destroy, can be overridden when appropriate in child spells
+	// Default destroy method, can be overridden when appropriate in child spells
 	public virtual void destroy() {
 		Destroy (this.gameObject);
 	}
+
 
 	public abstract void playerCollide(GameObject playerCameraRig);
 	public abstract void aiCollide(GameObject aiBody);

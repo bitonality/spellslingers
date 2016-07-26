@@ -75,14 +75,27 @@ public class CastListener : MonoBehaviour {
 			wand.GetComponentInChildren<Light>().intensity = 0;
             // Get the angle between the controller-wand vector and the controller-ai vector.
 			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
-            // Run the shooting check on the queued hex.
-			if (player.CanShoot(player.queuedSpell, gameObject)) {
+
+            // We need to now establish how fast the player flicked the wand to modify the speed of the casted spell.
+            SteamVR_TrackedObject trackedObj = gameObject.GetComponent<SteamVR_TrackedObject>();
+            Transform origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
+
+            Vector3 controllerVelocity;
+
+            if (origin != null){
+                controllerVelocity = origin.TransformVector((SteamVR_Controller.Input((int)trackedObj.index).velocity));
+            } else {
+                controllerVelocity = (SteamVR_Controller.Input((int)trackedObj.index).velocity);
+            }
+
+                // Run the shooting check on the queued hex.
+                if (player.CanShoot(player.queuedSpell, gameObject)) {
                 // Cast the hex from the wand launch point with random accuracy modifiers.
 				player.CastHex (player.queuedSpell, wand.transform.Find("WandLaunchPoint").position, new Vector3 (
 					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15, 
 					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15, 
 					Random.Range(-1, 1) * Random.Range(angle/2, angle)/15
-				) + ai.transform.position);
+				) + ai.transform.position, controllerVelocity.sqrMagnitude);
 
                 // Reset the queued spell. This will also stop the check in the FixedUpdate() method.
 				player.queuedSpell = null;

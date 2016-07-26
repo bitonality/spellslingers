@@ -70,7 +70,7 @@ public class ai : ControlEntity {
 		while (true) {				
 			yield return new WaitForSeconds (t);
 			if(ShootingCycleDisable <= Time.time && CanShoot(h, null)) {
-				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform.position);
+				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform.position, 1F);
 			}
 		}
 	}
@@ -96,14 +96,14 @@ public class ai : ControlEntity {
 
 	//pass null to wand, we don't particularly care about it for the AI context
 	public override bool CanShoot(Hex h, GameObject wand) {
-		if (this.cooldown.ContainsKey (h.name)) {
-			if (Time.time >= this.cooldown [h.name] + h.cooldown) {
-				this.cooldown.Remove (h.name);
+		if (this.cooldown.ContainsKey (h.HexName)) {
+			if (Time.time >= this.cooldown [h.HexName] + h.cooldown) {
+				this.cooldown.Remove (h.HexName);
 			} else {
 				return false;
 			}
 		} 
-		this.cooldown.Add (h.name, Time.time);
+		this.cooldown.Add (h.HexName, Time.time);
 		return true;
 
 
@@ -111,9 +111,9 @@ public class ai : ControlEntity {
 
 	public override void processHex(Hex h) {
 		h.aiCollide (gameObject);
-		this.health -= h.damage;
+		this.Health -= h.damage;
 		h.destroy ();
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.health/200);
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/200);
 		if (this.IsDead ())
 			Destroy (this.gameObject);
 	}
