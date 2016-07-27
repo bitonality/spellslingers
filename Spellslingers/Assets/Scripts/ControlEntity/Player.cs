@@ -36,7 +36,7 @@ public class Player : ControlEntity {
 
 	public override bool CanShoot (Hex h, GameObject controller) {
         // If the player is holding their wand.
-        if (!HoldingWand(controller)) return false;
+        if (GetWand(controller) == null) return false;
         // Checks if the spell is in cooldown.
 		if (this.cooldown.ContainsKey (h.HexName)) {
 			if (Time.time >= this.cooldown[h.HexName]) {
@@ -58,13 +58,13 @@ public class Player : ControlEntity {
 		return true;
 	}
 
-    // If the player is holding their wand.
-    public bool HoldingWand(GameObject controller) {
-        if (controller != null)
-        {
-            if (controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() == null) return false;
+    // If the player is holding their wand return the game object, if not, return null.
+    // Pass the SteamVR Controller game object to this
+    public GameObject GetWand(GameObject controller) {
+        if (controller != null) {
+            return controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
         }
-        return true;
+        return null;
     }
 
 	void Start () {

@@ -281,7 +281,7 @@ GameObject:
   - 4: {fileID: 313967502}
   - 65: {fileID: 313967503}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: LaunchPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,9 +463,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castagonTemplate: {fileID: 178966, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+  instantiatedCastagon: {fileID: 0}
   ai: {fileID: 892895576}
-  GoodColorLerp: {r: 0.9034482, g: 1, b: 0, a: 0}
-  BadColorLerp: {r: 1, g: 0, b: 0, a: 0}
+  GoodColorLerp:
+    r: 0.9034482
+    g: 1
+    b: 0
+    a: 0
+  BadColorLerp:
+    r: 1
+    g: 0
+    b: 0
+    a: 0
+  player: {fileID: 0}
 --- !u!114 &391519557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +503,11 @@ MonoBehaviour:
   grabPressed: 0
   usePressed: 0
   menuPressed: 0
+  trackedController: {fileID: 0}
+  touchpadAxis: {x: 0, y: 0}
+  triggerAxis: {x: 0, y: 0}
+  controllerVelocity: {x: 0, y: 0, z: 0}
+  controllerAngularVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &391519558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,9 +520,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castagonTemplate: {fileID: 178966, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+  instantiatedCastagon: {fileID: 0}
   ai: {fileID: 892895576}
-  GoodColorLerp: {r: 0.90344834, g: 1, b: 0, a: 0}
-  BadColorLerp: {r: 1, g: 0, b: 0, a: 0}
+  GoodColorLerp:
+    r: 0.90344834
+    g: 1
+    b: 0
+    a: 0
+  BadColorLerp:
+    r: 1
+    g: 0
+    b: 0
+    a: 0
+  player: {fileID: 0}
 --- !u!114 &391519559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +560,11 @@ MonoBehaviour:
   grabPressed: 0
   usePressed: 0
   menuPressed: 0
+  trackedController: {fileID: 0}
+  touchpadAxis: {x: 0, y: 0}
+  triggerAxis: {x: 0, y: 0}
+  controllerVelocity: {x: 0, y: 0, z: 0}
+  controllerAngularVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &391519561 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 187578, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}
@@ -553,6 +583,14 @@ MonoBehaviour:
   headsetYOffset: 0
   ignoreGrabbedCollisions: 0
   resetPositionOnCollision: 0
+  headset: {fileID: 0}
+  rb: {fileID: 0}
+  bc: {fileID: 0}
+  lastGoodPosition: {x: 0, y: 0, z: 0}
+  lastGoodPositionSet: 0
+  highestHeadsetY: 0
+  crouchMargin: 0.5
+  lastPlayAreaY: 0
 --- !u!114 &391519571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,11 +604,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 275148755}
   MaxHealth: 200
+  <Health>k__BackingField: 0
   InspectorSliders:
   - hex: {fileID: 103302, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
     slider: {fileID: 6770482}
   - hex: {fileID: 128152, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
     slider: {fileID: 1992524131}
+  <queuedSpell>k__BackingField: {fileID: 0}
 --- !u!114 &391519574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +628,13 @@ MonoBehaviour:
   grabPrecognition: 1
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
+  controllerAttachJoint: {fileID: 0}
+  grabbedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  interactTouch: {fileID: 0}
+  controllerActions: {fileID: 0}
+  grabEnabledState: 0
+  grabPrecognitionTimer: 0
 --- !u!114 &391519575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,8 +648,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideControllerOnTouch: 0
   hideControllerDelay: 0
-  globalTouchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  globalTouchHighlightColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   customRigidbodyObject: {fileID: 0}
+  touchedObject: {fileID: 0}
+  lastTouchedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  controllerActions: {fileID: 0}
+  controllerRigidBodyObject: {fileID: 0}
+  triggerRumble: 0
 --- !u!114 &391519576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45c8d32f1d960d4498790bb3961fc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerVisible: 1
+  trackedController: {fileID: 0}
 --- !u!114 &391519577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,6 +690,13 @@ MonoBehaviour:
   grabPrecognition: 1
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
+  controllerAttachJoint: {fileID: 0}
+  grabbedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  interactTouch: {fileID: 0}
+  controllerActions: {fileID: 0}
+  grabEnabledState: 0
+  grabPrecognitionTimer: 0
 --- !u!114 &391519578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,8 +710,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideControllerOnTouch: 0
   hideControllerDelay: 0
-  globalTouchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  globalTouchHighlightColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   customRigidbodyObject: {fileID: 0}
+  touchedObject: {fileID: 0}
+  lastTouchedObject: {fileID: 0}
+  trackedController: {fileID: 0}
+  controllerActions: {fileID: 0}
+  controllerRigidBodyObject: {fileID: 0}
+  triggerRumble: 0
 --- !u!114 &391519579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45c8d32f1d960d4498790bb3961fc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerVisible: 1
+  trackedController: {fileID: 0}
 --- !u!1001 &438228771
 Prefab:
   m_ObjectHideFlags: 0
@@ -1241,8 +1319,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 894322451}
   MaxHealth: 1000
+  <Health>k__BackingField: 0
   ShootingCycleDisable: 0
   speed: 7
+  defaultSpeed: 0
   hexes:
   - {fileID: 103302, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
   - {fileID: 128152, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
@@ -2132,7 +2212,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightOnTouch: 1
-  touchHighlightColor: {r: 1, g: 0, b: 0, a: 0}
+  touchHighlightColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 0
   rumbleOnTouch: {x: 0, y: 0}
   allowedTouchControllers: 0
   isGrabbable: 1
@@ -2155,6 +2239,17 @@ MonoBehaviour:
   pointerActivatesUseAction: 0
   rumbleOnUse: {x: 0, y: 0}
   allowedUseControllers: 0
+  rb: {fileID: 0}
+  touchingObject: {fileID: 0}
+  grabbingObject: {fileID: 0}
+  usingObject: {fileID: 0}
+  usingState: 0
+  grabbedSnapHandle: {fileID: 0}
+  trackPoint: {fileID: 0}
+  customTrackPoint: 0
+  previousParent: {fileID: 0}
+  previousKinematicState: 0
+  previousIsGrabbable: 0
 --- !u!54 &1644510484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2465,7 +2560,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1936409851}
   m_Layer: 0
-  m_Name: WandLaunchPoint
+  m_Name: LaunchPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
