@@ -87,10 +87,15 @@ public class CastListener : MonoBehaviour {
 
                 // Run the shooting check on the queued hex.
                 if (player.CanShoot(player.queuedSpell, gameObject)) {
-				float angleCheck = (float) ((-200 / ((angle - 30) * (angle - 30))) + 3f);
-				float speedCheck = controllerVelocity.sqrMagnitude / 12;
-				Debug.Log (angle);
-				//speedCheck = 0;
+				float angleCheck = 0F;
+				float speedCheck = Mathf.Clamp (controllerVelocity.sqrMagnitude / 8, 0, 9);
+				if (angle < 30) {
+					angleCheck = (float)((-200 / ((angle - 30) * (angle - 30))) + 3f);
+				} else {
+					speedCheck = 0F;
+				}
+				Debug.Log (angle + " SpeedCheck: " + speedCheck + " Angle check: " + angleCheck);
+
                 // Cast the hex from the wand launch point with random accuracy modifiers.
 				player.CastHex(player.queuedSpell, player.GetWand(this.gameObject).transform.FindChild("LaunchPoint").transform, player.Enemy.transform, angleCheck + speedCheck, controllerVelocity.magnitude);
                 // Reset the queued spell. This will also stop the check in the FixedUpdate() method.
