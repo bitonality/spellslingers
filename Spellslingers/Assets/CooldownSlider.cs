@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class CooldownSlider : MonoBehaviour {
 
-	GameObject gop;
-	Player p;
 	GameObject canvas;
 	Slider s;
 
