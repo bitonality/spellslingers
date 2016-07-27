@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class stateAI : ControlEntity {
 
-	public float health = 100;
-
 	//time until next state change 
-	private float timeUntilChange = 0;
+	private float timeUntilChange = 3;
 
 	//Time until the AI is allowed to shoot after being idle
 	public float delayUntilShoot;
@@ -18,6 +16,9 @@ public class stateAI : ControlEntity {
 
 	//Speed (m/s) of the AI
 	public float speed;
+
+	// TODO: Make this an array, etc.
+	public Hex spellToShoot;
 
 	public enum validStates
     {
@@ -29,7 +30,16 @@ public class stateAI : ControlEntity {
         POSTSHOOT,
         DEAD
     }
-	public Queue currentAction = new Queue();
+
+	// Make sure it can't leave the AI boundry.
+	void OnTriggerExit(Collider col) {
+		//Debug.Log (col);
+		if (col.gameObject.tag == "AIBoundry") {
+			gameObject.GetComponent<Rigidbody> ().velocity *= -1;
+		}
+	}
+
+	public Queue<validStates> currentAction = new Queue<validStates>();
 
 	//Called every 0.02 seconds
 	void FixedUpdate() {
@@ -51,26 +61,10 @@ public class stateAI : ControlEntity {
 
 	//Called only when changing state
 	private object justLeft(validStates oldState, validStates newState) {
-		Debug.Log ("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+		//Debug.Log ("Player health: " + this.Enemy.GetComponent<ControlEntity> ().Health);
+		//Debug.Log ("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
 		switch (newState) {
 		case validStates.DANGER:
-			//Move out of danger
-			ArrayList dangerousSpells = aiBase.isInDanger ();
-			if (dangerousSpells.Count > 0) {
-				//Choose the one that is most important
-				//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
-				//So the spells are actually in alphabetical order. 
-				dangerousSpells.Sort (); 
-				//Move 
-				Vector3 position = this.gameObject.transform.position;
-				Vector3 direction = new Vector3 (speed * ((GameObject)dangerousSpells [0]).transform.position.x, 0, 0);
-				gameObject.GetComponent<Rigidbody> ().AddForce (direction, ForceMode.Impulse);
-			} else {
-				//Stop movement
-				gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-				//Push idle state
-				currentAction.Enqueue (validStates.IDLE);
-			}
             break;
 		case validStates.HIT:
 			currentAction.Enqueue (validStates.DANGER);
@@ -93,7 +87,7 @@ public class stateAI : ControlEntity {
 			Hex h = pickHex();
 			if (CanShoot (h, this.gameObject)) {
                 //Shoot
-                CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.Enemy.transform, 1, 3);
+                CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.Enemy.transform, 2, 3);
                 //Go back to IDLE state
 				currentAction.Enqueue (validStates.POSTSHOOT);
 			} else {
@@ -127,16 +121,35 @@ public class stateAI : ControlEntity {
 	//Pick the best hex for the situation
 	//TODO: This
 	private Hex pickHex() {
-		return new Stun();
+		return spellToShoot;
 	}
 
 	//Called regardless if a state change occurred, every time. 
 	private object currentInclusive(validStates state) {
-		if (state == validStates.IDLE && timeUntilChange >= Time.time) {
+		if (state == validStates.DANGER) {
+			//Move out of danger
+			ArrayList dangerousSpells = isInDanger ();
+			if (dangerousSpells.Count > 0) {
+				//Choose the one that is most important
+				//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
+				//So the spells are actually in alphabetical order. 
+				//dangerousSpells.Sort (); 
+				//Move 
+				Vector3 position = this.gameObject.transform.position;
+				Vector3 direction = new Vector3 (speed * (float)Vector3.Cross(((GameObject)dangerousSpells [0]).transform.position, gameObject.transform.position).normalized.x, 0, 0);
+				gameObject.GetComponent<Rigidbody> ().AddForce (direction, ForceMode.Impulse);
+			} else {
+				//Stop movement
+				gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+				//Push idle state
+				currentAction.Enqueue (validStates.IDLE);
+			}
+		}
+		if (state == validStates.IDLE && timeUntilChange <= Time.time) {
 			//Change state to preshoot
 			currentAction.Enqueue(validStates.PRESHOOT);
 		}
-		if (state == validStates.PRESHOOT && timeUntilChange >= Time.time) {
+		if (state == validStates.PRESHOOT && timeUntilChange <= Time.time) {
 			//Change to shooting state
 			currentAction.Enqueue (validStates.SHOOTING);
 		}
@@ -163,19 +176,11 @@ public class stateAI : ControlEntity {
 
 	public override void processHex(Hex h) {
 		h.aiCollide (gameObject);
-		this.health -= h.damage;
+		this.Health -= h.damage;
 		h.destroy ();
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.health/200);
+		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
 		if (this.IsDead ()) {
 			Destroy (this.gameObject);
-		}
-	}
-
-	//Prevent AI from leaving play bounds
-	//TODO: Add the bounds
-	void OnTriggerExit(Collider col) {
-		if (col.tag == "aiBounds") {
-			gameObject.GetComponent<Rigidbody> ().velocity *= -1;
 		}
 	}
     
@@ -185,7 +190,7 @@ public class stateAI : ControlEntity {
 		GameObject[] spells = GameObject.FindGameObjectsWithTag("Hex");
 		ArrayList dangerousSpells = new ArrayList();
 		foreach (GameObject spell in spells) {
-			Debug.Log (spell);
+			//Debug.Log (spell);
 			//TODO: Un-hardcode max length (50 right now)
 			//for some reason the spells array consistently had hexes with no rigibodies in it TODO: redesign
 			if (spell.gameObject.GetComponent<Rigidbody>() != null && Physics.Raycast (spell.transform.position, spell.gameObject.GetComponent<Rigidbody> ().velocity.normalized, 50F, 1 << 8)) {

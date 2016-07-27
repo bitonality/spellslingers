@@ -27,9 +27,4 @@ public abstract class Hex : Spell {
 
 	public abstract void playerCollide(GameObject playerCameraRig);
 	public abstract void aiCollide(GameObject aiBody);
-
-
-
-
-
 }

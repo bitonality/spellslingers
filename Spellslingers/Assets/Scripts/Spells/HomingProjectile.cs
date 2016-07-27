@@ -29,7 +29,7 @@ public class HomingProjectile : MonoBehaviour {
 	{
 		if (update) {
 			Quaternion rotation = Quaternion.LookRotation (target.position - transform.position);
-			Quaternion adjustedRotation = Quaternion.Slerp(transform.rotation, rotation, 1.5F * Time.deltaTime);
+			Quaternion adjustedRotation = Quaternion.Slerp(transform.rotation, rotation, sensitivity * Time.deltaTime);
             gameObject.GetComponent<Rigidbody>().MoveRotation(adjustedRotation);
 			gameObject.GetComponent<Rigidbody>().velocity = transform.forward.normalized * this.ConstantMagnitude;
 		}

@@ -30,7 +30,7 @@ public class aiBase {
 		GameObject[] spells = GameObject.FindGameObjectsWithTag("Hex");
 		ArrayList dangerousSpells = new ArrayList();
 		foreach (GameObject spell in spells) {
-			Debug.Log (spell);
+			//Debug.Log (spell);
 			//TODO: Un-hardcode max length (50 right now)
 
 			//for some reason the spells array consistently had hexes with no rigibodies in it TODO: redesign

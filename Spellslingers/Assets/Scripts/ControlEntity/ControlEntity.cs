@@ -43,9 +43,10 @@ public abstract class ControlEntity : MonoBehaviour {
     public void CastHex(Hex hex, Transform source, Transform target, float sensitivity, float controllerVelocity) {
         Hex proj = Instantiate(hex, source.position, source.rotation) as Hex;
         proj.GetComponent<HomingProjectile>().LaunchProjectile(hex, source, target, sensitivity, controllerVelocity);
+		Destroy (proj.gameObject, 5f);
 	}
 
-	void Start() {
+	void Awake() {
 		this.Health = this.MaxHealth;
 	}
 }

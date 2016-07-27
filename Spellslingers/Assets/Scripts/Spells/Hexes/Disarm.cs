@@ -23,8 +23,8 @@ public class Disarm : Hex {
 	}
 
 	public override void aiCollide(GameObject aiBody) {
-		ai AI = aiBody.GetComponent<ai> ();
-		AI.ShootingCycleDisable = AiDisarmTime + Time.time;
+		//ai AI = aiBody.GetComponent<ai> ();
+		//AI.ShootingCycleDisable = AiDisarmTime + Time.time;
 	}
 
 	// Use this for initialization
