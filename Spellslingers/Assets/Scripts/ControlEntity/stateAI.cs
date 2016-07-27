@@ -93,7 +93,7 @@ public class stateAI : ControlEntity {
 			Hex h = pickHex();
 			if (CanShoot (h, this.gameObject)) {
                 //Shoot
-                CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
+				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, Vector3.zero);
 				//Go back to IDLE state
 				currentAction.Enqueue (validStates.POSTSHOOT);
 			} else {
