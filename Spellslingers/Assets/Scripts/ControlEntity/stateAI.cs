@@ -16,6 +16,9 @@ public class stateAI : ControlEntity {
 	//For stacking of effects that disable shooting
 	public float ShootingCycleDisabled = 0;
 
+	//Speed (m/s) of the AI
+	public float speed;
+
 	public enum validStates
     {
         HIT,
@@ -48,25 +51,40 @@ public class stateAI : ControlEntity {
 
 	//Called only when changing state
 	private object justLeft(validStates oldState, validStates newState) {
+		Debug.Log ("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
 		switch (newState) {
 		case validStates.DANGER:
-                gameObject.GetComponent<Animation>().CrossFade("Run");
-                break;
+			//Move out of danger
+			ArrayList dangerousSpells = aiBase.isInDanger ();
+			if (dangerousSpells.Count > 0) {
+				//Choose the one that is most important
+				//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
+				//So the spells are actually in alphabetical order. 
+				dangerousSpells.Sort (); 
+				//Move 
+				Vector3 position = this.gameObject.transform.position;
+				Vector3 direction = new Vector3 (speed * ((GameObject)dangerousSpells [0]).transform.position.x, 0, 0);
+				gameObject.GetComponent<Rigidbody> ().AddForce (direction, ForceMode.Impulse);
+			} else {
+				//Stop movement
+				gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+				//Push idle state
+				currentAction.Enqueue (validStates.IDLE);
+			}
+            break;
 		case validStates.HIT:
-                gameObject.GetComponent<Animation>().CrossFade("Sits");
-                gameObject.GetComponent<Animation>().CrossFade("Up");
-                break;
+			currentAction.Enqueue (validStates.DANGER);
+            break;
 		case validStates.IDLE:
 			//Move in a random direction
 			Vector3 Destination = new Vector3(Random.Range(-5f, 5f) * 10, 0, Random.Range(-5f, 5f) * 10);
             this.gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
-            Dodge(Destination); 
-			//Schedule interruptable state change in 3 seconds
+            //Schedule interruptable state change in 3 seconds
 			timeUntilChange = Time.time + 3;
 			break;
 		case validStates.PRESHOOT:
 			//Stop movement
-			this.GetComponent<Rigidbody>().velocity=new Vector3(0,0,0);
+			this.GetComponent<Rigidbody>().velocity = Vector3.zero;
 			//Wait for 1 second
 			timeUntilChange = Time.time + 1;
 			break;
@@ -74,15 +92,22 @@ public class stateAI : ControlEntity {
 			//Pick a hex
 			Hex h = pickHex();
 			if (CanShoot (h, this.gameObject)) {
-                    //Shoot
-                    this.GetComponent<Animation>().CrossFade("Magic Attack");
-                    CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
-				//Go back to idle state
-				currentAction.Enqueue (validStates.IDLE);
+                //Shoot
+                CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
+				//Go back to IDLE state
+				currentAction.Enqueue (validStates.POSTSHOOT);
 			} else {
 				//Return to PRESHOOT stage
 				currentAction.Enqueue(validStates.PRESHOOT);
 			}
+			break;
+		case validStates.POSTSHOOT:
+			//For now head straight into IDLE
+			currentAction.Enqueue (validStates.IDLE);
+			break;
+		case validStates.DEAD:
+			//Kill this script, so that it doesn't keep running this loop
+			this.enabled = false;
 			break;
 		}
 		return null;
@@ -90,6 +115,12 @@ public class stateAI : ControlEntity {
 
 	//Called every time, but only if a state change did not occur.
 	private object currentExclusive(validStates state) {
+		if (state == validStates.IDLE) {
+			//Make sure it isn't in danger
+			if (isInDanger ().Count > 0) {
+				currentAction.Enqueue (validStates.DANGER);
+			}
+		}
 		return null;
 	}
 
@@ -148,7 +179,7 @@ public class stateAI : ControlEntity {
 		}
 	}
     
-	private ArrayList checkDanger() {
+	private ArrayList isInDanger() {
 		//Get all spells
 		//TODO: Don't iterate over all objects
 		GameObject[] spells = GameObject.FindGameObjectsWithTag("Hex");
@@ -163,15 +194,4 @@ public class stateAI : ControlEntity {
 		}
 		return dangerousSpells;
 	}
-
-    private void Dodge(Vector3 Destination)
-    {
-        float rotationspeed = 90f;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Destination, transform.position), rotationspeed);
-        gameObject.GetComponent<Animation>().CrossFade("Walk");
-        // Ask Frankie how AI stops moving and work that into the class
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(GameObject.Find("[CameraRig]").transform.position, transform.position), rotationspeed);
-        gameObject.GetComponent<Animation>().CrossFade("Idle1");
-    }
-
 }
