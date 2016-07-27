@@ -123,7 +123,7 @@ MonoBehaviour:
   HexName: Disarm
   timeout: 20
   damage: 20
-  velocity: 5
+  velocity: 30
   AiDisarmTime: 0
 --- !u!114 &11455792
 MonoBehaviour:
