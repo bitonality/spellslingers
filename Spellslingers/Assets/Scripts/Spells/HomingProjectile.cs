@@ -11,27 +11,28 @@ public class HomingProjectile : MonoBehaviour {
 
 	public void LaunchProjectile(Transform target, Hex h, float sensitivity, Vector3 controller, GameObject c)
     {
-		this.ConstantMagnitude = h.velocity;
         this.target = target;
 		this.sensitivity = sensitivity;
-		h.gameObject.GetComponent<Rigidbody> ().AddForce (controller.sqrMagnitude * h.velocity * c.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().transform.FindChild("WandLaunchPoint").transform.forward);
-		update = true;
+		h.gameObject.GetComponent<Rigidbody> ().AddForce (controller.magnitude * h.velocity * c.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().transform.FindChild("WandLaunchPoint").transform.forward);
+        Invoke("FlipUpdate", 0.5F);
 
     }
 
 	void FlipUpdate() {
 		update = true;
+        this.ConstantMagnitude = this.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
 	}
 
 
     void FixedUpdate ()
 	{
 		if (update) {
-			Vector3 relativePosition = target.position - transform.position;
-			Quaternion rotation = Quaternion.LookRotation (relativePosition);
-			transform.rotation = Quaternion.Slerp (transform.rotation, rotation, sensitivity);
-			Vector3 translation = Vector3.forward * ConstantMagnitude * Time.deltaTime;
-			transform.Translate (translation);	
+
+            //  var targetRotation = Quaternion.LookRotation(target.position - transform.position);
+             // homingMissile.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, turn));
+			Quaternion rotation = Quaternion.LookRotation (target.position - transform.position);
+            //transform.rotation = Quaternion.Slerp (transform.rotation, rotation, sensitivity);
+            gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, 20));
 
 		}
 	}
