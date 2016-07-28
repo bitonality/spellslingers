@@ -20,6 +20,7 @@ public class Stun : Hex {
 	{
 		playerCameraRig.GetComponent<ParticleSystem> ().Play();
 		StartCoroutine(scheduleStop (playerCameraRig));
+		playerCameraRig.GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.DISARM, true);
 	}
 
 
@@ -27,6 +28,7 @@ public class Stun : Hex {
 		float delta = aiBody.GetComponent<ai> ().speed / 2;
 		aiBody.GetComponent<ai> ().setSpeed (delta);
 		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<ai>().speed + delta);
+		aiBody.GetComponent<ai>().GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.STUN, true);
 	}
 
 	IEnumerator scheduleSetSpeed(GameObject aiBody, double waitTime, float newSpeed) {

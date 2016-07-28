@@ -24,7 +24,7 @@ public class stateAI : ControlEntity {
     {
         HIT,
         IDLE,
-        DANGER,
+		DANGER,
         PRESHOOT,
         SHOOTING,
         POSTSHOOT,
