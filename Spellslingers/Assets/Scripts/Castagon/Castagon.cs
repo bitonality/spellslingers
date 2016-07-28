@@ -24,7 +24,6 @@ public class Castagon : MonoBehaviour {
 	public void AddPoint(CastagonPoint cp) {
 		if (!cp.Touched) {
 			cp.Touched = true;
-            cp.gameObject.GetComponentInChildren<ParticleSystem>().startColor = TouchedColor;
 			ActivatedPoints.Enqueue (cp);
 			CheckSpell ();
 		}
