@@ -23,12 +23,13 @@ public class stateAI : ControlEntity {
     {
         HIT,
         IDLE,
-        DANGER,
+		DANGER,
         PRESHOOT,
         SHOOTING,
         POSTSHOOT,
         DEAD
     }
+
 	public Queue currentAction = new Queue();
 
 	//Called every 0.02 seconds
