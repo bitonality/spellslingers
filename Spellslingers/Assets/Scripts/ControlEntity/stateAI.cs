@@ -17,8 +17,8 @@ public class stateAI : ControlEntity {
 	//Speed (m/s) of the AI
 	public float speed;
 
-	// TODO: Make this an array, etc.
-	public Hex spellToShoot;
+	//List of spells the AI is allowed to shoot
+	public Hex[] spellsToShoot;
 
 	public enum validStates
     {
@@ -87,7 +87,7 @@ public class stateAI : ControlEntity {
 			Hex h = pickHex();
 			if (CanShoot (h, this.gameObject)) {
                 //Shoot
-          //      CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.Enemy.transform, 2, 3);
+                CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.Enemy.transform, 2, 3);
                 //Go back to IDLE state
 				currentAction.Enqueue (validStates.POSTSHOOT);
 			} else {
@@ -121,7 +121,7 @@ public class stateAI : ControlEntity {
 	//Pick the best hex for the situation
 	//TODO: This
 	private Hex pickHex() {
-		return spellToShoot;
+		return spellsToShoot[0];
 	}
 
 	//Called regardless if a state change occurred, every time. 
@@ -132,8 +132,7 @@ public class stateAI : ControlEntity {
 			if (dangerousSpells.Count > 0) {
 				//Choose the one that is most important
 				//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
-				//So the spells are actually in alphabetical order. 
-				//dangerousSpells.Sort (); 
+				//TODO: Sort spells
 				//Move 
 				Vector3 position = this.gameObject.transform.position;
 				Vector3 direction = new Vector3 (speed * (float)Vector3.Cross(((GameObject)dangerousSpells [0]).transform.position, gameObject.transform.position).normalized.x, 0, 0);
@@ -171,7 +170,8 @@ public class stateAI : ControlEntity {
 	}
 
 	public override bool CanShoot(Hex h, GameObject launchPoint) {
-		return Time.time >= ShootingCycleDisabled;
+		//Check if the current time is greater than when the shooting cycle is disabled to and make sure it is not (hence the !) is under the influence of DISARM
+		return (Time.time >= ShootingCycleDisabled && !currentInfluences[influences.DISARM]);
 	}
 
 	public override void processHex(Hex h) {
@@ -186,13 +186,11 @@ public class stateAI : ControlEntity {
     
 	private ArrayList isInDanger() {
 		//Get all spells
-		//TODO: Don't iterate over all objects
-		GameObject[] spells = GameObject.FindGameObjectsWithTag("Hex");
+		HashSet<Hex> spells = Enemy.GetComponent<ControlEntity>().ActiveHexes;
 		ArrayList dangerousSpells = new ArrayList();
-		foreach (GameObject spell in spells) {
-			//Debug.Log (spell);
-			//TODO: Un-hardcode max length (50 right now)
-			//for some reason the spells array consistently had hexes with no rigibodies in it TODO: redesign
+		foreach (Hex h in spells) {
+			GameObject spell = h.gameObject;
+			//for some reason the spells array consistently had hexes with no rigibodies in it 
 			if (spell.gameObject.GetComponent<Rigidbody>() != null && Physics.Raycast (spell.transform.position, spell.gameObject.GetComponent<Rigidbody> ().velocity.normalized, 50F, 1 << 8)) {
 				dangerousSpells.Add (spell);
 			}
