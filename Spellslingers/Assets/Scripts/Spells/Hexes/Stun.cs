@@ -11,6 +11,7 @@ public class Stun : Hex {
 
 	//How often the decrement will run
 	private float repeatRate = 0.2F;
+
 	//calculated value for how much to decrease the blur size by
 	public double interval = 0;
 
@@ -22,8 +23,7 @@ public class Stun : Hex {
 	}
 
 
-	public override void aiCollide (GameObject aiBody)
-	{
+	public override void aiCollide (GameObject aiBody) {
 		float delta = aiBody.GetComponent<ai> ().speed / 2;
 		aiBody.GetComponent<ai> ().setSpeed (delta);
 		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<ai>().speed + delta);

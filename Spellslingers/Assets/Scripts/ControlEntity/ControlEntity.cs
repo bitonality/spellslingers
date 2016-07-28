@@ -6,8 +6,13 @@ using VRTK;
 // Abstraction layer that encapsulates AI and Players.
 public abstract class ControlEntity : MonoBehaviour {
 
+    // HashSet of hexes that a player has currently shot.
+    public HashSet<Hex> ActiveHexes {
+        get;
+        set;
+    }
 
-    // Under the assumption that there is only one enemy for each player;
+    // Under the assumption that there is only one enemy for each player.
     public GameObject Enemy;
 
     // The health bar UI element tied to the ControlEntity.
@@ -43,10 +48,13 @@ public abstract class ControlEntity : MonoBehaviour {
     public void CastHex(Hex hex, Transform source, Transform target, float sensitivity, float controllerVelocity) {
         Hex proj = Instantiate(hex, source.position, source.rotation) as Hex;
         proj.GetComponent<HomingProjectile>().LaunchProjectile(hex, source, target, sensitivity, controllerVelocity);
-		Destroy (proj.gameObject, 5f);
+        this.ActiveHexes.Add(proj);
 	}
+
+   
 
 	void Awake() {
 		this.Health = this.MaxHealth;
+        this.ActiveHexes = new HashSet<Hex>();
 	}
 }
