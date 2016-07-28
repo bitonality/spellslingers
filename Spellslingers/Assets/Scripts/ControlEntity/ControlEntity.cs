@@ -5,7 +5,11 @@ using VRTK;
 
 // Abstraction layer that encapsulates AI and Players.
 public abstract class ControlEntity : MonoBehaviour {
-
+	public enum influences
+	{
+		DISARM,
+		STUN
+	}
     // HashSet of hexes that a player has currently shot.
     public HashSet<Hex> ActiveHexes {
         get;
@@ -17,15 +21,18 @@ public abstract class ControlEntity : MonoBehaviour {
 
     // The health bar UI element tied to the ControlEntity.
 	public GameObject HealthBar;
-
     // Abstract method to process the hex collision.
 	public abstract void processHex (Hex h);
-
     // Abstract method to determine whether the ControlEntity can shoot or not.
 	public abstract bool CanShoot(Hex h, GameObject launchPoint);
 
 	// Cooldown dictionary that maps string Spell names to Ta future time when the next spell is castable (Time.time + cooldown).
 	public Dictionary<string, float> cooldown {
+		get;
+		set;
+	}
+
+	public Dictionary<influences, bool> currentInfluences {
 		get;
 		set;
 	}
@@ -42,6 +49,10 @@ public abstract class ControlEntity : MonoBehaviour {
     // Returns if the player is dead or not.
 	public bool IsDead() {
 		return(Health <= 0);
+	}
+
+	public void changeInfluenceState(influences influence, bool newState) {
+		currentInfluences [influence] = newState;
 	}
 
     // Instantiates a hex based on a template at source and launches it at target with force modifer forceMod
