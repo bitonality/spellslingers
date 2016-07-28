@@ -121,7 +121,8 @@ public class stateAI : ControlEntity {
 	//Pick the best hex for the situation
 	//TODO: This
 	private Hex pickHex() {
-		return spellsToShoot[0];
+		System.Random rnd = new System.Random();
+		return spellsToShoot[rnd.Next(0, spellsToShoot.Length)];
 	}
 
 	//Called regardless if a state change occurred, every time. 
@@ -131,8 +132,8 @@ public class stateAI : ControlEntity {
 			ArrayList dangerousSpells = isInDanger ();
 			if (dangerousSpells.Count > 0) {
 				//Choose the one that is most important
-				//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
 				//TODO: Sort spells
+				//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
 				//Move 
 				Vector3 position = this.gameObject.transform.position;
 				Vector3 direction = new Vector3 (speed * (float)Vector3.Cross(((GameObject)dangerousSpells [0]).transform.position, gameObject.transform.position).normalized.x, 0, 0);
