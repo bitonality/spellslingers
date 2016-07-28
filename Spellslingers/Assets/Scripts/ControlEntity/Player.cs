@@ -24,11 +24,11 @@ public class Player : ControlEntity {
         // Process the collision with the player.
 		h.playerCollide (gameObject);
         // Deal damage.
-		this.Health -= h.damage;
+		this.Health -= h.Damage;
         // Update healthbar UI with new health amount.
 		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
         // Destroy the hex.
-        h.destroy();
+        h.Destroy();
         // Process if the player is dead.
 		if (this.IsDead ())
 			Destroy (this.gameObject);

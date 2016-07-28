@@ -10,7 +10,7 @@ public class Damage : Hex {
 	public override void playerCollide (GameObject playerCameraRig)
 	{
 		Player p = playerCameraRig.GetComponent<Player> ();
-		p.Health -= (int) this.damage;
+		p.Health -= (int) this.Damage;
 
 	}
 

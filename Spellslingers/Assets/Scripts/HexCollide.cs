@@ -35,7 +35,7 @@ public class HexCollide : MonoBehaviour
 			numCollisions++;
 		} else {
             // Processing for above collision limit.
-            this.gameObject.GetComponent<Hex>().destroy();
+            this.gameObject.GetComponent<Hex>().Destroy();
 		}
 	}
 }

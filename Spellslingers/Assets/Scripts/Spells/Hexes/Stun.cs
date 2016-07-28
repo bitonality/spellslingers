@@ -36,7 +36,7 @@ public class Stun : Hex {
 		aiBody.GetComponent<ai> ().setSpeed (newSpeed);
 	}
 
-	public override void destroy() {
+	public override void BehavioralDestroy() {
 		this.gameObject.SetActive(false);
 	}
 

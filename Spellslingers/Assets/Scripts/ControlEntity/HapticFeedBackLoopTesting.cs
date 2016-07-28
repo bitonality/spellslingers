@@ -3,6 +3,7 @@ using System.Collections;
 
 public class HapticFeedBackLoopTesting : MonoBehaviour
 {
+    /*
     // Initialize here to avoid problems with non-static device methods
     void Start()
     {
@@ -17,4 +18,5 @@ public class HapticFeedBackLoopTesting : MonoBehaviour
             yield return null;
         }
     }
+    */
 }

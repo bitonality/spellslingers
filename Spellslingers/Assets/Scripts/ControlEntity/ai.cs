@@ -99,8 +99,8 @@ public class ai : ControlEntity {
 
 	public override void processHex(Hex h) {
 		h.aiCollide (gameObject);
-		this.Health -= h.damage;
-		h.destroy ();
+		this.Health -= h.Damage;
+		h.Destroy ();
 		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
 		if (this.IsDead ())
 			Destroy (this.gameObject);

@@ -976,6 +976,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 829566593}
+--- !u!1001 &855790584
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 20.866
+      objectReference: {fileID: 0}
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 22.185
+      objectReference: {fileID: 0}
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 11.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 413304, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &860131290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1439,10 @@ Prefab:
     - target: {fileID: 400006, guid: 4b8e36a33df86428aa3bec11134bc0e7, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800006, guid: 4b8e36a33df86428aa3bec11134bc0e7, type: 2}
+      propertyPath: looping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b8e36a33df86428aa3bec11134bc0e7, type: 2}
@@ -1958,6 +2004,10 @@ Prefab:
     - target: {fileID: 100004, guid: 7cd9c62469fe0467a9e27a21b9c8eb35, type: 2}
       propertyPath: m_Name
       value: Fire Flare
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 7cd9c62469fe0467a9e27a21b9c8eb35, type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cd9c62469fe0467a9e27a21b9c8eb35, type: 2}

@@ -13,7 +13,7 @@ public class HomingProjectile : MonoBehaviour {
     {
         this.target = target;
 		this.sensitivity = sensitivity;
-		gameObject.GetComponent<Rigidbody>().AddForce(source.forward * (float) controllerMagnitude * hex.velocity);
+		gameObject.GetComponent<Rigidbody>().AddForce(source.forward * (float) controllerMagnitude * hex.Velocity);
 		Invoke ("FlipUpdate", 0.1F);
 
     }

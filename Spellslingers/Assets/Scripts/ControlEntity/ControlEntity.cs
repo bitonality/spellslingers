@@ -60,6 +60,7 @@ public abstract class ControlEntity : MonoBehaviour {
         Hex proj = Instantiate(hex, source.position, source.rotation) as Hex;
         proj.GetComponent<HomingProjectile>().LaunchProjectile(hex, source, target, sensitivity, controllerVelocity);
         this.ActiveHexes.Add(proj);
+        proj.ScheduleDestroy(proj.Timeout);
 	}
 
    
