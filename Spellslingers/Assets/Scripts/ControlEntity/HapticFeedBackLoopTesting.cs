@@ -3,15 +3,13 @@ using System.Collections;
 
 public class HapticFeedBackLoopTesting : MonoBehaviour
 {
-    SteamVR_Controller.Device device;
-    // Use this for initialization
+    // Initialize here to avoid problems with non-static device methods
     void Start()
     {
-        startCoroutine(LongVibration(1000, 3000));
+        StartCoroutine(LongVibration(1, 3999));
     }
 
-    // Update is called once per frame
-    IEnumerator LongVibration(float length, float strength)
+	IEnumerator LongVibration(SteamVR_Controller.Device device,	float length, float strength)
     {
         for (float i = 0; i < length; i += Time.deltaTime)
         {
