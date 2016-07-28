@@ -69,7 +69,7 @@ public class CastListener : MonoBehaviour {
 
 			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
             // Disable light on the wand.
-			wand.GetComponentInChildren<Light>().intensity = 0;
+			//wand.GetComponentInChildren<Light>().intensity = 0;
             // Get the angle between the controller-wand vector and the controller-ai vector.
 			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, player.Enemy.transform.position - gameObject.transform.position);
 
@@ -113,9 +113,9 @@ public class CastListener : MonoBehaviour {
                 // Get the angle between the controller-wand vector and the controller-ai vector.
                 float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Enemy.transform.position - gameObject.transform.position);
                 // Adjust the color of the wand light based on the accuracy of the direction of the wand
-                wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
+               // wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
                 // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
-                wand.GetComponentInChildren<Light>().intensity = 8;
+                //wand.GetComponentInChildren<Light>().intensity = 8;
                 player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
             }
 		}
