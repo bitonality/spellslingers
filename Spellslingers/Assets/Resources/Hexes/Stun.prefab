@@ -16,6 +16,8 @@ GameObject:
   - 33: {fileID: 3343240}
   - 199: {fileID: 19900924}
   - 198: {fileID: 19875624}
+  - 114: {fileID: 11492442}
+  - 96: {fileID: 9632176}
   m_Layer: 8
   m_Name: Stun
   m_TagString: Hex
@@ -96,6 +98,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!96 &9632176
+TrailRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128152}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ef75de2f476426849bc3ab056c20c9f1, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 0.05
+  m_EndWidth: 0.05
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4289595530
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 3583116415
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 2692614249
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 1600785005
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 7865951
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
 --- !u!114 &11426842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +176,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 100006, guid: ec6e75a3654374c7f9c1007063dcd249, type: 2}
   numLegalCollisions: 0
+--- !u!114 &11492442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40d8f2c8db78e24ea4ef5f8e2e9293a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19875624
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -24,9 +24,9 @@ public class Disarm : Hex {
 	}
 
 	public override void aiCollide(GameObject aiBody) {
-		ai AI = aiBody.GetComponent<ai> ();
-		AI.ShootingCycleDisable = AiDisarmTime + Time.time;
-		AI.GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.DISARM, true);
+//		ai AI = aiBody.GetComponent<ai> ();
+//		AI.ShootingCycleDisable = AiDisarmTime + Time.time;
+		//AI.GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.DISARM, true);
 	}
 
 	// Use this for initialization

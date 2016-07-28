@@ -102,6 +102,8 @@ public class CastListener : MonoBehaviour {
 				player.queuedSpell = null;
 			}
 		}
+
+		player.GetWand (this.gameObject).GetComponentInChildren<TrailRenderer> ().enabled = false;
 	}
 
 	void FixedUpdate() {
@@ -126,6 +128,7 @@ public class CastListener : MonoBehaviour {
 			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("CastagonPoint").position, Quaternion.Euler (new Vector3 (gameObject.transform.rotation.eulerAngles.x, gameObject.transform.rotation.eulerAngles.y, 0f))) as GameObject).GetComponent<Castagon> ();
             // Set the player of the castagon in the castagon instance.
             instantiatedCastagon.player = gameObject.GetComponentInParent<Player> ();
+			player.GetWand (this.gameObject).GetComponentInChildren<TrailRenderer> ().enabled = true;
 		}
 	}
 }

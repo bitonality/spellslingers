@@ -17,6 +17,7 @@ GameObject:
   - 199: {fileID: 19971124}
   - 198: {fileID: 19834956}
   - 114: {fileID: 11443810}
+  - 96: {fileID: 9677388}
   m_Layer: 8
   m_Name: Disarm
   m_TagString: Hex
@@ -97,6 +98,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!96 &9677388
+TrailRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103302}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ef75de2f476426849bc3ab056c20c9f1, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 0.05
+  m_EndWidth: 0.05
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4278255580
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 3573612529
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 2684420091
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 1593901020
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 65500
+  m_MinVertexDistance: 0.05
+  m_Autodestruct: 0
 --- !u!114 &11443810
 MonoBehaviour:
   m_ObjectHideFlags: 1
