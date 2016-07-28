@@ -116,6 +116,7 @@ public class CastListener : MonoBehaviour {
                 wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
                 // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
                 wand.GetComponentInChildren<Light>().intensity = 8;
+                player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
             }
 		}
 	}
