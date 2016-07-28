@@ -11,9 +11,6 @@ public class CastListener : MonoBehaviour {
     // Stores the castigon of a player.
 	private Castagon instantiatedCastagon;
 
-    // Pass the AI so we can kick off the start task and have a target for the aim assist
-    public GameObject ai;
-
     // Color for the wand light if it is aimed properly.
 	public Color GoodColorLerp; 
 
@@ -68,13 +65,13 @@ public class CastListener : MonoBehaviour {
 
         // Check if the player has a spell queued for firing.
 		if (player.queuedSpell != null) {
-            if(!player.HoldingWand(this.gameObject)) return;
+            if(player.GetWand(this.gameObject) == null) return;
 
 			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
             // Disable light on the wand.
 			wand.GetComponentInChildren<Light>().intensity = 0;
             // Get the angle between the controller-wand vector and the controller-ai vector.
-			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
+			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, player.Enemy.transform.position - gameObject.transform.position);
 
             // We need to now establish how fast the player flicked the wand to modify the speed of the casted spell.
             SteamVR_TrackedObject trackedObj = gameObject.GetComponent<SteamVR_TrackedObject>();
@@ -90,17 +87,17 @@ public class CastListener : MonoBehaviour {
 
                 // Run the shooting check on the queued hex.
                 if (player.CanShoot(player.queuedSpell, gameObject)) {
-				float angleCheck = (float) ((-100 / ((angle - 25) * (angle - 25))) + 0.6);
-				float speedCheck = controllerVelocity.sqrMagnitude / 8;
-                // Cast the hex from the wand launch point with random accuracy modifiers.
-				player.CastHex (
-					player.queuedSpell,
-					wand.transform.Find("WandLaunchPoint").position,
-                	ai.transform, 
-					angleCheck + speedCheck, 
-					controllerVelocity
-				);
+				float angleCheck = 0F;
+				float speedCheck = Mathf.Clamp (controllerVelocity.sqrMagnitude / 8, 0, 9);
+				if (angle < 30) {
+					angleCheck = (float)((-200 / ((angle - 30) * (angle - 30))) + 3f);
+				} else {
+					speedCheck = 0F;
+				}
+				Debug.Log (angle + " SpeedCheck: " + speedCheck + " Angle check: " + angleCheck);
 
+                // Cast the hex from the wand launch point with random accuracy modifiers.
+				player.CastHex(player.queuedSpell, player.GetWand(this.gameObject).transform.FindChild("LaunchPoint").transform, player.Enemy.transform, angleCheck + speedCheck, controllerVelocity.magnitude);
                 // Reset the queued spell. This will also stop the check in the FixedUpdate() method.
 				player.queuedSpell = null;
 			}
@@ -109,10 +106,10 @@ public class CastListener : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (player.queuedSpell != null) {
-            if (player.HoldingWand(this.gameObject)) {
+            if (player.GetWand(this.gameObject) != null) {
                 GameObject wand = gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
                 // Get the angle between the controller-wand vector and the controller-ai vector.
-                float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, ai.transform.position - gameObject.transform.position);
+                float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Enemy.transform.position - gameObject.transform.position);
                 // Adjust the color of the wand light based on the accuracy of the direction of the wand
                 wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
                 // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
@@ -124,7 +121,7 @@ public class CastListener : MonoBehaviour {
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
 
-		if (player.HoldingWand(this.gameObject)) {
+		if (player.GetWand(this.gameObject) != null) {
             // Create a castagon from the template and spawn it at the CastagonPoint child of the wand. Set the x and y Euler angle values but not the z angle to avoid unwanted rotating of the castagon.
 			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("CastagonPoint").position, Quaternion.Euler (new Vector3 (gameObject.transform.rotation.eulerAngles.x, gameObject.transform.rotation.eulerAngles.y, 0f))) as GameObject).GetComponent<Castagon> ();
             // Set the player of the castagon in the castagon instance.

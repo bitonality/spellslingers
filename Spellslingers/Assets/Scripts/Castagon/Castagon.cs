@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Castagon : MonoBehaviour {
 
 
@@ -20,8 +21,11 @@ public class Castagon : MonoBehaviour {
 
 
 	public void AddPoint(CastagonPoint cp) {
-		this.ActivatedPoints.Enqueue (cp);
-		CheckSpell ();
+		if (!cp.Touched) {
+			cp.Touched = true;
+			ActivatedPoints.Enqueue (cp);
+			CheckSpell ();
+		}
 	}
 
 	public void CheckSpell() {
@@ -40,9 +44,7 @@ public class Castagon : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerExit(Collider col) {
-		this.destroy ();
-	}
+
 
 	// Use this for initialization
 	void Start () {

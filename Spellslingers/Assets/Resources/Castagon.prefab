@@ -856,7 +856,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 15, z: 15}
+  m_Size: {x: 25, y: 25, z: 25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6543814
 BoxCollider:
@@ -1182,6 +1182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 2
+  Touched: 0
 --- !u!114 &11435698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1209,6 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 3
+  Touched: 0
 --- !u!114 &11447906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1221,6 +1223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 7
+  Touched: 0
 --- !u!114 &11470930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1233,6 +1236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 1
+  Touched: 0
 --- !u!114 &11475294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1245,6 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 6
+  Touched: 0
 --- !u!114 &11499248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1257,6 +1262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 5
+  Touched: 0
 --- !u!114 &11499666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1269,6 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 4
+  Touched: 0
 --- !u!114 &11499786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1281,6 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastagonPointID: 8
+  Touched: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CastagonPoint : MonoBehaviour {
 	public int CastagonPointID;
+	public bool Touched = false;
 
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Wand") {

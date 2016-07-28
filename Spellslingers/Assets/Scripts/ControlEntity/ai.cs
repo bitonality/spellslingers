@@ -38,10 +38,7 @@ public class ai : ControlEntity {
 		//Record the default speed
 		defaultSpeed = speed;
 		//Start the shooting loop
-		foreach (GameObject currentHex in hexes) {
-			Debug.Log (currentHex.name);
-			StartCoroutine(spellTimer((((GameObject) currentHex).GetComponent<Hex>()), (float) currentHex.GetComponent<Hex>().cooldown));
-		}
+
 
 		cooldown = new System.Collections.Generic.Dictionary<string, float> ();
 
@@ -64,15 +61,6 @@ public class ai : ControlEntity {
 	//TODO: Bad assumption kys
 	void OnTriggerExit(Collider col) {
 		gameObject.GetComponent<Rigidbody> ().velocity *= -1;
-	}
-
-	IEnumerator spellTimer (Hex h, float t) {
-		while (true) {				
-			yield return new WaitForSeconds (t);
-			if(ShootingCycleDisable <= Time.time && CanShoot(h, null)) {
-				CastHex (h, gameObject.transform.GetChild(0).gameObject.transform.position, GameObject.FindGameObjectWithTag ("MainCamera").transform, 1F, new Vector3(0,0,0));
-			}
-		}
 	}
 
 	void checkSafety()
