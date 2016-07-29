@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142fd4b760071cb408ddaea18d9785e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 0
   HexName: Stun
   Timeout: 5
   Damage: 20

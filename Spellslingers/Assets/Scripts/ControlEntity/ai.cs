@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine.UI;
 
-public class ai : ControlEntity {
+public class Ai : ControlEntity {
 
 
 	//For stacking of effects that disable shooting

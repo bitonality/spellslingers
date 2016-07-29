@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class stateAI : ControlEntity {
+public class StateAI : ControlEntity {
 
 	//time until next state change 
 	private float timeUntilChange = 3;
