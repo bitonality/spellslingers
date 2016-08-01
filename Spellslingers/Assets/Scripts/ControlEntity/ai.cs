@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿/*
+ * This is the old AI script
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 using UnityEngine.UI;
@@ -35,6 +37,7 @@ public class Ai : ControlEntity {
 			Debug.Log("Item " + i + ": " + spookyStrings[i]);
 		}
 		*/
+/*
 		//Record the default speed
 		defaultSpeed = speed;
 		//Start the shooting loop
@@ -106,3 +109,4 @@ public class Ai : ControlEntity {
 			Destroy (this.gameObject);
 	}
 }
+*/

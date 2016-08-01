@@ -17,10 +17,12 @@ public class StateAI : ControlEntity {
 	//Speed (m/s) of the AI
 	public float speed;
 
+	private float defaultSpeed;
+
 	//List of spells the AI is allowed to shoot
 	public Hex[] spellsToShoot;
 
-	private Vector3 originalPosition = this.transform.position;
+	private Vector3 originalPosition;
 
 	public enum validStates
 	{
@@ -90,7 +92,7 @@ public class StateAI : ControlEntity {
 			if (spellsToShoot.Length != 0) {
 				//Pick a hex
 				Hex h = pickHex ();
-				if (CanShoot (h, this.gameObject)) {`
+				if (CanShoot (h, this.gameObject)) {
 					//Shoot
 					CastHex (h, gameObject.transform.GetChild (0).gameObject.transform, this.Enemy.transform, 2, 3);
 					//Go back to IDLE state
@@ -174,6 +176,8 @@ public class StateAI : ControlEntity {
 
 	// Use this for initialization
 	void Start () {
+		defaultSpeed = speed;
+		originalPosition = this.gameObject.transform.position;
 		//Start out the queue with idle
 		currentAction.Enqueue (validStates.IDLE);
 	}
@@ -205,5 +209,13 @@ public class StateAI : ControlEntity {
 			}
 		}
 		return dangerousSpells;
+	}
+
+	public void setSpeed(float newSpeed) {
+		if (newSpeed >= 0) {
+			speed = newSpeed;
+		} else {
+			speed = defaultSpeed;
+		}
 	}
 }
