@@ -25,15 +25,15 @@ public class Stun : Hex {
 
 
 	public override void aiCollide (GameObject aiBody) {
-		float delta = aiBody.GetComponent<Ai> ().speed / 2;
-		aiBody.GetComponent<Ai> ().setSpeed (delta);
-		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<Ai>().speed + delta);
-		aiBody.GetComponent<Ai>().GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.STUN, true);
+		float delta = aiBody.GetComponent<StateAI> ().speed / 2;
+		aiBody.GetComponent<StateAI> ().setSpeed (delta);
+		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<StateAI>().speed + delta);
+		aiBody.GetComponent<StateAI>().GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.STUN, true);
 	}
 
 	IEnumerator scheduleSetSpeed(GameObject aiBody, double waitTime, float newSpeed) {
 		yield return new WaitForSeconds((float) waitTime);
-		aiBody.GetComponent<Ai> ().setSpeed (newSpeed);
+		aiBody.GetComponent<StateAI> ().setSpeed (newSpeed);
 	}
 
 	public override void BehavioralDestroy() {
