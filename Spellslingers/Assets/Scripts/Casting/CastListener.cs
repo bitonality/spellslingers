@@ -20,6 +20,8 @@ public class CastListener : MonoBehaviour {
 	// Cache player on start up to avoid unneeded traversals of the heiarchy tree. 
 	private Player player;
 
+    public GameObject AuraTemplate;
+
 	void Start () {
 
         // Controllers must have VRTK_ControllerEvents attached or the listener will not work properly.
@@ -33,10 +35,17 @@ public class CastListener : MonoBehaviour {
 		GetComponent<VRTK_ControllerEvents> ().TriggerReleased += new ControllerInteractionEventHandler (DoTriggerReleased);
 		GetComponent<VRTK_InteractGrab> ().ControllerGrabInteractableObject += new ObjectInteractEventHandler (ObjectGrabbed);
 		GetComponent<VRTK_InteractGrab> ().ControllerUngrabInteractableObject += new ObjectInteractEventHandler (ObjectReleased);
+        GetComponent<VRTK_ControllerEvents>().GripPressed += new ControllerInteractionEventHandler(GripPressed);
 
         // Cache player.
-		this.player = gameObject.GetComponentInParent<Player> ();
+        this.player = gameObject.GetComponentInParent<Player> ();
 	}
+
+    void GripPressed(object sender, ControllerInteractionEventArgs e) {
+        GameObject aura = Instantiate(AuraTemplate, player.transform.position + AuraTemplate.GetComponent<Aura>().Position, Quaternion.identity) as GameObject;
+        aura.GetComponent<Aura>().InitializeAura(player.gameObject);
+
+    }
 
 	void ObjectGrabbed(object sender, ObjectInteractEventArgs e) {
 		// If player grabs the wand, make set the collider to trigger so it won't collide.
