@@ -1222,12 +1222,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 391519561}
   HealthBar: {fileID: 894322451}
-  MaxHealth: 4000
+  MaxHealth: 100
   delayUntilShoot: 0
   ShootingCycleDisabled: 0
   speed: 50
   spellsToShoot:
+  - {fileID: 11498288, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
   - {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
+  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
 --- !u!54 &892895578
 Rigidbody:
   m_ObjectHideFlags: 0

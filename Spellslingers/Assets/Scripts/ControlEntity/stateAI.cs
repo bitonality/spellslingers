@@ -20,6 +20,8 @@ public class StateAI : ControlEntity {
 	//List of spells the AI is allowed to shoot
 	public Hex[] spellsToShoot;
 
+	private Vector3 originalPosition = this.transform.position;
+
 	public enum validStates
 	{
 		HIT,
@@ -35,7 +37,7 @@ public class StateAI : ControlEntity {
 	void OnTriggerExit(Collider col) {
 		//Debug.Log (col);
 		if (col.gameObject.tag == "AIBoundry") {
-			gameObject.GetComponent<Rigidbody> ().velocity *= -1;
+			this.gameObject.GetComponent<Rigidbody>().AddForce(originalPosition, ForceMode.Impulse);
 		}
 	}
 
@@ -43,6 +45,7 @@ public class StateAI : ControlEntity {
 
 	//Called every 0.02 seconds
 	void FixedUpdate() {
+		Debug.Log (spellsToShoot.Length);
 		if (currentAction.Count <= 0) {
 			//Something went wrong with starting the AI
 			Debug.LogWarning("currentAction size is 0, meaning start() was not called before fixedUpdate()");
@@ -87,7 +90,7 @@ public class StateAI : ControlEntity {
 			if (spellsToShoot.Length != 0) {
 				//Pick a hex
 				Hex h = pickHex ();
-				if (CanShoot (h, this.gameObject)) {
+				if (CanShoot (h, this.gameObject)) {`
 					//Shoot
 					CastHex (h, gameObject.transform.GetChild (0).gameObject.transform, this.Enemy.transform, 2, 3);
 					//Go back to IDLE state
@@ -108,6 +111,8 @@ public class StateAI : ControlEntity {
 		case validStates.DEAD:
 			//Kill this script, so that it doesn't keep running this loop
 			this.enabled = false;
+			break;
+		default:
 			break;
 		}
 		return null;
@@ -151,11 +156,11 @@ public class StateAI : ControlEntity {
 				currentAction.Enqueue (validStates.IDLE);
 			}
 		}
-		if (state == validStates.IDLE && timeUntilChange <= Time.time) {
+		else if (state == validStates.IDLE && timeUntilChange <= Time.time) {
 			//Change state to preshoot
 			currentAction.Enqueue(validStates.PRESHOOT);
 		}
-		if (state == validStates.PRESHOOT && timeUntilChange <= Time.time) {
+		else if (state == validStates.PRESHOOT && timeUntilChange <= Time.time) {
 			//Change to shooting state
 			currentAction.Enqueue (validStates.SHOOTING);
 		}
