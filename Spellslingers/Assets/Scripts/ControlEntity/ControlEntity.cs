@@ -52,6 +52,7 @@ public abstract class ControlEntity : MonoBehaviour {
 	}
 
 	public void changeInfluenceState(influences influence, bool newState) {
+		
 		currentInfluences [influence] = newState;
 	}
 
@@ -68,5 +69,6 @@ public abstract class ControlEntity : MonoBehaviour {
 	void Awake() {
 		this.Health = this.MaxHealth;
         this.ActiveHexes = new HashSet<Hex>();
+		this.currentInfluences = new Dictionary<influences, bool> ();
 	}
 }

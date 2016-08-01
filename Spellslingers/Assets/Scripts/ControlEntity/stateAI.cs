@@ -39,7 +39,9 @@ public class StateAI : ControlEntity {
 	void OnTriggerExit(Collider col) {
 		//Debug.Log (col);
 		if (col.gameObject.tag == "AIBoundry") {
-			this.gameObject.GetComponent<Rigidbody>().AddForce(originalPosition, ForceMode.Impulse);
+			Debug.Log ("Returning to center");
+            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+			this.gameObject.GetComponent<Rigidbody>().AddForce((originalPosition-this.gameObject.transform.position) * this.speed, ForceMode.Impulse);
 		}
 	}
 
@@ -47,7 +49,6 @@ public class StateAI : ControlEntity {
 
 	//Called every 0.02 seconds
 	void FixedUpdate() {
-		Debug.Log (spellsToShoot.Length);
 		if (currentAction.Count <= 0) {
 			//Something went wrong with starting the AI
 			Debug.LogWarning("currentAction size is 0, meaning start() was not called before fixedUpdate()");
@@ -67,7 +68,7 @@ public class StateAI : ControlEntity {
 	//Called only when changing state
 	private object justLeft(validStates oldState, validStates newState) {
 		//Debug.Log ("Player health: " + this.Enemy.GetComponent<ControlEntity> ().Health);
-		//Debug.Log ("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+		Debug.Log ("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
 		switch (newState) {
 		case validStates.DANGER:
 			break;
@@ -184,7 +185,7 @@ public class StateAI : ControlEntity {
 
 	public override bool CanShoot(Hex h, GameObject launchPoint) {
 		//Check if the current time is greater than when the shooting cycle is disabled to and make sure it is not (hence the !) is under the influence of DISARM
-		return (Time.time >= ShootingCycleDisabled && !currentInfluences[influences.DISARM]);
+		return (Time.time >= ShootingCycleDisabled); //&& !currentInfluences[influences.DISARM]);
 	}
 
 	public override void processHex(Hex h) {
@@ -202,6 +203,7 @@ public class StateAI : ControlEntity {
 		HashSet<Hex> spells = Enemy.GetComponent<ControlEntity>().ActiveHexes;
 		ArrayList dangerousSpells = new ArrayList();
 		foreach (Hex h in spells) {
+            if (h == null) continue;
 			GameObject spell = h.gameObject;
 			//for some reason the spells array consistently had hexes with no rigibodies in it 
 			if (spell.gameObject.GetComponent<Rigidbody>() != null && Physics.Raycast (spell.transform.position, spell.gameObject.GetComponent<Rigidbody> ().velocity.normalized, 50F, 1 << 8)) {
