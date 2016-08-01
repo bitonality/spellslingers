@@ -21,15 +21,15 @@ public class StateAI : ControlEntity {
 	public Hex[] spellsToShoot;
 
 	public enum validStates
-    {
-        HIT,
-        IDLE,
+	{
+		HIT,
+		IDLE,
 		DANGER,
-        PRESHOOT,
-        SHOOTING,
-        POSTSHOOT,
-        DEAD
-    }
+		PRESHOOT,
+		SHOOTING,
+		POSTSHOOT,
+		DEAD
+	}
 
 	// Make sure it can't leave the AI boundry.
 	void OnTriggerExit(Collider col) {
@@ -49,7 +49,7 @@ public class StateAI : ControlEntity {
 			return;
 		}
 		if (currentAction.Count != 1) {
-			//Pop leading item off the array and call justLeft with it
+			//Pop leading item off the queue and call justLeft with it
 			justLeft ((validStates) currentAction.Dequeue (), getCurrentState ());
 		} else {
 			//If there was not a state change, call currentExclusive
@@ -65,15 +65,15 @@ public class StateAI : ControlEntity {
 		//Debug.Log ("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
 		switch (newState) {
 		case validStates.DANGER:
-            break;
+			break;
 		case validStates.HIT:
 			currentAction.Enqueue (validStates.DANGER);
-            break;
+			break;
 		case validStates.IDLE:
 			//Move in a random direction
 			Vector3 Destination = new Vector3(Random.Range(-5f, 5f) * 10, 0, Random.Range(-5f, 5f) * 10);
-            this.gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
-            //Schedule interruptable state change in 3 seconds
+			this.gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
+			//Schedule interruptable state change in 3 seconds
 			timeUntilChange = Time.time + 3;
 			break;
 		case validStates.PRESHOOT:
@@ -83,16 +83,22 @@ public class StateAI : ControlEntity {
 			timeUntilChange = Time.time + 1;
 			break;
 		case validStates.SHOOTING:
-			//Pick a hex
-			Hex h = pickHex();
-			if (CanShoot (h, this.gameObject)) {
-                //Shoot
-                CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.Enemy.transform, 2, 3);
-                //Go back to IDLE state
-				currentAction.Enqueue (validStates.POSTSHOOT);
+			//Make sure there is a hex to chose from (otherwise, go back to IDLE stage)
+			if (spellsToShoot.Length != 0) {
+				//Pick a hex
+				Hex h = pickHex ();
+				if (CanShoot (h, this.gameObject)) {
+					//Shoot
+					CastHex (h, gameObject.transform.GetChild (0).gameObject.transform, this.Enemy.transform, 2, 3);
+					//Go back to IDLE state
+					currentAction.Enqueue (validStates.POSTSHOOT);
+				} else {
+					//Return to PRESHOOT stage
+					currentAction.Enqueue (validStates.PRESHOOT);
+				}
 			} else {
-				//Return to PRESHOOT stage
-				currentAction.Enqueue(validStates.PRESHOOT);
+				Debug.LogWarning ("No spells to choose from, defaulting back to POSTSHOOT");
+				currentAction.Enqueue (validStates.POSTSHOOT);
 			}
 			break;
 		case validStates.POSTSHOOT:
@@ -161,13 +167,10 @@ public class StateAI : ControlEntity {
 		return (validStates) currentAction.Peek ();
 	}
 
-    // Use this for initialization
-    void Start () {
-        //Start out the queue with idle
+	// Use this for initialization
+	void Start () {
+		//Start out the queue with idle
 		currentAction.Enqueue (validStates.IDLE);
-
-		//List of cooldowns
-		cooldown = new System.Collections.Generic.Dictionary<string, float> ();
 	}
 
 	public override bool CanShoot(Hex h, GameObject launchPoint) {
@@ -184,7 +187,7 @@ public class StateAI : ControlEntity {
 			Destroy (this.gameObject);
 		}
 	}
-    
+
 	private ArrayList isInDanger() {
 		//Get all spells
 		HashSet<Hex> spells = Enemy.GetComponent<ControlEntity>().ActiveHexes;
