@@ -21,6 +21,7 @@ public class Player : ControlEntity {
 
     // Called when a spell collides with a Player.
 	public override void processHex(Hex h) {
+
         // Process the collision with the player.
 		h.playerCollide (gameObject);
         // Deal damage.

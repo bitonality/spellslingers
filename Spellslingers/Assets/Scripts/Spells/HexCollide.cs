@@ -17,6 +17,7 @@ public class HexCollide : MonoBehaviour
 
 	void OnCollisionEnter (Collision col)
 	{
+        Debug.Log(col.gameObject);
         // Create an explosion at the collision point.
 		GameObject effect = (GameObject) Instantiate (explosion, transform.position, transform.rotation);
 
@@ -26,7 +27,7 @@ public class HexCollide : MonoBehaviour
 		// If the spell collides with a ControlEntity.
 		if (col.gameObject.GetComponent<ControlEntity>() != null) {
             // Process the spell for the specific hex and ControlEntity
-			col.gameObject.GetComponent<ControlEntity> ().processHex (this.GetComponent<Hex> ());
+            col.gameObject.GetComponent<ControlEntity>().processHex (this.GetComponent<Hex> ());
 			return;
 		}
         
