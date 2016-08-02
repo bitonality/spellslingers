@@ -8,9 +8,6 @@ public class Targetable : ControlEntity {
     // Called when a spell collides with a Player.
     public override void processHex(Hex h)
     {
-
-
-
         // Deal damage.
         this.Health -= h.Damage;
         // Destroy the hex.

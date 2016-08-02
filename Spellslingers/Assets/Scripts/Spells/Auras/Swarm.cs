@@ -10,6 +10,16 @@ public class Swarm : Aura {
     public override void InitializeAura(GameObject target) {
         this.Target = target;
         this.gameObject.transform.SetParent(this.Target.gameObject.transform);
+        // Get a list of targets that the player has.
+        foreach (GameObject playerTargets in this.Target.GetComponent<ControlEntity>().Targets) {
+            // If the player's target also targets the player (mutual targets).
+            if (this.Target.GetComponent<ControlEntity>().MutualTargets(playerTargets)) {
+                // Push the target cubes as priority into the enemy target list
+                foreach (Transform child in this.gameObject.transform) {
+                    playerTargets.GetComponent<ControlEntity>().AddTarget(child.gameObject);
+                }
+            }
+        }
         this.IntervalEnumerator = IntervalAura();
         this.Interval = 0.5F;
         StartCoroutine(this.IntervalEnumerator);
@@ -17,14 +27,12 @@ public class Swarm : Aura {
 
     public override IEnumerator IntervalAura() {
         while(this.gameObject.transform.childCount > 0) {
-            this.Target.GetComponent<ControlEntity>().Enemy.GetComponent<ControlEntity>().Enemy = this.gameObject.transform.GetChild(0).gameObject;
             yield return new WaitForSeconds(this.Interval);
         }
         TerminateAura();
     }
 
     public override void TerminateAura() {
-        this.Target.GetComponent<ControlEntity>().Enemy = this.Target;
         Destroy(this.gameObject);
     }
 

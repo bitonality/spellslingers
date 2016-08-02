@@ -77,10 +77,11 @@ public class CastListener : MonoBehaviour {
             if(player.GetWand(this.gameObject) == null) return;
 
 			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
-            // Disable light on the wand.
-			//wand.GetComponentInChildren<Light>().intensity = 0;
+
+            Transform target = player.ClosestTarget(wand, this.gameObject);
+
             // Get the angle between the controller-wand vector and the controller-ai vector.
-			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, player.Enemy.transform.position - gameObject.transform.position);
+			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, target.position - gameObject.transform.position);
 
             // We need to now establish how fast the player flicked the wand to modify the speed of the casted spell.
             SteamVR_TrackedObject trackedObj = gameObject.GetComponent<SteamVR_TrackedObject>();
@@ -106,7 +107,7 @@ public class CastListener : MonoBehaviour {
 				Debug.Log (angle + " SpeedCheck: " + speedCheck + " Angle check: " + angleCheck);
 
                 // Cast the hex from the wand launch point with random accuracy modifiers.
-				player.CastHex(player.queuedSpell, player.GetWand(this.gameObject).transform.FindChild("LaunchPoint").transform, player.Enemy.transform, angleCheck + speedCheck, controllerVelocity.magnitude);
+				player.CastHex(player.queuedSpell, player.GetWand(this.gameObject).transform.FindChild("LaunchPoint").transform, target, angleCheck + speedCheck, controllerVelocity.magnitude);
                 // Reset the queued spell. This will also stop the check in the FixedUpdate() method.
 				player.queuedSpell = null;
 			}
@@ -118,14 +119,14 @@ public class CastListener : MonoBehaviour {
 	void FixedUpdate() {
 		if (player.queuedSpell != null) {
             if (player.GetWand(this.gameObject) != null) {
-                GameObject wand = gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
+               /* GameObject wand = gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
                 // Get the angle between the controller-wand vector and the controller-ai vector.
-                float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Enemy.transform.position - gameObject.transform.position);
+                float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Targets.transform.position - gameObject.transform.position);
                 // Adjust the color of the wand light based on the accuracy of the direction of the wand
                // wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
                 // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
                 //wand.GetComponentInChildren<Light>().intensity = 8;
-                player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
+                */player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
             }
 		}
 	}

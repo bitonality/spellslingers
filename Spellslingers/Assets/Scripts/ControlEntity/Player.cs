@@ -68,6 +68,22 @@ public class Player : ControlEntity {
         return null;
     }
 
+    public Transform ClosestTarget (GameObject wand, GameObject controller) {
+        // Start with a worst case scenario 
+        float angle = 179;
+        Transform best = null;
+        foreach(GameObject target in Targets) {
+            float test = Vector3.Angle(wand.transform.position - controller.transform.position, target.transform.position - controller.transform.position);
+            if(test < angle) {
+                angle = test;
+                best = target.transform;
+            }
+        }
+
+        return best;
+       
+    }
+
 	void Start () {
         // Instantiate the cooldown dictionary.
 		cooldown = new System.Collections.Generic.Dictionary<string, float> ();

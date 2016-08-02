@@ -95,7 +95,7 @@ public class StateAI : ControlEntity {
 				Hex h = pickHex ();
 				if (CanShoot (h, this.gameObject)) {
 					//Shoot
-					CastHex (h, gameObject.transform.GetChild (0).gameObject.transform, this.Enemy.transform, 2, 3);
+					CastHex (h, gameObject.transform.GetChild (0).gameObject.transform, this.CurrentTarget().transform, 2, 3);
 					//Go back to IDLE state
 					currentAction.Enqueue (validStates.POSTSHOOT);
 				} else {
@@ -199,8 +199,14 @@ public class StateAI : ControlEntity {
 	}
 
 	private ArrayList isInDanger() {
-		//Get all spells
-		HashSet<Hex> spells = Enemy.GetComponent<ControlEntity>().ActiveHexes;
+        // Get all spells from mutual enemies
+        HashSet<Hex> spells = new HashSet<Hex>();
+        foreach(GameObject target in Targets) {
+            if(MutualTargets(target)) {
+                spells.UnionWith(target.GetComponent<ControlEntity>().ActiveHexes);
+            }
+        }
+
 		ArrayList dangerousSpells = new ArrayList();
 		foreach (Hex h in spells) {
             if (h == null) continue;

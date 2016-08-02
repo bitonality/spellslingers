@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2080016d5b3e9d943ac003eff6b087be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castagonTemplate: {fileID: 178966, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+  castagonTemplate: {fileID: 171890, guid: 3c589494faa99a846b9854d6bc43c410, type: 2}
   GoodColorLerp: {r: 0, g: 0.21379304, b: 1, a: 0}
   BadColorLerp: {r: 1, g: 0, b: 0, a: 0}
   AuraTemplate: {fileID: 160242, guid: 6d9a86ed23ba1014eb2a22e61934e367, type: 2}
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2080016d5b3e9d943ac003eff6b087be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castagonTemplate: {fileID: 178966, guid: b3005e45736e49d41b991e516f91862d, type: 2}
+  castagonTemplate: {fileID: 171890, guid: 3c589494faa99a846b9854d6bc43c410, type: 2}
   GoodColorLerp: {r: 0.11724138, g: 0, b: 1, a: 0}
   BadColorLerp: {r: 1, g: 0, b: 0, a: 0}
   AuraTemplate: {fileID: 160242, guid: 6d9a86ed23ba1014eb2a22e61934e367, type: 2}
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90445e1c832c7854b8497e2871deab9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 892895576}
+  Targets: []
   HealthBar: {fileID: 275148755}
   MaxHealth: 4000
   InspectorSliders:

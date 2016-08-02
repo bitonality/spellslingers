@@ -17,7 +17,7 @@ public abstract class ControlEntity : MonoBehaviour {
     }
 
     // Under the assumption that there is only one enemy for each player.
-    public GameObject Enemy;
+    public List<GameObject> Targets;
 
     // The health bar UI element tied to the ControlEntity.
 	public GameObject HealthBar;
@@ -64,9 +64,34 @@ public abstract class ControlEntity : MonoBehaviour {
         proj.ScheduleDestroy(proj.Timeout);
 	}
 
+
+    public bool MutualTargets(GameObject target) {
+        return (target.GetComponent<ControlEntity>().Targets.Contains(this.gameObject) && Targets.Contains(target)) ;
+    }
+
+    public GameObject CurrentTarget() {
+        for(int i = Targets.Count - 1; i >= 0; i--) {
+            if (Targets[i] != null) {
+                return Targets[i];
+            } else {
+                Targets.RemoveAt(i);
+            }
+        }
+
+        return null;
+    }
+
+
+    // Safely checks for extra additions and adds an element
+    public void AddTarget(GameObject target) {
+        if (Targets[Targets.Count - 1] != target) { 
+            Targets.Add(target);
+        }
+    }
    
 
 	void Awake() {
+        this.Targets = new List<GameObject>();
 		this.Health = this.MaxHealth;
         this.ActiveHexes = new HashSet<Hex>();
 		this.currentInfluences = new Dictionary<influences, bool> ();
