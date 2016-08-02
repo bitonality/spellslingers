@@ -228,7 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314d9aa4df7e9b74f8801d87f1015095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
+  TargetPoint: {fileID: 0}
+  Targets: []
+  InitialEnemy: {fileID: 0}
   HealthBar: {fileID: 0}
   MaxHealth: 2
 --- !u!114 &11484916
@@ -242,7 +244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314d9aa4df7e9b74f8801d87f1015095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
+  TargetPoint: {fileID: 0}
+  Targets: []
+  InitialEnemy: {fileID: 0}
   HealthBar: {fileID: 0}
   MaxHealth: 2
 --- !u!114 &11499702

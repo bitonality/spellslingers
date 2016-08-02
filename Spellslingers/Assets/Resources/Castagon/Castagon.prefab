@@ -818,10 +818,10 @@ MonoBehaviour:
   TouchedColor: {r: 0.94482756, g: 0, b: 1, a: 1}
   InspectorSpells:
   - name: Disarm
-    order: 01000000030000000400000006000000
+    order: 06000000040000000300000001000000
     hex: {fileID: 103302, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
   - name: Stun
-    order: 05000000040000000300000002000000
+    order: 02000000030000000400000005000000
     hex: {fileID: 128152, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
 --- !u!114 &11415426
 MonoBehaviour:

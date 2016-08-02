@@ -10,6 +10,28 @@ public abstract class ControlEntity : MonoBehaviour {
 		DISARM,
 		STUN
 	}
+
+    public GameObject InitialEnemy;
+
+
+    // Outward facing for unity inspector, rest of logic is in TargetPoint variable.
+    public Transform InsepctorTargetPoint;
+
+
+    // A transform on the object that incoming targeted things will transfer.
+    public Transform TargetPoint {
+        get {
+            if (this.InsepctorTargetPoint != null) {
+                return this.InsepctorTargetPoint;
+            }
+            return this.gameObject.transform;
+        }
+
+        set {
+            this.InsepctorTargetPoint = value;
+        }
+     }
+
     // HashSet of hexes that a player has currently shot.
     public HashSet<Hex> ActiveHexes {
         get;
@@ -66,7 +88,14 @@ public abstract class ControlEntity : MonoBehaviour {
 
 
     public bool MutualTargets(GameObject target) {
-        return (target.GetComponent<ControlEntity>().Targets.Contains(this.gameObject) && Targets.Contains(target)) ;
+        if(target == null) {
+            return false;
+        }
+
+        if (target.GetComponent<ControlEntity>().Targets.Contains(this.gameObject) && Targets.Contains(target)) {
+            return true;
+        }
+        return false;
     }
 
     public GameObject CurrentTarget() {
@@ -95,5 +124,7 @@ public abstract class ControlEntity : MonoBehaviour {
 		this.Health = this.MaxHealth;
         this.ActiveHexes = new HashSet<Hex>();
 		this.currentInfluences = new Dictionary<influences, bool> ();
+        this.TargetPoint = this.InsepctorTargetPoint;
+        this.Targets.Add(InitialEnemy);
 	}
 }
