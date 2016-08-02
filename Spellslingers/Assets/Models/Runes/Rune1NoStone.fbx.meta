@@ -16,12 +16,15 @@ ModelImporter:
     2300000: Cube.000
     2300002: Cube.001
     2300004: Cube.002
+    2300006: //RootNode
     3300000: Cube.000
     3300002: Cube.001
     3300004: Cube.002
+    3300006: //RootNode
     4300000: Cube.001
     4300002: Cube.000
     4300004: Cube.002
+    4300006: Cube
   materials:
     importMaterials: 1
     materialName: 0
