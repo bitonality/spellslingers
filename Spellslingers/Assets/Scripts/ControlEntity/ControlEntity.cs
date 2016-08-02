@@ -12,6 +12,7 @@ public abstract class ControlEntity : MonoBehaviour {
 	}
 
     public GameObject InitialEnemy;
+    public GameObject InitialAura;
 
 
     // Outward facing for unity inspector, rest of logic is in TargetPoint variable.
@@ -126,5 +127,6 @@ public abstract class ControlEntity : MonoBehaviour {
 		this.currentInfluences = new Dictionary<influences, bool> ();
         this.TargetPoint = this.InsepctorTargetPoint;
         this.Targets.Add(InitialEnemy);
+        this.Targets.Add(InitialAura);
 	}
 }
