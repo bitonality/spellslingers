@@ -10,8 +10,7 @@ public class Player : ControlEntity {
 	public SliderInsepctorEntry[] InspectorSliders;
 
     // On startup, the InspectorSliders is loaded into this map for fast lookups of the mapping.
-	private Dictionary<string, Slider> Sliders;
-
+    private Dictionary<string, Slider> Sliders;
 
 	// Represents a properly queued spell from a castagon. Null means no spell queued.
 	public Hex queuedSpell {
@@ -24,10 +23,7 @@ public class Player : ControlEntity {
 
         // Process the collision with the player.
 		h.playerCollide (gameObject);
-        // Deal damage.
-		this.Health -= h.Damage;
-        // Update healthbar UI with new health amount.
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
+        ApplyDamage(h.Damage);
         // Destroy the hex.
         h.Destroy();
         // Process if the player is dead.

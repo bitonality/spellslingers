@@ -42,8 +42,7 @@ public class CastListener : MonoBehaviour {
 	}
 
     void GripPressed(object sender, ControllerInteractionEventArgs e) {
-        GameObject aura = Instantiate(AuraTemplate, player.transform.position + AuraTemplate.GetComponent<Aura>().Position, Quaternion.identity) as GameObject;
-        aura.GetComponent<Aura>().InitializeAura(player.gameObject);
+     
 
     }
 
@@ -119,24 +118,29 @@ public class CastListener : MonoBehaviour {
 	void FixedUpdate() {
 		if (player.queuedSpell != null) {
             if (player.GetWand(this.gameObject) != null) {
-               /* GameObject wand = gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
-                // Get the angle between the controller-wand vector and the controller-ai vector.
-                float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Targets.transform.position - gameObject.transform.position);
-                // Adjust the color of the wand light based on the accuracy of the direction of the wand
-               // wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
-                // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
-                //wand.GetComponentInChildren<Light>().intensity = 8;
-                */player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
+                /* GameObject wand = gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
+                 // Get the angle between the controller-wand vector and the controller-ai vector.
+                 float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Targets.transform.position - gameObject.transform.position);
+                 // Adjust the color of the wand light based on the accuracy of the direction of the wand
+                // wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
+                 // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
+                 //wand.GetComponentInChildren<Light>().intensity = 8;
+                 */
+                player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
             }
 		}
 	}
-		
+
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
 
 		if (player.GetWand(this.gameObject) != null) {
             // Create a castagon from the template and spawn it at the CastagonPoint child of the wand. Set the x and y Euler angle values but not the z angle to avoid unwanted rotating of the castagon.
 			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("CastagonPoint").position, Quaternion.Euler (new Vector3 (gameObject.transform.rotation.eulerAngles.x, gameObject.transform.rotation.eulerAngles.y, 0f))) as GameObject).GetComponent<Castagon> ();
+            if(player.Aura != null) {
+                GameObject aura = Instantiate(AuraTemplate, instantiatedCastagon.GetComponent<Castagon>().AuraAttachPoint.position, Quaternion.identity) as GameObject;
+                aura.transform.SetParent(instantiatedCastagon.GetComponent<Castagon>().AuraAttachPoint);
+            }
             // Set the player of the castagon in the castagon instance.
             instantiatedCastagon.player = gameObject.GetComponentInParent<Player> ();
 			player.GetWand (this.gameObject).GetComponentInChildren<TrailRenderer> ().enabled = true;

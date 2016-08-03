@@ -19,6 +19,12 @@ public abstract class Hex : Spell {
 	// Velocity of the spell.
 	public float Velocity;
 
+    // Represents the shooter of the hex.
+    public ControlEntity Source {
+        get;
+        set;
+    }
+
     // The future scheduled destruction of the hex. We store this so we can cancel it if we manually destroy a hex through the hex.destroy() code.
     private IEnumerator ScheduledDestroy;
 

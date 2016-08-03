@@ -192,9 +192,8 @@ public class StateAI : ControlEntity {
 
 	public override void processHex(Hex h) {
 		h.aiCollide (gameObject);
-		this.Health -= h.Damage;
+        ApplyDamage(h.Damage);
 		h.Destroy ();
-		this.HealthBar.GetComponent<Image> ().fillAmount = (float) (this.Health/this.MaxHealth);
 		if (this.IsDead ()) {
 			Destroy (this.gameObject);
 		}

@@ -7,6 +7,8 @@ public class Castagon : MonoBehaviour {
 
     public Color TouchedColor;
 
+    public Transform AuraAttachPoint;
+
 	public Player player {
 		get;
 		set;
@@ -29,6 +31,8 @@ public class Castagon : MonoBehaviour {
 		}
 	}
 
+    
+
 	public void CheckSpell() {
 		CastagonPoint cp = ActivatedPoints.Dequeue();
 		for (int i = (InspectorSpells.Count - 1); i >= 0; i--) {
@@ -37,7 +41,14 @@ public class Castagon : MonoBehaviour {
 				InspectorSpells.RemoveAt (i);
 			} else {
 				if (potential.order.Count == 1) {
-					player.queuedSpell = potential.hex.GetComponent<Hex>();
+                    if (potential.spell != null) {
+                        player.queuedSpell = potential.spell.GetComponent<Hex>();
+                    }
+                    // If we've made it this far, assume that it's an aura.
+                    if(player.Aura != null) {
+                        cp.gameObject.GetComponent<Aura>().InitializeAura(player.gameObject);
+                        player.Aura = null;
+                    }
 					this.destroy ();
 				}
 				potential.order.RemoveAt (potential.order.Count - 1);
@@ -66,7 +77,7 @@ public class Castagon : MonoBehaviour {
 	public class CastagonInsepctorEntry {
 		public string name;
 		public List<int> order;
-		public GameObject hex;
+		public GameObject spell;
 	}
 
 

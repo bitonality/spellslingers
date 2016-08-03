@@ -3,7 +3,10 @@ using System.Collections;
 
 public abstract class Aura : MonoBehaviour {
     // ControlEntity target for the aura.
-    public GameObject Target;
+    public GameObject Target {
+        get;
+        set;
+    }
 
     // Number of seconds for the effect to occur.
     public float Length;
