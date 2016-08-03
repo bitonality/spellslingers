@@ -43,7 +43,8 @@ public abstract class Targetable : MonoBehaviour {
         set;
     }
 
-    void Awake() {
+    public virtual void Awake() {
+        Debug.Log("Awake "  + gameObject);
         this.Targets = new List<GameObject>();
         this.Health = this.MaxHealth;
         this.TargetPoint = this.InsepctorTargetPoint;
@@ -57,6 +58,7 @@ public abstract class Targetable : MonoBehaviour {
         if (target == null) {
             return false;
         }
+
 
         if (target.GetComponent<Targetable>().Targets.Contains(this.gameObject) && Targets.Contains(target)) {
             return true;

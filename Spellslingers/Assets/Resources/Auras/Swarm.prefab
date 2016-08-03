@@ -42,6 +42,7 @@ GameObject:
   - 33: {fileID: 3323852}
   - 65: {fileID: 6534196}
   - 23: {fileID: 2309122}
+  - 114: {fileID: 11483422}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -60,6 +61,7 @@ GameObject:
   - 33: {fileID: 3379814}
   - 65: {fileID: 6530904}
   - 23: {fileID: 2319802}
+  - 114: {fileID: 11490274}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -110,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -0, z: -0}
+  m_LocalPosition: {x: 1.5, y: -0, z: -0}
   m_LocalScale: {x: 0.2, y: 0.19999996, z: 0.19999996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -123,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: -0}
+  m_LocalPosition: {x: -1.5, y: 0, z: -0}
   m_LocalScale: {x: 0.2, y: 0.19999996, z: 0.19999996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -334,6 +336,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CastagonPointID: 7
   Touched: 0
+--- !u!114 &11483422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0a645d5c42f4543ae99a7f1527b8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InsepctorTargetPoint: {fileID: 0}
+  Targets: []
+  HealthBar: {fileID: 0}
+  MaxHealth: 1
 --- !u!114 &11484706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -346,8 +363,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Length: 0
-  Position: {x: 0, y: 0, z: 0}
-  DegreesPerSecond: 90
+  Position: {x: 0, y: 1, z: 0}
+  DegreesPerSecond: 45
+--- !u!114 &11490274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0a645d5c42f4543ae99a7f1527b8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InsepctorTargetPoint: {fileID: 0}
+  Targets: []
+  HealthBar: {fileID: 0}
+  MaxHealth: 1
 --- !u!198 &19882046
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -57,7 +57,8 @@ public abstract class ControlEntity : Targetable {
 
 
 
-	void Awake() {
+	public override void Awake() {
+        base.Awake();
         this.ActiveHexes = new HashSet<Hex>();
 		this.currentInfluences = new Dictionary<influences, bool> ();
         this.Targets.Add(InitialEnemy);

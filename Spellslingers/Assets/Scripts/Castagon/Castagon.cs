@@ -46,9 +46,9 @@ public class Castagon : MonoBehaviour {
                         player.queuedSpell = potential.spell.GetComponent<Hex>();
                     }
                     // If we've made it this far, assume that it's an aura.
-                    if(player.Aura != null) {
+                    else if(player.Aura != null) {
+                        SetActiveRecursively(AuraAttachPoint.gameObject, true);
                         Aura aura = this.AuraAttachPoint.gameObject.GetComponentInChildren<Aura>();
-                        aura.gameObject.SetActive(true);
                         aura.InitializeAura(player.gameObject);
                         player.Aura = null;
                     }
@@ -83,6 +83,14 @@ public class Castagon : MonoBehaviour {
 		public List<int> order;
 		public GameObject spell;
 	}
+
+    public static void SetActiveRecursively(GameObject rootObject, bool active) {
+        rootObject.SetActive(active);
+
+        foreach (Transform childTransform in rootObject.transform) {
+            SetActiveRecursively(childTransform.gameObject, active);
+        }
+    }
 
 
 

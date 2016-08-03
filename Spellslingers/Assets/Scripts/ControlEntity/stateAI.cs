@@ -96,7 +96,7 @@ public class StateAI : ControlEntity {
 				if (CanShoot (h, this.gameObject)) {
                         //Shoot
                     
-                     CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.CurrentTarget().GetComponent<ControlEntity>().TargetPoint, 2, 5);
+                     CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.CurrentTarget().GetComponent<Targetable>().TargetPoint, 2, 5);
                
 					//Go back to IDLE state
 					currentAction.Enqueue (validStates.POSTSHOOT);
@@ -178,7 +178,8 @@ public class StateAI : ControlEntity {
 	}
 
 	// Use this for initialization
-	void Start () {
+	public override void Awake () {
+        base.Awake();
 		defaultSpeed = speed;
 		originalPosition = this.gameObject.transform.position;
 		//Start out the queue with idle

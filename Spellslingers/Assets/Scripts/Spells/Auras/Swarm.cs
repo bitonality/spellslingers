@@ -9,6 +9,7 @@ public class Swarm : Aura {
 
     public override void InitializeAura(GameObject target) {
         this.Target = target;
+        this.gameObject.transform.position = this.Target.gameObject.transform.position + this.Position;
         this.gameObject.transform.SetParent(this.Target.gameObject.transform);
         // Get a list of targets that the player has.
         foreach (GameObject playerTargets in this.Target.GetComponent<Targetable>().Targets) {
@@ -39,7 +40,7 @@ public class Swarm : Aura {
     void Update() {
         // Don't run this code unless the aura has been explicitly initialized.
         if (this.Target != null) { 
-           this.gameObject.transform.Rotate(Vector3.up * DegreesPerSecond * Time.deltaTime, Space.Self);
+           this.gameObject.transform.Rotate(Vector3.up * DegreesPerSecond * Time.deltaTime, Space.World);
       }
     }
 }
