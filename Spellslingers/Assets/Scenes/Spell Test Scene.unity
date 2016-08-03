@@ -2247,7 +2247,7 @@ MonoBehaviour:
   Targets: []
   HealthBar: {fileID: 0}
   MaxHealth: 1
-  AuraTemplate: {fileID: 130284, guid: 9fa15c320445fd742a47ed7c97fe849e, type: 2}
+  AuraTemplate: {fileID: 132174, guid: 71a30f35ceb7ac84283291f9d3b24990, type: 2}
 --- !u!1 &1928472881 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 135094, guid: 1bb80779de0d85b4bba906974dbaa477, type: 2}

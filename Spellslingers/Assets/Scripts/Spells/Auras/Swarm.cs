@@ -6,14 +6,10 @@ public class Swarm : Aura {
 
 
     public float DegreesPerSecond = 90;
-    public GameObject SwarmCubeTemplate;
 
     public override void InitializeAura(GameObject target) {
         this.Target = target;
         this.gameObject.transform.SetParent(this.Target.gameObject.transform);
-        GameObject cube = Instantiate(SwarmCubeTemplate, this.gameObject.transform.position + new Vector3(1, 0, 0), Quaternion.identity) as GameObject;
-        cube.transform.SetParent(this.Target.transform);
-
         // Get a list of targets that the player has.
         foreach (GameObject playerTargets in this.Target.GetComponent<Targetable>().Targets) {
             // If the player's target also targets the player (mutual targets).

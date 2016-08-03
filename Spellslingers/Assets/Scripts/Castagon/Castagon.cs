@@ -47,10 +47,12 @@ public class Castagon : MonoBehaviour {
                     }
                     // If we've made it this far, assume that it's an aura.
                     if(player.Aura != null) {
-                        Aura a = AuraAttachPoint.gameObject.transform.GetChild(0).GetComponent<CastagonAura>().CreateAura(player.gameObject.transform.position, player).GetComponent<Aura>();
-                        a.InitializeAura(player.gameObject);
+                        Aura aura = this.AuraAttachPoint.gameObject.GetComponentInChildren<Aura>();
+                        aura.gameObject.SetActive(true);
+                        aura.InitializeAura(player.gameObject);
                         player.Aura = null;
                     }
+                    // This should destroy the parented rune.
 					this.destroy ();
 				}
 				potential.order.RemoveAt (potential.order.Count - 1);

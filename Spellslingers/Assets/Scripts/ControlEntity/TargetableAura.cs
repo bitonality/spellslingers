@@ -17,7 +17,6 @@ public class TargetableAura : Targetable {
         // Process if the Aura Rune health is low enough.
         if (this.IsDead()) {
             // Give the ControlEntity the aura
-            Debug.Log("dead");
             h.Source.Aura = AuraTemplate;
             Destroy(this.gameObject);
         }
