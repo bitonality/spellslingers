@@ -16,7 +16,7 @@ uniform float _OffsetScale;
 uniform float _BlurRadius;
 
 struct v2f {
-	float4 pos : SV_POSITION;
+	float4 pos : POSITION;
 	float2 uv[8] : TEXCOORD0;
 };
 
@@ -42,7 +42,7 @@ struct v2f {
 		return o;
 	}
 
-	half4 frag (v2f i) : SV_Target
+	half4 frag (v2f i) : COLOR
 	{	
 		// get luminance values
 		//  maybe: experiment with different luminance calculations
@@ -77,7 +77,7 @@ struct v2f {
 		return returnColor * 0.2;
 	}
 	
-	half4 fragDebug (v2f i) : SV_Target
+	half4 fragDebug (v2f i) : COLOR
 	{	
 		// get luminance values
 		//  maybe: experiment with different luminance calculations
@@ -119,29 +119,34 @@ ENDCG
 SubShader {
 	Pass {
 		ZTest Always Cull Off ZWrite Off
+		Fog { Mode off }
 	
 		CGPROGRAM
 	
 		#pragma vertex vert
 		#pragma fragment frag
-		#pragma target 3.0
-		#pragma exclude_renderers d3d11_9x
+		#pragma fragmentoption ARB_precision_hint_fastest 
 		
 		ENDCG
 	}
 	Pass {
 		ZTest Always Cull Off ZWrite Off
+		Fog { Mode off }
 	
 		CGPROGRAM
 	
 		#pragma vertex vert
 		#pragma fragment fragDebug
-		#pragma target 3.0
-		#pragma exclude_renderers d3d11_9x
+		#pragma fragmentoption ARB_precision_hint_fastest 
 		
 		ENDCG
 	}
 }
+/*
+#pragma vertex vert
+#pragma fragment frag
+#pragma fragmentoption ARB_precision_hint_fastest 
+*/
 
 Fallback off
 

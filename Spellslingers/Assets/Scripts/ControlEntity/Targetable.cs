@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 // ControlEntity with the purpose of being destroyed once its health is low enough.
-public class Targetable : MonoBehaviour {
+public abstract class Targetable : MonoBehaviour {
 
     // Outward facing for unity inspector, rest of logic is in TargetPoint variable.
     public Transform InsepctorTargetPoint;
@@ -32,7 +32,7 @@ public class Targetable : MonoBehaviour {
     public GameObject HealthBar;
 
     // Abstract method to process the hex collision.
-    public virtual void processHex(Hex h) { }
+    public abstract void processHex(Hex h);
 
     // Max health value set in the inspector.
     public float MaxHealth;
@@ -57,8 +57,7 @@ public class Targetable : MonoBehaviour {
         if (target == null) {
             return false;
         }
-
-        if (target.GetComponent<ControlEntity>().Targets.Contains(gameObject) && Targets.Contains(target)) {
+        if (target.GetComponent<Targetable>().Targets.Contains(gameObject) && Targets.Contains(target)) {
             return true;
         }
         return false;
@@ -90,9 +89,10 @@ public class Targetable : MonoBehaviour {
     // Safely update the health bar even if there isn't one.
     public void ApplyDamage(float damage) {
         // Update healthbar UI with new health amount.
-        Health -= damage;
-        if (HealthBar != null) {
-            HealthBar.GetComponent<Image>().fillAmount = (float)(Health / MaxHealth);
+        this.Health -= damage;
+        Debug.Log(this.Health);
+        if (this.HealthBar != null) {
+            this.HealthBar.GetComponent<Image>().fillAmount = (float)(this.Health / this.MaxHealth);
         }
     }
 
