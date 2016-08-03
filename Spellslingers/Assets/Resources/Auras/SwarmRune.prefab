@@ -11,7 +11,8 @@ GameObject:
   - 33: {fileID: 3317564}
   - 23: {fileID: 2331456}
   - 114: {fileID: 11453080}
-  - 114: {fileID: 11443418}
+  - 65: {fileID: 6514794}
+  - 114: {fileID: 11463628}
   m_Layer: 0
   m_Name: SwarmRune
   m_TagString: Untagged
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140336}
   m_LocalRotation: {x: -0.000000115202326, y: -0.7071068, z: -0.7071068, w: -0.000000115202326}
-  m_LocalPosition: {x: -20.58253, y: 11.430005, z: 22.29525}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
   m_Children: []
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130284}
   m_LocalRotation: {x: 0.000000115202326, y: 0.7071068, z: 0.7071068, w: -0.000000115202326}
-  m_LocalPosition: {x: 0.022971466, y: 0, z: -0}
+  m_LocalPosition: {x: 0.022971466, y: 0.1678, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -90, y: -180, z: 0}
   m_Children:
@@ -96,21 +97,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130284}
   m_Mesh: {fileID: 4300164, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
---- !u!114 &11443418
-MonoBehaviour:
+--- !u!65 &6514794
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb0ceda2969fad47b7e18f90fb40fcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Length: 0
-  Position: {x: 0, y: 0.8, z: 0}
-  DegreesPerSecond: 45
-  SwarmCubeTemplate: {fileID: 191212, guid: fbbc41efaef683c4596d9009901ad217, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 0.15537538, y: 0.15383613, z: 0.16294846}
+  m_Center: {x: -0.000000048428795, y: 0.00000011920932, z: -2.842171e-14}
 --- !u!114 &11453080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,6 +122,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CastagonPointID: 7
   Touched: 0
+--- !u!114 &11463628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c2e743892526f49b32323d82d4b73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AuraTemplate: {fileID: 157826, guid: a90f6e06d16f0454a98c9203ffcd63aa, type: 2}
 --- !u!198 &19801052
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -342,7 +352,7 @@ ParticleSystem:
         rgba: 4291590680
       minMaxState: 0
     startSize:
-      scalar: 0.25
+      scalar: 0.49
       maxCurve:
         serializedVersion: 2
         m_Curve:

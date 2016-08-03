@@ -25,9 +25,9 @@ public class HexCollide : MonoBehaviour
 		Destroy (effect, effect.GetComponentInChildren<ParticleSystem> ().duration);
 
 		// If the spell collides with a ControlEntity.
-		if (col.gameObject.GetComponent<ControlEntity>() != null) {
+		if (col.gameObject.GetComponent<Targetable>() != null) {
             // Process the spell for the specific hex and ControlEntity
-            col.gameObject.GetComponent<ControlEntity>().processHex (this.GetComponent<Hex> ());
+            col.gameObject.GetComponent<Targetable>().processHex (this.GetComponent<Hex> ());
 			return;
 		}
         

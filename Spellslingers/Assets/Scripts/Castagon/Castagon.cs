@@ -35,6 +35,7 @@ public class Castagon : MonoBehaviour {
 
 	public void CheckSpell() {
 		CastagonPoint cp = ActivatedPoints.Dequeue();
+        Debug.Log(cp.CastagonPointID);
 		for (int i = (InspectorSpells.Count - 1); i >= 0; i--) {
 			CastagonInsepctorEntry potential = InspectorSpells [i];
 			if (cp.CastagonPointID !=  potential.order [potential.order.Count - 1]) {
@@ -46,7 +47,8 @@ public class Castagon : MonoBehaviour {
                     }
                     // If we've made it this far, assume that it's an aura.
                     if(player.Aura != null) {
-                        cp.gameObject.GetComponent<Aura>().InitializeAura(player.gameObject);
+                        Aura a = AuraAttachPoint.gameObject.transform.GetChild(0).GetComponent<CastagonAura>().CreateAura(player.gameObject.transform.position, player).GetComponent<Aura>();
+                        a.InitializeAura(player.gameObject);
                         player.Aura = null;
                     }
 					this.destroy ();

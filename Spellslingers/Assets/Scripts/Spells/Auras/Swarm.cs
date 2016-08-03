@@ -12,14 +12,15 @@ public class Swarm : Aura {
         this.Target = target;
         this.gameObject.transform.SetParent(this.Target.gameObject.transform);
         GameObject cube = Instantiate(SwarmCubeTemplate, this.gameObject.transform.position + new Vector3(1, 0, 0), Quaternion.identity) as GameObject;
-        cube.transform.SetParent(this.gameObject.transform);
+        cube.transform.SetParent(this.Target.transform);
+
         // Get a list of targets that the player has.
-        foreach (GameObject playerTargets in this.Target.GetComponent<ControlEntity>().Targets) {
+        foreach (GameObject playerTargets in this.Target.GetComponent<Targetable>().Targets) {
             // If the player's target also targets the player (mutual targets).
-            if (this.Target.GetComponent<ControlEntity>().MutualTargets(playerTargets)) {
+            if (this.Target.GetComponent<Targetable>().MutualTargets(playerTargets)) {
                 // Push the target cubes as priority into the enemy target list
                 foreach (Transform child in this.gameObject.transform) {
-                    playerTargets.GetComponent<ControlEntity>().AddTarget(child.gameObject);
+                    playerTargets.GetComponent<Targetable>().AddTarget(child.gameObject);
                 }
             }
         }
