@@ -18,7 +18,7 @@ SubShader {
 	uniform half4 _Source_TexelSize;
 	
 	struct v2f {
-		half4 pos : SV_POSITION;
+		half4 pos : POSITION;
 		half2 uv2 : TEXCOORD0;
 		half4 source : TEXCOORD1;
 	};
@@ -47,12 +47,10 @@ SubShader {
 		return o;
 	}
 	
-	
-	half4 frag (v2f i) : SV_Target 
+	half4 frag (v2f i) : COLOR 
 	{
 		half4 color = tex2D (_MainTex, i.uv2.xy);
-		color.rgb *= i.source.rgb;	
-		color.a *= Luminance(i.source.rgb*0.25);
+		color.rgb *= i.source.rgb;									
 		return color;
 	}
 	
@@ -61,10 +59,15 @@ SubShader {
 	Pass {
 		Blend OneMinusDstColor One 
 		ZTest Always Cull Off ZWrite Off
+		ColorMask RGB
+		Fog { Mode off }
 
 		CGPROGRAM
 		
+		#pragma glsl
 		#pragma target 3.0		
+		
+		#pragma fragmentoption ARB_precision_hint_fastest
 		#pragma vertex vert
 		#pragma fragment frag
 		
