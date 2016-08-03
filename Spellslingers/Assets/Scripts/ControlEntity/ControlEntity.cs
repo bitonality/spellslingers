@@ -113,6 +113,7 @@ public abstract class ControlEntity : MonoBehaviour {
 
 
     // Safely checks for extra additions and adds an element
+    // TODO: Consider making sure no duplicates anywhere in the list (unnecessary right now).
     public void AddTarget(GameObject target) {
         if (Targets[Targets.Count - 1] != target) { 
             Targets.Add(target);

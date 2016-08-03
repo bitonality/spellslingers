@@ -202,22 +202,24 @@ public class StateAI : ControlEntity {
 
 	private ArrayList isInDanger() {
         // Get all spells from mutual enemies
-        HashSet<Hex> spells = new HashSet<Hex>();
-        foreach(GameObject target in Targets) {
+        ArrayList dangerousSpells = new ArrayList();
+        foreach (GameObject target in Targets) {
             if(MutualTargets(target)) {
-                spells.UnionWith(target.GetComponent<ControlEntity>().ActiveHexes);
+                HashSet<Hex> spells = target.GetComponent<ControlEntity>().ActiveHexes;
+                foreach (Hex h in spells)
+                {
+                    if (h == null) continue;
+                    GameObject spell = h.gameObject;
+                    //for some reason the spells array consistently had hexes with no rigibodies in it 
+                    if (spell.gameObject.GetComponent<Rigidbody>() != null && Physics.Raycast(spell.transform.position, spell.gameObject.GetComponent<Rigidbody>().velocity.normalized, 50F, 1 << 8))
+                    {
+                        dangerousSpells.Add(spell);
+                    }
+                }
             }
         }
 
-		ArrayList dangerousSpells = new ArrayList();
-		foreach (Hex h in spells) {
-            if (h == null) continue;
-			GameObject spell = h.gameObject;
-			//for some reason the spells array consistently had hexes with no rigibodies in it 
-			if (spell.gameObject.GetComponent<Rigidbody>() != null && Physics.Raycast (spell.transform.position, spell.gameObject.GetComponent<Rigidbody> ().velocity.normalized, 50F, 1 << 8)) {
-				dangerousSpells.Add (spell);
-			}
-		}
+
 		return dangerousSpells;
 	}
 
