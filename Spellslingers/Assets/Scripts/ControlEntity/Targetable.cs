@@ -14,14 +14,14 @@ public abstract class Targetable : MonoBehaviour {
     // A transform on the object that incoming targeted things will transfer.
     public Transform TargetPoint {
         get {
-            if (this.InsepctorTargetPoint != null) {
-                return this.InsepctorTargetPoint;
+            if (InsepctorTargetPoint != null) {
+                return InsepctorTargetPoint;
             }
-            return this.gameObject.transform;
+            return gameObject.transform;
         }
 
         set {
-            this.InsepctorTargetPoint = value;
+            InsepctorTargetPoint = value;
         }
     }
 
@@ -43,11 +43,13 @@ public abstract class Targetable : MonoBehaviour {
         set;
     }
 
+
     public virtual void Awake() {
         Debug.Log("Awake "  + gameObject);
         this.Targets = new List<GameObject>();
         this.Health = this.MaxHealth;
         this.TargetPoint = this.InsepctorTargetPoint;
+
     }
 
     // Returns if the player is dead or not.
@@ -59,8 +61,8 @@ public abstract class Targetable : MonoBehaviour {
             return false;
         }
 
-
         if (target.GetComponent<Targetable>().Targets.Contains(this.gameObject) && Targets.Contains(target)) {
+
             return true;
         }
         return false;

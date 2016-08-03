@@ -31,29 +31,29 @@ public abstract class Hex : Spell {
 
     // We can define a custom destruction behavior in hex sub-classes if we need.
     public virtual void BehavioralDestroy() {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     // This method should be directly called when we want to forcibly destroy a spell.
 	public void Destroy() {
         // If our scheduled destruction hasn't happened yet, cancel it because we are going to manually destroy it.
         if(ScheduledDestroy != null) {
-            StopCoroutine(this.ScheduledDestroy);
+            StopCoroutine(ScheduledDestroy);
         }
 
         // Call the destroy method that potentially has added behavior.
-        this.BehavioralDestroy();
+        BehavioralDestroy();
 	}
 
     // Schedules a destruction
     public void ScheduleDestroy(float seconds) {
-        this.ScheduledDestroy = DestroyInFuture(seconds);
-        StartCoroutine(this.ScheduledDestroy);
+        ScheduledDestroy = DestroyInFuture(seconds);
+        StartCoroutine(ScheduledDestroy);
     }
 
     private IEnumerator DestroyInFuture(float seconds) {
             yield return new WaitForSeconds(seconds);
-            this.Destroy();
+        Destroy();
     }
 
     public abstract void playerCollide(GameObject playerCameraRig);

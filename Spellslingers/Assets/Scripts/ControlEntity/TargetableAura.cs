@@ -15,10 +15,10 @@ public class TargetableAura : Targetable {
         // Destroy the hex.
         h.Destroy();
         // Process if the Aura Rune health is low enough.
-        if (this.IsDead()) {
+        if (IsDead()) {
             // Give the ControlEntity the aura
             h.Source.Aura = AuraTemplate;
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

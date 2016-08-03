@@ -34,7 +34,7 @@ namespace VRTK
 
         private void Start()
         {
-            text = this.GetComponent<Text>();
+            text = GetComponent<Text>();
             text.fontSize = fontSize;
             text.transform.localPosition = position;
         }

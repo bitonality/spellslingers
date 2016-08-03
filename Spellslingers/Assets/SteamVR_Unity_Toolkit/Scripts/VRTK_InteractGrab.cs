@@ -143,12 +143,12 @@ namespace VRTK
                 objectScript.leftSnapHandle = objectScript.rightSnapHandle;
             }
 
-            if (DeviceFinder.IsControllerOfHand(this.gameObject, DeviceFinder.ControllerHand.Right))
+            if (DeviceFinder.IsControllerOfHand(gameObject, DeviceFinder.ControllerHand.Right))
             {
                 return objectScript.rightSnapHandle;
             }
 
-            if (DeviceFinder.IsControllerOfHand(this.gameObject, DeviceFinder.ControllerHand.Left))
+            if (DeviceFinder.IsControllerOfHand(gameObject, DeviceFinder.ControllerHand.Left))
             {
                 return objectScript.leftSnapHandle;
             }
@@ -169,7 +169,7 @@ namespace VRTK
                 var snapHandle = GetSnapHandle(objectScript);
                 objectScript.SetGrabbedSnapHandle(snapHandle);
 
-                obj.transform.rotation = this.transform.rotation * Quaternion.Euler(snapHandle.transform.localEulerAngles);
+                obj.transform.rotation = transform.rotation * Quaternion.Euler(snapHandle.transform.localEulerAngles);
                 obj.transform.position = controllerAttachPoint.transform.position - (snapHandle.transform.position - obj.transform.position);
             }
         }
@@ -188,7 +188,7 @@ namespace VRTK
 
             if (objectScript.grabAttachMechanic == VRTK_InteractableObject.GrabAttachType.Child_Of_Controller)
             {
-                obj.transform.parent = this.transform;
+                obj.transform.parent = transform;
             }
             else
             {
@@ -307,7 +307,7 @@ namespace VRTK
             {
                 var grabbedObjectScript = grabbedObject.GetComponent<VRTK_InteractableObject>();
 
-                if (!grabbedObjectScript.IsValidInteractableController(this.gameObject, grabbedObjectScript.allowedGrabControllers))
+                if (!grabbedObjectScript.IsValidInteractableController(gameObject, grabbedObjectScript.allowedGrabControllers))
                 {
                     grabbedObject = null;
                     return;
@@ -316,7 +316,7 @@ namespace VRTK
                 OnControllerGrabInteractableObject(interactTouch.SetControllerInteractEvent(grabbedObject));
 
                 grabbedObjectScript.SaveCurrentState();
-                grabbedObjectScript.Grabbed(this.gameObject);
+                grabbedObjectScript.Grabbed(gameObject);
                 grabbedObjectScript.ZeroVelocity();
                 grabbedObjectScript.ToggleHighlight(false);
                 grabbedObjectScript.ToggleKinematic(false);
@@ -367,7 +367,7 @@ namespace VRTK
             OnControllerUngrabInteractableObject(interactTouch.SetControllerInteractEvent(grabbedObject));
             if (grabbedObject != null)
             {
-                grabbedObject.GetComponent<VRTK_InteractableObject>().Ungrabbed(this.gameObject);
+                grabbedObject.GetComponent<VRTK_InteractableObject>().Ungrabbed(gameObject);
                 grabbedObject.GetComponent<VRTK_InteractableObject>().ToggleHighlight(false);
             }
 

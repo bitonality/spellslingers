@@ -53,7 +53,7 @@ namespace VRTK
 
         protected virtual void Start()
         {
-            Utilities.SetPlayerObject(this.gameObject, VRTK_PlayerObject.ObjectTypes.CameraRig);
+            Utilities.SetPlayerObject(gameObject, VRTK_PlayerObject.ObjectTypes.CameraRig);
 
             adjustYForTerrain = false;
             eyeCamera = Utilities.AddCameraFade();
@@ -120,14 +120,14 @@ namespace VRTK
 
         protected virtual void SetNewPosition(Vector3 position, Transform target)
         {
-            this.transform.position = CheckTerrainCollision(position, target);
+            transform.position = CheckTerrainCollision(position, target);
         }
 
         protected virtual Vector3 GetNewPosition(Vector3 tipPosition, Transform target)
         {
-            float newX = (headsetPositionCompensation ? (tipPosition.x - (eyeCamera.position.x - this.transform.position.x)) : tipPosition.x);
-            float newY = this.transform.position.y;
-            float newZ = (headsetPositionCompensation ? (tipPosition.z - (eyeCamera.position.z - this.transform.position.z)) : tipPosition.z);
+            float newX = (headsetPositionCompensation ? (tipPosition.x - (eyeCamera.position.x - transform.position.x)) : tipPosition.x);
+            float newY = transform.position.y;
+            float newZ = (headsetPositionCompensation ? (tipPosition.z - (eyeCamera.position.z - transform.position.z)) : tipPosition.z);
 
             return new Vector3(newX, newY, newZ);
         }
@@ -147,7 +147,7 @@ namespace VRTK
             blinkPause = 0f;
             if (distanceBlinkDelay > 0f)
             {
-                float distance = Vector3.Distance(this.transform.position, newPosition);
+                float distance = Vector3.Distance(transform.position, newPosition);
                 blinkPause = Mathf.Clamp((distance * blinkTransitionSpeed) / (maxBlinkDistance - distanceBlinkDelay), 0, maxBlinkTransitionSpeed);
                 blinkPause = (blinkSpeed <= 0.25 ? 0f : blinkPause);
             }

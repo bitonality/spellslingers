@@ -68,7 +68,7 @@ namespace VRTK
         {
             if (controller == null)
             {
-                controller = this.GetComponent<VRTK_ControllerEvents>();
+                controller = GetComponent<VRTK_ControllerEvents>();
             }
 
             if (controller == null)
@@ -77,7 +77,7 @@ namespace VRTK
                 return;
             }
 
-            Utilities.SetPlayerObject(this.gameObject, VRTK_PlayerObject.ObjectTypes.Controller);
+            Utilities.SetPlayerObject(gameObject, VRTK_PlayerObject.ObjectTypes.Controller);
 
             //Setup controller event listeners
             controller.AliasPointerOn += new ControllerInteractionEventHandler(EnablePointerBeam);
@@ -145,7 +145,7 @@ namespace VRTK
 
         protected virtual void EnablePointerBeam(object sender, ControllerInteractionEventArgs e)
         {
-            if (this.enabled && !isActive && activateDelayTimer <= 0)
+            if (enabled && !isActive && activateDelayTimer <= 0)
             {
                 setPlayAreaCursorCollision(false);
                 controllerIndex = e.controllerIndex;
@@ -167,7 +167,7 @@ namespace VRTK
 
         protected virtual void PointerIn()
         {
-            if (!this.enabled || !pointerContactTarget)
+            if (!enabled || !pointerContactTarget)
             {
                 return;
             }
@@ -177,13 +177,13 @@ namespace VRTK
             var interactableObject = pointerContactTarget.GetComponent<VRTK_InteractableObject>();
             if (interactableObject && interactableObject.pointerActivatesUseAction && interactableObject.holdButtonToUse)
             {
-                interactableObject.StartUsing(this.gameObject);
+                interactableObject.StartUsing(gameObject);
             }
         }
 
         protected virtual void PointerOut()
         {
-            if (!this.enabled || !pointerContactTarget)
+            if (!enabled || !pointerContactTarget)
             {
                 return;
             }
@@ -193,13 +193,13 @@ namespace VRTK
             var interactableObject = pointerContactTarget.GetComponent<VRTK_InteractableObject>();
             if (interactableObject && interactableObject.pointerActivatesUseAction && interactableObject.holdButtonToUse)
             {
-                interactableObject.StopUsing(this.gameObject);
+                interactableObject.StopUsing(gameObject);
             }
         }
 
         protected virtual void PointerSet()
         {
-            if (!this.enabled || !isActive || !pointerContactTarget)
+            if (!enabled || !isActive || !pointerContactTarget)
             {
                 return;
             }
@@ -209,11 +209,11 @@ namespace VRTK
             {
                 if (interactableObject.IsUsing())
                 {
-                    interactableObject.StopUsing(this.gameObject);
+                    interactableObject.StopUsing(gameObject);
                 }
                 else if (!interactableObject.holdButtonToUse)
                 {
-                    interactableObject.StartUsing(this.gameObject);
+                    interactableObject.StartUsing(gameObject);
                 }
             }
 
@@ -265,7 +265,7 @@ namespace VRTK
         private void DrawPlayAreaCursorBoundary(int index, float left, float right, float top, float bottom, float thickness, Vector3 localPosition)
         {
             var playAreaCursorBoundary = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            playAreaCursorBoundary.name = string.Format("[{0}]WorldPointer_PlayAreaCursorBoundary_" + index, this.gameObject.name);
+            playAreaCursorBoundary.name = string.Format("[{0}]WorldPointer_PlayAreaCursorBoundary_" + index, gameObject.name);
             Utilities.SetPlayerObject(playAreaCursorBoundary, VRTK_PlayerObject.ObjectTypes.Pointer);
 
             var width = (right - left) / 1.065f;
@@ -316,7 +316,7 @@ namespace VRTK
             var height = 0.01f;
 
             playAreaCursor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            playAreaCursor.name = string.Format("[{0}]WorldPointer_PlayAreaCursor", this.gameObject.name);
+            playAreaCursor.name = string.Format("[{0}]WorldPointer_PlayAreaCursor", gameObject.name);
             Utilities.SetPlayerObject(playAreaCursor, VRTK_PlayerObject.ObjectTypes.Pointer);
             playAreaCursor.transform.parent = null;
             playAreaCursor.transform.localScale = new Vector3(width, height, length);
@@ -329,7 +329,7 @@ namespace VRTK
             playAreaCursor.AddComponent<Rigidbody>().isKinematic = true;
 
             var playAreaCursorScript = playAreaCursor.AddComponent<VRTK_PlayAreaCollider>();
-            playAreaCursorScript.SetParent(this.gameObject);
+            playAreaCursorScript.SetParent(gameObject);
             playAreaCursor.layer = LayerMask.NameToLayer("Ignore Raycast");
 
             var playAreaBoundaryX = playArea.transform.localScale.x / 2;

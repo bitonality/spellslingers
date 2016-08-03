@@ -48,9 +48,9 @@
 
         private void Awake()
         {
-            if (this.GetComponent<VRTK_PlayerPresence>())
+            if (GetComponent<VRTK_PlayerPresence>())
             {
-                playerPresence = this.GetComponent<VRTK_PlayerPresence>();
+                playerPresence = GetComponent<VRTK_PlayerPresence>();
             }
             else
             {
@@ -60,12 +60,12 @@
             touchpadAxisChanged = new ControllerInteractionEventHandler(DoTouchpadAxisChanged);
             touchpadUntouched = new ControllerInteractionEventHandler(DoTouchpadTouchEnd);
 
-            controllerManager = this.GetComponent<SteamVR_ControllerManager>();
+            controllerManager = GetComponent<SteamVR_ControllerManager>();
         }
 
         private void Start()
         {
-            Utilities.SetPlayerObject(this.gameObject, VRTK_PlayerObject.ObjectTypes.CameraRig);
+            Utilities.SetPlayerObject(gameObject, VRTK_PlayerObject.ObjectTypes.CameraRig);
 
             var controllerManager = GameObject.FindObjectOfType<SteamVR_ControllerManager>();
 
@@ -121,9 +121,9 @@
         {
             var movement = playerPresence.GetHeadset().forward * movementSpeed * Time.deltaTime;
             var strafe = playerPresence.GetHeadset().right * strafeSpeed * Time.deltaTime;
-            float fixY = this.transform.position.y;
-            this.transform.position += (movement + strafe);
-            this.transform.position = new Vector3(this.transform.position.x, fixY, this.transform.position.z);
+            float fixY = transform.position.y;
+            transform.position += (movement + strafe);
+            transform.position = new Vector3(transform.position.x, fixY, transform.position.z);
         }
 
         private void FixedUpdate()

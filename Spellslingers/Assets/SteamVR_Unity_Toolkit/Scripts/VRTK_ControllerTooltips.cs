@@ -58,16 +58,16 @@
             InitialiseTips();
             buttonTooltips = new GameObject[4]
             {
-                this.transform.FindChild(TooltipButtons.TriggerTooltip.ToString()).gameObject,
-                this.transform.FindChild(TooltipButtons.GripTooltip.ToString()).gameObject,
-                this.transform.FindChild(TooltipButtons.TouchpadTooltip.ToString()).gameObject,
-                this.transform.FindChild(TooltipButtons.AppMenuTooltip.ToString()).gameObject,
+                transform.FindChild(TooltipButtons.TriggerTooltip.ToString()).gameObject,
+                transform.FindChild(TooltipButtons.GripTooltip.ToString()).gameObject,
+                transform.FindChild(TooltipButtons.TouchpadTooltip.ToString()).gameObject,
+                transform.FindChild(TooltipButtons.AppMenuTooltip.ToString()).gameObject,
             };
         }
 
         private void InitialiseTips()
         {
-            foreach (var tooltip in this.GetComponentsInChildren<VRTK_ObjectTooltip>())
+            foreach (var tooltip in GetComponentsInChildren<VRTK_ObjectTooltip>())
             {
                 var tipText = "";
                 Transform tipTransform = null;
@@ -133,7 +133,7 @@
             }
             else
             {
-                returnTransform = this.transform.parent.FindChild("Model/" + findTransform + "/attach");
+                returnTransform = transform.parent.FindChild("Model/" + findTransform + "/attach");
             }
 
             return returnTransform;

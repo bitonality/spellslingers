@@ -111,14 +111,14 @@ namespace VRTK
                 usingObject = touchedObject;
                 var usingObjectScript = usingObject.GetComponent<VRTK_InteractableObject>();
 
-                if (!usingObjectScript.IsValidInteractableController(this.gameObject, usingObjectScript.allowedUseControllers))
+                if (!usingObjectScript.IsValidInteractableController(gameObject, usingObjectScript.allowedUseControllers))
                 {
                     usingObject = null;
                     return;
                 }
 
                 OnControllerUseInteractableObject(interactTouch.SetControllerInteractEvent(usingObject));
-                usingObjectScript.StartUsing(this.gameObject);
+                usingObjectScript.StartUsing(gameObject);
 
                 if (hideControllerOnUse)
                 {
@@ -148,7 +148,7 @@ namespace VRTK
             if (usingObject != null)
             {
                 OnControllerUnuseInteractableObject(interactTouch.SetControllerInteractEvent(usingObject));
-                usingObject.GetComponent<VRTK_InteractableObject>().StopUsing(this.gameObject);
+                usingObject.GetComponent<VRTK_InteractableObject>().StopUsing(gameObject);
                 if (hideControllerOnUse)
                 {
                     controllerActions.ToggleControllerModel(true, usingObject);
@@ -160,9 +160,9 @@ namespace VRTK
 
         private GameObject GetFromGrab()
         {
-            if (this.GetComponent<VRTK_InteractGrab>())
+            if (GetComponent<VRTK_InteractGrab>())
             {
-                return this.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
+                return GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
             }
             return null;
         }

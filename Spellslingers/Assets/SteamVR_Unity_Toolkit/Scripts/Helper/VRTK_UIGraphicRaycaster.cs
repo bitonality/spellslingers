@@ -168,7 +168,7 @@
                     return m_Canvas;
                 }
 
-                m_Canvas = this.gameObject.GetComponent<Canvas>();
+                m_Canvas = gameObject.GetComponent<Canvas>();
                 return m_Canvas;
             }
         }

@@ -64,12 +64,12 @@ public class GE_ToggleFullScreenUI : MonoBehaviour
 				Application.platform == RuntimePlatform.OSXPlayer ||
 				Application.platform == RuntimePlatform.LinuxPlayer)
 			{
-				this.gameObject.SetActive (true);			
+                gameObject.SetActive (true);			
 			}
 			// Other cases hide the button
 			else
 			{
-				this.gameObject.SetActive (false);
+                gameObject.SetActive (false);
 			}
 		}
 		
@@ -95,11 +95,11 @@ public class GE_ToggleFullScreenUI : MonoBehaviour
 		// Disable this button on Unity Editor
 		if(Application.isEditor==true)
 		{
-			if(this.gameObject.activeSelf==true)
+			if(gameObject.activeSelf==true)
 			{
-				Button pButton = this.gameObject.GetComponent<Button>();
+				Button pButton = gameObject.GetComponent<Button>();
 				pButton.interactable = false;
-				foreach(Transform tr in this.transform)
+				foreach(Transform tr in transform)
 				{
 					tr.gameObject.SetActive(true);
 				}

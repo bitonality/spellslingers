@@ -9,7 +9,7 @@ public class CastagonPoint : MonoBehaviour {
 		if (col.gameObject.tag == "Wand") {
 			Castagon c = gameObject.GetComponentInParent<Castagon> ();
 			c.AddPoint (this);
-			gameObject.GetComponentInChildren<ParticleSystem> ().startColor = this.gameObject.GetComponentInParent<Castagon> ().TouchedColor;
+			gameObject.GetComponentInChildren<ParticleSystem> ().startColor = gameObject.GetComponentInParent<Castagon> ().TouchedColor;
 			gameObject.GetComponentInChildren<ParticleSystem> ().Simulate (gameObject.GetComponentInChildren<ParticleSystem> ().duration);
 		}
 

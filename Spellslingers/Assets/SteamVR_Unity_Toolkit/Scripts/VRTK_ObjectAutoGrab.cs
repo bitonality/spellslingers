@@ -14,7 +14,7 @@
 
         private void Start()
         {
-            controller = this.GetComponent<VRTK_InteractGrab>();
+            controller = GetComponent<VRTK_InteractGrab>();
             initGrab = false;
             initGrabCooldown = 0.5f;
 

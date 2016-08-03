@@ -53,7 +53,7 @@ public class SteamVR_Teleporter : MonoBehaviour
             float refY = t.position.y;
 
             Plane plane = new Plane(Vector3.up, -refY);
-            Ray ray = new Ray(this.transform.position, transform.forward);
+            Ray ray = new Ray(transform.position, transform.forward);
 
             bool hasGroundTarget = false;
             float dist = 0f;

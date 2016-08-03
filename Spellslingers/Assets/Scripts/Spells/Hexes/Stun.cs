@@ -7,10 +7,10 @@ public class Stun : Hex {
 
 
 	//duration of stun in ms
-	public double duration;
+	public float duration;
 
 	//How often the decrement will run
-	private float repeatRate = 0.2F;
+	//private float repeatRate = 0.2F;
 
 	//calculated value for how much to decrease the blur size by
 	public double interval = 0;
@@ -18,18 +18,20 @@ public class Stun : Hex {
 
 	public override void playerCollide (GameObject playerCameraRig)
 	{
-		playerCameraRig.GetComponent<ParticleSystem> ().Play();
-		StartCoroutine(scheduleStop (playerCameraRig));
-		playerCameraRig.GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.DISARM, true);
-	}
+        playerCameraRig.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(scheduleStop(playerCameraRig));
+        playerCameraRig.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
+        playerCameraRig.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration);
+    }
 
 
 	public override void aiCollide (GameObject aiBody) {
 		float delta = aiBody.GetComponent<StateAI> ().speed / 2;
 		aiBody.GetComponent<StateAI> ().setSpeed (delta);
 		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<StateAI>().speed + delta);
-		aiBody.GetComponent<StateAI>().GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.STUN, true);
-	}
+        aiBody.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
+        aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration);
+    }
 
 	IEnumerator scheduleSetSpeed(GameObject aiBody, double waitTime, float newSpeed) {
 		yield return new WaitForSeconds((float) waitTime);
@@ -37,14 +39,12 @@ public class Stun : Hex {
 	}
 
 	public override void BehavioralDestroy() {
-		this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
 	}
 
-	IEnumerator scheduleStop(GameObject playerCameraRig) {
-		yield return new WaitForSeconds ((float)duration);
-		playerCameraRig.GetComponent<ParticleSystem> ().Stop();
-	}
-
-	
-
+    IEnumerator scheduleStop(GameObject playerCameraRig)
+    {
+        yield return new WaitForSeconds((float)duration);
+        playerCameraRig.GetComponent<ParticleSystem>().Stop();
+    }
 }

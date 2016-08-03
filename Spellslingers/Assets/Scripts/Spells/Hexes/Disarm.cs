@@ -20,22 +20,11 @@ public class Disarm : Hex {
 			wand.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 10, 0);
 			wand.GetComponent<Rigidbody> ().angularVelocity = new Vector3 (8, 9, 10);
 		}
-		playerCameraRig.GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.DISARM, true);
-	}
+        playerCameraRig.GetComponent<ControlEntity>().ApplyInfluence(influences.DISARM);
+    }
 
 	public override void aiCollide(GameObject aiBody) {
-//		ai AI = aiBody.GetComponent<ai> ();
-//		AI.ShootingCycleDisable = AiDisarmTime + Time.time;
-		//AI.GetComponent<ControlEntity> ().changeInfluenceState (ControlEntity.influences.DISARM, true);
-	}
-
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        aiBody.GetComponent<ControlEntity>().ApplyInfluence(influences.DISARM);
+        aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.DISARM, AiDisarmTime);
+    }
 }

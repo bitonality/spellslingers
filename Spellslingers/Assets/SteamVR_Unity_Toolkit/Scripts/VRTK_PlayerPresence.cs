@@ -25,7 +25,7 @@
 
         private void Start()
         {
-            Utilities.SetPlayerObject(this.gameObject, VRTK_PlayerObject.ObjectTypes.CameraRig);
+            Utilities.SetPlayerObject(gameObject, VRTK_PlayerObject.ObjectTypes.CameraRig);
 
             lastGoodPositionSet = false;
             headset = DeviceFinder.HeadsetTransform();
@@ -49,12 +49,12 @@
         {
             if(e.target.GetComponent<Collider>())
             {
-                Physics.IgnoreCollision(this.GetComponent<Collider>(), e.target.GetComponent<Collider>(), true);
+                Physics.IgnoreCollision(GetComponent<Collider>(), e.target.GetComponent<Collider>(), true);
             }
 
             foreach(var childCollider in e.target.GetComponentsInChildren<Collider>())
             {
-                Physics.IgnoreCollision(this.GetComponent<Collider>(), childCollider, true);
+                Physics.IgnoreCollision(GetComponent<Collider>(), childCollider, true);
             }
         }
 
@@ -62,7 +62,7 @@
         {
             if (e.target.GetComponent<VRTK_InteractableObject>() && !e.target.GetComponent<VRTK_InteractableObject>().IsGrabbed())
             {
-                Physics.IgnoreCollision(this.GetComponent<Collider>(), e.target.GetComponent<Collider>(), false);
+                Physics.IgnoreCollision(GetComponent<Collider>(), e.target.GetComponent<Collider>(), false);
             }
         }
 
@@ -71,27 +71,27 @@
             if (resetPositionOnCollision && lastGoodPositionSet)
             {
                 SteamVR_Fade.Start(Color.black, 0f);
-                this.transform.position = lastGoodPosition;
+                transform.position = lastGoodPosition;
             }
         }
 
         private void CreateCollider()
         {
-            rb = this.gameObject.AddComponent<Rigidbody>();
+            rb = gameObject.AddComponent<Rigidbody>();
             rb.mass = 100;
             rb.freezeRotation = true;
 
-            bc = this.gameObject.AddComponent<BoxCollider>();
+            bc = gameObject.AddComponent<BoxCollider>();
             bc.center = new Vector3(0f, 1f, 0f);
             bc.size = new Vector3(0.25f, 1f, 0.25f);
 
-            this.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
 
         private void UpdateCollider()
         {
             var playAreaHeightAdjustment = 0.009f;
-            var newBCYSize = (headset.transform.position.y - headsetYOffset) - this.transform.position.y;
+            var newBCYSize = (headset.transform.position.y - headsetYOffset) - transform.position.y;
             var newBCYCenter = (newBCYSize != 0 ? (newBCYSize / 2) + playAreaHeightAdjustment : 0);
 
             bc.size = new Vector3(bc.size.x, newBCYSize, bc.size.z);
@@ -102,7 +102,7 @@
         {
             //if the play area height has changed then always recalc headset height
             var floorVariant = 0.005f;
-            if (this.transform.position.y > lastPlayAreaY + floorVariant || this.transform.position.y < lastPlayAreaY - floorVariant)
+            if (transform.position.y > lastPlayAreaY + floorVariant || transform.position.y < lastPlayAreaY - floorVariant)
             {
                 highestHeadsetY = 0f;
             }
@@ -115,10 +115,10 @@
             if (headset.transform.position.y > highestHeadsetY - crouchMargin)
             {
                 lastGoodPositionSet = true;
-                lastGoodPosition = this.transform.position;
+                lastGoodPosition = transform.position;
             }
 
-            lastPlayAreaY = this.transform.position.y;
+            lastPlayAreaY = transform.position.y;
         }
 
         private void Update()

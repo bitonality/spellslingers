@@ -247,7 +247,7 @@
         private void Awake()
         {
             trackedController = GetComponent<SteamVR_TrackedObject>();
-            this.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
 
         private void Start()

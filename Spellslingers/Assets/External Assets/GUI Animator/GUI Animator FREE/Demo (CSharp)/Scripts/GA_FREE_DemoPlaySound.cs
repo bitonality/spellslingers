@@ -59,7 +59,7 @@ public class GA_FREE_DemoPlaySound : MonoBehaviour
 			
 			for(int i=0;i<m_AudioSource.Length;i++)
 			{
-				AudioSource pAudioSource =  this.gameObject.AddComponent<AudioSource>();
+				AudioSource pAudioSource = gameObject.AddComponent<AudioSource>();
 				pAudioSource.rolloffMode = AudioRolloffMode.Linear;
 				m_AudioSource[i] = pAudioSource;
 			}

@@ -16,7 +16,7 @@ public class Menu_Object_Spawner : VRTK_InteractableObject
     public void SetSelectedColor(Color color)
     {
         selectedColor = color;
-        this.gameObject.GetComponent<MeshRenderer>().material.color = color;
+        gameObject.GetComponent<MeshRenderer>().material.color = color;
     }
 
     public override void StartUsing(GameObject usingObject)
@@ -36,7 +36,7 @@ public class Menu_Object_Spawner : VRTK_InteractableObject
     private void CreateShape(PrimitiveType shape, Color color)
     {
         GameObject obj = GameObject.CreatePrimitive(shape);
-        obj.transform.position = this.transform.position;
+        obj.transform.position = transform.position;
         obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         obj.GetComponent<MeshRenderer>().material.color = color;
         obj.AddComponent<Rigidbody>();

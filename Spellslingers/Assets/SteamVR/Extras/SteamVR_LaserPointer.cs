@@ -32,7 +32,7 @@ public class SteamVR_LaserPointer : MonoBehaviour
 	void Start ()
     {
         holder = new GameObject();
-        holder.transform.parent = this.transform;
+        holder.transform.parent = transform;
         holder.transform.localPosition = Vector3.zero;
 
         pointer = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -80,7 +80,7 @@ public class SteamVR_LaserPointer : MonoBehaviour
         if (!isActive)
         {
             isActive = true;
-            this.transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.SetActive(true);
         }
 
         float dist = 100f;

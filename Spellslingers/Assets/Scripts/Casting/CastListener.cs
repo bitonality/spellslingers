@@ -38,7 +38,7 @@ public class CastListener : MonoBehaviour {
         GetComponent<VRTK_ControllerEvents>().GripPressed += new ControllerInteractionEventHandler(GripPressed);
 
         // Cache player.
-        this.player = gameObject.GetComponentInParent<Player> ();
+        player = gameObject.GetComponentInParent<Player> ();
 	}
 
     void GripPressed(object sender, ControllerInteractionEventArgs e) {
@@ -73,11 +73,11 @@ public class CastListener : MonoBehaviour {
 
         // Check if the player has a spell queued for firing.
 		if (player.queuedSpell != null) {
-            if(player.GetWand(this.gameObject) == null) return;
+            if(player.GetWand(gameObject) == null) return;
 
 			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
 
-            Transform target = player.ClosestTarget(wand, this.gameObject);
+            Transform target = player.ClosestTarget(wand, gameObject);
 
             // Get the angle between the controller-wand vector and the controller-ai vector.
 			float angle = Vector3.Angle (wand.transform.position - gameObject.transform.position, target.position - gameObject.transform.position);
@@ -106,18 +106,18 @@ public class CastListener : MonoBehaviour {
 				Debug.Log (angle + " SpeedCheck: " + speedCheck + " Angle check: " + angleCheck);
 
                 // Cast the hex from the wand launch point with random accuracy modifiers.
-				player.CastHex(player.queuedSpell, player.GetWand(this.gameObject).transform.FindChild("LaunchPoint").transform, target, angleCheck + speedCheck, controllerVelocity.magnitude);
+				player.CastHex(player.queuedSpell, player.GetWand(gameObject).transform.FindChild("LaunchPoint").transform, target, angleCheck + speedCheck, controllerVelocity.magnitude);
                 // Reset the queued spell. This will also stop the check in the FixedUpdate() method.
 				player.queuedSpell = null;
 			}
 		}
 
-		player.GetWand (this.gameObject).GetComponentInChildren<TrailRenderer> ().enabled = false;
+		player.GetWand (gameObject).GetComponentInChildren<TrailRenderer> ().enabled = false;
 	}
 
 	void FixedUpdate() {
 		if (player.queuedSpell != null) {
-            if (player.GetWand(this.gameObject) != null) {
+            if (player.GetWand(gameObject) != null) {
                 /* GameObject wand = gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
                  // Get the angle between the controller-wand vector and the controller-ai vector.
                  float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Targets.transform.position - gameObject.transform.position);
@@ -126,7 +126,7 @@ public class CastListener : MonoBehaviour {
                  // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
                  //wand.GetComponentInChildren<Light>().intensity = 8;
                  */
-                player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
+                player.GetWand(gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
             }
 		}
 	}
@@ -134,7 +134,7 @@ public class CastListener : MonoBehaviour {
 	void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
 	{
 
-		if (player.GetWand(this.gameObject) != null) {
+		if (player.GetWand(gameObject) != null) {
             // Create a castagon from the template and spawn it at the CastagonPoint child of the wand. Set the x and y Euler angle values but not the z angle to avoid unwanted rotating of the castagon.
 			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("CastagonPoint").position, Quaternion.Euler (new Vector3 (gameObject.transform.rotation.eulerAngles.x, gameObject.transform.rotation.eulerAngles.y, 0f))) as GameObject).GetComponent<Castagon> ();
 
@@ -144,7 +144,9 @@ public class CastListener : MonoBehaviour {
                 GameObject aura = Instantiate(player.Aura, instantiatedCastagon.GetComponent<Castagon>().AuraAttachPoint.position, Quaternion.identity) as GameObject;
                 aura.transform.SetParent(instantiatedCastagon.GetComponent<Castagon>().AuraAttachPoint);
             }
+
             player.GetWand (this.gameObject).GetComponentInChildren<TrailRenderer> ().enabled = true;
+
 		}
 	}
 }

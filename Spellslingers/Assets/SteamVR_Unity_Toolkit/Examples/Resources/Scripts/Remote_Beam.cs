@@ -17,6 +17,6 @@ public class Remote_Beam : MonoBehaviour
     {
         currentYaw += touchAxis.y * rotationSpeed * Time.deltaTime;
         currentPitch += touchAxis.x * rotationSpeed * Time.deltaTime;
-        this.transform.localRotation = Quaternion.AngleAxis(currentPitch, Vector3.up) * Quaternion.AngleAxis(currentYaw, Vector3.left);
+        transform.localRotation = Quaternion.AngleAxis(currentPitch, Vector3.up) * Quaternion.AngleAxis(currentYaw, Vector3.left);
     }
 }

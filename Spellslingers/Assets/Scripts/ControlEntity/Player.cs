@@ -3,6 +3,7 @@ using System.Collections;
 using VRTK;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class Player : ControlEntity {
 
@@ -27,25 +28,25 @@ public class Player : ControlEntity {
         // Destroy the hex.
         h.Destroy();
         // Process if the player is dead.
-		if (this.IsDead ())
-			Destroy (this.gameObject);
+		if (IsDead())
+			Destroy (gameObject);
 	}
 
 	public override bool CanShoot (Hex h, GameObject controller) {
         // If the player is holding their wand.
         if (GetWand(controller) == null) return false;
         // Checks if the spell is in cooldown.
-		if (this.cooldown.ContainsKey (h.HexName)) {
-			if (Time.time >= this.cooldown[h.HexName]) {
-				this.cooldown.Remove (h.HexName);
+		if (cooldown.ContainsKey (h.HexName)) {
+			if (Time.time >= cooldown[h.HexName]) {
+                cooldown.Remove (h.HexName);
 			} else {
 				return false;
 			}
-		} 
+		}
 
         // Once we are at this point in the code, we know we will be returning true.
         // Assume spell is sucessfully cast, so add the spell to the cooldown.
-		this.cooldown.Add (h.HexName, Time.time + h.cooldown) ;
+        cooldown.Add (h.HexName, Time.time + h.cooldown) ;
         // Get the cooldown slider associated with the cast hex.
 		Slider slider = Sliders [h.HexName];
         // Reset the min and max scale of the slider in case we want to modify cooldown amounts at runtime
@@ -108,9 +109,8 @@ public class Player : ControlEntity {
 		}
 	}
 
-
     // Represents an inspector friendly way to map spells to sliders
-	[System.Serializable]
+    [System.Serializable]
 	public class SliderInsepctorEntry {
 		public GameObject hex;
 		public GameObject slider;
