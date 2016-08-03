@@ -85,7 +85,7 @@ public class GUIAnimatorFREEDemo : MonoBehaviour
 				if (GUI.Button(rect, "Play In-animations then Idle-animations"))
 				{
 					// Play MoveIn animations
-					GUIAnimSystemFREE.Instance.MoveIn(this.transform, true);
+					GUIAnimSystemFREE.Instance.MoveIn(transform, true);
 					m_WaitTimeCount = m_WaitTime;
 				}
 			}
@@ -95,7 +95,7 @@ public class GUIAnimatorFREEDemo : MonoBehaviour
 				if (GUI.Button(rect, "Play Out-animations"))
 				{
 					// Play MoveOut animations
-					GUIAnimSystemFREE.Instance.MoveOut(this.transform, true);
+					GUIAnimSystemFREE.Instance.MoveOut(transform, true);
 					m_WaitTimeCount = m_WaitTime;
 				}
 			}

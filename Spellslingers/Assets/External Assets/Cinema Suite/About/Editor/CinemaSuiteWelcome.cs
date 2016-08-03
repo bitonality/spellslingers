@@ -92,8 +92,8 @@ namespace CinemaSuite
 #else
             base.title = TITLE;
 #endif
-            
-            this.minSize = new Vector2(600, 700);
+
+            minSize = new Vector2(600, 700);
 
             if (EditorPrefs.HasKey("CinemaSuite.WelcomeWindow.ShowOnStartup"))
             {
@@ -149,7 +149,7 @@ namespace CinemaSuite
 
                     if (ShowAboutFirst)
                     {
-                        this.DrawAboutCinemaSuiteSection();
+                        DrawAboutCinemaSuiteSection();
                     }
 
                     Rect productsRect = EditorGUILayout.GetControlRect(GUILayout.Width(base.position.width - 22));
@@ -189,7 +189,7 @@ namespace CinemaSuite
 
                     if (!ShowAboutFirst)
                     {
-                        this.DrawAboutCinemaSuiteSection();
+                        DrawAboutCinemaSuiteSection();
                     }
                 }
 #if !UNITY_5

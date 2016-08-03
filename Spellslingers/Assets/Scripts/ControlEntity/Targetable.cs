@@ -14,14 +14,14 @@ public class Targetable : MonoBehaviour {
     // A transform on the object that incoming targeted things will transfer.
     public Transform TargetPoint {
         get {
-            if (this.InsepctorTargetPoint != null) {
-                return this.InsepctorTargetPoint;
+            if (InsepctorTargetPoint != null) {
+                return InsepctorTargetPoint;
             }
-            return this.gameObject.transform;
+            return gameObject.transform;
         }
 
         set {
-            this.InsepctorTargetPoint = value;
+            InsepctorTargetPoint = value;
         }
     }
 
@@ -44,9 +44,9 @@ public class Targetable : MonoBehaviour {
     }
 
     void Awake() {
-        this.Targets = new List<GameObject>();
-        this.Health = this.MaxHealth;
-        this.TargetPoint = this.InsepctorTargetPoint;
+        Targets = new List<GameObject>();
+        Health = MaxHealth;
+        TargetPoint = InsepctorTargetPoint;
     }
 
     // Returns if the player is dead or not.
@@ -58,7 +58,7 @@ public class Targetable : MonoBehaviour {
             return false;
         }
 
-        if (target.GetComponent<ControlEntity>().Targets.Contains(this.gameObject) && Targets.Contains(target)) {
+        if (target.GetComponent<ControlEntity>().Targets.Contains(gameObject) && Targets.Contains(target)) {
             return true;
         }
         return false;
@@ -90,9 +90,9 @@ public class Targetable : MonoBehaviour {
     // Safely update the health bar even if there isn't one.
     public void ApplyDamage(float damage) {
         // Update healthbar UI with new health amount.
-        this.Health -= damage;
-        if (this.HealthBar != null) {
-            this.HealthBar.GetComponent<Image>().fillAmount = (float)(this.Health / this.MaxHealth);
+        Health -= damage;
+        if (HealthBar != null) {
+            HealthBar.GetComponent<Image>().fillAmount = (float)(Health / MaxHealth);
         }
     }
 

@@ -50,7 +50,7 @@ public class CinemaThemesWindow : EditorWindow
 #else
         base.title = TITLE;
 #endif
-        this.minSize = new Vector2(300, 200f);
+        minSize = new Vector2(300, 200f);
     }
 
     /// <summary>

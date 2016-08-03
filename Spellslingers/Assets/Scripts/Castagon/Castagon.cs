@@ -49,7 +49,7 @@ public class Castagon : MonoBehaviour {
                         cp.gameObject.GetComponent<Aura>().InitializeAura(player.gameObject);
                         player.Aura = null;
                     }
-					this.destroy ();
+                    destroy();
 				}
 				potential.order.RemoveAt (potential.order.Count - 1);
 			}
@@ -60,7 +60,7 @@ public class Castagon : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.ActivatedPoints = new Queue<CastagonPoint> ();
+        ActivatedPoints = new Queue<CastagonPoint> ();
 	}
 	
 	// Update is called once per frame
@@ -69,7 +69,7 @@ public class Castagon : MonoBehaviour {
 	}
 
 	public void destroy() {
-		Destroy (this.gameObject);
+		Destroy (gameObject);
 	}
 
 

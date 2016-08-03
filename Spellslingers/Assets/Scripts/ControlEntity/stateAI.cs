@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class StateAI : ControlEntity {
 
@@ -40,8 +41,8 @@ public class StateAI : ControlEntity {
 		//Debug.Log (col);
 		if (col.gameObject.tag == "AIBoundry") {
 			Debug.Log ("Returning to center");
-            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-			this.gameObject.GetComponent<Rigidbody>().AddForce((originalPosition-this.gameObject.transform.position) * this.speed, ForceMode.Impulse);
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            gameObject.GetComponent<Rigidbody>().AddForce((originalPosition- gameObject.transform.position) * speed, ForceMode.Impulse);
 		}
 	}
 
@@ -77,14 +78,14 @@ public class StateAI : ControlEntity {
 			break;
 		case validStates.IDLE:
 			//Move in a random direction
-			Vector3 Destination = new Vector3(Random.Range(-5f, 5f) * 10, 0, Random.Range(-5f, 5f) * 10);
-			this.gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
+			Vector3 Destination = new Vector3(UnityEngine.Random.Range(-5f, 5f) * 10, 0, UnityEngine.Random.Range(-5f, 5f) * 10);
+                gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
 			//Schedule interruptable state change in 3 seconds
 			timeUntilChange = Time.time + 3;
 			break;
 		case validStates.PRESHOOT:
-			//Stop movement
-			this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //Stop movement
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
 			//Wait for 1 second
 			timeUntilChange = Time.time + 1;
 			break;
@@ -93,10 +94,10 @@ public class StateAI : ControlEntity {
 			if (spellsToShoot.Length != 0) {
 				//Pick a hex
 				Hex h = pickHex ();
-				if (CanShoot (h, this.gameObject)) {
+				if (CanShoot (h, gameObject)) {
                         //Shoot
                     
-                     CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.CurrentTarget().GetComponent<ControlEntity>().TargetPoint, 2, 5);
+                     CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, CurrentTarget().GetComponent<ControlEntity>().TargetPoint, 2, 5);
                
 					//Go back to IDLE state
 					currentAction.Enqueue (validStates.POSTSHOOT);
@@ -114,8 +115,8 @@ public class StateAI : ControlEntity {
 			currentAction.Enqueue (validStates.IDLE);
 			break;
 		case validStates.DEAD:
-			//Kill this script, so that it doesn't keep running this loop
-			this.enabled = false;
+                //Kill this script, so that it doesn't keep running this loop
+                enabled = false;
 			break;
 		default:
 			break;
@@ -151,7 +152,6 @@ public class StateAI : ControlEntity {
 				//TODO: Sort spells
 				//string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
 				//Move 
-				Vector3 position = this.gameObject.transform.position;
 				Vector3 direction = new Vector3 (speed * (float)Vector3.Cross(((GameObject)dangerousSpells [0]).transform.position, gameObject.transform.position).normalized.x, 0, 0);
 				gameObject.GetComponent<Rigidbody> ().AddForce (direction, ForceMode.Impulse);
 			} else {
@@ -180,7 +180,7 @@ public class StateAI : ControlEntity {
 	// Use this for initialization
 	void Start () {
 		defaultSpeed = speed;
-		originalPosition = this.gameObject.transform.position;
+		originalPosition = gameObject.transform.position;
 		//Start out the queue with idle
 		currentAction.Enqueue (validStates.IDLE);
 	}
@@ -194,8 +194,8 @@ public class StateAI : ControlEntity {
 		h.aiCollide (gameObject);
         ApplyDamage(h.Damage);
 		h.Destroy ();
-		if (this.IsDead ()) {
-			Destroy (this.gameObject);
+		if (IsDead()) {
+			Destroy (gameObject);
 		}
 	}
 

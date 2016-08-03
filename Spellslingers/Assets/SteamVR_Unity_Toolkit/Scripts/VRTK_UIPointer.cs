@@ -81,7 +81,7 @@
             ConfigureWorldCanvases();
             if (controller == null)
             {
-                controller = this.GetComponent<VRTK_ControllerEvents>();
+                controller = GetComponent<VRTK_ControllerEvents>();
             }
         }
 
@@ -91,7 +91,7 @@
             var eventSystemInput = SetEventSystem(eventSystem);
 
             pointerEventData = new PointerEventData(eventSystem);
-            pointerEventData.pointerId = (int)this.GetComponent<SteamVR_TrackedObject>().index + 1000;
+            pointerEventData.pointerId = (int)GetComponent<SteamVR_TrackedObject>().index + 1000;
             eventSystemInput.pointers.Add(this);
         }
 

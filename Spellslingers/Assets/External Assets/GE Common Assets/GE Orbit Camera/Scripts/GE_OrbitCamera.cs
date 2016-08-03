@@ -90,7 +90,7 @@ public class GE_OrbitCamera : MonoBehaviour
 	// http://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
 	void Start()
 	{
-		this.gameObject.transform.LookAt(m_Target);
+        gameObject.transform.LookAt(m_Target);
 		var angles = transform.eulerAngles;
 		m_X = angles.y;
 		m_Y = angles.x;
@@ -103,7 +103,7 @@ public class GE_OrbitCamera : MonoBehaviour
 
 		// Set start position according to distance
 		bool ShouldUpdateZoom = false;
-		m_Distance = Vector3.Distance(this.transform.position, m_Target.transform.position);
+		m_Distance = Vector3.Distance(transform.position, m_Target.transform.position);
 
 		if (m_Distance < m_MinDistance)
 		{

@@ -27,7 +27,7 @@ public class HexCollide : MonoBehaviour
 		// If the spell collides with a ControlEntity.
 		if (col.gameObject.GetComponent<ControlEntity>() != null) {
             // Process the spell for the specific hex and ControlEntity
-            col.gameObject.GetComponent<ControlEntity>().processHex (this.GetComponent<Hex> ());
+            col.gameObject.GetComponent<ControlEntity>().processHex (GetComponent<Hex>());
 			return;
 		}
         
@@ -36,7 +36,7 @@ public class HexCollide : MonoBehaviour
 			numCollisions++;
 		} else {
             // Processing for above collision limit.
-            this.gameObject.GetComponent<Hex>().Destroy();
+            gameObject.GetComponent<Hex>().Destroy();
 		}
 	}
 }

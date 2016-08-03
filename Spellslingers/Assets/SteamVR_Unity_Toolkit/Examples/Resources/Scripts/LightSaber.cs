@@ -32,7 +32,7 @@ public class LightSaber : VRTK_InteractableObject
     protected override void Start()
     {
         base.Start();
-        blade = this.transform.Find("Blade").gameObject;
+        blade = transform.Find("Blade").gameObject;
         currentBeamSize = beamLimits.x;
         SetBeamSize();
     }

@@ -18,7 +18,7 @@ public class Lamp : VRTK_InteractableObject
 
     private void ToggleKinematics(bool state)
     {
-        foreach(Rigidbody rigid in this.transform.parent.GetComponentsInChildren<Rigidbody>())
+        foreach(Rigidbody rigid in transform.parent.GetComponentsInChildren<Rigidbody>())
         {
             rigid.isKinematic = state;
         }

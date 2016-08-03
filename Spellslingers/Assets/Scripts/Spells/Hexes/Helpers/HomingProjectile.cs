@@ -20,7 +20,7 @@ public class HomingProjectile : MonoBehaviour {
 
 	void FlipUpdate() {
 		update = true;
-        this.ConstantMagnitude = this.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+        ConstantMagnitude = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
 	}
 
 
@@ -31,7 +31,7 @@ public class HomingProjectile : MonoBehaviour {
 			Quaternion rotation = Quaternion.LookRotation (target.position - transform.position);
 			Quaternion adjustedRotation = Quaternion.Slerp(transform.rotation, rotation, sensitivity * Time.deltaTime);
             gameObject.GetComponent<Rigidbody>().MoveRotation(adjustedRotation);
-			gameObject.GetComponent<Rigidbody>().velocity = transform.forward.normalized * this.ConstantMagnitude;
+			gameObject.GetComponent<Rigidbody>().velocity = transform.forward.normalized * ConstantMagnitude;
 		}
 	}
 }

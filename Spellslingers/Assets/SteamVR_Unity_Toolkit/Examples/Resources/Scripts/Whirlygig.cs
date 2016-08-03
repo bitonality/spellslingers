@@ -22,7 +22,7 @@ public class Whirlygig : VRTK_InteractableObject
     protected override void Start()
     {
         base.Start();
-        rotator = this.transform.Find("Capsule");
+        rotator = transform.Find("Capsule");
     }
 
     protected override void Update()

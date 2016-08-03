@@ -9,8 +9,8 @@ public class ArrowNotch : MonoBehaviour
 
     private void Start()
     {
-        arrow = this.transform.FindChild("Arrow").gameObject;
-        obj = this.GetComponent<VRTK_InteractableObject>();
+        arrow = transform.FindChild("Arrow").gameObject;
+        obj = GetComponent<VRTK_InteractableObject>();
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -25,14 +25,14 @@ public class ArrowNotch : MonoBehaviour
             CopyNotchToArrow();
 
             collider.GetComponentInParent<BowAim>().SetArrow(arrow);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
     private void CopyNotchToArrow()
     {
-        GameObject notchCopy = Instantiate(this.gameObject, this.transform.position, this.transform.rotation) as GameObject;
-        notchCopy.name = this.name;
+        GameObject notchCopy = Instantiate(gameObject, transform.position, transform.rotation) as GameObject;
+        notchCopy.name = name;
         arrow.GetComponent<Arrow>().SetArrowHolder(notchCopy);
         arrow.GetComponent<Arrow>().OnNock();
     }

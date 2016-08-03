@@ -81,7 +81,7 @@ namespace VRTK
             {
                 customTracer = true;
                 items[f] = (tracer ? Instantiate(tracer) : CreateSphere());
-                items[f].transform.parent = this.transform;
+                items[f].transform.parent = transform;
                 items[f].layer = LayerMask.NameToLayer("Ignore Raycast");
                 items[f].transform.localScale = new Vector3(circleSize, circleSize, circleSize);
             }
@@ -100,7 +100,7 @@ namespace VRTK
 
         public void TogglePoints(bool state)
         {
-            this.gameObject.SetActive(state);
+            gameObject.SetActive(state);
         }
 
         private GameObject CreateSphere()
@@ -261,7 +261,7 @@ namespace VRTK
         private void SetObjects(Material material)
         {
             float stepSize = frequency * 1;
-            if (this.Loop || stepSize == 1)
+            if (Loop || stepSize == 1)
             {
                 stepSize = 1f / stepSize;
             }
@@ -280,10 +280,10 @@ namespace VRTK
                 setMeshMaterial(items[f], material);
                 setSkinnedMeshMaterial(items[f], material);
 
-                Vector3 position = this.GetPoint(f * stepSize);
+                Vector3 position = GetPoint(f * stepSize);
                 items[f].transform.position = position;
 
-                Vector3 nextPosition = this.GetPoint((f + 1) * stepSize);
+                Vector3 nextPosition = GetPoint((f + 1) * stepSize);
                 Vector3 lookPosition = (nextPosition - position).normalized;
                 if (lookPosition != Vector3.zero)
                 {
