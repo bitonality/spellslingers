@@ -72,6 +72,8 @@ public class StateAI : ControlEntity {
         //Debug.Log ("Player health: " + this.Enemy.GetComponent<ControlEntity> ().Health);
         //Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState) {
+            case validStates.STARTUP:
+                break;
             case validStates.DANGER:
                 break;
             case validStates.HIT:
@@ -156,13 +158,13 @@ public class StateAI : ControlEntity {
                 //TODO: Sort spells
                 //string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
                 //Move 
-                Vector3 direction = new Vector3(speed * (float)Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, 0, 0);
+                Vector3 direction = new Vector3(speed * (float)Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
                 gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
             }
             else {
-                //Stop movement
-                gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                //Push idle state
+                // Stop movement
+                //gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                // Push idle state
                 currentAction.Enqueue(validStates.IDLE);
             }
         }
@@ -173,6 +175,19 @@ public class StateAI : ControlEntity {
         else if (state == validStates.PRESHOOT && timeUntilChange <= Time.time) {
             //Change to shooting state
             currentAction.Enqueue(validStates.SHOOTING);
+        }
+        else if (state == validStates.STARTUP)
+        {
+            // Iterate over every object, checking if there is anyone other than a player OR the player has a wand
+            foreach (GameObject enemy in Targets)
+            {
+                // TODO: This
+                //if (enemy.GetComponent<Player>() != null && enemy.GetComponent<Player>().GetWand(enemy.GetComponent<Player>().GetComponent<SteamVR_Controller>()) != null)
+                {
+                    //Start the game
+                    currentAction.Enqueue(validStates.IDLE);
+                }
+            }
         }
         return null;
     }
@@ -188,7 +203,7 @@ public class StateAI : ControlEntity {
         defaultSpeed = speed;
         originalPosition = gameObject.transform.position;
         //Start out the queue with idle
-        currentAction.Enqueue(validStates.IDLE);
+        currentAction.Enqueue(validStates.STARTUP);
     }
 
     public override bool CanShoot(Hex h, GameObject launchPoint) {
