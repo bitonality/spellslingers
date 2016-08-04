@@ -35,18 +35,18 @@ public class Castagon : MonoBehaviour {
 
 	public void CheckSpell() {
 		CastagonPoint cp = ActivatedPoints.Dequeue();
-        Debug.Log(cp.CastagonPointID);
 		for (int i = (InspectorSpells.Count - 1); i >= 0; i--) {
 			CastagonInsepctorEntry potential = InspectorSpells [i];
 			if (cp.CastagonPointID !=  potential.order [potential.order.Count - 1]) {
 				InspectorSpells.RemoveAt (i);
 			} else {
 				if (potential.order.Count == 1) {
-                    if (potential.spell != null) {
+                    // We've completed a correct sequence at this point, now we have to differentiate between hexes and auras.
+                    // If the potential spell is a Hex, run hex code.
+                    if (potential.spell.GetComponent<Hex>() != null) {
                         player.queuedSpell = potential.spell.GetComponent<Hex>();
-                    }
-                    // If we've made it this far, assume that it's an aura.
-                    else if(player.Aura != null) {
+                    } else if(this.AuraAttachPoint.gameObject.GetComponentInChildren<Aura>() != null) {
+                        // Otherwise check if there is an aura at the attach point. We check attach point rather than the player's current aura so we don't run into continuity issues.
                         SetActiveRecursively(AuraAttachPoint.gameObject, true);
                         Aura aura = this.AuraAttachPoint.gameObject.GetComponentInChildren<Aura>();
                         aura.InitializeAura(player.gameObject);
@@ -79,7 +79,6 @@ public class Castagon : MonoBehaviour {
 
 	[System.Serializable]
 	public class CastagonInsepctorEntry {
-		public string name;
 		public List<int> order;
 		public GameObject spell;
 	}
