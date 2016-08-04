@@ -6,6 +6,19 @@ using VRTK;
 // Abstraction layer that encapsulates AI and Players.
 public abstract class ControlEntity : Targetable, Influenceable {
 
+
+    // Inspector facing location for aura particle effects.
+    public GameObject AuraParticleAttachPoint;
+
+    // Inspector facing value for the default spell speed modifier.
+    public float DefaultSpellSpeedModifier = 1;
+
+    // Encapsulated value for the current spell speed modifier.
+    public float SpellSpeedModifier {
+        get;
+        set;
+    }
+
     public Dictionary<influences, bool> influenceDict = new Dictionary<influences, bool>();
 
     // For testing purposes.
@@ -36,7 +49,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     // Instantiates a hex based on a template at source and launches it at target with force modifer forceMod
     public void CastHex(Hex hex, Transform source, Transform target, float sensitivity, float controllerVelocity) {
         Hex proj = Instantiate(hex, source.position, source.rotation) as Hex;
-        proj.GetComponent<HomingProjectile>().LaunchProjectile(hex, source, target, sensitivity, controllerVelocity);
+        proj.GetComponent<HomingProjectile>().LaunchProjectile(hex, source, target, sensitivity, controllerVelocity * SpellSpeedModifier);
         ActiveHexes.Add(proj);
         proj.Source = this;
         proj.ScheduleDestroy(proj.Timeout);
@@ -46,6 +59,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
 	public override void Awake() {
         base.Awake();
+        this.SpellSpeedModifier = this.DefaultSpellSpeedModifier;
         this.ActiveHexes = new HashSet<Hex>();
         influenceDict.Add(influences.DISARM, false);
         influenceDict.Add(influences.STUN, false);

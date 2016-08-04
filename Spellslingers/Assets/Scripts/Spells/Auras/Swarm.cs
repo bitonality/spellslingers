@@ -8,9 +8,7 @@ public class Swarm : Aura {
     public float DegreesPerSecond = 90;
 
     public override void InitializeAura(GameObject target) {
-        this.Target = target;
-        this.gameObject.transform.position = this.Target.gameObject.transform.position + this.Position;
-        this.gameObject.transform.SetParent(this.Target.gameObject.transform);
+        base.InitializeAura(target);
         // Get a list of targets that the player has.
         foreach (GameObject playerTargets in this.Target.GetComponent<Targetable>().Targets) {
             // If the player's target also targets the player (mutual targets).

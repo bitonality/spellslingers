@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3394548}
   - 23: {fileID: 2350224}
   - 65: {fileID: 6564306}
+  - 114: {fileID: 11495392}
   m_Layer: 0
   m_Name: AuraBall
   m_TagString: Untagged
@@ -76,6 +77,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14708838, y: 0.14653666, z: 0.14445847}
   m_Center: {x: -5.505714e-21, y: 0.00000009685757, z: -2.3092642e-14}
+--- !u!114 &11495392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf69d0c0a3a5e149a7364730f30b6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InsepctorTargetPoint: {fileID: 0}
+  Targets: []
+  HealthBar: {fileID: 0}
+  MaxHealth: 1
+  AuraTemplate: {fileID: 132174, guid: 71a30f35ceb7ac84283291f9d3b24990, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
