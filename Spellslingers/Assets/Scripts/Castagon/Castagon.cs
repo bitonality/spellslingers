@@ -35,7 +35,6 @@ public class Castagon : MonoBehaviour {
 
 	public void CheckSpell() {
 		CastagonPoint cp = ActivatedPoints.Dequeue();
-        Debug.Log(cp.CastagonPointID);
 		for (int i = (InspectorSpells.Count - 1); i >= 0; i--) {
 			CastagonInsepctorEntry potential = InspectorSpells [i];
 			if (cp.CastagonPointID !=  potential.order [potential.order.Count - 1]) {
