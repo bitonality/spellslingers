@@ -93,7 +93,10 @@ public abstract class Targetable : MonoBehaviour {
     public void ApplyDamage(float damage) {
         // Update healthbar UI with new health amount.
         this.Health -= damage;
-        Debug.Log(this.Health);
+        // Avoid spilling over max health amount.
+        if(this.Health > this.MaxHealth) {
+            this.Health = this.MaxHealth;
+        }
         if (this.HealthBar != null) {
             this.HealthBar.GetComponent<Image>().fillAmount = (float)(this.Health / this.MaxHealth);
         }

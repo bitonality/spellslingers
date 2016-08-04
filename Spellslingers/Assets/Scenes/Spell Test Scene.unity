@@ -642,6 +642,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1c164dd0dc779498164fc9eb6c244a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InsepctorTargetPoint: {fileID: 0}
+  Targets: []
+  HealthBar: {fileID: 0}
+  MaxHealth: 0
+  <Health>k__BackingField: 0
+  AuraParticleAttachPoint: {fileID: 0}
+  DefaultSpellSpeedModifier: 1
+  InitialEnemy: {fileID: 0}
+  InitialAura: {fileID: 0}
+  <SpellSpeedModifier>k__BackingField: 0
+  <Aura>k__BackingField: {fileID: 0}
+  timeUntilChange: 3
+  delayUntilShoot: 0
+  ShootingCycleDisabled: 0
+  speed: 0
+  defaultSpeed: 0
+  spellsToShoot: []
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &894322451 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 122918, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}
@@ -889,7 +907,7 @@ Prefab:
     - target: {fileID: 11495392, guid: 6bb5d407a82e5ea49903cc27744d65b2, type: 2}
       propertyPath: AuraTemplate
       value: 
-      objectReference: {fileID: 137420, guid: 0ca1198a089a8bd49add322746b17c81, type: 2}
+      objectReference: {fileID: 193432, guid: 5e012fc0b37070e458210c0d4ee1ae70, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6bb5d407a82e5ea49903cc27744d65b2, type: 2}
   m_IsPrefabParent: 0
