@@ -6,14 +6,12 @@ Properties {
 SubShader {
 	Pass {
 		ZTest Always Cull Off ZWrite Off
-		Fog { Mode off }
 
 CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
 #include "UnityCG.cginc"
 #pragma target 3.0
-#pragma glsl
 
 // Not very practical on consoles/mobile, and PS3 Cg takes ages to compile this :(
 #pragma exclude_renderers xbox360 ps3 gles
@@ -815,9 +813,9 @@ v2f vert (appdata_img v)
 sampler2D _MainTex;
 float4 _MainTex_TexelSize;
 
-float4 frag (float2 uv : TEXCOORD0) : COLOR0
+float4 frag (v2f i) : SV_Target
 {
-	return float4(FxaaPixelShader(uv.xy, _MainTex, _MainTex_TexelSize.xy).xyz, 0.0f);
+	return float4(FxaaPixelShader(i.uv.xy, _MainTex, _MainTex_TexelSize.xy).xyz, 0.0f);
 }
 	
 ENDCG

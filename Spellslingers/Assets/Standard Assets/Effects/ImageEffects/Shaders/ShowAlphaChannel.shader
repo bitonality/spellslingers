@@ -9,12 +9,10 @@ Properties {
 SubShader {
 	Pass {
 		ZTest Always Cull Off ZWrite Off
-		Fog { Mode off }
 
 CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
-#pragma fragmentoption ARB_precision_hint_fastest 
 
 #include "UnityCG.cginc"
 
@@ -26,7 +24,7 @@ uniform float4 _MainTex_TexelSize;
 float filterRadius;
 
 struct v2f {
-	float4 pos : POSITION;
+	float4 pos : SV_POSITION;
 	float2 uv : TEXCOORD0;
 };
 
@@ -39,7 +37,7 @@ v2f vert( appdata_img v )
 	return o;
 }
 
-half4 frag (v2f i) : COLOR
+half4 frag (v2f i) : SV_Target
 {
 
 	half4 color = tex2D(_MainTex,  i.uv.xy);
