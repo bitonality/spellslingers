@@ -8,7 +8,7 @@ public class StateAI : ControlEntity
 {
 
     //time until next state change 
-    private float timeUntilChange = 3;
+    private float timeUntilChange = 0;
 
     //Time until the AI is allowed to shoot after being idle
     public float delayUntilShoot;
@@ -79,7 +79,7 @@ public class StateAI : ControlEntity
     private object justLeft(validStates oldState, validStates newState)
     {
         //Debug.Log ("Player health: " + this.Enemy.GetComponent<ControlEntity> ().Health);
-        //Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+        Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState)
         {
             case validStates.HIT:
@@ -188,15 +188,15 @@ public class StateAI : ControlEntity
         else if (state == validStates.STARTUP)
         {
             // Iterate over every object, checking if there is anyone other than a player OR the player has a wand
-            foreach (GameObject enemy in Targets)
-            {
+         //   foreach (GameObject enemy in Targets)
+          //  {
                 // TODO: This
                 //if (enemy.GetComponent<Player>() != null && enemy.GetComponent<Player>().GetWand(enemy.GetComponent<Player>().GetComponent<SteamVR_Controller>()) != null)
-                {
+            //    {
                     //Start the game
                     currentAction.Enqueue(validStates.IDLE);
-                }
-            }
+              //  }
+            //}
         }
         return null;
     }

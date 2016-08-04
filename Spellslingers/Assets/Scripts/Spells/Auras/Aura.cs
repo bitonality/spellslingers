@@ -35,7 +35,7 @@ public abstract class Aura : MonoBehaviour {
             if(Target.GetComponent<ControlEntity>().AuraParticleAttachPoint != null) {
                 AuraParticleEffect.transform.position = Target.GetComponent<ControlEntity>().AuraParticleAttachPoint.transform.position;
             }
-            AuraParticleEffect.transform.parent = this.Target.transform;
+            
 
         }
     }
