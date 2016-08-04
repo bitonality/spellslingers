@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 142386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1c164dd0dc779498164fc9eb6c244a, type: 3}
+  m_Script: {fileID: 11500000, guid: d924e325593e62c47b58c75c9d057e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InsepctorTargetPoint: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   InitialAura: {fileID: 0}
   delayUntilShoot: 0
   ShootingCycleDisabled: 0
-  speed: 50
+  speed: 25
   spellsToShoot:
   - {fileID: 11498288, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
   - {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
