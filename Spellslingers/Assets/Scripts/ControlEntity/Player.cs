@@ -84,7 +84,6 @@ public class Player : ControlEntity {
 	public override void Awake () {
 
         base.Awake();
-        
 
         // Instantiate the cooldown dictionary.
 		cooldown = new System.Collections.Generic.Dictionary<string, float> ();

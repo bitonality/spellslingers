@@ -45,11 +45,9 @@ public abstract class Targetable : MonoBehaviour {
 
 
     public virtual void Awake() {
-        Debug.Log("Awake "  + gameObject);
         this.Targets = new List<GameObject>();
         this.Health = this.MaxHealth;
         this.TargetPoint = this.InsepctorTargetPoint;
-
     }
 
     // Returns if the player is dead or not.
