@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 476276}
   - 65: {fileID: 6528012}
   - 54: {fileID: 5409424}
-  - 114: {fileID: 11455792}
   - 114: {fileID: 11449188}
   - 23: {fileID: 2357742}
   - 33: {fileID: 3385548}
@@ -311,19 +310,6 @@ MonoBehaviour:
   Damage: 20
   Velocity: 20
   AiDisarmTime: 0
---- !u!114 &11455792
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2befe67703285a94abf0267f9039d834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100006, guid: ec6e75a3654374c7f9c1007063dcd249, type: 2}
-  numLegalCollisions: 0
 --- !u!114 &11458700
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -47,9 +47,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
 	public override void Awake() {
         base.Awake();
         this.ActiveHexes = new HashSet<Hex>();
-	this.currentInfluences = new Dictionary<influences, bool> ();
         influenceDict.Add(influences.DISARM, false);
-        influenceDict.Add(influences.DISARM, true);
+        influenceDict.Add(influences.STUN, false);
         this.Targets.Add(InitialEnemy);
         this.Targets.Add(InitialAura);
 
