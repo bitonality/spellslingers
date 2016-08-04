@@ -19,9 +19,6 @@ public abstract class Hex : Spell {
 	// Velocity of the spell.
 	public float Velocity;
 
-    // Represents an aggregating value for the total rotation traveled by the hex. If it rotates an excessive amount we can then destroy it.
-    private float NetRotation = 0;
-
     // The rotation of the object from the previous FixedUpdate.
     private Quaternion LastRotation;
 
@@ -64,19 +61,23 @@ public abstract class Hex : Spell {
 
 
     void FixedUpdate() {
-
-        // The following code is used to avoid spiraling issues. If a hex has to make more than 180 degrees of total correction
-        // Then we destroy it
-        if (LastRotation == null) {
-            LastRotation = this.gameObject.transform.rotation;
+        // The following code is used to avoid spiraling issues. If a hex has to make more than 180 degrees of total correction then we destroy it.
+        if (LastRotation != null) {
+            Debug.Log(LastRotation);
+            Debug.Log(this.gameObject.transform.rotation);
+            Debug.Log(Quaternion.Angle(this.gameObject.transform.rotation, LastRotation));
+            // If we've rotated an absurd amount
+            if (Quaternion.Angle(this.gameObject.transform.rotation, LastRotation) > 90) {
+                BehavioralDestroy();
+            }
         }
-        NetRotation += Quaternion.Angle(this.gameObject.transform.rotation, LastRotation);
-        LastRotation = this.gameObject.transform.rotation; 
-        // If we've rotated an absurd amount
-        if(NetRotation > 180) {
-            BehavioralDestroy();
-        }
+         
     }
+
+    public virtual void Start() {
+        LastRotation = this.gameObject.transform.rotation;
+    }
+
 
     public abstract void playerCollide(GameObject playerCameraRig);
 	public abstract void aiCollide(GameObject aiBody);

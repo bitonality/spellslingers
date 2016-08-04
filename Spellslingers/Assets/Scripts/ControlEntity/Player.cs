@@ -70,6 +70,7 @@ public class Player : ControlEntity {
         float angle = 179;
         Transform best = null;
         foreach(GameObject target in Targets) {
+            if (target == null) continue;
             float test = Vector3.Angle(wand.transform.position - controller.transform.position, target.transform.position - controller.transform.position);
             if(test < angle) {
                 angle = test;

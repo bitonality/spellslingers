@@ -43,10 +43,11 @@ public class Castagon : MonoBehaviour {
 				if (potential.order.Count == 1) {
                     // We've completed a correct sequence at this point, now we have to differentiate between hexes and auras.
                     // If the potential spell is a Hex, run hex code.
-                    if (potential.spell.GetComponent<Hex>() != null) {
+                    // potential.spell will be null when a generic aura pattern is defined in the castagon prefab.
+                    if (potential.spell != null && potential.spell.GetComponent<Hex>() != null) {
                         player.queuedSpell = potential.spell.GetComponent<Hex>();
-                    } else if(this.AuraAttachPoint.gameObject.GetComponentInChildren<Aura>() != null) {
-                        // Otherwise check if there is an aura at the attach point. We check attach point rather than the player's current aura so we don't run into continuity issues.
+                    } else if(this.AuraAttachPoint.gameObject != null) {
+                        // Otherwise check if there is a GameObject at the attach point. We check attach point rather than the player's currently cached aura so we don't run into continuity issues.
                         SetActiveRecursively(AuraAttachPoint.gameObject, true);
                         Aura aura = this.AuraAttachPoint.gameObject.GetComponentInChildren<Aura>();
                         aura.InitializeAura(player.gameObject);

@@ -70,7 +70,7 @@ public class StateAI : ControlEntity {
     //Called only when changing state
     private object justLeft(validStates oldState, validStates newState) {
         //Debug.Log ("Player health: " + this.Enemy.GetComponent<ControlEntity> ().Health);
-        Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+        //Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState) {
             case validStates.DANGER:
                 break;

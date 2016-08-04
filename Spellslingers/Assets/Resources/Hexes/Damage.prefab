@@ -115,9 +115,9 @@ GameObject:
   - 65: {fileID: 6522602}
   - 23: {fileID: 2354534}
   - 54: {fileID: 5488208}
-  - 114: {fileID: 11432156}
   - 114: {fileID: 11498288}
   - 114: {fileID: 11442072}
+  - 114: {fileID: 11419044}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -483,6 +483,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 720, y: 0, z: 0}
   local: 1
+--- !u!114 &11419044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4d32e902eaf3a419943c87ecb7e186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 0}
+  numLegalCollisions: 0
 --- !u!114 &11427000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,19 +517,6 @@ MonoBehaviour:
   curTime: 0
   curColor: {r: 0.8014706, g: 0.5803752, b: 0, a: 0}
   everyFrame: 1
---- !u!114 &11432156
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2befe67703285a94abf0267f9039d834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100006, guid: ec6e75a3654374c7f9c1007063dcd249, type: 2}
-  numLegalCollisions: 0
 --- !u!114 &11442072
 MonoBehaviour:
   m_ObjectHideFlags: 1
