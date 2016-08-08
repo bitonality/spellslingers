@@ -92,7 +92,7 @@ MonoBehaviour:
   Targets: []
   HealthBar: {fileID: 0}
   MaxHealth: 1
-  AuraTemplate: {fileID: 132174, guid: 71a30f35ceb7ac84283291f9d3b24990, type: 2}
+  AuraTemplate: {fileID: 161796, guid: 8623d6bfc24a2fa43b614d13ed06be92, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
