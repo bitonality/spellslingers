@@ -22,6 +22,12 @@ public abstract class Hex : Spell {
     // The rotation of the object from the previous FixedUpdate.
     private Quaternion LastRotation;
 
+    // Max rotation the game object can move before being destroyed.
+    public float MaxRotation {
+        get;
+        set;
+    }
+
     // Represents the shooter of the hex.
     public ControlEntity Source {
         get;
@@ -63,11 +69,8 @@ public abstract class Hex : Spell {
     void FixedUpdate() {
         // The following code is used to avoid spiraling issues. If a hex has to make more than 180 degrees of total correction then we destroy it.
         if (LastRotation != null) {
-            Debug.Log(LastRotation);
-            Debug.Log(this.gameObject.transform.rotation);
-            Debug.Log(Quaternion.Angle(this.gameObject.transform.rotation, LastRotation));
             // If we've rotated an absurd amount
-            if (Quaternion.Angle(this.gameObject.transform.rotation, LastRotation) > 90) {
+            if (Quaternion.Angle(this.gameObject.transform.rotation, LastRotation) > MaxRotation) {
                 BehavioralDestroy();
             }
         }
@@ -76,6 +79,7 @@ public abstract class Hex : Spell {
 
     public virtual void Start() {
         LastRotation = this.gameObject.transform.rotation;
+        MaxRotation = 90;
     }
 
 

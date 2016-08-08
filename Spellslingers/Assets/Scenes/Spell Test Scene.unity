@@ -902,7 +902,7 @@ Prefab:
     - target: {fileID: 11495392, guid: 6bb5d407a82e5ea49903cc27744d65b2, type: 2}
       propertyPath: AuraTemplate
       value: 
-      objectReference: {fileID: 193432, guid: 5e012fc0b37070e458210c0d4ee1ae70, type: 2}
+      objectReference: {fileID: 161796, guid: 8623d6bfc24a2fa43b614d13ed06be92, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6bb5d407a82e5ea49903cc27744d65b2, type: 2}
   m_IsPrefabParent: 0

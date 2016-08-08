@@ -4,14 +4,17 @@ using VRTK;
 
 public class HomingProjectile : MonoBehaviour {
 
-    private Transform target;
+    public Transform Target {
+        get;
+        set;
+    }
 	private float sensitivity;
     private float ConstantMagnitude;
 	private bool update = false;
 
 	public void LaunchProjectile(Hex hex, Transform source, Transform target, float sensitivity, float controllerMagnitude)
     {
-        this.target = target;
+        this.Target = target;
 		this.sensitivity = sensitivity;
 		gameObject.GetComponent<Rigidbody>().AddForce(source.forward * (float) controllerMagnitude * hex.Velocity);
 		Invoke ("FlipUpdate", 0.1F);
@@ -28,7 +31,7 @@ public class HomingProjectile : MonoBehaviour {
     void FixedUpdate ()
 	{
 		if (update) {
-			Quaternion rotation = Quaternion.LookRotation (target.position - transform.position);
+			Quaternion rotation = Quaternion.LookRotation (Target.position - transform.position);
 			Quaternion adjustedRotation = Quaternion.Slerp(transform.rotation, rotation, sensitivity * Time.deltaTime);
             gameObject.GetComponent<Rigidbody>().MoveRotation(adjustedRotation);
 			gameObject.GetComponent<Rigidbody>().velocity = transform.forward.normalized * ConstantMagnitude;

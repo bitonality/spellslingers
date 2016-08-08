@@ -38,4 +38,18 @@ public class HexCollide : MonoBehaviour {
             this.gameObject.GetComponent<Hex>().Destroy();
         }
     }
+
+    void OnTriggerEnter(Collision col) {
+        if(col.gameObject.tag == "Forcefield") {
+            Hex h = this.gameObject.GetComponent<Hex>();
+            h.MaxRotation = 360;
+            Invoke("ResetMaxRotation", 0.5F);
+            this.gameObject.GetComponent<Rigidbody>().velocity *= -1;
+            this.gameObject.GetComponent<HomingProjectile>().Target = h.Source.TargetPoint;
+        }
+    }
+
+    void ResetMaxRotation() {
+        this.gameObject.GetComponent<Hex>().MaxRotation = 90;
+    }
 }
