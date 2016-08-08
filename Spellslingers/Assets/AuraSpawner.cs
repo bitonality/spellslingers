@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AuraSpawner : MonoBehaviour {
 
-    public TargetableAura[] SpawnableAuras;
+    public GameObject[] SpawnableAuras;
     public GameObject[] AuraTargeters;
 
    void Start() {
@@ -15,9 +15,10 @@ public class AuraSpawner : MonoBehaviour {
         Transform[] attachPoints = this.gameObject.GetComponentsInChildren<Transform>();
         System.Random rnd = new System.Random();
         int randomIndex = rnd.Next(0, attachPoints.Length);
-        TargetableAura auraTemplate = SpawnableAuras[rnd.Next(0, SpawnableAuras.Length)];
-        GameObject aura = Instantiate(auraTemplate, attachPoints[randomIndex].transform.position, Quaternion.identity) as GameObject;
-        aura.transform.SetParent(attachPoints[randomIndex], false);
+        GameObject auraTemplate = SpawnableAuras[rnd.Next(0, SpawnableAuras.Length)];
+        GameObject aura = Instantiate(auraTemplate, attachPoints[randomIndex].transform.position, auraTemplate.transform.rotation) as GameObject;
+        Debug.Log(aura);
+        aura.transform.SetParent(attachPoints[randomIndex]);
         foreach(GameObject ob in AuraTargeters) {
             ob.GetComponent<ControlEntity>().AddTarget(aura);
         }
