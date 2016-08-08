@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   HexName: Disarm
-  Timeout: 5
+  Timeout: 15
   Damage: 20
   Velocity: 20
   AiDisarmTime: 0

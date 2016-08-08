@@ -584,7 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   HexName: Damage
-  Timeout: 5
+  Timeout: 15
   Damage: 20
   Velocity: 20
 --- !u!198 &19825268

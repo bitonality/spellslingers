@@ -27,7 +27,6 @@ GameObject:
   - 4: {fileID: 421624}
   - 198: {fileID: 19837066}
   - 199: {fileID: 19941872}
-  - 114: {fileID: 11446922}
   m_Layer: 0
   m_Name: ForcefieldEffect
   m_TagString: Untagged
@@ -64,7 +63,7 @@ GameObject:
   - 4: {fileID: 449570}
   m_Layer: 0
   m_Name: Forcefield
-  m_TagString: Untagged
+  m_TagString: Forcefield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +95,6 @@ GameObject:
   - 4: {fileID: 489356}
   - 198: {fileID: 19891316}
   - 199: {fileID: 19948872}
-  - 114: {fileID: 11411898}
   m_Layer: 0
   m_Name: PComponent Splash Explosion
   m_TagString: Untagged
@@ -128,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 176.82227, y: 10.303229, z: 165.95706}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -273,19 +271,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Size: {x: 4.98, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11411898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11417484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,21 +301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CastagonPointID: 7
   Touched: 0
---- !u!114 &11446922
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e3394954bba4cd289003d2453a2ef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 0.1, z: 0}
-  startRotation: {x: 0, y: 0, z: 0}
-  shootsTarget: 0
-  shootSpeed: 12
 --- !u!198 &19822940
 ParticleSystem:
   m_ObjectHideFlags: 1
