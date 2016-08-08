@@ -10,22 +10,39 @@ public class Stun : Hex {
 	public float duration;
 
 	//How often the decrement will run
-	//private float repeatRate = 0.2F;
+	private float repeatRate = 0.2F;
 
 	//calculated value for how much to decrease the blur size by
 	public double interval = 0;
+    private MotionBlur blur;
 
-
-	public override void playerCollide (GameObject playerCameraRig)
+    public override void playerCollide (GameObject playerCameraRig)
 	{
-        playerCameraRig.GetComponent<ParticleSystem>().Play();
-        StartCoroutine(scheduleStop(playerCameraRig));
+
+        MotionBlur blur = playerCameraRig.GetComponentInChildren<MotionBlur>();
+        this.blur = blur;
+        blur.blurAmount = 0.92F;
+        double iterations = (duration / 1000) / repeatRate;
+        interval = this.blur.blurAmount / iterations;
+
+        ScheduleBlur();
+
         playerCameraRig.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
         playerCameraRig.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration);
     }
 
+    void FadeBlur() {
+        this.blur.blurAmount = (float)(this.blur.blurAmount - this.interval);
+        if (this.blur.blurAmount <= 0) {
+            Destroy(this.gameObject);
+        }
+    }
 
-	public override void aiCollide (GameObject aiBody) {
+    void ScheduleBlur() {
+        InvokeRepeating("FadeBlur", 1.0F, repeatRate);
+    }
+
+    public override void aiCollide (GameObject aiBody) {
 		float delta = aiBody.GetComponent<StateAI> ().speed / 2;
 		aiBody.GetComponent<StateAI> ().setSpeed (delta);
 		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<StateAI>().speed + delta);
