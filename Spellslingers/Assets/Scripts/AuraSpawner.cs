@@ -6,7 +6,7 @@ public class AuraSpawner : MonoBehaviour {
     public GameObject[] SpawnableAuras;
     public GameObject[] AuraTargeters;
 
-   void Start() {
+   void Awake() {
         InvokeRepeating("SpawnAura", 5F, 20F);
     }
 

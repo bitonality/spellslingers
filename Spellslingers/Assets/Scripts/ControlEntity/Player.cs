@@ -48,11 +48,11 @@ public class Player : ControlEntity {
         // Assume spell is sucessfully cast, so add the spell to the cooldown.
         cooldown.Add (h.HexName, Time.time + h.cooldown) ;
         // Get the cooldown slider associated with the cast hex.
-		Slider slider = Sliders [h.HexName];
+		    //Slider slider = Sliders [h.HexName];
         // Reset the min and max scale of the slider in case we want to modify cooldown amounts at runtime
-		slider.minValue = 0;
-		slider.maxValue = h.cooldown;
-		slider.value = slider.minValue;
+		    //slider.minValue = 0;
+		    //slider.maxValue = h.cooldown;
+		    //slider.value = slider.minValue;
 		return true;
 	}
 
@@ -91,9 +91,9 @@ public class Player : ControlEntity {
 
 		// Populate our slider map with values from the inspector.
 		Sliders = new Dictionary<string, Slider> ();
-		foreach (SliderInsepctorEntry entry in InspectorSliders) {
-			Sliders.Add (entry.hex.GetComponent<Hex>().HexName, entry.slider.GetComponent<Slider> ());
-		}
+		//foreach (SliderInsepctorEntry entry in InspectorSliders) {
+			//Sliders.Add (entry.hex.GetComponent<Hex>().HexName, entry.slider.GetComponent<Slider> ());
+		//}
 
         // Initial settting of queuedSpell.
 		queuedSpell = null;
@@ -104,7 +104,7 @@ public class Player : ControlEntity {
         // Iterate over all the sliders and update their value 
 		foreach(KeyValuePair<string, float> spell in cooldown) {
 			if (Time.time <= spell.Value) {
-				Sliders [spell.Key].value += Time.fixedDeltaTime;
+			//	Sliders [spell.Key].value += Time.fixedDeltaTime;
 			}
 		}
 	}

@@ -8,14 +8,17 @@ public class HomingProjectile : MonoBehaviour {
         get;
         set;
     }
-	private float sensitivity;
+	public float Sensitivity {
+        get;
+        set;
+    }
     private float ConstantMagnitude;
 	private bool update = false;
 
 	public void LaunchProjectile(Hex hex, Transform source, Transform target, float sensitivity, float controllerMagnitude)
     {
         this.Target = target;
-		this.sensitivity = sensitivity;
+		this.Sensitivity = sensitivity;
 		gameObject.GetComponent<Rigidbody>().AddForce(source.forward * (float) controllerMagnitude * hex.Velocity);
 		Invoke ("FlipUpdate", 0.1F);
 
@@ -32,7 +35,7 @@ public class HomingProjectile : MonoBehaviour {
 	{
 		if (update) {
 			Quaternion rotation = Quaternion.LookRotation (Target.position - transform.position);
-			Quaternion adjustedRotation = Quaternion.Slerp(transform.rotation, rotation, sensitivity * Time.deltaTime);
+			Quaternion adjustedRotation = Quaternion.Slerp(transform.rotation, rotation, Sensitivity * Time.deltaTime);
             gameObject.GetComponent<Rigidbody>().MoveRotation(adjustedRotation);
 			gameObject.GetComponent<Rigidbody>().velocity = transform.forward.normalized * ConstantMagnitude;
 		}

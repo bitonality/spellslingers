@@ -109,6 +109,7 @@ public class StateAI : ControlEntity
                     Hex h = pickHex();
                     if (CanShoot(h, gameObject))
                     {
+
                         //Shoot
                         CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.CurrentTarget().GetComponent<Targetable>().TargetPoint, 2, 5);
                         //Go back to POSTSHOOT state

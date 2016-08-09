@@ -15,7 +15,10 @@ public class Swarm : Aura {
             if (this.Target.GetComponent<Targetable>().MutualTargets(playerTargets)) {
                 // Push the target cubes as priority into the enemy target list
                 foreach (Transform child in this.gameObject.transform) {
-                    playerTargets.GetComponent<Targetable>().AddTarget(child.gameObject);
+                    // Only add targetable children to the target array.
+                    if (child.gameObject.GetComponent<Targetable>() != null) {
+                        playerTargets.GetComponent<Targetable>().AddTarget(child.gameObject);
+                    }
                 }
             }
         }

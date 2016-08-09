@@ -44,6 +44,8 @@ public class HexCollide : MonoBehaviour {
             Hex h = this.gameObject.GetComponent<Hex>();
             // Hexes will never despawn because of this, produces swarm-like effect.
             h.MaxRotation = 360;
+            HomingProjectile hp = this.gameObject.GetComponent<HomingProjectile>();
+            hp.Sensitivity = 50;
             this.gameObject.GetComponent<Rigidbody>().velocity *= -1;
             this.gameObject.transform.rotation = Quaternion.Inverse(this.gameObject.transform.rotation);
             this.gameObject.GetComponent<HomingProjectile>().Target = h.Source.TargetPoint;
