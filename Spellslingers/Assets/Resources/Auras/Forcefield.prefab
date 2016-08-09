@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47528f1bb81abab47a227400a628132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AuraParticleEffect: {fileID: 122548}
+  AuraParticleEffect: {fileID: 194966, guid: 5953f06c087d6eb4a86de6d9d536951d, type: 2}
   Length: 10
   Interval: 10
   Position: {x: 0, y: 0.75, z: 0}
