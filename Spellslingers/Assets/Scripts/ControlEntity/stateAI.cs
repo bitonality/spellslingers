@@ -55,6 +55,7 @@ public class StateAI : ControlEntity
     //Called every 0.02 seconds
     void FixedUpdate()
     {
+        
         if (currentAction.Count <= 0)
         {
             //Something went wrong with starting the AI
@@ -140,16 +141,7 @@ public class StateAI : ControlEntity
     }
 
     //Called every time, but only if a state change did not occur.
-    private object currentExclusive(validStates state)
-    {
-        if (state == validStates.IDLE)
-        {
-            //Make sure it isn't in danger
-            if (isInDanger().Count > 0)
-            {
-                currentAction.Enqueue(validStates.DANGER);
-            }
-        }
+    private object currentExclusive(validStates state) { 
         return null;
     }
 
@@ -176,12 +168,15 @@ public class StateAI : ControlEntity
                 //Move 
                 Vector3 direction = new Vector3(speed * (float)Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
                 gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+                currentAction.Clear();
+                currentAction.Enqueue(validStates.DANGER);
             }
             else
             {
                 // Stop movement
                 //gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 // Push idle state
+                Debug.Log("Moving to idle state from danger state");
                 currentAction.Enqueue(validStates.IDLE);
             }
         }
