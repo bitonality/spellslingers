@@ -88,11 +88,36 @@ NavMeshSettings:
 --- !u!1 &6770482 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 124662, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}
-  m_PrefabInternal: {fileID: 580932398}
+  m_PrefabInternal: {fileID: 486875366}
 --- !u!1 &275148755 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 120102, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}
-  m_PrefabInternal: {fileID: 580932398}
+  m_PrefabParentObject: {fileID: 178484, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}
+  m_PrefabInternal: {fileID: 486875366}
+--- !u!1 &318009479 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 157512, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
+  m_PrefabInternal: {fileID: 391519553}
+--- !u!114 &318009483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 318009479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _head: {fileID: 605132201}
+  _ears: {fileID: 531953958}
+  wireframe: 0
+  flip: {fileID: 318009486}
+--- !u!114 &318009486 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11469924, guid: 13637e9cf37ef1a4b83eb524f0e74687,
+    type: 2}
+  m_PrefabInternal: {fileID: 391519553}
+  m_Script: {fileID: 11500000, guid: f5be45115742b07478e21c85fcc233ec, type: 3}
 --- !u!1 &320486883
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +233,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11465376, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
+      propertyPath: blurAmount
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11464380, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &391519561 stripped
@@ -298,7 +328,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 415439759}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &580932398
+--- !u!1001 &486875366
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -380,6 +410,14 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &531953958 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 418824, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
+  m_PrefabInternal: {fileID: 391519553}
+--- !u!4 &605132201 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 458336, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
+  m_PrefabInternal: {fileID: 391519553}
 --- !u!1 &651675478
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,23 +608,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d924e325593e62c47b58c75c9d057e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InsepctorTargetPoint: {fileID: 0}
-  Targets: []
-  HealthBar: {fileID: 894322451}
-  MaxHealth: 200
-  AuraParticleAttachPoint: {fileID: 993954479}
-  DefaultSpellSpeedModifier: 1
-  InitialEnemy: {fileID: 391519561}
-  InitialAura: {fileID: 0}
-  delayUntilShoot: 0
-  ShootingCycleDisabled: 0
-  speed: 10
-  spellsToShoot:
-  - {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
 --- !u!1 &894322451 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 122918, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}
-  m_PrefabInternal: {fileID: 580932398}
+  m_PrefabInternal: {fileID: 486875366}
 --- !u!1 &934072277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,4 +1182,4 @@ Light:
 --- !u!1 &1992524131 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 103536, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}
-  m_PrefabInternal: {fileID: 580932398}
+  m_PrefabInternal: {fileID: 486875366}

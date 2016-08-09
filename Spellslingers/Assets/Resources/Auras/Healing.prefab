@@ -1,24 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &101900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 422806}
-  - 33: {fileID: 3390076}
-  - 23: {fileID: 2321772}
-  - 114: {fileID: 11479210}
-  - 65: {fileID: 6589030}
-  m_Layer: 0
-  m_Name: HealingRune
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &128048
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,16 +82,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &422806
+--- !u!1 &194586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 424378}
+  - 33: {fileID: 3311370}
+  - 23: {fileID: 2355514}
+  - 65: {fileID: 6595240}
+  - 114: {fileID: 11499722}
+  m_Layer: 0
+  m_Name: orb05_yellow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &424378
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 194586}
+  m_LocalRotation: {x: 0.000000115202326, y: 0.7071068, z: 0.7071068, w: -0.000000115202326}
+  m_LocalPosition: {x: 0.022971466, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: -360, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -180, z: 0}
   m_Children:
   - {fileID: 477944}
   m_Father: {fileID: 435730}
@@ -127,7 +127,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -90, y: -180, z: 0}
   m_Children:
   - {fileID: 483606}
-  - {fileID: 422806}
+  - {fileID: 424378}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &447916
@@ -150,12 +150,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152882}
-  m_LocalRotation: {x: -0.000000115202326, y: -0.7071068, z: -0.7071068, w: -0.000000115202326}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.00000016292067, z: 0.00000016292067, w: -1}
+  m_LocalPosition: {x: 0.022971472, y: -0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
   m_Children: []
-  m_Father: {fileID: 422806}
+  m_Father: {fileID: 424378}
   m_RootOrder: 0
 --- !u!4 &483606
 Transform:
@@ -184,12 +184,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 447916}
   m_RootOrder: 0
---- !u!23 &2321772
+--- !u!23 &2355514
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101900}
+  m_GameObject: {fileID: 194586}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -210,19 +210,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3390076
+--- !u!33 &3311370
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101900}
-  m_Mesh: {fileID: 4300164, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
---- !u!65 &6589030
+  m_GameObject: {fileID: 194586}
+  m_Mesh: {fileID: 4300102, guid: 7374575f12d49ba459e91009f7a9ec62, type: 3}
+--- !u!65 &6595240
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101900}
+  m_GameObject: {fileID: 194586}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -240,17 +240,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce25bd6aaedeb614088e7f129480be8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AuraParticleEffect: {fileID: 171540}
+  AuraParticleEffect: {fileID: 194966, guid: 5953f06c087d6eb4a86de6d9d536951d, type: 2}
   Length: 5
   Interval: 5
   Position: {x: 0, y: 0, z: 0}
   HealthToRestore: 50
---- !u!114 &11479210
+--- !u!114 &11499722
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101900}
+  m_GameObject: {fileID: 194586}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e256cce76bdd80409c13348e44af331, type: 3}
@@ -3441,7 +3441,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4291590680
+        rgba: 1439463960
       minMaxState: 0
     startSize:
       scalar: 0.49
