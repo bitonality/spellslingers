@@ -20,8 +20,6 @@ public class CastListener : MonoBehaviour {
 	// Cache player on start up to avoid unneeded traversals of the heiarchy tree. 
 	private Player player;
 
-    public GameObject AuraTemplate;
-
 	void Start () {
 
         // Controllers must have VRTK_ControllerEvents attached or the listener will not work properly.
@@ -111,21 +109,14 @@ public class CastListener : MonoBehaviour {
 				player.queuedSpell = null;
 			}
 		}
-
-		player.GetWand (gameObject).GetComponentInChildren<TrailRenderer> ().enabled = false;
+        if (player.GetWand(gameObject) != false) {
+            player.GetWand(gameObject).GetComponentInChildren<TrailRenderer>().enabled = false;
+        }
 	}
 
 	void FixedUpdate() {
 		if (player.queuedSpell != null) {
             if (player.GetWand(gameObject) != null) {
-                /* GameObject wand = gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
-                 // Get the angle between the controller-wand vector and the controller-ai vector.
-                 float angle = Vector3.Angle(wand.transform.position - gameObject.transform.position, player.Targets.transform.position - gameObject.transform.position);
-                 // Adjust the color of the wand light based on the accuracy of the direction of the wand
-                // wand.GetComponentInChildren<Light>().color = Color.Lerp(GoodColorLerp, BadColorLerp, Mathf.InverseLerp(180, 0, angle));
-                 // Set the intensity of the wand light to maxmimum. TODO: potentially change this later if the color lerping feels weird
-                 //wand.GetComponentInChildren<Light>().intensity = 8;
-                 */
                 player.GetWand(gameObject).GetComponentInChildren<TrailRenderer>().material.color = player.queuedSpell.GetComponentInChildren<ParticleSystem>().startColor;
             }
 		}
