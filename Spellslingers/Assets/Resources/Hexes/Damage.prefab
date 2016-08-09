@@ -585,7 +585,7 @@ MonoBehaviour:
   cooldown: 0
   HexName: Damage
   Timeout: 15
-  Damage: 20
+  Damage: 5
   Velocity: 20
 --- !u!198 &19825268
 ParticleSystem:

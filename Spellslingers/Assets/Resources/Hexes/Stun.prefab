@@ -289,7 +289,7 @@ MonoBehaviour:
   Timeout: 15
   Damage: 20
   Velocity: 20
-  duration: 5000
+  duration: 10000
   interval: 0
 --- !u!114 &11492442
 MonoBehaviour:

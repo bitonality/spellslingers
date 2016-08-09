@@ -34,6 +34,8 @@ public class HomingProjectile : MonoBehaviour {
     void FixedUpdate ()
 	{
 		if (update) {
+            // For if we destroy the hex object before the actual gameobject has been destroyed.
+            if (this.gameObject == null) return; 
 			Quaternion rotation = Quaternion.LookRotation (Target.position - transform.position);
 			Quaternion adjustedRotation = Quaternion.Slerp(transform.rotation, rotation, Sensitivity * Time.deltaTime);
             gameObject.GetComponent<Rigidbody>().MoveRotation(adjustedRotation);

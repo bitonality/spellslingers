@@ -91,7 +91,7 @@ public class StateAI : ControlEntity
                 Vector3 Destination = new Vector3(UnityEngine.Random.Range(-5f, 5f) * 10, 0, UnityEngine.Random.Range(-5f, 5f) * 10);
                 gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
                 //Schedule interruptable state change in 3 seconds
-                timeUntilChange = Time.time + 3;
+                timeUntilChange = Time.time + 1;
                 currentAction.Enqueue(validStates.PRESHOOT);
                 break;
             case validStates.PRESHOOT:
