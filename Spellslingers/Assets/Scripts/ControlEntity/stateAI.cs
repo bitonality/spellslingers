@@ -6,6 +6,8 @@ using System;
 
 public class StateAI : ControlEntity
 {
+
+    /*
     //Difficulty - Easy/Normal/Hard: 1/2/3
     // TODO: Make a way to set this in-game
     public int Difficulty = 2;
@@ -302,5 +304,15 @@ public class StateAI : ControlEntity
         {
             speed = defaultSpeed;
         }
+    }
+    */
+    public override bool CanShoot(Hex h, GameObject launchPoint)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void processHex(Hex h)
+    {
+        throw new NotImplementedException();
     }
 }

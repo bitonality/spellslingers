@@ -6,58 +6,41 @@ using UnityEngine;
 
 public class NewAI : ControlEntity
 {
+    public GameObject influenceText;
+
+    //Difficulty - Easy/Normal/Hard: 1/2/3
     // TODO: Make a way to set this in-game
-    [Tooltip("A value (1/2/3) that sets the difficulty. 1 is easy, 2 is normal and 3 is hard. To keep these values in the inspector as-is, set this to 2 (1 and 3 will modify some values)")]
     public int Difficulty = 2;
 
     //time until next state change 
-    private float timeUntilChange
-    {
-        get;
-        set;
-    }
+    private float timeUntilChange = 0;
 
-    [Tooltip("The amount of time the AI will pointlessly float in one direction and be in IDLE stage")]
-    public float IdlePauseTime = 3;
+    //Time until the AI is allowed to shoot after being idle
+    public float IdlePauseTime;
     // A difficulty modifier is the amount it will increase/decrease (depending on the context) if the difficulty is not set to 2.
     // For example, IdleDifficultyMod increases/decreases IdlePauseTime if difficulty is 1/3, respectivly. However, SpeedDifficultyMod decreases/increases speed if the difficulty is 1/3.
     public float IdleMod = 1;
 
     //For stacking of effects that disable shooting
-    public float ShootingCycleDisabled
-    {
-        get;
-        set;
-    }
+    public float ShootingCycleDisabled = 0;
 
-    [Tooltip("Speed (in m/s) of the AI")]
-    public float speed = 35;
+    //Speed (m/s) of the AI
+    public float speed;
     public float SpeedMod = 10;
 
-    [Tooltip("Delay the AI must wait while in PRESHOOT and not be in danger, in order to move into SHOOTING")]
+    // Delay the AI must wait while in PRESHOOT and NOT be in danger
     public float PreshootDelay = 1;
     public float PreshootDelayMod = .5f;
 
-    [Tooltip("Amount to modify MaxAngle in CastListener by. Default is 30.")]
+    // MaxAngle in CastListener. Default is 30
     public float MaxAngleMod = 10;
 
-    private float defaultSpeed
-    {
-        get;
-        set;
-    }
+    private float defaultSpeed;
 
-    [Tooltip("Array of spells the AI can choose from")]
+    //List of spells the AI is allowed to shoot
     public Hex[] spellsToShoot;
 
-    [Tooltip("Health modifier based on difficulty")]
-    public float HealthMod = 25;
-
-    private Vector3 originalPosition
-    {
-        get;
-        set;
-    }
+    private Vector3 originalPosition;
 
     public enum validStates
     {
@@ -69,6 +52,18 @@ public class NewAI : ControlEntity
         SHOOTING,
         POSTSHOOT,
         DEAD
+    }
+
+    public void UpdateInfluenceText()
+    {
+        influenceText.GetComponent<GUIText>().text = "";
+        foreach (KeyValuePair<influences, bool> influence in influenceDict)
+        {
+            if (influence.Value)
+            {
+                influenceText.GetComponent<GUIText>().text += influence.Key;
+            }
+        }
     }
 
     // Make sure it can't leave the AI boundry.
@@ -239,8 +234,6 @@ public class NewAI : ControlEntity
         // Modify difficulty variables
         if (Difficulty == 1)
         {
-            GetComponent<ControlEntity>().MaxHealth -= HealthMod;
-            GetComponent<ControlEntity>().Health -= HealthMod;
             GetComponent<CastListener>().ModifyMaxAngle(MaxAngleMod);
             IdlePauseTime += IdleMod;
             PreshootDelay += PreshootDelayMod;
@@ -248,8 +241,6 @@ public class NewAI : ControlEntity
         }
         else if (Difficulty == 3)
         {
-            GetComponent<ControlEntity>().MaxHealth += HealthMod;
-            GetComponent<ControlEntity>().Health += HealthMod;
             GetComponent<CastListener>().ModifyMaxAngle(-1 * MaxAngleMod);
             IdlePauseTime -= IdleMod;
             PreshootDelay -= PreshootDelayMod;
@@ -297,6 +288,8 @@ public class NewAI : ControlEntity
                 }
             }
         }
+
+
         return dangerousSpells;
     }
 
