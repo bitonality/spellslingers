@@ -110,7 +110,6 @@ public class CastListener : MonoBehaviour {
 				} else {
 					speedCheck = 0F;
 				}
-				Debug.Log (angle + " SpeedCheck: " + speedCheck + " Angle check: " + angleCheck);
 
                 // Cast the hex from the wand launch point with random accuracy modifiers.
 				player.CastHex(player.queuedSpell, player.GetWand(gameObject).transform.FindChild("LaunchPoint").transform, target, angleCheck + speedCheck, controllerVelocity.magnitude);

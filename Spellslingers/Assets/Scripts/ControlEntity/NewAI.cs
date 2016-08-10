@@ -56,12 +56,13 @@ public class NewAI : ControlEntity
 
     public void UpdateInfluenceText()
     {
-        influenceText.GetComponent<GUIText>().text = "";
+        influenceText.GetComponent<Text>().text = "";
         foreach (KeyValuePair<influences, bool> influence in influenceDict)
         {
-            if (influence.Value)
+            Debug.Log(influence.Key + " is " + influence.Value);
+            if (influence.Value == true)
             {
-                influenceText.GetComponent<GUIText>().text += influence.Key;
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + ", " + influence.Key;
             }
         }
     }
@@ -72,7 +73,6 @@ public class NewAI : ControlEntity
         //Debug.Log (col);
         if (col.gameObject.tag == "AIBoundry")
         {
-            Debug.Log("Returning to center");
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             gameObject.GetComponent<Rigidbody>().AddForce((originalPosition - gameObject.transform.position) * speed, ForceMode.Impulse);
         }
@@ -107,7 +107,7 @@ public class NewAI : ControlEntity
     private object justLeft(validStates oldState, validStates newState)
     {
         //Debug.Log ("Player health: " + this.Enemy.GetComponent<ControlEntity> ().Health);
-        Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+        //Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState)
         {
             case validStates.HIT:
