@@ -28,7 +28,7 @@ public class Stun : Hex {
         ScheduleBlur();
 
         playerCameraRig.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
-        playerCameraRig.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration);
+        playerCameraRig.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration / 1000);
     }
 
 
@@ -37,7 +37,7 @@ public class Stun : Hex {
 		aiBody.GetComponent<NewAI> ().setSpeed (delta);
 		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<NewAI>().speed + delta);
         aiBody.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
-        aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration);
+        aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration / 1000);
        // aiBody.GetComponent<NewAI>().Shake(0.1F, duration);
     }
 
