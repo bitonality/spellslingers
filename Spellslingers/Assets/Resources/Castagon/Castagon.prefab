@@ -2134,7 +2134,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6561174
 BoxCollider:
@@ -2158,7 +2158,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6586346
 BoxCollider:
@@ -2170,7 +2170,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6586830
 BoxCollider:
@@ -2182,7 +2182,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6591386
 BoxCollider:
@@ -2194,7 +2194,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6595154
 BoxCollider:
@@ -2206,7 +2206,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11401326
 MonoBehaviour:
@@ -2241,9 +2241,9 @@ MonoBehaviour:
     spell: {fileID: 0}
   - order: 01000000020000000500000006000000
     spell: {fileID: 128152, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
-  - order: 03000000
+  - order: 0300000004000000
     spell: {fileID: 145216, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
-  - order: 04000000
+  - order: 0400000003000000
     spell: {fileID: 145216, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
 --- !u!114 &11415426
 MonoBehaviour:

@@ -12,7 +12,7 @@ public class CastagonPoint : MonoBehaviour {
 			c.AddPoint (this);
             SteamVR_TrackedObject trackedObj = col.gameObject.GetComponent<VRTK_InteractableObject>().GetGrabbingObject().GetComponent<SteamVR_TrackedObject>();
             SteamVR_Controller.Device controller = SteamVR_Controller.Input((int)trackedObj.index);
-            StartCoroutine(TriggerVibration(controller, 1F, 1F));
+            StartCoroutine(TriggerVibration(controller, 0.1F, 1F));
 			gameObject.GetComponentInChildren<ParticleSystem> ().startColor = gameObject.GetComponentInParent<Castagon> ().TouchedColor;
 			gameObject.GetComponentInChildren<ParticleSystem> ().Simulate (gameObject.GetComponentInChildren<ParticleSystem> ().duration);
 		}
