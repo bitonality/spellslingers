@@ -6,18 +6,32 @@ using System;
 
 public class StateAI : ControlEntity
 {
+    //Difficulty - Easy/Normal/Hard: 1/2/3
+    // TODO: Make a way to set this in-game
+    public int Difficulty = 2;
 
     //time until next state change 
     private float timeUntilChange = 0;
 
     //Time until the AI is allowed to shoot after being idle
-    public float delayUntilShoot;
+    public float IdlePauseTime;
+    // A difficulty modifier is the amount it will increase/decrease (depending on the context) if the difficulty is not set to 2.
+    // For example, IdleDifficultyMod increases/decreases IdlePauseTime if difficulty is 1/3, respectivly. However, SpeedDifficultyMod decreases/increases speed if the difficulty is 1/3.
+    public float IdleMod = 1;
 
     //For stacking of effects that disable shooting
     public float ShootingCycleDisabled = 0;
 
     //Speed (m/s) of the AI
     public float speed;
+    public float SpeedMod = 10;
+
+    // Delay the AI must wait while in PRESHOOT and NOT be in danger
+    public float PreshootDelay = 1;
+    public float PreshootDelayMod = .5f;
+
+    // MaxAngle in CastListener. Default is 30
+    public float MaxAngleMod = 10;
 
     private float defaultSpeed;
 
@@ -54,12 +68,11 @@ public class StateAI : ControlEntity
 
     //Called every 0.02 seconds
     void FixedUpdate()
-    {
-        
+    {        
         if (currentAction.Count <= 0)
         {
             //Something went wrong with starting the AI
-            Debug.LogWarning("currentAction size is 0, meaning start() was not called before fixedUpdate()");
+            Debug.LogWarning("currentAction size is 0, meaning awake() was not called before fixedUpdate()");
             return;
         }
         if (currentAction.Count != 1 && timeUntilChange <= Time.time)
@@ -88,28 +101,27 @@ public class StateAI : ControlEntity
                 break;
             case validStates.IDLE:
                 //Move in a random direction
-                Vector3 Destination = new Vector3(UnityEngine.Random.Range(-5f, 5f) * 10, 0, UnityEngine.Random.Range(-5f, 5f) * 10);
+                Vector3 Destination = new Vector3(UnityEngine.Random.Range(-5f, 5f) * speed, 0, UnityEngine.Random.Range(-5f, 5f) * speed);
                 gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
-                //Schedule interruptable state change in 3 seconds
-                timeUntilChange = Time.time + 1;
+                //Schedule interruptable state change in {{ IdlePauseTime }} seconds
+                timeUntilChange = Time.time + IdlePauseTime;
                 currentAction.Enqueue(validStates.PRESHOOT);
                 break;
             case validStates.PRESHOOT:
                 //Stop movement
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 //Wait for 1 second
-                timeUntilChange = Time.time + 1;
+                timeUntilChange = Time.time + PreshootDelayMod;
                 currentAction.Enqueue(validStates.SHOOTING);
                 break;
             case validStates.SHOOTING:
-                //Make sure there is a hex to chose from (otherwise, go back to IDLE stage)
+                //Make sure there is a hex to chose from (otherwise, go back to POSTSHOOT stage)
                 if (spellsToShoot.Length != 0)
                 {
                     //Pick a hex
                     Hex h = pickHex();
                     if (CanShoot(h, gameObject))
                     {
-
                         //Shoot
                         CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.CurrentTarget().GetComponent<Targetable>().TargetPoint, 2, 5);
                         //Go back to POSTSHOOT state
@@ -183,16 +195,8 @@ public class StateAI : ControlEntity
         }
         else if (state == validStates.STARTUP)
         {
-            // Iterate over every object, checking if there is anyone other than a player OR the player has a wand
-         //   foreach (GameObject enemy in Targets)
-          //  {
-                // TODO: This
-                //if (enemy.GetComponent<Player>() != null && enemy.GetComponent<Player>().GetWand(enemy.GetComponent<Player>().GetComponent<SteamVR_Controller>()) != null)
-            //    {
-                    //Start the game
-                    currentAction.Enqueue(validStates.IDLE);
-              //  }
-            //}
+            // TODO: Only move into IDLE if the player has a wand
+            currentAction.Enqueue(validStates.IDLE);
         }
         return null;
     }
@@ -209,7 +213,25 @@ public class StateAI : ControlEntity
         base.Awake();
         defaultSpeed = speed;
         originalPosition = gameObject.transform.position;
-        //Start out the queue with idle
+        //Make sure 1 <= difficulty >= 3
+        if (Difficulty > 3) Difficulty = 3; 
+        if (Difficulty < 1) Difficulty = 1; 
+        // Modify difficulty variables
+        if (Difficulty == 1)
+        {
+            GetComponent<CastListener>().ModifyMaxAngle(MaxAngleMod);
+            IdlePauseTime += IdleMod;
+            PreshootDelay += PreshootDelayMod;
+            speed -= SpeedMod;
+        }
+        else if (Difficulty == 3)
+        {
+            GetComponent<CastListener>().ModifyMaxAngle(-1 * MaxAngleMod);
+            IdlePauseTime -= IdleMod;
+            PreshootDelay -= PreshootDelayMod;
+            speed += SpeedMod;
+        }
+        //Start out the queue with startup
         currentAction.Enqueue(validStates.STARTUP);
     }
 

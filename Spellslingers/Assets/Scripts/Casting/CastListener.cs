@@ -20,6 +20,15 @@ public class CastListener : MonoBehaviour {
 	// Cache player on start up to avoid unneeded traversals of the heiarchy tree. 
 	private Player player;
 
+    //If AngleCheck is more than this, just discard the cast.
+    public float MaxAngle = 30;
+
+    public void ModifyMaxAngle(float Change)
+    {
+        //Change can be negative
+        MaxAngle += Change;
+    }
+
 	void Start () {
 
         // Controllers must have VRTK_ControllerEvents attached or the listener will not work properly.
