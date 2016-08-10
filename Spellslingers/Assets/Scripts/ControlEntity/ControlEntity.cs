@@ -2,10 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using VRTK;
+using UnityEngine.UI;
 
 // Abstraction layer that encapsulates AI and Players.
 public abstract class ControlEntity : Targetable, Influenceable {
 
+
+
+    public bool UltimateMode {
+        get;
+        set;
+    }
+
+    // Tracks how many auras the CE has triggered.
+    public int UltimateCounter {
+        get;
+        set;
+    }
+
+    // How many auras the player needs to cast before being allowed to use ults.
+    public int UltimateChargeTrigger;
 
     // Inspector facing location for aura particle effects.
     public GameObject AuraParticleAttachPoint;
@@ -46,6 +62,9 @@ public abstract class ControlEntity : Targetable, Influenceable {
         set;
     }
 
+    // Chargebar for the ultimate.
+    public GameObject UltimateChargeBar;
+
     // Instantiates a hex based on a template at source and launches it at target with force modifer forceMod
     public void CastHex(Hex hex, Transform source, Transform target, float sensitivity, float controllerVelocity) {
         Hex proj = Instantiate(hex, source.position, source.rotation) as Hex;
@@ -55,10 +74,22 @@ public abstract class ControlEntity : Targetable, Influenceable {
         proj.ScheduleDestroy(proj.Timeout);
     }
 
+    public void IncrementUltimateCounter(int i) {
+        if(UltimateCounter + i > UltimateChargeTrigger) {
+            return;
+        }
 
+        UltimateCounter += i;
+        if(this.UltimateChargeBar != null) {
+            this.UltimateChargeBar.GetComponent<Image>().fillAmount = (this.UltimateChargeTrigger / this.UltimateCounter);
+        }
+
+    }
 
 	public override void Awake() {
         base.Awake();
+        UltimateMode = false;
+        UltimateCounter = 0;
         this.SpellSpeedModifier = this.DefaultSpellSpeedModifier;
         this.ActiveHexes = new HashSet<Hex>();
         influenceDict.Add(influences.DISARM, false);
