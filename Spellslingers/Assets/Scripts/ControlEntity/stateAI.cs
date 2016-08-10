@@ -35,6 +35,8 @@ public class StateAI : ControlEntity
 
     private float defaultSpeed;
 
+    public GameObject influenceText;
+
     //List of spells the AI is allowed to shoot
     public Hex[] spellsToShoot;
 
@@ -50,6 +52,18 @@ public class StateAI : ControlEntity
         SHOOTING,
         POSTSHOOT,
         DEAD
+    }
+
+    public void UpdateInfluenceText()
+    {
+        influenceText.GetComponent<GUIText>().text = "";
+        foreach (KeyValuePair<influences, bool> influence in influenceDict)
+        {
+            if (influence.Value)
+            {
+                influenceText.GetComponent<GUIText>().text += influence.Key;
+            }
+        }
     }
 
     // Make sure it can't leave the AI boundry.

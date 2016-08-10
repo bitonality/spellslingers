@@ -71,12 +71,19 @@ public abstract class ControlEntity : Targetable, Influenceable {
     public virtual object ApplyInfluence(influences inf)
     {
         influenceDict[inf] = true;
+        if (gameObject.GetComponent<StateAI>() != null)
+        {
+            GetComponent<StateAI>().UpdateInfluenceText();
+        }
         return null;
     }
 	public virtual object RemoveInfluence(influences inf) {
 		influenceDict [inf] = false;
-		return null;
-
+        if (gameObject.GetComponent<StateAI>() != null)
+        {
+            GetComponent<StateAI>().UpdateInfluenceText();
+        }
+        return null;
 	}
 
     public object RemoveInfluenceTimer(influences inf, float time)
