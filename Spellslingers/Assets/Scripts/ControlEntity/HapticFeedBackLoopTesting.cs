@@ -15,6 +15,7 @@ public class HapticFeedBackLoopTesting : MonoBehaviour
         for (float i = 0; i < length; i += Time.deltaTime)
         {
             Debug.Log("Firing feedback");
+
             device.TriggerHapticPulse((ushort)Mathf.Lerp(0, 3999, strength));
             yield return null;
         }
