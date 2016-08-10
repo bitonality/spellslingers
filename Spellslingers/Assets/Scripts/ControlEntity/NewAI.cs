@@ -194,7 +194,7 @@ public class NewAI : ControlEntity
                 //TODO: Sort spells
                 //string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
                 //Move 
-                Vector3 direction = new Vector3(speed * (float)Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
+                Vector3 direction = new Vector3(speed * Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
                 gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
                 currentAction.Clear();
                 currentAction.Enqueue(validStates.DANGER);
@@ -219,7 +219,7 @@ public class NewAI : ControlEntity
     //Returns the object's current state
     private validStates getCurrentState()
     {
-        return (validStates)currentAction.Peek();
+        return currentAction.Peek();
     }
 
     // Use this for initialization
@@ -228,7 +228,7 @@ public class NewAI : ControlEntity
         base.Awake();
         defaultSpeed = speed;
         originalPosition = gameObject.transform.position;
-        //Make sure 1 <= difficulty >= 3
+        // Make sure 1 <= difficulty >= 3
         if (Difficulty > 3) Difficulty = 3;
         if (Difficulty < 1) Difficulty = 1;
         // Modify difficulty variables
