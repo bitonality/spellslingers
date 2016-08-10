@@ -369,6 +369,10 @@ Prefab:
     - {fileID: 11464380, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &391519554 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 415036, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
+  m_PrefabInternal: {fileID: 391519553}
 --- !u!1 &391519561 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 157130, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
@@ -689,6 +693,34 @@ Terrain:
   m_BakeLightProbesForTrees: 1
   m_ScaleInLightmap: 0.0512
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!1 &862333077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 862333078}
+  m_Layer: 0
+  m_Name: CastagonAttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &862333078
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862333077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 391519554}
+  m_RootOrder: 1
 --- !u!1 &892895576 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 142386, guid: fdba324a6dc776440a5e1e5f9dfe7806, type: 2}
@@ -704,28 +736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d924e325593e62c47b58c75c9d057e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InsepctorTargetPoint: {fileID: 0}
-  Targets: []
-  HealthBar: {fileID: 894322451}
-  MaxHealth: 500
-  AuraParticleAttachPoint: {fileID: 993954479}
-  DefaultSpellSpeedModifier: 1
-  InitialEnemy: {fileID: 391519561}
-  InitialAura: {fileID: 0}
-  delayUntilShoot: 0
-  ShootingCycleDisabled: 0
-  speed: 150
-  spellsToShoot:
-  - {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
-  - {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
-  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
-  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
-  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
-  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
-  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
-  - {fileID: 11498288, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
-  - {fileID: 11498288, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
-  - {fileID: 11498288, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
 --- !u!1 &894322451 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 122918, guid: 97be62d6ba873df43bba99d6d5c023ad, type: 2}

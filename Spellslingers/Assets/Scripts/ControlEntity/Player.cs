@@ -7,6 +7,8 @@ using System;
 
 public class Player : ControlEntity {
 
+    public Transform CastagonAttachPoint;
+
     // Serialized inspector friendly entry for mapping spells to their specific cooldown slider UI element.
 	public SliderInsepctorEntry[] InspectorSliders;
 

@@ -118,7 +118,7 @@ public class CastListener : MonoBehaviour {
 				player.queuedSpell = null;
 			}
 		}
-        if (player.GetWand(gameObject) != false) {
+        if (player.GetWand(gameObject) != null) {
             player.GetWand(gameObject).GetComponentInChildren<TrailRenderer>().enabled = false;
         }
 	}
@@ -136,7 +136,7 @@ public class CastListener : MonoBehaviour {
 
 		if (player.GetWand(gameObject) != null) {
             // Create a castagon from the template and spawn it at the CastagonPoint child of the wand. Set the x and y Euler angle values but not the z angle to avoid unwanted rotating of the castagon.
-			instantiatedCastagon = (Instantiate (castagonTemplate, gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject ().transform.FindChild ("CastagonPoint").position, Quaternion.Euler (new Vector3 (gameObject.transform.rotation.eulerAngles.x, gameObject.transform.rotation.eulerAngles.y, 0f))) as GameObject).GetComponent<Castagon> ();
+			instantiatedCastagon = (Instantiate (castagonTemplate, player.CastagonAttachPoint.position, Quaternion.Euler (new Vector3 (player.gameObject.GetComponentInChildren<Camera>().gameObject.transform.rotation.eulerAngles.x, player.gameObject.GetComponentInChildren<Camera>().gameObject.transform.rotation.eulerAngles.y , 0f))) as GameObject).GetComponent<Castagon> ();
 
             // Set the player of the castagon in the castagon instance.
             instantiatedCastagon.player = gameObject.GetComponentInParent<Player> ();
