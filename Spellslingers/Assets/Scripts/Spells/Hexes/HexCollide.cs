@@ -15,7 +15,6 @@ public class HexCollide : MonoBehaviour {
     private int numCollisions = 0;
 
     void OnCollisionEnter(Collision col) {
-        Debug.Log("HexCollide: Colliding with " + col.gameObject);
         // Create an explosion at the collision point.
         //GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
 

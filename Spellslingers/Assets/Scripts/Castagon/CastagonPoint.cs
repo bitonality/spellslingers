@@ -31,7 +31,6 @@ public class CastagonPoint : MonoBehaviour {
 
     IEnumerator TriggerVibration(SteamVR_Controller.Device device, float length, float strength) {
         for (float i = 0; i < length; i += Time.deltaTime) {
-            Debug.Log("Firing feedback");
             device.TriggerHapticPulse((ushort)Mathf.Lerp(0, 3999, strength));
             yield return null;
         }
