@@ -50,6 +50,9 @@ public class NewAI : ControlEntity
     [Tooltip("Array of spells the AI can choose from")]
     public Hex[] spellsToShoot;
 
+    [Tooltip("Health modifier based on difficulty")]
+    public float HealthMod = 25;
+
     private Vector3 originalPosition
     {
         get;
@@ -236,6 +239,8 @@ public class NewAI : ControlEntity
         // Modify difficulty variables
         if (Difficulty == 1)
         {
+            GetComponent<ControlEntity>().MaxHealth -= HealthMod;
+            GetComponent<ControlEntity>().Health -= HealthMod;
             GetComponent<CastListener>().ModifyMaxAngle(MaxAngleMod);
             IdlePauseTime += IdleMod;
             PreshootDelay += PreshootDelayMod;
@@ -243,6 +248,8 @@ public class NewAI : ControlEntity
         }
         else if (Difficulty == 3)
         {
+            GetComponent<ControlEntity>().MaxHealth += HealthMod;
+            GetComponent<ControlEntity>().Health += HealthMod;
             GetComponent<CastListener>().ModifyMaxAngle(-1 * MaxAngleMod);
             IdlePauseTime -= IdleMod;
             PreshootDelay -= PreshootDelayMod;
@@ -290,8 +297,6 @@ public class NewAI : ControlEntity
                 }
             }
         }
-
-
         return dangerousSpells;
     }
 
