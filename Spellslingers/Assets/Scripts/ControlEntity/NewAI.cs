@@ -59,7 +59,7 @@ public class NewAI : ControlEntity
         {
             if (influence.Value.getStatus())
             {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key + "(" + (influence.Value.getTime() - Time.time) + "s)";
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key + "(" + String.Format("{0:0.00}", Math.Round(influence.Value.getTime() - Time.time, 2)) + "s)";
             }
         }
     }
@@ -80,15 +80,7 @@ public class NewAI : ControlEntity
     //Called every 0.02 seconds
     void FixedUpdate()
     {
-        //Update the text
-        influenceText.GetComponent<Text>().text = "";
-        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict)
-        {
-            if (influence.Value.getStatus())
-            {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key + "(" + (influence.Value.getTime() - Time.time) + "s)";
-            }
-        }
+        UpdateInfluenceText();
         if (currentAction.Count <= 0)
         {
             //Something went wrong with starting the AI
@@ -214,7 +206,7 @@ public class NewAI : ControlEntity
             // TODO: Only move into IDLE if the player has a wand
             currentAction.Enqueue(validStates.IDLE);
         }
-        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN] == false) {
+        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].getStatus() == false) {
             currentAction.Enqueue(validStates.IDLE);
         }
         return null;
@@ -257,7 +249,7 @@ public class NewAI : ControlEntity
     public override bool CanShoot(Hex h, GameObject launchPoint)
     {
         //Check if the current time is greater than when the shooting cycle is disabled to and make sure it is not (hence the !) is under the influence of DISARM
-        return (GetComponent<ControlEntity>().influenceDict[influences.DISARM] == false);
+        return (GetComponent<ControlEntity>().influenceDict[influences.DISARM].getStatus() == false);
     }
 
     public override void processHex(Hex h)
