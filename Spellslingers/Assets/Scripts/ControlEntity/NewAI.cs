@@ -55,11 +55,11 @@ public class NewAI : ControlEntity
     public void UpdateInfluenceText()
     {
         influenceText.GetComponent<Text>().text = "";
-        foreach (KeyValuePair<influences, bool> influence in influenceDict)
+        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict)
         {
-            if (influence.Value == true)
+            if (influence.Value.getStatus())
             {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key;
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key + "(" + (influence.Value.getTime() - Time.time) + "s)";
             }
         }
     }
@@ -80,6 +80,15 @@ public class NewAI : ControlEntity
     //Called every 0.02 seconds
     void FixedUpdate()
     {
+        //Update the text
+        influenceText.GetComponent<Text>().text = "";
+        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict)
+        {
+            if (influence.Value.getStatus())
+            {
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key + "(" + (influence.Value.getTime() - Time.time) + "s)";
+            }
+        }
         if (currentAction.Count <= 0)
         {
             //Something went wrong with starting the AI

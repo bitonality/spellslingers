@@ -33,7 +33,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
         set;
     }
 
-    public Dictionary<influences, bool> influenceDict = new Dictionary<influences, bool>();
+    public Dictionary<influences, InfluenceValue> influenceDict = new Dictionary<influences, InfluenceValue>();
 
     // For testing purposes.
     public GameObject InitialEnemy;
@@ -90,8 +90,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
         UltimateCounter = 0;
         this.SpellSpeedModifier = this.DefaultSpellSpeedModifier;
         this.ActiveHexes = new HashSet<Hex>();
-        influenceDict.Add(influences.DISARM, false);
-        influenceDict.Add(influences.STUN, false);
+        influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0));
+        influenceDict.Add(influences.STUN, new InfluenceValue(false, 0));
         this.Targets.Add(InitialEnemy);
         this.Targets.Add(InitialAura);
 
@@ -100,7 +100,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     public virtual object ApplyInfluence(influences inf)
     {
         Debug.Log("Influence " + inf + " applied at " + Time.time);
-        influenceDict[inf] = true;
+        influenceDict[inf].SetStatus(true);
         if (gameObject.GetComponent<NewAI>() != null)
         {
             GetComponent<NewAI>().UpdateInfluenceText();
@@ -109,7 +109,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     }
 	public virtual object RemoveInfluence(influences inf) {
         Debug.Log("Influence " + inf + " removed at " + Time.time);
-        influenceDict [inf] = false;
+        influenceDict [inf].SetStatus(false);
         if (gameObject.GetComponent<NewAI>() != null)
         {
             GetComponent<NewAI>().UpdateInfluenceText();
@@ -120,6 +120,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     public object RemoveInfluenceTimer(influences inf, float time)
     {
         Debug.Log("Influence " + inf + " scheduled for removal in " + time + "s at " + Time.time);
+        influenceDict[inf].setTime(time);
         StartCoroutine(IERemoveInfluence(inf, time));
         return null;
     }

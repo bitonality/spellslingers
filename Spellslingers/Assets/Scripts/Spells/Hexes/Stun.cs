@@ -11,6 +11,9 @@ public class Stun : Hex {
     //duration of stun in ms
     public float duration;
 
+    //duration of stun in ms, for the AI
+    public float AIDuration;
+
 	//How often the decrement will run
 	private float repeatRate = 0.2F;
 
@@ -41,8 +44,7 @@ public class Stun : Hex {
         aiBody.GetComponent<NewAI>().currentAction.Clear();
         aiBody.GetComponent<NewAI>().currentAction.Enqueue(NewAI.validStates.STUNNED);
         aiBody.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
-        aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration / 1000);
-       // aiBody.GetComponent<NewAI>().Shake(0.1F, duration);
+        aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, AIDuration);
     }
 
 	IEnumerator scheduleSetSpeed(GameObject aiBody, double waitTime, float newSpeed) {
