@@ -27,7 +27,7 @@ GameObject:
   - 65: {fileID: 6590196}
   - 23: {fileID: 2338346}
   - 54: {fileID: 5447044}
-  - 114: {fileID: 11445738}
+  - 114: {fileID: 11445712}
   m_Layer: 8
   m_Name: StateAI
   m_TagString: AI
@@ -164,7 +164,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11445738
+--- !u!114 &11445712
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -172,22 +172,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 142386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d924e325593e62c47b58c75c9d057e53, type: 3}
+  m_Script: {fileID: 11500000, guid: 61c619d26185c124faec51d20b2d9e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InsepctorTargetPoint: {fileID: 0}
   Targets: []
   HealthBar: {fileID: 0}
-  MaxHealth: 200
+  MaxHealth: 100
+  UltimateChargeTrigger: 0
   AuraParticleAttachPoint: {fileID: 105590}
   DefaultSpellSpeedModifier: 1
   InitialEnemy: {fileID: 0}
   InitialAura: {fileID: 0}
+  UltimateChargeBar: {fileID: 0}
+  influenceText: {fileID: 0}
   Difficulty: 2
   IdlePauseTime: 3
   IdleMod: 1
-  ShootingCycleDisabled: 0
-  speed: 15
+  speed: 35
   SpeedMod: 10
   PreshootDelay: 1
   PreshootDelayMod: 0.5

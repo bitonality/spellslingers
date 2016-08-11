@@ -17,6 +17,7 @@ public class NewAI : ControlEntity
 
     //Time until the AI is allowed to shoot after being idle
     public float IdlePauseTime = 3;
+
     // A difficulty modifier is the amount it will increase/decrease (depending on the context) if the difficulty is not set to 2.
     // For example, IdleDifficultyMod increases/decreases IdlePauseTime if difficulty is 1/3, respectivly. However, SpeedDifficultyMod decreases/increases speed if the difficulty is 1/3.
     public float IdleMod = 1;

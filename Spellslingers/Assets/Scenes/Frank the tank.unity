@@ -517,72 +517,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 11445738, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
-      propertyPath: AuraParticleAttachPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11445738, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
-      propertyPath: MaxHealth
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 11445738, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
+    - target: {fileID: 11445712, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 894322451}
-    - target: {fileID: 11445738, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
+    - target: {fileID: 11445712, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
       propertyPath: InitialEnemy
       value: 
       objectReference: {fileID: 391519561}
-    - target: {fileID: 11445738, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
-      propertyPath: IdlePauseTime
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11445738, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
+    - target: {fileID: 11445712, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
+      propertyPath: influenceText
+      value: 
+      objectReference: {fileID: 705243448}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &681729518 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 105590, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
-  m_PrefabInternal: {fileID: 681729517}
 --- !u!1 &681729519 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 142386, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
   m_PrefabInternal: {fileID: 681729517}
---- !u!114 &681729520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 681729519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c619d26185c124faec51d20b2d9e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InsepctorTargetPoint: {fileID: 0}
-  Targets: []
-  HealthBar: {fileID: 894322451}
-  MaxHealth: 100
-  UltimateChargeTrigger: 0
-  AuraParticleAttachPoint: {fileID: 681729518}
-  DefaultSpellSpeedModifier: 1
-  InitialEnemy: {fileID: 391519561}
-  InitialAura: {fileID: 0}
-  UltimateChargeBar: {fileID: 0}
-  influenceText: {fileID: 705243448}
-  Difficulty: 2
-  IdlePauseTime: 3
-  IdleMod: 1
-  speed: 35
-  SpeedMod: 10
-  PreshootDelay: 1
-  PreshootDelayMod: 0.5
-  MaxAngleMod: 10
-  spellsToShoot:
-  - {fileID: 11498288, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
-  - {fileID: 11449188, guid: 70f0d2e902dbbc4428944f11c1a7e30b, type: 2}
-  - {fileID: 11426842, guid: f590ba2df1b39eb49a9d7d944c40ff32, type: 2}
 --- !u!1 &705243448
 GameObject:
   m_ObjectHideFlags: 0
