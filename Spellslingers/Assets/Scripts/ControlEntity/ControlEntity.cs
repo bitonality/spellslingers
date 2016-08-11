@@ -101,6 +101,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public virtual object ApplyInfluence(influences inf)
     {
+        Debug.Log("Influence " + inf + " applied at " + Time.time);
         influenceDict[inf] = true;
         if (gameObject.GetComponent<NewAI>() != null)
         {
@@ -109,7 +110,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
         return null;
     }
 	public virtual object RemoveInfluence(influences inf) {
-		influenceDict [inf] = false;
+        Debug.Log("Influence " + inf + " removed at " + Time.time);
+        influenceDict [inf] = false;
         if (gameObject.GetComponent<NewAI>() != null)
         {
             GetComponent<NewAI>().UpdateInfluenceText();
@@ -119,6 +121,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public object RemoveInfluenceTimer(influences inf, float time)
     {
+        Debug.Log("Influence " + inf + " scheduled for removal in " + time + "s at " + Time.time);
         StartCoroutine(IERemoveInfluence(inf, time));
         return null;
     }

@@ -4,7 +4,7 @@ using VRTK;
 
 public class Disarm : Hex {
 
-	public float AiDisarmTime;
+	public float AiDisarmTime = 6;
 
 
 	public override void playerCollide (GameObject playerCameraRig)

@@ -59,8 +59,6 @@ public class NewAI : ControlEntity
         influenceText.GetComponent<Text>().text = "";
         foreach (KeyValuePair<influences, bool> influence in influenceDict)
         {
-            Debug.Log(influence.Key + " is " + influence.Value);
-            Debug.Log(Time.time + " -----------");
             if (influence.Value == true)
             {
                 influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + ", " + influence.Key;
