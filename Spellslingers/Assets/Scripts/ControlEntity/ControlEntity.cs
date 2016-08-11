@@ -121,13 +121,6 @@ public abstract class ControlEntity : Targetable, Influenceable {
     {
         Debug.Log("Influence " + inf + " scheduled for removal in " + time + "s at " + Time.time);
         influenceDict[inf].SetTime(time);
-        StartCoroutine(IERemoveInfluence(inf, time));
         return null;
-    }
-
-    private IEnumerator IERemoveInfluence(influences inf, float time)
-    {
-        yield return new WaitForSeconds(time);
-        RemoveInfluence(inf);
     }
 }

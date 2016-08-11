@@ -52,6 +52,17 @@ public class NewAI : ControlEntity
         DEAD
     }
 
+    public void CheckInfluenceTimers()
+    {
+        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict)
+        {
+            if (influence.Value.GetTime() <= Time.time)
+            {
+                RemoveInfluence(influence.Key);
+            }
+        }
+    }
+
     public void UpdateInfluenceText()
     {
         influenceText.GetComponent<Text>().text = "";
