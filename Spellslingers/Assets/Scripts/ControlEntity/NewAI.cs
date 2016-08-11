@@ -67,7 +67,6 @@ public class NewAI : ControlEntity
     // Make sure it can't leave the AI boundry.
     void OnTriggerExit(Collider col)
     {
-        //Debug.Log (col);
         if (col.gameObject.tag == "AIBoundry")
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -121,7 +120,7 @@ public class NewAI : ControlEntity
             case validStates.PRESHOOT:
                 //Stop movement
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
-                //Wait for 1 second
+                //Wait {{ PreshootDelay }} seconds. If the AI doesn't get in danger, move this will move into SHOOTING stage.
                 timeUntilChange = Time.time + PreshootDelayMod;
                 currentAction.Enqueue(validStates.SHOOTING);
                 break;
@@ -129,18 +128,14 @@ public class NewAI : ControlEntity
                 //Make sure there is a hex to chose from (otherwise, go back to POSTSHOOT stage)
                 if (spellsToShoot.Length != 0)
                 {
-                    //Pick a hex
                     Hex h = pickHex();
                     if (CanShoot(h, gameObject))
                     {
-                        //Shoot
                         CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.CurrentTarget().GetComponent<Targetable>().TargetPoint, 2, 5);
-                        //Go back to POSTSHOOT state
                         currentAction.Enqueue(validStates.POSTSHOOT);
                     }
                     else
                     {
-                        //Return to IDLE state
                         currentAction.Enqueue(validStates.IDLE);
                     }
                 }
@@ -178,27 +173,20 @@ public class NewAI : ControlEntity
         return spellsToShoot[rnd.Next(0, spellsToShoot.Length)];
     }
 
-    //Called regardless if a state change occurred, every time. 
+    //Called every time, even if a state change occurred
     private object currentInclusive(validStates state)
     {
         if (state == validStates.DANGER) {
             //Move out of danger
             ArrayList dangerousSpells = isInDanger();
             if (dangerousSpells.Count > 0) {
-                //Choose the one that is most important
-                //TODO: Sort spells
-                //string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
-                //Move 
+                //Try to move out of the way
                 Vector3 direction = new Vector3(speed * Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
                 gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
                 currentAction.Clear();
                 currentAction.Enqueue(validStates.DANGER);
             }
             else {
-                // Stop movement
-                //gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                // Push idle state
-                Debug.Log("Moving to idle state from danger state");
                 currentAction.Enqueue(validStates.IDLE);
             }
         }
@@ -211,14 +199,12 @@ public class NewAI : ControlEntity
         }
         return null;
     }
-
-    //Returns the object's current state
+    
     private validStates getCurrentState()
     {
         return currentAction.Peek();
     }
-
-    // Use this for initialization
+    
     public override void Awake()
     {
         base.Awake();
@@ -248,10 +234,11 @@ public class NewAI : ControlEntity
 
     public override bool CanShoot(Hex h, GameObject launchPoint)
     {
-        //Check if the current time is greater than when the shooting cycle is disabled to and make sure it is not (hence the !) is under the influence of DISARM
+        //Make sure the AI isn't disarmed
         return (GetComponent<ControlEntity>().influenceDict[influences.DISARM].getStatus() == false);
     }
 
+    //What to do when a hex hits the AI (this is generic for any hex. Other effects, such as disarm, are handled by the hex itself)
     public override void processHex(Hex h)
     {
         h.aiCollide(gameObject);
