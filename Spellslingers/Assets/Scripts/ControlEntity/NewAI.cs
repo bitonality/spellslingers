@@ -42,6 +42,7 @@ public class NewAI : ControlEntity
     public enum validStates
     {
         STARTUP,
+        STUNNED,
         HIT,
         IDLE,
         DANGER,
@@ -106,6 +107,9 @@ public class NewAI : ControlEntity
         //Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState)
         {
+            case validStates.STUNNED:
+                if (GetComponent<ControlEntity>().influenceDict[influences.STUN] == false) currentAction.Enqueue(validStates.IDLE);
+                break;
             case validStates.HIT:
                 currentAction.Enqueue(validStates.DANGER);
                 break;
