@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InfluenceValue : MonoBehaviour {
+public class InfluenceValue {
     private bool Status;
     private float TimeEnabled;
     private string FriendlyName;
