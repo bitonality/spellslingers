@@ -363,7 +363,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 441608, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 18.18
+      value: 18.2
       objectReference: {fileID: 0}
     - target: {fileID: 441608, guid: 13637e9cf37ef1a4b83eb524f0e74687, type: 2}
       propertyPath: m_LocalPosition.z
@@ -666,7 +666,6 @@ MonoBehaviour:
   Difficulty: 2
   IdlePauseTime: 3
   IdleMod: 1
-  ShootingCycleDisabled: 0
   speed: 35
   SpeedMod: 10
   PreshootDelay: 1
