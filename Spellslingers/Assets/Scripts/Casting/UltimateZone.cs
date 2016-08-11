@@ -3,13 +3,12 @@ using System.Collections;
 
 public class UltimateZone : MonoBehaviour {
 
-    public UltimateZone[] ComponentOfZone;
     public int ZoneID;
 
 
 
     void OnTriggerEnter(Collider col) {
-
+        this.gameObject.GetComponentInParent<UltimateHandler>().ZoneEntered(this.gameObject, col.gameObject);
     }
 
 	// Use this for initialization
