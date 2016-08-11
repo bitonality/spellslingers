@@ -16,13 +16,10 @@ public class NewAI : ControlEntity
     private float timeUntilChange = 0;
 
     //Time until the AI is allowed to shoot after being idle
-    public float IdlePauseTime;
+    public float IdlePauseTime = 3;
     // A difficulty modifier is the amount it will increase/decrease (depending on the context) if the difficulty is not set to 2.
     // For example, IdleDifficultyMod increases/decreases IdlePauseTime if difficulty is 1/3, respectivly. However, SpeedDifficultyMod decreases/increases speed if the difficulty is 1/3.
     public float IdleMod = 1;
-
-    //For stacking of effects that disable shooting
-    public float ShootingCycleDisabled = 0;
 
     //Speed (m/s) of the AI
     public float speed;
@@ -252,7 +249,7 @@ public class NewAI : ControlEntity
     public override bool CanShoot(Hex h, GameObject launchPoint)
     {
         //Check if the current time is greater than when the shooting cycle is disabled to and make sure it is not (hence the !) is under the influence of DISARM
-        return (Time.time >= ShootingCycleDisabled); //&& !currentInfluences[influences.DISARM]);
+        return (GetComponent<ControlEntity>().influenceDict[influences.DISARM] == false);
     }
 
     public override void processHex(Hex h)

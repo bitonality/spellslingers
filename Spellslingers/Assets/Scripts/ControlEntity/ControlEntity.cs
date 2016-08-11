@@ -7,8 +7,6 @@ using UnityEngine.UI;
 // Abstraction layer that encapsulates AI and Players.
 public abstract class ControlEntity : Targetable, Influenceable {
 
-
-
     public bool UltimateMode {
         get;
         set;
