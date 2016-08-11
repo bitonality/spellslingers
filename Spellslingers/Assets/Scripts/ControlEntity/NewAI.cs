@@ -55,11 +55,9 @@ public class NewAI : ControlEntity
     public void UpdateInfluenceText()
     {
         influenceText.GetComponent<Text>().text = "";
-        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict)
-        {
-            if (influence.Value.GetStatus())
-            {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Value.GetName() + "(" + String.Format("{0:0.00}", Math.Round(influence.Value.GetTime() - Time.time, 2)) + "s)";
+        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict) {
+            if (influence.Value.GetStatus()) {
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Value.GetName() + "(" + String.Format("{0:0.0}", Math.Round(influence.Value.GetTime() - Time.time, 1)) + "s)";
             }
         }
     }
@@ -150,6 +148,7 @@ public class NewAI : ControlEntity
                 currentAction.Enqueue(validStates.IDLE);
                 break;
             case validStates.DEAD:
+                influenceText.GetComponent<Text>().text = "Dead";
                 //Kill this script, so that it doesn't keep running this loop
                 enabled = false;
                 break;
@@ -246,6 +245,7 @@ public class NewAI : ControlEntity
         h.Destroy();
         if (IsDead())
         {
+            influenceText.GetComponent<Text>().text = "Dead";
             Destroy(gameObject);
         }
     }

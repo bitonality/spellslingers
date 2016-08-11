@@ -323,7 +323,7 @@ MonoBehaviour:
   Timeout: 15
   Damage: 20
   Velocity: 20
-  AiDisarmTime: 3
+  AiDisarmTime: 10
 --- !u!114 &11458700
 MonoBehaviour:
   m_ObjectHideFlags: 1
