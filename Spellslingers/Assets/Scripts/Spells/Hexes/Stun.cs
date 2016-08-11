@@ -38,6 +38,7 @@ public class Stun : Hex {
 		aiBody.GetComponent<NewAI> ().setSpeed (delta);
 		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<NewAI>().speed + delta);
         */
+        aiBody.GetComponent<NewAI>().currentAction.Clear();
         aiBody.GetComponent<NewAI>().currentAction.Enqueue(NewAI.validStates.STUNNED);
         aiBody.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
         aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration / 1000);

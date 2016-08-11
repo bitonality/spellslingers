@@ -103,13 +103,9 @@ public class NewAI : ControlEntity
     //Called only when changing state
     private object justLeft(validStates oldState, validStates newState)
     {
-        //Debug.Log ("Player health: " + this.Enemy.GetComponent<ControlEntity> ().Health);
-        //Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+        Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState)
         {
-            case validStates.STUNNED:
-                if (GetComponent<ControlEntity>().influenceDict[influences.STUN] == false) currentAction.Enqueue(validStates.IDLE);
-                break;
             case validStates.HIT:
                 currentAction.Enqueue(validStates.DANGER);
                 break;
@@ -184,12 +180,10 @@ public class NewAI : ControlEntity
     //Called regardless if a state change occurred, every time. 
     private object currentInclusive(validStates state)
     {
-        if (state == validStates.DANGER)
-        {
+        if (state == validStates.DANGER) {
             //Move out of danger
             ArrayList dangerousSpells = isInDanger();
-            if (dangerousSpells.Count > 0)
-            {
+            if (dangerousSpells.Count > 0) {
                 //Choose the one that is most important
                 //TODO: Sort spells
                 //string[] priorities = new string[] {"Damage", "Disarm", "Stun"};
@@ -199,8 +193,7 @@ public class NewAI : ControlEntity
                 currentAction.Clear();
                 currentAction.Enqueue(validStates.DANGER);
             }
-            else
-            {
+            else {
                 // Stop movement
                 //gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 // Push idle state
@@ -208,9 +201,11 @@ public class NewAI : ControlEntity
                 currentAction.Enqueue(validStates.IDLE);
             }
         }
-        else if (state == validStates.STARTUP)
-        {
+        else if (state == validStates.STARTUP) {
             // TODO: Only move into IDLE if the player has a wand
+            currentAction.Enqueue(validStates.IDLE);
+        }
+        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN] == false) {
             currentAction.Enqueue(validStates.IDLE);
         }
         return null;
