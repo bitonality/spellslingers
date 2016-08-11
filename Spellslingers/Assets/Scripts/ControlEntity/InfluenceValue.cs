@@ -2,32 +2,43 @@
 using System.Collections;
 
 public class InfluenceValue : MonoBehaviour {
-    private bool status;
-    private float timeEnabled;
-    public InfluenceValue(bool s, float t)
+    private bool Status;
+    private float TimeEnabled;
+    private string FriendlyName;
+    public InfluenceValue(bool InitialStatus, float InitialTime, string InitialName)
     {
-        status = s;
-        timeEnabled = t;
+        Status = InitialStatus;
+        TimeEnabled = InitialTime;
+        FriendlyName = InitialName;
     }
 
-    public void SetStatus(bool newStatus)
+    public void SetStatus(bool NewStatus)
     {
-        status = newStatus;
+        Status = NewStatus;
     }
 
-    public void setTime(float offset)
+    public void SetTime(float offset)
     {
-        timeEnabled = offset + Time.time;
+        TimeEnabled = offset + Time.time;
     }
 
-    public bool getStatus()
+    public void SetName(string NewName)
     {
-        return status;
+        FriendlyName = NewName;
     }
 
-    public float getTime()
+    public bool GetStatus()
     {
-        return timeEnabled;
+        return Status;
     }
 
+    public float GetTime()
+    {
+        return TimeEnabled;
+    }
+
+    public string GetName()
+    {
+        return FriendlyName;
+    }
 }

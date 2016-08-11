@@ -57,9 +57,9 @@ public class NewAI : ControlEntity
         influenceText.GetComponent<Text>().text = "";
         foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict)
         {
-            if (influence.Value.getStatus())
+            if (influence.Value.GetStatus())
             {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key + "(" + String.Format("{0:0.00}", Math.Round(influence.Value.getTime() - Time.time, 2)) + "s)";
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Value.GetName() + "(" + String.Format("{0:0.00}", Math.Round(influence.Value.GetTime() - Time.time, 2)) + "s)";
             }
         }
     }
@@ -194,7 +194,7 @@ public class NewAI : ControlEntity
             // TODO: Only move into IDLE if the player has a wand
             currentAction.Enqueue(validStates.IDLE);
         }
-        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].getStatus() == false) {
+        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].GetStatus() == false) {
             currentAction.Enqueue(validStates.IDLE);
         }
         return null;
@@ -235,7 +235,7 @@ public class NewAI : ControlEntity
     public override bool CanShoot(Hex h, GameObject launchPoint)
     {
         //Make sure the AI isn't disarmed
-        return (GetComponent<ControlEntity>().influenceDict[influences.DISARM].getStatus() == false);
+        return (GetComponent<ControlEntity>().influenceDict[influences.DISARM].GetStatus() == false);
     }
 
     //What to do when a hex hits the AI (this is generic for any hex. Other effects, such as disarm, are handled by the hex itself)

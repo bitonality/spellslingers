@@ -90,8 +90,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
         UltimateCounter = 0;
         this.SpellSpeedModifier = this.DefaultSpellSpeedModifier;
         this.ActiveHexes = new HashSet<Hex>();
-        influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0));
-        influenceDict.Add(influences.STUN, new InfluenceValue(false, 0));
+        influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0, "Disarmed"));
+        influenceDict.Add(influences.STUN, new InfluenceValue(false, 0, "Stunned"));
         this.Targets.Add(InitialEnemy);
         this.Targets.Add(InitialAura);
 
@@ -120,7 +120,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     public object RemoveInfluenceTimer(influences inf, float time)
     {
         Debug.Log("Influence " + inf + " scheduled for removal in " + time + "s at " + Time.time);
-        influenceDict[inf].setTime(time);
+        influenceDict[inf].SetTime(time);
         StartCoroutine(IERemoveInfluence(inf, time));
         return null;
     }
