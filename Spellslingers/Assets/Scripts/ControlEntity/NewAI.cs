@@ -63,7 +63,7 @@ public class NewAI : ControlEntity
         }
     }
 
-    public void UpdateInfluenceText()
+    public override void UpdateInfluenceText()
     {
         influenceText.GetComponent<Text>().text = "";
         foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict) {
