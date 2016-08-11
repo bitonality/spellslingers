@@ -58,7 +58,7 @@ public class NewAI : ControlEntity
         {
             if (influence.Value == true)
             {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + ", " + influence.Key;
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Key;
             }
         }
     }
@@ -139,8 +139,8 @@ public class NewAI : ControlEntity
                     }
                     else
                     {
-                        //Return to PRESHOOT state
-                        currentAction.Enqueue(validStates.PRESHOOT);
+                        //Return to IDLE state
+                        currentAction.Enqueue(validStates.IDLE);
                     }
                 }
                 else
