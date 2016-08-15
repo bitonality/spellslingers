@@ -14,6 +14,7 @@ TagManager:
   - Canvas
   - AIBoundry
   - Forcefield
+  - UltimateOrb
   layers:
   - Default
   - TransparentFX

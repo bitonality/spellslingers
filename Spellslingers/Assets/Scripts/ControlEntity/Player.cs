@@ -68,6 +68,7 @@ public class Player : ControlEntity {
     // Pass the SteamVR Controller game object to this
     public GameObject GetWand(GameObject controller) {
         if (controller != null) {
+            if(controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() != null && controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject().tag == "Wand")
             return controller.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
         }
         return null;
@@ -93,11 +94,7 @@ public class Player : ControlEntity {
     public override void CastUltimate(GameObject target, GameObject ultimate) {
         base.CastUltimate(target, ultimate);
         foreach(VRTK_InteractGrab controller in this.gameObject.GetComponentsInChildren<VRTK_InteractGrab>()) {
-            if(controller.GetGrabbedObject() != null) {
-                GameObject grabbed = controller.GetGrabbedObject();
-                controller.ForceRelease();
-                Destroy(grabbed);
-            }
+            controller.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
         }
     }
 

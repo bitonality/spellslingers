@@ -25,8 +25,6 @@ public class CastListener : MonoBehaviour {
     //If AngleCheck is more than this, just discard the cast.
     public float MaxAngle = 30;
 
-    // The game object to have the player hold once they are in ultimate mode.
-    public GameObject UltimateOrbTemplate;
 
     public void ModifyMaxAngle(float Change)
     {
@@ -82,10 +80,17 @@ public class CastListener : MonoBehaviour {
 		if (instantiatedCastagon != null) {
 			instantiatedCastagon.destroy ();
 		}
-
+        if (player.GetWand(gameObject) == null) {
+            if (player.UltimateMode) {
+                
+                if (this.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
+                    this.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
+                }
+            }
+        }
         // Check if the player has a spell queued for firing.
-		if (player.queuedSpell != null) {
-            if(player.GetWand(gameObject) == null) return;
+        if (player.queuedSpell != null) {
+         
 
 			GameObject wand = gameObject.GetComponent<VRTK_InteractGrab> ().GetGrabbedObject();
 
@@ -164,10 +169,9 @@ public class CastListener : MonoBehaviour {
            
 
 		} else if(player.UltimateMode) {
-            GameObject orb = Instantiate(UltimateOrbTemplate, this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
-            this.gameObject.GetComponent<VRTK_InteractGrab>().AttemptGrab();
-            
-            // Remember to remove these components on the trigger release
+            this.gameObject.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+
+        
         }
 
 

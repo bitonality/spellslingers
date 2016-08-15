@@ -12,6 +12,11 @@ public class UltimateHandler : MonoBehaviour {
     public Dictionary<GameObject, Queue<UltimateZone>> ControllerMap = new Dictionary<GameObject, Queue<UltimateZone>>();
 
     public void ZoneEntered(GameObject zone, GameObject controller) {
+        if(controller.GetComponentInChildren<ParticleSystem>() == null) {
+            ControllerMap.Clear();
+            ControllerChange.Clear();
+            return;
+        }
 
         Queue<UltimateZone> controllerData;
         if (ControllerMap.TryGetValue(controller, out controllerData)) {
@@ -74,7 +79,7 @@ public class UltimateHandler : MonoBehaviour {
                     Debug.Log("Casting: " + pattern.Name);
                     UltimatePlayer.CastUltimate(UltimatePlayer.CurrentTarget().gameObject, pattern.Ultimate);
                     // Have not proven the need of Immediate, forethought.
-                    DestroyImmediate(this.gameObject);
+                    Destroy(this.gameObject);
                 }
             }
         }
