@@ -12,7 +12,7 @@ public class UltimateHandler : MonoBehaviour {
     public void ZoneEntered(GameObject zone, GameObject controller) {
 
         Queue<UltimateZone> controllerData;
-        if (ControllerMap.TryGetValue(zone, out controllerData)) {
+        if (ControllerMap.TryGetValue(controller, out controllerData)) {
             controllerData.Enqueue(zone.GetComponent<UltimateZone>());
         }
         else {
@@ -24,19 +24,23 @@ public class UltimateHandler : MonoBehaviour {
         foreach (KeyValuePair<GameObject, Queue<UltimateZone>> controllerEntry in ControllerMap) {
             // If we have more than 1 zone enqueued.
             if (controllerEntry.Value.Count > 1) {
-                ZoneChange(controllerEntry.Value.Dequeue(), controllerEntry.Value.Dequeue(), controllerEntry.Key);
+                UltimateZone from = controllerEntry.Value.Dequeue();
+                UltimateZone to = controllerEntry.Value.Dequeue();
+                ZoneChange(from, to, controllerEntry.Key);
+                controllerEntry.Value.Enqueue(to);
             }
         }
 
     }
 
     public void ZoneChange(UltimateZone from, UltimateZone to, GameObject controller) {
+        Debug.Log("Zone change: " + from + " - " + to + " - " + controller);
         UltimateZoneChange change = new UltimateZoneChange(from.ZoneID, to.ZoneID, Time.time + 0.5F, controller);
         ControllerChange.Add(change);
 
-        int listSize = ControllerChange.Count;
+     
 
-        for(int i = listSize - 1; i > 0; i--) {
+        for(int i = ControllerChange.Count - 1; i >= 0; i--) {
             // If the point is expired, then remove it from the list and continue.
             if (Time.time > ControllerChange[i].InvalidTime) {
                 ControllerChange.RemoveAt(i);
@@ -59,11 +63,14 @@ public class UltimateHandler : MonoBehaviour {
                 }
                 ControllerChange.RemoveAt(i);
                 ControllerChange.RemoveAt(i - 1);
+                // Decrement i by one since we remove an index.
+                i--;
             }
 
             foreach(UltimatePattern pattern in PatternTemplates) {
                 if(pattern.First == UserPattern.First && pattern.Second == UserPattern.Second) {
                     Debug.Log("Casting: " + pattern.Name);
+                    UserPattern.Clear();
                 }
             }
         }
@@ -80,6 +87,11 @@ public class UltimateHandler : MonoBehaviour {
         public ZoneMovement First;
         public ZoneMovement Second;
         public GameObject Ultimate;
+        
+        public void Clear() {
+            this.First = ZoneMovement.UNDEFINED;
+            this.Second = ZoneMovement.UNDEFINED;
+        }
     }
 
     public class UltimateZoneChange {

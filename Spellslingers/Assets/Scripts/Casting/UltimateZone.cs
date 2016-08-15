@@ -8,7 +8,9 @@ public class UltimateZone : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider col) {
-        this.gameObject.GetComponentInParent<UltimateHandler>().ZoneEntered(this.gameObject, col.gameObject);
+        if (col.gameObject.tag == "GameController") {
+            this.gameObject.GetComponentInParent<UltimateHandler>().ZoneEntered(this.gameObject, col.gameObject);
+        }
     }
 
 	// Use this for initialization
