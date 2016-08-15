@@ -5,12 +5,14 @@ using System;
 using UnityEngine;
 
 public class NewAI : ControlEntity
+
 {
     public GameObject influenceText;
 
     //Difficulty - Easy/Normal/Hard: 1/2/3
     // TODO: Make a way to set this in-game
-    public int Difficulty = 2;
+    public int Difficulty = PlayerPrefs.GetInt("difficulty");
+
 
     //time until next state change 
     private float timeUntilChange = 0;
