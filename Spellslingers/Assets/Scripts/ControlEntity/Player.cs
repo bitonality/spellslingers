@@ -7,6 +7,12 @@ using System;
 
 public class Player : ControlEntity {
 
+
+    public GameObject MordecaiTemplate;
+
+    //[HideInInspector]
+    public GameObject InstantiatedMordecai;
+
     public Transform CastagonAttachPoint;
 
     // Serialized inspector friendly entry for mapping spells to their specific cooldown slider UI element.
@@ -84,7 +90,18 @@ public class Player : ControlEntity {
        
     }
 
-	public override void Awake () {
+    public override void CastUltimate(GameObject target, GameObject ultimate) {
+        base.CastUltimate(target, ultimate);
+        foreach(VRTK_InteractGrab controller in this.gameObject.GetComponentsInChildren<VRTK_InteractGrab>()) {
+            if(controller.GetGrabbedObject() != null) {
+                GameObject grabbed = controller.GetGrabbedObject();
+                controller.ForceRelease();
+                Destroy(grabbed);
+            }
+        }
+    }
+
+    public override void Awake () {
 
         base.Awake();
 

@@ -5,6 +5,8 @@ using System.Linq;
 public class UltimateHandler : MonoBehaviour {
     [HideInInspector]
     public UltimatePattern UserPattern = new UltimatePattern();
+    [HideInInspector]
+    public Player UltimatePlayer;
     public UltimatePattern[] PatternTemplates;
     public List<UltimateZoneChange> ControllerChange = new List<UltimateZoneChange>();
     public Dictionary<GameObject, Queue<UltimateZone>> ControllerMap = new Dictionary<GameObject, Queue<UltimateZone>>();
@@ -70,7 +72,9 @@ public class UltimateHandler : MonoBehaviour {
             foreach(UltimatePattern pattern in PatternTemplates) {
                 if(pattern.First == UserPattern.First && pattern.Second == UserPattern.Second) {
                     Debug.Log("Casting: " + pattern.Name);
-                    UserPattern.Clear();
+                    UltimatePlayer.CastUltimate(UltimatePlayer.CurrentTarget().gameObject, pattern.Ultimate);
+                    // Have not proven the need of Immediate, forethought.
+                    DestroyImmediate(this.gameObject);
                 }
             }
         }

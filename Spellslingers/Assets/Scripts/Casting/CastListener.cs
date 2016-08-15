@@ -5,6 +5,8 @@ using VRTK;
 // This script belongs to both controllers of a player and deals with controller events/casting.
 public class CastListener : MonoBehaviour {
 
+    
+
     // Prefab of the castagon to spawn.
 	public GameObject castagonTemplate;
 
@@ -22,6 +24,9 @@ public class CastListener : MonoBehaviour {
 
     //If AngleCheck is more than this, just discard the cast.
     public float MaxAngle = 30;
+
+    // The game object to have the player hold once they are in ultimate mode.
+    public GameObject UltimateOrbTemplate;
 
     public void ModifyMaxAngle(float Change)
     {
@@ -117,6 +122,7 @@ public class CastListener : MonoBehaviour {
 				player.queuedSpell = null;
 			}
 		}
+
         if (player.GetWand(gameObject) != null) {
             player.GetWand(gameObject).GetComponentInChildren<TrailRenderer>().enabled = false;
         }
@@ -134,6 +140,17 @@ public class CastListener : MonoBehaviour {
 	{
 
 		if (player.GetWand(gameObject) != null) {
+            player.GetWand(this.gameObject).GetComponentInChildren<TrailRenderer>().enabled = true;
+
+            // First run our Mordecai check so we don't spawn accidental castagons.
+            if (player.InstantiatedMordecai != null) {
+                // If the wand is touching Mordecai when the trigger is pulled.
+                if(player.InstantiatedMordecai.GetComponent<Mordecai>().WandTouching) {
+                    player.InstantiatedMordecai.GetComponent<Mordecai>().TakeWand(player, player.GetWand(this.gameObject));
+                    return;
+                }
+            }
+
             // Create a castagon from the template and spawn it at the CastagonPoint child of the wand. Set the x and y Euler angle values but not the z angle to avoid unwanted rotating of the castagon.
 			instantiatedCastagon = (Instantiate (castagonTemplate, player.CastagonAttachPoint.position, Quaternion.Euler (new Vector3 (player.gameObject.GetComponentInChildren<Camera>().gameObject.transform.rotation.eulerAngles.x, player.gameObject.GetComponentInChildren<Camera>().gameObject.transform.rotation.eulerAngles.y , 0f))) as GameObject).GetComponent<Castagon> ();
 
@@ -144,8 +161,16 @@ public class CastListener : MonoBehaviour {
                 aura.transform.SetParent(instantiatedCastagon.GetComponent<Castagon>().AuraAttachPoint);
             }
 
-            player.GetWand (this.gameObject).GetComponentInChildren<TrailRenderer> ().enabled = true;
+           
 
-		}
+		} else if(player.UltimateMode) {
+            GameObject orb = Instantiate(UltimateOrbTemplate, this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
+            this.gameObject.GetComponent<VRTK_InteractGrab>().AttemptGrab();
+            
+            // Remember to remove these components on the trigger release
+        }
+
+
+
 	}
 }

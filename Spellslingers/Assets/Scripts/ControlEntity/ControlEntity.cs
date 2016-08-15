@@ -84,6 +84,11 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     }
 
+    public virtual void CastUltimate(GameObject target, GameObject ultimate) {
+        this.UltimateMode = false;
+
+    }
+
 	public override void Awake() {
         base.Awake();
         UltimateMode = false;
