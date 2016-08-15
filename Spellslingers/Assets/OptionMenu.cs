@@ -7,6 +7,6 @@ public class OptionMenu : MonoBehaviour {
     public int z;
     void OnTriggerEnter(Collider other)
     {
-        GameObject.Find("[CameraRig]").GetComponent<Transform>().position = new Vector3(x, y, z);
+        GameObject.Find("Camera").GetComponent<Transform>().position = new Vector3(x, y, z);
     }
 }

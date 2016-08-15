@@ -8,7 +8,8 @@ public class DifficultyChanger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         PlayerPrefs.SetInt("difficulty", difficulty);
-        GameObject.Find("DifficultyHere").GetComponent<UnityEngine.UI.Text>().text = Difficulty;
-        
+        UnityEngine.UI.Text textobj = GameObject.Find("DifficultyHere").GetComponent<UnityEngine.UI.Text>();
+        textobj.text = Difficulty;
+
     }
 }

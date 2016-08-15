@@ -10,13 +10,13 @@ public class TutorialWandScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        while (continueupdate == true){
-            if (this.gameObject.transform.position != PreviousPosition)
+
+        if (PreviousPosition != this.gameObject.transform.position)
             {
                 continueupdate=false;
-                GameObject.Find("StateAI").GetComponent<UnityEngine.UI.Text>().text=("Great, now, hold the trigger to open your castagon, these attempt to draw these shapes IN ORDER to create the different types of hexes spellslingers offers.");
+                GameObject.Find("Canvas").GetComponent<UnityEngine.UI.Text>().text=("Great, now, hold the trigger to open your castagon, these attempt to draw these shapes IN ORDER to create the different types of hexes spellslingers offers.");
             }
 
         }
     }
-}
+
