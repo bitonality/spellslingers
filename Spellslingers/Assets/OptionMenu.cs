@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class OptionMenu : MonoBehaviour {
-    public int x;
-    public int y;
-    public int z;
+    public float x;
+    public float y;
+    public float z;
     void OnTriggerEnter(Collider other)
     {
         GameObject.Find("Camera").GetComponent<Transform>().position = new Vector3(x, y, z);
