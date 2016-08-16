@@ -12,12 +12,13 @@ public class UltimateHandler : MonoBehaviour {
     public Dictionary<GameObject, Queue<UltimateZone>> ControllerMap = new Dictionary<GameObject, Queue<UltimateZone>>();
 
     public void ZoneEntered(GameObject zone, GameObject controller) {
+
         if(controller.GetComponentInChildren<ParticleSystem>() == null) {
             ControllerMap.Clear();
             ControllerChange.Clear();
             return;
         }
-
+        Debug.Log("Zone entered - " + zone.GetComponent<UltimateZone>().ZoneID + " by " + controller);
         Queue<UltimateZone> controllerData;
         if (ControllerMap.TryGetValue(controller, out controllerData)) {
             controllerData.Enqueue(zone.GetComponent<UltimateZone>());
@@ -27,12 +28,13 @@ public class UltimateHandler : MonoBehaviour {
             controllerData.Enqueue(zone.GetComponent<UltimateZone>());
             ControllerMap.Add(controller, controllerData);
         }
-
+        Debug.Log("Controller " + controller + " enqueued zone " + controllerData.Peek().ZoneID);
         foreach (KeyValuePair<GameObject, Queue<UltimateZone>> controllerEntry in ControllerMap) {
             // If we have more than 1 zone enqueued.
             if (controllerEntry.Value.Count > 1) {
                 UltimateZone from = controllerEntry.Value.Dequeue();
                 UltimateZone to = controllerEntry.Value.Dequeue();
+                Debug.Log("Zone change registered " + to + " - " + from);
                 ZoneChange(from, to, controllerEntry.Key);
                 controllerEntry.Value.Enqueue(to);
             }
@@ -44,9 +46,6 @@ public class UltimateHandler : MonoBehaviour {
         Debug.Log("Zone change: " + from + " - " + to + " - " + controller);
         UltimateZoneChange change = new UltimateZoneChange(from.ZoneID, to.ZoneID, Time.time + 0.5F, controller);
         ControllerChange.Add(change);
-
-     
-
         for(int i = ControllerChange.Count - 1; i >= 0; i--) {
             // If the point is expired, then remove it from the list and continue.
             if (Time.time > ControllerChange[i].InvalidTime) {
@@ -73,21 +72,16 @@ public class UltimateHandler : MonoBehaviour {
                 // Decrement i by one since we remove an index.
                 i--;
             }
-
-            foreach(UltimatePattern pattern in PatternTemplates) {
-                if(pattern.First == UserPattern.First && pattern.Second == UserPattern.Second) {
-                    Debug.Log("Casting: " + pattern.Name);
-                    UltimatePlayer.CastUltimate(UltimatePlayer.CurrentTarget().gameObject, pattern.Ultimate);
-                    // Have not proven the need of Immediate, forethought.
-                    Destroy(this.gameObject);
-                }
+        }
+        foreach (UltimatePattern pattern in PatternTemplates) {
+            if (pattern.First == UserPattern.First && pattern.Second == UserPattern.Second) {
+                Debug.Log(UserPattern.First + " - " + UserPattern.Second);
+                Debug.Log("Casting: " + pattern.Name);
+                UltimatePlayer.CastUltimate(UltimatePlayer.CurrentTarget().gameObject, pattern.Ultimate);
+                // Have not proven the need of Immediate, forethought.
+                Destroy(this.gameObject);
             }
         }
-
-
-
-        
-
     }
 
     [System.Serializable]

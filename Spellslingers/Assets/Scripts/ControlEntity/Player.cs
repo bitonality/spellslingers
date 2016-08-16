@@ -94,7 +94,9 @@ public class Player : ControlEntity {
     public override void CastUltimate(GameObject target, GameObject ultimate) {
         base.CastUltimate(target, ultimate);
         foreach(VRTK_InteractGrab controller in this.gameObject.GetComponentsInChildren<VRTK_InteractGrab>()) {
-            controller.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
+            if (controller.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
+                controller.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
+            }
         }
     }
 
