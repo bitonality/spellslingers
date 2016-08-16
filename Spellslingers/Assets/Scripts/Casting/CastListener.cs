@@ -25,6 +25,8 @@ public class CastListener : MonoBehaviour {
     //If AngleCheck is more than this, just discard the cast.
     public float MaxAngle = 30;
 
+    [HideInInspector]
+    public bool UltimateTriggerMode = false;
 
     public void ModifyMaxAngle(float Change)
     {
@@ -82,10 +84,7 @@ public class CastListener : MonoBehaviour {
 		}
         if (player.GetWand(gameObject) == null) {
             if (player.UltimateMode) {
-                
-                if (this.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
-                    this.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
-                }
+                DisableUltimateTriggerMode();
             }
         }
         // Check if the player has a spell queued for firing.
@@ -169,7 +168,7 @@ public class CastListener : MonoBehaviour {
            
 
 		} else if(player.UltimateMode) {
-            this.gameObject.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+            EnableUltimateTriggerMode();
 
         
         }
@@ -177,4 +176,18 @@ public class CastListener : MonoBehaviour {
 
 
 	}
+
+    private void EnableUltimateTriggerMode() {
+        this.UltimateTriggerMode = true;
+        if (this.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
+            this.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(true);
+        }
+    }
+
+    private void DisableUltimateTriggerMode() {
+        this.UltimateTriggerMode = false;
+        if (this.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
+            this.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
+        }
+    }
 }

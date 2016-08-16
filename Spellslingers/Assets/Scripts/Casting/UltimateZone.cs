@@ -8,18 +8,12 @@ public class UltimateZone : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider col) {
-        if (col.gameObject.tag == "GameController") {
+        if (col.gameObject.tag == "UltimateOrb") {
             this.gameObject.GetComponentInParent<UltimateHandler>().ZoneEntered(this.gameObject, col.gameObject);
         }
     }
 
-    void OnTriggerExit(Collider col) {
-        if (col.gameObject.tag == "GameController") {
-            if (col.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
-                this.gameObject.GetComponentInParent<UltimateHandler>().ZoneEntered(this.gameObject, col.gameObject);
-            }
-        }
-    }
+
 
 	// Use this for initialization
 	void Start () {
