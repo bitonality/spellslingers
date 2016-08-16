@@ -3,9 +3,9 @@ using System.Collections;
 
 public interface Influenceable {
 
-    object ApplyInfluence(influences inf);
+    void ApplyInfluence(influences inf);
 
-    object RemoveInfluence(influences inf);
+    void RemoveInfluence(influences inf);
 
-    object RemoveInfluenceTimer(influences inf, float time);
+    void RemoveInfluenceTimer(influences inf, float time);
 }

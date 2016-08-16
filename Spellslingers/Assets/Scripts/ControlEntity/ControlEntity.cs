@@ -104,30 +104,31 @@ public abstract class ControlEntity : Targetable, Influenceable {
         influenceDict.Add(influences.STUN, new InfluenceValue(false, 0, "Stunned"));
         InitialEnemy.GetComponent<Targetable>().Priority = 2;
         this.Targets.Add(InitialEnemy);
+        InvokeRepeating("RedrawInfluences", 0.1F, 0.5F);
         
 
 
     }
 
-    public virtual object ApplyInfluence(influences inf)
+    public virtual void ApplyInfluence(influences inf)
     {
         Debug.Log("Influence " + inf + " applied at " + Time.time);
         influenceDict[inf].SetStatus(true);
         UpdateInfluenceText();
-        return null;
+        return;
     }
-	public virtual object RemoveInfluence(influences inf) {
+	public virtual void RemoveInfluence(influences inf) {
         Debug.Log("Influence " + inf + " removed at " + Time.time);
         influenceDict[inf].SetStatus(false);
         UpdateInfluenceText();
-        return null;
+        return;
 	}
 
-    public object RemoveInfluenceTimer(influences inf, float time)
+    public void RemoveInfluenceTimer(influences inf, float time)
     {
         Debug.Log("Influence " + inf + " scheduled for removal in " + time + "s at " + Time.time);
         influenceDict[inf].SetTime(time);
-        return null;
+        return;
     }
 
     public virtual void UpdateInfluenceText()
@@ -135,9 +136,13 @@ public abstract class ControlEntity : Targetable, Influenceable {
         influenceText.GetComponent<Text>().text = "";
         foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict) {
             if (influence.Value.GetStatus()) {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Value.GetName() + "(" + String.Format("{0:0.0}", Math.Round(influence.Value.GetTime() - Time.time, 1)) + "s)";
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Value.GetName() + "(" + String.Format("{0:0.0}", Mathf.Round(influence.Value.GetTime() - Time.time)) + "s)";
             }
         }
+    }
+
+    public virtual void FixedUpdate() {
+        CheckInfluenceTimers();
     }
 
     public void CheckInfluenceTimers() {
@@ -148,8 +153,9 @@ public abstract class ControlEntity : Targetable, Influenceable {
         }
     }
 
-    public virtual void FixedUpdate() {
-        CheckInfluenceTimers();
+    public void RedrawInfluences() {
         UpdateInfluenceText();
     }
 }
+
+
