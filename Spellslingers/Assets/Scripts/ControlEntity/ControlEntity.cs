@@ -14,11 +14,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
     }
 
     // Tracks how many auras the CE has triggered.
-    public int UltimateCounter {
-        get;
-        set;
-    }
-
+    [HideInInspector]
+    public int UltimateCounter = 0;
     
     public GameObject influenceText;
 
@@ -82,7 +79,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
         UltimateCounter += i;
         if(this.UltimateChargeBar != null) {
-            this.UltimateChargeBar.GetComponent<Image>().fillAmount = (this.UltimateChargeTrigger / this.UltimateCounter);
+            this.UltimateChargeBar.GetComponent<Image>().fillAmount =  (this.UltimateCounter / this.UltimateChargeTrigger);
         }
 
     }
