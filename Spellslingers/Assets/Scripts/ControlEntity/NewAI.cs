@@ -7,8 +7,6 @@ using UnityEngine;
 public class NewAI : ControlEntity
 
 {
-    public GameObject influenceText;
-
     //Difficulty - Easy/Normal/Hard: 1/2/3
     // TODO: Make a way to set this in-game
     public int Difficulty = PlayerPrefs.GetInt("difficulty");
@@ -66,16 +64,6 @@ public class NewAI : ControlEntity
         }
     }
 
-    public override void UpdateInfluenceText()
-    {
-        influenceText.GetComponent<Text>().text = "";
-        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict) {
-            if (influence.Value.GetStatus()) {
-                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Value.GetName() + "(" + String.Format("{0:0.0}", Math.Round(influence.Value.GetTime() - Time.time, 1)) + "s)";
-            }
-        }
-    }
-
     // Make sure it can't leave the AI boundry.
     void OnTriggerExit(Collider col)
     {
@@ -86,7 +74,7 @@ public class NewAI : ControlEntity
         }
     }
 
-    public Queue<validStates> currentAction = new Queue<validStates>();
+    public Queue<validStates> currentAction;
 
     //Called every 0.02 seconds
     void FixedUpdate()
@@ -221,6 +209,7 @@ public class NewAI : ControlEntity
     public override void Awake()
     {
         base.Awake();
+        currentAction = new Queue<validStates>();
         defaultSpeed = speed;
         originalPosition = gameObject.transform.position;
         // Make sure 1 <= difficulty >= 3

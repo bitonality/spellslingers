@@ -73,7 +73,7 @@ public abstract class Targetable : MonoBehaviour {
     }
 
     public GameObject CurrentTarget() {
-        List<GameObject> priorityTargets = Targets.OrderByDescending(o => o.GetComponent<Targetable>().Priority).ToList();
+        //List<GameObject> priorityTargets = Targets.OrderBy(o => o.GetComponent<Targetable>().Priority).ToList();
         for (int i = Targets.Count - 1; i >= 0; i--) {
             if (Targets[i] != null) {
                 return Targets[i];
@@ -91,7 +91,11 @@ public abstract class Targetable : MonoBehaviour {
     // TODO: Consider making sure no duplicates anywhere in the list (unnecessary right now).
     public void AddTarget(GameObject target) {
         if (Targets[Targets.Count - 1] != target) {
-            Targets.Add(target);
+            if (Targets[Targets.Count - 1].GetComponent<Targetable>().Priority > 1 ) {
+                Targets.Insert(Targets.Count -2 , target);
+            } else {
+                Targets.Add(target);
+            }
         }
     }
 

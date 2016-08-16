@@ -74,6 +74,7 @@ public class UltimateHandler : MonoBehaviour {
                 UltimatePlayer.CastUltimate(UltimatePlayer.CurrentTarget().gameObject, pattern.Ultimate);
                 // Have not proven the need of Immediate, forethought.
                 Destroy(this.gameObject);
+                break;
             }
         }
     }

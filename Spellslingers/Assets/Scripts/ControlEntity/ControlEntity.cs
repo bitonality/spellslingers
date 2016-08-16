@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using VRTK;
 using UnityEngine.UI;
+using System;
 
 // Abstraction layer that encapsulates AI and Players.
 public abstract class ControlEntity : Targetable, Influenceable {
@@ -17,6 +18,9 @@ public abstract class ControlEntity : Targetable, Influenceable {
         get;
         set;
     }
+
+    [HideInInspector]
+    public GameObject influenceText;
 
     // How many auras the player needs to cast before being allowed to use ults.
     public int UltimateChargeTrigger;
@@ -33,7 +37,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
         set;
     }
 
-    public Dictionary<influences, InfluenceValue> influenceDict = new Dictionary<influences, InfluenceValue>();
+    public Dictionary<influences, InfluenceValue> influenceDict;
 
     // For testing purposes.
     public GameObject InitialEnemy;
@@ -85,7 +89,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public virtual void CastUltimate(GameObject target, GameObject ultimate) {
         this.UltimateMode = false;
-        ultimate.GetComponent<Ultimate>().Cast(this.gameObject, target);
+        GameObject instantiatedUltimate = Instantiate(ultimate);
+        instantiatedUltimate.GetComponent<Ultimate>().Cast(this.gameObject, target);
     }
 
 	public override void Awake() {
@@ -94,6 +99,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
         UltimateCounter = 0;
         this.SpellSpeedModifier = this.DefaultSpellSpeedModifier;
         this.ActiveHexes = new HashSet<Hex>();
+        influenceDict = new Dictionary<influences, InfluenceValue>();
         influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0, "Disarmed"));
         influenceDict.Add(influences.STUN, new InfluenceValue(false, 0, "Stunned"));
         InitialEnemy.GetComponent<Targetable>().Priority = 2;
@@ -107,13 +113,13 @@ public abstract class ControlEntity : Targetable, Influenceable {
     {
         Debug.Log("Influence " + inf + " applied at " + Time.time);
         influenceDict[inf].SetStatus(true);
-        GetComponent<NewAI>().UpdateInfluenceText();
+        UpdateInfluenceText();
         return null;
     }
 	public virtual object RemoveInfluence(influences inf) {
         Debug.Log("Influence " + inf + " removed at " + Time.time);
         influenceDict[inf].SetStatus(false);
-        GetComponent<NewAI>().UpdateInfluenceText();
+        UpdateInfluenceText();
         return null;
 	}
 
@@ -126,6 +132,11 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public virtual void UpdateInfluenceText()
     {
-        return;
+        influenceText.GetComponent<Text>().text = "";
+        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict) {
+            if (influence.Value.GetStatus()) {
+                influenceText.GetComponent<Text>().text = influenceText.GetComponent<Text>().text + "\n" + influence.Value.GetName() + "(" + String.Format("{0:0.0}", Math.Round(influence.Value.GetTime() - Time.time, 1)) + "s)";
+            }
+        }
     }
 }

@@ -18,9 +18,12 @@ public class MissileBarrage : Ultimate {
             Vector3 pos = RandomCircle(center, 5.0f);
             Quaternion rot = Quaternion.FromToRotation(Vector3.forward, center - pos);
             GameObject hex = Instantiate(HexTemplate, pos, rot) as GameObject;
-            hex.GetComponent<Rigidbody>().AddForce(Vector3.up);
+            hex.GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
             hex.GetComponent<Hex>().Source = source.GetComponent<ControlEntity>();
             hex.GetComponent<Hex>().MaxRotation = 179;
+            this.Source.GetComponent<ControlEntity>().ActiveHexes.Add(hex.GetComponent<Hex>());
+            hex.GetComponent<Hex>().ScheduleDestroy(hex.GetComponent<Hex>().Timeout);
+            Hexes.Add(new MissileBarrageProjectile(hex, source, target));
         }
 
         Invoke("EnableHoming", 2F);
@@ -30,10 +33,17 @@ public class MissileBarrage : Ultimate {
         public GameObject Hex;
         public GameObject Source;
         public GameObject Target;
+
+        public MissileBarrageProjectile(GameObject h, GameObject s, GameObject t) {
+            this.Hex = h;
+            this.Source = s;
+            this.Target = t;
+        }
     }
 
     private void EnableHoming() {
         foreach(MissileBarrageProjectile proj in Hexes) {
+           
             proj.Hex.GetComponent<HomingProjectile>().LaunchProjectile(proj.Hex.GetComponent<Hex>(), proj.Source.transform, proj.Target.transform, 10F, 4F);
         }
     }
@@ -44,8 +54,8 @@ public class MissileBarrage : Ultimate {
         float ang = Random.value * 360;
         Vector3 pos;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
-        pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-        pos.z = center.z;
+        pos.y = center.y + 0.2F;
+        pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         return pos;
     }
 

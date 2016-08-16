@@ -4,9 +4,9 @@ using System.Collections;
 public abstract class Ultimate : MonoBehaviour {
 
     [HideInInspector]
-    GameObject Source;
+    public GameObject Source;
     [HideInInspector]
-    GameObject Target;
+    public GameObject Target;
 
     public virtual void Cast(GameObject source, GameObject target) {
         this.Source = source;
