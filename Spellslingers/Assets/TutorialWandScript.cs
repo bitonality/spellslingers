@@ -14,7 +14,7 @@ public class TutorialWandScript : MonoBehaviour {
         if (PreviousPosition != this.gameObject.transform.position)
             {
                 continueupdate=false;
-                GameObject.Find("Canvas").GetComponent<TextMesh>().text=("Great, now, hold the trigger to open your castagon, then attempt to draw these shapes IN ORDER to create the different types of hexes spellslingers offers.");
+
             }
 
         }
