@@ -37,7 +37,6 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     // For testing purposes.
     public GameObject InitialEnemy;
-    public GameObject InitialAura;
 
     // Aura that the player currently has stashed
     public GameObject Aura {
@@ -86,7 +85,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public virtual void CastUltimate(GameObject target, GameObject ultimate) {
         this.UltimateMode = false;
-
+        ultimate.GetComponent<Ultimate>().Cast(this.gameObject, target);
     }
 
 	public override void Awake() {
@@ -97,8 +96,10 @@ public abstract class ControlEntity : Targetable, Influenceable {
         this.ActiveHexes = new HashSet<Hex>();
         influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0, "Disarmed"));
         influenceDict.Add(influences.STUN, new InfluenceValue(false, 0, "Stunned"));
+        InitialEnemy.GetComponent<Targetable>().Priority = 2;
         this.Targets.Add(InitialEnemy);
-        this.Targets.Add(InitialAura);
+        
+
 
     }
 

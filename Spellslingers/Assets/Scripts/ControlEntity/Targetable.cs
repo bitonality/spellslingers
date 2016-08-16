@@ -3,10 +3,16 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 
 // ControlEntity with the purpose of being destroyed once its health is low enough.
 public abstract class Targetable : MonoBehaviour {
+
+
+    // Priority which the targetable should be targeted as.
+    [HideInInspector]
+    public int Priority = 1;
 
     // Outward facing for unity inspector, rest of logic is in TargetPoint variable.
     public Transform InsepctorTargetPoint;
@@ -67,6 +73,7 @@ public abstract class Targetable : MonoBehaviour {
     }
 
     public GameObject CurrentTarget() {
+        List<GameObject> priorityTargets = Targets.OrderByDescending(o => o.GetComponent<Targetable>().Priority).ToList();
         for (int i = Targets.Count - 1; i >= 0; i--) {
             if (Targets[i] != null) {
                 return Targets[i];
