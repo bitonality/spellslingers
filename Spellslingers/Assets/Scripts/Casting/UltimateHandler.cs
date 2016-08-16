@@ -13,7 +13,7 @@ public class UltimateHandler : MonoBehaviour {
 
     public void ZoneEntered(GameObject zone, GameObject controller) {
 
-        if(controller.GetComponentInChildren<ParticleSystem>() == null) {
+        if(controller.GetComponent<CastListener>().UltimateTriggerMode == false) {
             ControllerMap.Clear();
             ControllerChange.Clear();
             return;

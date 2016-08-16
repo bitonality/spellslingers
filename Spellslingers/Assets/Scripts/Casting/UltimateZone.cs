@@ -9,7 +9,7 @@ public class UltimateZone : MonoBehaviour {
 
     void OnTriggerEnter(Collider col) {
         if (col.gameObject.tag == "UltimateOrb") {
-            this.gameObject.GetComponentInParent<UltimateHandler>().ZoneEntered(this.gameObject, col.gameObject);
+            this.gameObject.GetComponentInParent<UltimateHandler>().ZoneEntered(this.gameObject, col.gameObject.GetComponentInParent<SteamVR_TrackedObject>().gameObject);
         }
     }
 

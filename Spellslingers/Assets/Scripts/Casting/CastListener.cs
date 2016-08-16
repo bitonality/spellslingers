@@ -179,8 +179,8 @@ public class CastListener : MonoBehaviour {
 
     private void EnableUltimateTriggerMode() {
         this.UltimateTriggerMode = true;
-        if (this.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
-            this.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(true);
+        if (this.gameObject.GetComponentInChildren<ParticleSystem>(true) != null) {
+            this.gameObject.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
         }
     }
 
