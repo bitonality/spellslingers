@@ -9,7 +9,8 @@ public class NewAI : ControlEntity
 {
     //Difficulty - Easy/Normal/Hard: 1/2/3
     // TODO: Make a way to set this in-game
-    public int Difficulty = PlayerPrefs.GetInt("difficulty");
+    [HideInInspector]
+    public int Difficulty;
 
 
     //time until next state change 
@@ -53,16 +54,7 @@ public class NewAI : ControlEntity
         DEAD
     }
 
-    public void CheckInfluenceTimers()
-    {
-        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict)
-        {
-            if (influence.Value.GetTime() <= Time.time)
-            {
-                RemoveInfluence(influence.Key);
-            }
-        }
-    }
+
 
     // Make sure it can't leave the AI boundry.
     void OnTriggerExit(Collider col)
@@ -77,9 +69,9 @@ public class NewAI : ControlEntity
     public Queue<validStates> currentAction;
 
     //Called every 0.02 seconds
-    void FixedUpdate()
+    public override void FixedUpdate()
     {
-        UpdateInfluenceText();
+        base.FixedUpdate();
         if (currentAction.Count <= 0)
         {
             //Something went wrong with starting the AI
@@ -209,6 +201,8 @@ public class NewAI : ControlEntity
     public override void Awake()
     {
         base.Awake();
+        Difficulty = PlayerPrefs.GetInt("difficulty", 2);
+        
         currentAction = new Queue<validStates>();
         defaultSpeed = speed;
         originalPosition = gameObject.transform.position;

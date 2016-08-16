@@ -26,7 +26,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 433292}
   - 96: {fileID: 9676192}
-  - 114: {fileID: 11447440}
   m_Layer: 0
   m_Name: PComponent Light Tail
   m_TagString: Untagged
@@ -542,17 +541,6 @@ MonoBehaviour:
   fadeLimit: 3
   fadePassed: 0
   fadeSpeed: 1
---- !u!114 &11447440
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 128620}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11488588
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -90,12 +90,19 @@ public abstract class Targetable : MonoBehaviour {
     // Safely checks for extra additions and adds an element
     // TODO: Consider making sure no duplicates anywhere in the list (unnecessary right now).
     public void AddTarget(GameObject target) {
-        if (Targets[Targets.Count - 1] != target) {
+        if (Targets.Count > 0 && Targets[Targets.Count - 1] != target) {
             if (Targets[Targets.Count - 1].GetComponent<Targetable>().Priority > 1 ) {
-                Targets.Insert(Targets.Count -2 , target);
+                if (Targets.Count < 2) {
+                    Targets.Add(target);
+                }
+                else {
+                    Targets.Insert(Targets.Count - 2, target);
+                }
             } else {
                 Targets.Add(target);
             }
+        } else {
+            Targets.Add(target);
         }
     }
 

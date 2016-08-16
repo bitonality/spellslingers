@@ -139,4 +139,17 @@ public abstract class ControlEntity : Targetable, Influenceable {
             }
         }
     }
+
+    public void CheckInfluenceTimers() {
+        foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict) {
+            if (influence.Value.GetTime() <= Time.time) {
+                RemoveInfluence(influence.Key);
+            }
+        }
+    }
+
+    public virtual void FixedUpdate() {
+        CheckInfluenceTimers();
+        UpdateInfluenceText();
+    }
 }
