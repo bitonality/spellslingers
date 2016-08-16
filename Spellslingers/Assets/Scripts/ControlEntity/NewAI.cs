@@ -219,7 +219,7 @@ public class NewAI : ControlEntity
         }
         else if (Difficulty == 3)
         {
-            GetComponent<CastListener>().ModifyMaxAngle(-1 * MaxAngleMod);
+           // GetComponent<CastListener>().ModifyMaxAngle(-1 * MaxAngleMod);
             IdlePauseTime -= IdleMod;
             PreshootDelay -= PreshootDelayMod;
             speed += SpeedMod;

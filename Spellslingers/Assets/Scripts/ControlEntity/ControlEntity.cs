@@ -19,7 +19,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
         set;
     }
 
-    [HideInInspector]
+    
     public GameObject influenceText;
 
     // How many auras the player needs to cast before being allowed to use ults.
