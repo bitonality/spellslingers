@@ -91,7 +91,7 @@ public abstract class Targetable : MonoBehaviour {
     // TODO: Consider making sure no duplicates anywhere in the list (unnecessary right now).
     public void AddTarget(GameObject target) {
         if (Targets.Count > 0 && Targets[Targets.Count - 1] != target) {
-            if (Targets[Targets.Count - 1].GetComponent<Targetable>().Priority > 1 ) {
+            if (Targets[Targets.Count - 1] != null && Targets[Targets.Count - 1].GetComponent<Targetable>().Priority > 1 ) {
                 if (Targets.Count < 2) {
                     Targets.Add(target);
                 }

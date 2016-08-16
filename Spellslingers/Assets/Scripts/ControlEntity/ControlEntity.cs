@@ -142,7 +142,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     }
 
     public virtual void FixedUpdate() {
-        CheckInfluenceTimers();
+        
     }
 
     public void CheckInfluenceTimers() {
@@ -154,6 +154,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     }
 
     public void RedrawInfluences() {
+        CheckInfluenceTimers();
         UpdateInfluenceText();
     }
 }

@@ -13,13 +13,13 @@ public class AuraSpawner : MonoBehaviour {
 
 
     void SpawnAura() {
-        Transform[] attachPoints = this.gameObject.GetComponentsInChildren<Transform>();
-        List<Transform> validPoints = new List<Transform>(attachPoints);
-        for(int i = validPoints.Count - 1; i >=0; i--) {
-            if(validPoints[i].childCount != 0) {
-                validPoints.RemoveAt(i);
+        List<Transform> validPoints = new List<Transform>();
+        foreach(Transform t in this.gameObject.transform) {
+            if(t.transform.childCount == 0) {
+                validPoints.Add(t);
             }
         }
+
 
         if(validPoints.Count == 0) {
             return;
@@ -31,7 +31,9 @@ public class AuraSpawner : MonoBehaviour {
         GameObject aura = Instantiate(auraTemplate, validPoints[randomIndex].transform.position, auraTemplate.transform.rotation) as GameObject;
         aura.transform.SetParent(validPoints[randomIndex]);
         foreach(GameObject ob in AuraTargeters) {
-            ob.GetComponent<ControlEntity>().AddTarget(aura);
+            if (ob != null) {
+                ob.GetComponent<ControlEntity>().AddTarget(aura);
+            }
         }
     }
 }

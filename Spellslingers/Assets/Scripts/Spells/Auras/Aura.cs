@@ -28,8 +28,9 @@ public abstract class Aura : MonoBehaviour {
     public IEnumerator IntervalEnumerator;
 
     public virtual void InitializeAura(GameObject target) {
-        this.Target.GetComponent<ControlEntity>().IncrementUltimateCounter(1);
+       
         this.Target = target;
+        this.Target.GetComponent<ControlEntity>().IncrementUltimateCounter(1);
         this.gameObject.transform.position = this.Target.gameObject.transform.position + this.Position;
         this.gameObject.transform.SetParent(this.Target.gameObject.transform);
         if(AuraParticleEffect != null) {
