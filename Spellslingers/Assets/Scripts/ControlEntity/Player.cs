@@ -101,7 +101,7 @@ public class Player : ControlEntity {
                 controller.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
             }
         }
-        Instantiate(WandTemplate);
+       
 
     }
     public override void IncrementUltimateCounter(int i) {

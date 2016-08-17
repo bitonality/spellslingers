@@ -446,7 +446,7 @@ MonoBehaviour:
   - Name: Magic Lightning
     First: 5
     Second: 7
-    Ultimate: {fileID: 0}
+    Ultimate: {fileID: 159022, guid: c09ffc877b8c1ac4a88391a2067e53c6, type: 2}
   - Name: Magic Thundercats
     First: 5
     Second: 8

@@ -41,6 +41,7 @@ public class MissileBarrage : Ultimate {
         foreach(MissileBarrageProjectile proj in Hexes) {         
             proj.Hex.GetComponent<HomingProjectile>().LaunchProjectile(proj.Hex.GetComponent<Hex>(), proj.Source.transform, proj.Source.GetComponent<ControlEntity>().CurrentTarget().transform, 10F, 4F);
         }
+        this.Destroy();
     }
 
 

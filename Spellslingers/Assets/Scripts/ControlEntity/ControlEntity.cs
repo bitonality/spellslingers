@@ -89,7 +89,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
     public virtual void CastUltimate(GameObject target, GameObject ultimate) {
         this.UltimateMode = false;
         this.UltimateCounter = 0;
-        GameObject instantiatedUltimate = Instantiate(ultimate);
+        GameObject instantiatedUltimate = Instantiate(ultimate, this.TargetPoint.transform.position, Quaternion.identity) as GameObject;
         instantiatedUltimate.GetComponent<Ultimate>().Cast(this.gameObject, target);
     }
 

@@ -18,8 +18,6 @@ public class HexCollide : MonoBehaviour {
         // Create an explosion at the collision point.
         //GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
 
-        // Schedule the destruction of the particle system.
-        //Destroy(effect, effect.GetComponentInChildren<ParticleSystem>().duration);
 
         // Check that the spell isn't hitting another spell by the same sender
         if(col.gameObject.GetComponent<Hex>() != null && col.gameObject.GetComponent<Hex>().Source == this.gameObject.GetComponent<Hex>().Source) {

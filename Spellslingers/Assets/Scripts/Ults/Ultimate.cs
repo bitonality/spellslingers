@@ -13,5 +13,11 @@ public abstract class Ultimate : MonoBehaviour {
         this.Target = target;
     }
 
+    public virtual void Destroy() {
+        if(this.Source.GetComponent<Player>() != null) {
+            Instantiate(this.Source.GetComponent<Player>().WandTemplate);
+        } 
+        Destroy(this.gameObject);
+    }
 
 }

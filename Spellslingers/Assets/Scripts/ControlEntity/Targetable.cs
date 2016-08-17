@@ -64,46 +64,22 @@ public abstract class Targetable : MonoBehaviour {
         if (target == null) {
             return false;
         }
-
         if (target.GetComponent<Targetable>().Targets.Contains(this.gameObject) && Targets.Contains(target)) {
-
             return true;
         }
         return false;
     }
 
     public GameObject CurrentTarget() {
-        //List<GameObject> priorityTargets = Targets.OrderBy(o => o.GetComponent<Targetable>().Priority).ToList();
-        for (int i = Targets.Count - 1; i >= 0; i--) {
-            if (Targets[i] != null) {
-                return Targets[i];
-            }
-            else {
-                Targets.RemoveAt(i);
-            }
-        }
-
-        return null;
+        Targets.Sort(new TargetableComparer());
+        return Targets.Last();
     }
 
 
     // Safely checks for extra additions and adds an element
     // TODO: Consider making sure no duplicates anywhere in the list (unnecessary right now).
     public void AddTarget(GameObject target) {
-        if (Targets.Count > 0 && Targets[Targets.Count - 1] != target) {
-            if (Targets[Targets.Count - 1] != null && Targets[Targets.Count - 1].GetComponent<Targetable>().Priority > 1 ) {
-                if (Targets.Count < 2) {
-                    Targets.Add(target);
-                }
-                else {
-                    Targets.Insert(Targets.Count - 2, target);
-                }
-            } else {
-                Targets.Add(target);
-            }
-        } else {
-            Targets.Add(target);
-        }
+        this.Targets.Add(target);
     }
 
 
@@ -121,4 +97,15 @@ public abstract class Targetable : MonoBehaviour {
     }
 
 
+    public class TargetableComparer : IComparer<GameObject> {
+        public int Compare(GameObject x, GameObject y) {
+            if(y == null) {
+                return 1;
+            }
+            return (x.GetComponent<Targetable>().Priority - y.GetComponent<Targetable>().Priority);
+            throw new NotImplementedException();
+        }
+    }
 }
+
+

@@ -1321,7 +1321,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 404082, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11445712, guid: 1db57003bd840be47b850f95fb75e569, type: 2}
       propertyPath: HealthBar
