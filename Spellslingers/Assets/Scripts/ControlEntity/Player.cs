@@ -7,7 +7,7 @@ using System;
 
 public class Player : ControlEntity {
 
-
+    public Vector3 DeathLocation;
     public GameObject MordecaiTemplate;
 
     [HideInInspector]
@@ -39,8 +39,8 @@ public class Player : ControlEntity {
         // Destroy the hex.
         h.Destroy();
         // Process if the player is dead.
-		if (IsDead())
-			Destroy (gameObject);
+        if (IsDead())
+            gameObject.transform.position = new Vector3(460.41F,40F,323.311F);
 	}
 
 	public override bool CanShoot (Hex h, GameObject controller) {

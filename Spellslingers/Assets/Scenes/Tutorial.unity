@@ -2304,7 +2304,7 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!117 &1144551111
+--- !u!117 &1080807854
 Texture3D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
