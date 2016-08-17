@@ -36,7 +36,11 @@ public class HomingProjectile : MonoBehaviour {
 		if (update) {
             // For if we destroy the hex object before the actual gameobject has been destroyed.
             if (this.gameObject == null) return; 
-            if(this.Target == null) {
+            if(this.Target == null ) {
+                if(this.gameObject.GetComponent<Hex>().Source.CurrentTarget() == null) {
+                    this.gameObject.GetComponent<Hex>().Destroy();
+                    return;
+                }
                 this.Target = this.gameObject.GetComponent<Hex>().Source.CurrentTarget().transform;
             }
 			Quaternion rotation = Quaternion.LookRotation (Target.position - transform.position);

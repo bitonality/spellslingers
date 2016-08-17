@@ -20,13 +20,13 @@ public class HexCollide : MonoBehaviour {
 
 
         // Check that the spell isn't hitting another spell by the same sender
-        if(col.gameObject.GetComponent<Hex>() != null && col.gameObject.GetComponent<Hex>().Source == this.gameObject.GetComponent<Hex>().Source) {
+        if(col.gameObject.GetComponent<Hex>() != null && col.gameObject.GetComponent<Hex>().Source == this.gameObject.GetComponent<Hex>().Source || (col.gameObject.GetComponent<Targetable>() != null && this.gameObject.GetComponent<Hex>().Source == col.gameObject.GetComponent<Targetable>())) {
             Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), col.gameObject.GetComponent<Collider>());
             return;
         }
 
         // If the spell collides with a ControlEntity.
-        if (col.gameObject.GetComponent<Targetable>() != null) {
+        if (col.gameObject.GetComponent<Targetable>() != null ) {
             // Process the spell for the specific hex and ControlEntity
             col.gameObject.GetComponent<Targetable>().processHex(this.GetComponent<Hex>());
             return;

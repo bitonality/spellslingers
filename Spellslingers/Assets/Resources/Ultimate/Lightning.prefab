@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 912.57495, y: -19.292374, z: 701.62396}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -53,10 +53,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192916}
-  m_LocalRotation: {x: 0.7071069, y: 0, z: 0, w: 0.70710677}
-  m_LocalPosition: {x: -912.57495, y: 19.292374, z: -701.62396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 405330}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   Source: {fileID: 0}
   Target: {fileID: 0}
   HexTemplate: {fileID: 122072, guid: 5fca19848eabda6478f1b46d61d27c94, type: 2}
-  NumberOfHexes: 100
+  NumberOfHexes: 20
 --- !u!198 &19819136
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -82,7 +82,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192916}
   serializedVersion: 2
-  lengthInSec: 0.1
+  lengthInSec: 0.13
   startDelay:
     scalar: 0
     maxCurve:
@@ -343,7 +343,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startRotationY:
-      scalar: 1
+      scalar: 0.5375614
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -409,8 +409,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 5
-    radius: 15
+    type: 4
+    radius: 0.5
     angle: 10
     length: 5
     boxX: 0.1
@@ -425,7 +425,7 @@ ParticleSystem:
     m_MeshNormalOffset: 0
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
-    randomDirection: 1
+    randomDirection: 0
   EmissionModule:
     enabled: 1
     serializedVersion: 2

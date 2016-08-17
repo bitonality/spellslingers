@@ -72,7 +72,12 @@ public abstract class Targetable : MonoBehaviour {
 
     public GameObject CurrentTarget() {
         Targets.Sort(new TargetableComparer());
-        return Targets.Last();
+        for(int i = Targets.Count - 1; i >= 0; i--) {
+            if(Targets[i] != null) {
+                return Targets[i];
+            }
+        }
+        return null;
     }
 
 
@@ -99,7 +104,7 @@ public abstract class Targetable : MonoBehaviour {
 
     public class TargetableComparer : IComparer<GameObject> {
         public int Compare(GameObject x, GameObject y) {
-            if(y == null) {
+            if(y == null || x == null) {
                 return 1;
             }
             return (x.GetComponent<Targetable>().Priority - y.GetComponent<Targetable>().Priority);

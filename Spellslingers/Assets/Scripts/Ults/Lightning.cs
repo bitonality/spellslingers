@@ -7,22 +7,12 @@ public class Lightning : Ultimate {
 
     public GameObject HexTemplate;
     public int NumberOfHexes;
-    private int HexCounter;
+    private int HexCounter = 0;
 
 
     public override void Cast(GameObject source, GameObject target) {
         base.Cast(source, target);
         InvokeRepeating("IntervalLightning", 0.1F, 0.2F);
-    }
-
-    private class LightningProjectile {
-        public GameObject Hex;
-        public GameObject Source;
-
-        public LightningProjectile(GameObject h, GameObject s) {
-            this.Hex = h;
-            this.Source = s;
-        }
     }
 
     void IntervalLightning() {
@@ -31,7 +21,8 @@ public class Lightning : Ultimate {
             this.Destroy();
         }
         else {
-            this.Source.GetComponent<ControlEntity>().CastHex(HexTemplate.GetComponent<Hex>(), this.Source.transform, this.Target.transform, 10F, 4F);
+            HexCounter++;
+            this.Source.GetComponent<ControlEntity>().CastHex(HexTemplate.GetComponent<Hex>(), this.Source.GetComponent<Targetable>().TargetPoint, this.Source.GetComponent<Targetable>().CurrentTarget().transform, 10F, 4F);
         }
 
     }
