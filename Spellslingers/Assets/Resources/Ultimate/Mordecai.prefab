@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 408910}
   - 198: {fileID: 19896002}
   - 199: {fileID: 19954924}
-  - 114: {fileID: 11442184}
   m_Layer: 0
   m_Name: PComponent Splash Explosion
   m_TagString: Untagged
@@ -28,7 +27,6 @@ GameObject:
   - 4: {fileID: 478330}
   - 198: {fileID: 19819286}
   - 199: {fileID: 19906170}
-  - 114: {fileID: 11419192}
   m_Layer: 0
   m_Name: PComponent Air Explosion
   m_TagString: Untagged
@@ -352,17 +350,6 @@ MonoBehaviour:
   curTime: 0
   curColor: {r: 0.8014706, g: 0.5803752, b: 0, a: 0}
   everyFrame: 0
---- !u!114 &11419192
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11437800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,17 +382,6 @@ MonoBehaviour:
   done: 0
   maxTime: 0
   timePassed: 0
---- !u!114 &11442184
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11455562
 MonoBehaviour:
   m_ObjectHideFlags: 1

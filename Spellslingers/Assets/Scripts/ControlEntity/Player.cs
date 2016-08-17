@@ -10,7 +10,7 @@ public class Player : ControlEntity {
 
     public GameObject MordecaiTemplate;
 
-    //[HideInInspector]
+    [HideInInspector]
     public GameObject InstantiatedMordecai;
 
     public Transform CastagonAttachPoint;
@@ -26,6 +26,9 @@ public class Player : ControlEntity {
 		get;
 		set;
 	}
+
+    // Wand Template for respawning the wand.
+    public GameObject WandTemplate;
 
     // Called when a spell collides with a Player.
 	public override void processHex(Hex h) {
@@ -97,6 +100,15 @@ public class Player : ControlEntity {
             if (controller.gameObject.GetComponentInChildren<ParticleSystem>() != null) {
                 controller.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
             }
+        }
+        Instantiate(WandTemplate);
+
+    }
+    public override void IncrementUltimateCounter(int i) {
+        base.IncrementUltimateCounter(i);
+        // If the player has enough auras casted, summon mordecai
+        if (UltimateCounter == UltimateChargeTrigger) {
+            this.InstantiatedMordecai = Instantiate(MordecaiTemplate);
         }
     }
 

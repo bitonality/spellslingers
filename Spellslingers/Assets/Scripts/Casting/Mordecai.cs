@@ -37,7 +37,7 @@ public class Mordecai : MonoBehaviour {
         p.UltimateMode = true;
         GameObject zone = Instantiate(UltimateZoneTemplate, p.gameObject.GetComponentInChildren<Camera>().transform.position, Quaternion.identity) as GameObject;
         zone.GetComponent<UltimateHandler>().UltimatePlayer = p;
-
+        Destroy(this.gameObject);
     }
 
    

@@ -72,7 +72,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
         proj.ScheduleDestroy(proj.Timeout);
     }
 
-    public void IncrementUltimateCounter(int i) {
+    public virtual void IncrementUltimateCounter(int i) {
         if(UltimateCounter + i > UltimateChargeTrigger) {
             return;
         }
@@ -82,7 +82,9 @@ public abstract class ControlEntity : Targetable, Influenceable {
             this.UltimateChargeBar.GetComponent<Image>().fillAmount =  (this.UltimateCounter / this.UltimateChargeTrigger);
         }
 
+    
     }
+
 
     public virtual void CastUltimate(GameObject target, GameObject ultimate) {
         this.UltimateMode = false;

@@ -10,9 +10,6 @@ public class MissileBarrage : Ultimate {
 
     public override void Cast(GameObject source, GameObject target) {
         base.Cast(source, target);
-
-
-
         Vector3 center = source.transform.position;
         for (int i = 0; i < NumberOfHexes; i++) {
             Vector3 pos = RandomCircle(center, 5.0f);
@@ -23,7 +20,7 @@ public class MissileBarrage : Ultimate {
             hex.GetComponent<Hex>().MaxRotation = 179;
             this.Source.GetComponent<ControlEntity>().ActiveHexes.Add(hex.GetComponent<Hex>());
             hex.GetComponent<Hex>().ScheduleDestroy(hex.GetComponent<Hex>().Timeout);
-            Hexes.Add(new MissileBarrageProjectile(hex, source, target));
+            Hexes.Add(new MissileBarrageProjectile(hex, source));
         }
 
         Invoke("EnableHoming", 2F);
@@ -32,19 +29,17 @@ public class MissileBarrage : Ultimate {
     private class MissileBarrageProjectile {
         public GameObject Hex;
         public GameObject Source;
-        public GameObject Target;
 
-        public MissileBarrageProjectile(GameObject h, GameObject s, GameObject t) {
+
+        public MissileBarrageProjectile(GameObject h, GameObject s) {
             this.Hex = h;
             this.Source = s;
-            this.Target = t;
         }
     }
 
     private void EnableHoming() {
-        foreach(MissileBarrageProjectile proj in Hexes) {
-           
-            proj.Hex.GetComponent<HomingProjectile>().LaunchProjectile(proj.Hex.GetComponent<Hex>(), proj.Source.transform, proj.Target.transform, 10F, 4F);
+        foreach(MissileBarrageProjectile proj in Hexes) {         
+            proj.Hex.GetComponent<HomingProjectile>().LaunchProjectile(proj.Hex.GetComponent<Hex>(), proj.Source.transform, proj.Source.GetComponent<ControlEntity>().CurrentTarget().transform, 10F, 4F);
         }
     }
 
