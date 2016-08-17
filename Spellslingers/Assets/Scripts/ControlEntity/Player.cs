@@ -130,7 +130,7 @@ public class Player : ControlEntity {
 	}
 
 	
-	void FixedUpdate () {
+	void FixedUpdateOLD () {
         // Iterate over all the sliders and update their value 
 		foreach(KeyValuePair<string, float> spell in cooldown) {
 			if (Time.time <= spell.Value) {
