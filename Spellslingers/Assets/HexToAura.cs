@@ -15,4 +15,3 @@ public class HexToAura : MonoBehaviour {
             gameObject.GetComponent<ControlEntity>().AddTarget(Aura);
         }
     }
-}
