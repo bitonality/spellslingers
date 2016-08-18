@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4d32e902eaf3a419943c87ecb7e186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
+  explosion: {fileID: 137778, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
   numLegalCollisions: 0
 --- !u!198 &19809262
 ParticleSystem:

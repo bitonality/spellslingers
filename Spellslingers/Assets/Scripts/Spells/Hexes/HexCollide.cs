@@ -16,8 +16,12 @@ public class HexCollide : MonoBehaviour {
 
     void OnCollisionEnter(Collision col) {
         // Create an explosion at the collision point.
-        GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
-        Destroy(effect, effect.GetComponent<ParticleSystem>().time);
+
+        if (explosion != null) {
+            GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
+            Debug.Log(effect);
+            //Destroy(effect, effect.GetComponent<ParticleSystem>().time);
+        }
 
 
         // Check that the spell isn't hitting another spell by the same sender
