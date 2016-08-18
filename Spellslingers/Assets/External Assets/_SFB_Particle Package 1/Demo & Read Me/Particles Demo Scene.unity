@@ -33468,6 +33468,52 @@ TrailRenderer:
       rgba: 1842217
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!1001 &1056980852
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 178.44121
+      objectReference: {fileID: 0}
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 11.261181
+      objectReference: {fileID: 0}
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 165.69551
+      objectReference: {fileID: 0}
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 473788, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 137778, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+      propertyPath: m_Name
+      value: PComponent Line Explode
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 805be8ccf4517434f8cab153c842eb4b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1063977942
 GameObject:
   m_ObjectHideFlags: 0

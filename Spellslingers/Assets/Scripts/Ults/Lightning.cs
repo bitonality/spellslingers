@@ -22,7 +22,7 @@ public class Lightning : Ultimate {
         }
         else {
             HexCounter++;
-            this.Source.GetComponent<ControlEntity>().CastHex(HexTemplate.GetComponent<Hex>(), this.Source.GetComponent<Targetable>().TargetPoint, this.Source.GetComponent<Targetable>().CurrentTarget().transform, 10F, 4F);
+            this.Source.GetComponent<ControlEntity>().CastHex(HexTemplate.GetComponent<Hex>(), this.Source.GetComponent<Targetable>().TargetPoint.gameObject, this.Source.GetComponent<Targetable>().CurrentTarget(), 10F, 4F);
         }
 
     }

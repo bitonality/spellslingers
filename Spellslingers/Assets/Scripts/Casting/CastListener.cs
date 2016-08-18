@@ -121,7 +121,7 @@ public class CastListener : MonoBehaviour {
 				}
 
                 // Cast the hex from the wand launch point with random accuracy modifiers.
-				player.CastHex(player.queuedSpell, player.GetWand(gameObject).transform.FindChild("LaunchPoint").transform, target, angleCheck + speedCheck, controllerVelocity.magnitude);
+				player.CastHex(player.queuedSpell, player.GetWand(gameObject).transform.FindChild("LaunchPoint").gameObject, target.gameObject, angleCheck + speedCheck, controllerVelocity.magnitude);
                 // Reset the queued spell. This will also stop the check in the FixedUpdate() method.
 				player.queuedSpell = null;
 			}

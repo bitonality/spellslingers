@@ -123,7 +123,7 @@ public class NewAI : ControlEntity
                     Hex h = pickHex();
                     if (CanShoot(h, gameObject))
                     {
-                        CastHex(h, gameObject.transform.GetChild(0).gameObject.transform, this.CurrentTarget().GetComponent<Targetable>().TargetPoint, 2, 5);
+                        CastHex(h, gameObject.transform.GetChild(0).gameObject, this.CurrentTarget().GetComponent<Targetable>().TargetPoint.gameObject, 2, 5);
                         currentAction.Enqueue(validStates.POSTSHOOT);
                     }
                     else

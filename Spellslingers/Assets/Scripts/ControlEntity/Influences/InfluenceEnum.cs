@@ -1,5 +1,7 @@
 ﻿public enum influences
 {
     DISARM,
-    STUN
+    STUN,
+    FORCEFIELD,
+    HASTE
 }

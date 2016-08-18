@@ -64,8 +64,11 @@ public abstract class ControlEntity : Targetable, Influenceable {
     public GameObject UltimateChargeBar;
 
     // Instantiates a hex based on a template at source and launches it at target with force modifer forceMod
-    public void CastHex(Hex hex, Transform source, Transform target, float sensitivity, float controllerVelocity) {
-        Hex proj = Instantiate(hex, source.position, source.rotation) as Hex;
+    public void CastHex(Hex hex, GameObject source, GameObject target, float sensitivity, float controllerVelocity) {
+        if (source == null || target == null) {
+            return;
+        }
+        Hex proj = Instantiate(hex, source.transform.position, source.transform.rotation) as Hex;
         proj.GetComponent<HomingProjectile>().LaunchProjectile(hex, source, target, sensitivity, controllerVelocity * SpellSpeedModifier);
         ActiveHexes.Add(proj);
         proj.Source = this;
@@ -102,6 +105,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
         influenceDict = new Dictionary<influences, InfluenceValue>();
         influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0, "Disarmed"));
         influenceDict.Add(influences.STUN, new InfluenceValue(false, 0, "Stunned"));
+        influenceDict.Add(influences.FORCEFIELD, new InfluenceValue(false, 0, "Forcefield"));
         InitialEnemy.GetComponent<Targetable>().Priority = 2;
         this.Targets.Add(InitialEnemy);
         InvokeRepeating("RedrawInfluences", 0.1F, 0.5F);
