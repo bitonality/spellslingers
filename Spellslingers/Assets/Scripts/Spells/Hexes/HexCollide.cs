@@ -20,9 +20,10 @@ public class HexCollide : MonoBehaviour {
         if (explosion != null) {
             GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
         }
+
         if(this.gameObject.GetComponent<Hex>().ExplosionSound != null) {
             this.gameObject.GetComponent<Hex>().Audio.clip = this.gameObject.GetComponent<Hex>().ExplosionSound;
-            this.gameObject.GetComponent<Hex>().Audio.Play();
+            AudioSource.PlayClipAtPoint(this.gameObject.GetComponent<Hex>().Audio.clip, this.gameObject.transform.position);
         }
 
 
@@ -56,7 +57,9 @@ public class HexCollide : MonoBehaviour {
                 GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
             }
 
+
             Hex h = this.gameObject.GetComponent<Hex>();
+
             if (h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.GetComponent<Aura>().Target == h.Source)) {
                 return;
             }
