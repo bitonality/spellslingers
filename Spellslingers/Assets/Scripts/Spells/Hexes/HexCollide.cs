@@ -20,6 +20,10 @@ public class HexCollide : MonoBehaviour {
         if (explosion != null) {
             GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
         }
+        if(this.gameObject.GetComponent<Hex>().ExplosionSound != null) {
+            this.gameObject.GetComponent<Hex>().Audio.clip = this.gameObject.GetComponent<Hex>().ExplosionSound;
+            this.gameObject.GetComponent<Hex>().Audio.Play();
+        }
 
 
         // Check that the spell isn't hitting another spell by the same sender

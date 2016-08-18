@@ -68,6 +68,11 @@ public abstract class ControlEntity : Targetable, Influenceable {
         if (source == null || target == null) {
             return;
         }
+        if (hex.CastSound != null) {
+            hex.Audio.clip = hex.CastSound;
+            hex.Audio.Play();
+        }
+        
         Hex proj = Instantiate(hex, source.transform.position, source.transform.rotation) as Hex;
         if(this is NewAI) {
             proj.transform.LookAt(target.GetComponent<Targetable>().TargetPoint);
