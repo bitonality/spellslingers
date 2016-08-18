@@ -40,7 +40,7 @@ public class Player : ControlEntity {
         h.Destroy();
         // Process if the player is dead.
         if (IsDead())
-            gameObject.transform.position = new Vector3(460.41F,40F,323.311F);
+            gameObject.transform.position = DeathLocation;
 	}
 
 	public override bool CanShoot (Hex h, GameObject controller) {
