@@ -15,14 +15,17 @@ public class HomingProjectile : MonoBehaviour {
     private float ConstantMagnitude;
 	private bool update = false;
 
-	public void LaunchProjectile(Hex hex, GameObject source, GameObject target, float sensitivity, float controllerMagnitude)
-    {
-        if(source == null || target == null) {
+    public void LaunchProjectile(Hex hex, GameObject source, GameObject target, float sensitivity, float controllerMagnitude) {
+        if (source == null || target == null) {
             return;
         }
 
         this.Target = target;
-        if (target.GetComponent<Targetable>() == null) {
+        if (target.GetComponent<Targetable>() != null) {
+            this.Target = target.GetComponent<Targetable>().gameObject;
+        } else
+
+        if (target.GetComponentInParent<Targetable>() != null) {
             this.Target = target.GetComponentInParent<Targetable>().gameObject;
         }
         

@@ -69,6 +69,9 @@ public abstract class ControlEntity : Targetable, Influenceable {
             return;
         }
         Hex proj = Instantiate(hex, source.transform.position, source.transform.rotation) as Hex;
+        if(this is NewAI) {
+            proj.transform.LookAt(target.GetComponent<Targetable>().TargetPoint);
+        }
         proj.GetComponent<HomingProjectile>().LaunchProjectile(hex, source, target, sensitivity, controllerVelocity * SpellSpeedModifier);
         ActiveHexes.Add(proj);
         proj.Source = this;
@@ -106,7 +109,6 @@ public abstract class ControlEntity : Targetable, Influenceable {
         influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0, "Disarmed"));
         influenceDict.Add(influences.STUN, new InfluenceValue(false, 0, "Stunned"));
         influenceDict.Add(influences.FORCEFIELD, new InfluenceValue(false, 0, "Forcefield"));
-        InitialEnemy.GetComponent<Targetable>().Priority = 2;
         this.Targets.Add(InitialEnemy);
         InvokeRepeating("RedrawInfluences", 0.1F, 0.5F);
         

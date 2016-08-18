@@ -12,6 +12,7 @@ public class NewAI : ControlEntity
     [HideInInspector]
     public int Difficulty;
 
+    public GameObject[] Ultimates;
 
     //time until next state change 
     private float timeUntilChange = 0;
@@ -123,7 +124,21 @@ public class NewAI : ControlEntity
                     Hex h = pickHex();
                     if (CanShoot(h, gameObject))
                     {
-                        CastHex(h, gameObject.transform.GetChild(0).gameObject, this.CurrentTarget().GetComponent<Targetable>().TargetPoint.gameObject, 2, 5);
+                        if (this.Aura != null) {
+                            GameObject auraBall = Instantiate(this.Aura, gameObject.transform.GetChild(0).gameObject.transform.position, Quaternion.identity) as GameObject;
+                            SetActiveRecursively(auraBall, true);
+                            Aura aura = auraBall.gameObject.GetComponentInChildren<Aura>();
+                            Destroy(auraBall.GetComponentInChildren<CastagonPoint>().gameObject);
+                            aura.InitializeAura(this.gameObject);
+                            this.Aura = null;
+                        }
+                        else if(this.UltimateCounter >= this.UltimateChargeTrigger) {
+                            this.CastUltimate(this.CurrentTarget().gameObject, Ultimates[0]);
+                        }
+                        else {
+                            CastHex(h, gameObject.transform.GetChild(0).gameObject, this.CurrentTarget().GetComponent<Targetable>().gameObject, 4, 5);
+                            
+                        }
                         currentAction.Enqueue(validStates.POSTSHOOT);
                     }
                     else
@@ -282,6 +297,13 @@ public class NewAI : ControlEntity
         else
         {
             speed = defaultSpeed;
+        }
+    }
+    public static void SetActiveRecursively(GameObject rootObject, bool active) {
+        rootObject.SetActive(active);
+
+        foreach (Transform childTransform in rootObject.transform) {
+            SetActiveRecursively(childTransform.gameObject, active);
         }
     }
 }

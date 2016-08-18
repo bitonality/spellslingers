@@ -127,7 +127,8 @@ public class Player : ControlEntity {
 
         // Initial settting of queuedSpell.
 		queuedSpell = null;
-	}
+        InitialEnemy.GetComponent<Targetable>().Priority = 2;
+    }
 
 	
 	void FixedUpdateOLD () {

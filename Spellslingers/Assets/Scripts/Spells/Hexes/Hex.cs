@@ -79,7 +79,7 @@ public abstract class Hex : Spell {
 
     public virtual void Start() {
         LastRotation = this.gameObject.transform.rotation;
-        MaxRotation = 90;
+        MaxRotation = 120;
     }
 
 
