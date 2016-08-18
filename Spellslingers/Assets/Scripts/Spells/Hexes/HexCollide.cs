@@ -19,8 +19,6 @@ public class HexCollide : MonoBehaviour {
 
         if (explosion != null) {
             GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
-            Debug.Log(effect);
-            //Destroy(effect, effect.GetComponent<ParticleSystem>().time);
         }
 
 
@@ -50,15 +48,16 @@ public class HexCollide : MonoBehaviour {
     void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Forcefield") {
             Hex h = this.gameObject.GetComponent<Hex>();
-            if(h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.GetComponent<Aura>().Target == h.Source))
-            // Hexes will never despawn because of this, produces swarm-like effect.
-            h.MaxRotation = 360;
-            HomingProjectile hp = this.gameObject.GetComponent<HomingProjectile>();
-            hp.Sensitivity = 50;
-            this.gameObject.GetComponent<Rigidbody>().velocity *= -1;
-            h.Damage = h.Damage / 2;
-            this.gameObject.transform.rotation = Quaternion.Inverse(this.gameObject.transform.rotation);
-            this.gameObject.GetComponent<HomingProjectile>().Target = h.Source.TargetPoint.gameObject;
+            if (h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.GetComponent<Aura>().Target == h.Source)) {
+                // Hexes will never despawn because of this, produces swarm-like effect.
+                h.MaxRotation = 360;
+                HomingProjectile hp = this.gameObject.GetComponent<HomingProjectile>();
+                hp.Sensitivity = 50;
+                this.gameObject.GetComponent<Rigidbody>().velocity *= -1;
+                h.Damage = h.Damage / 2;
+                this.gameObject.transform.rotation = Quaternion.Inverse(this.gameObject.transform.rotation);
+                this.gameObject.GetComponent<HomingProjectile>().Target = h.Source.gameObject;
+            }
         }
     }
 }
