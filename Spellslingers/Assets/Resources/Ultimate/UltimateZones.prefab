@@ -442,7 +442,7 @@ MonoBehaviour:
   - Name: Magic Meteor
     First: 6
     Second: 8
-    Ultimate: {fileID: 0}
+    Ultimate: {fileID: 135022, guid: 199dc2de11ce0994fb3b608f0b901960, type: 2}
   - Name: Magic Lightning
     First: 5
     Second: 7
@@ -450,7 +450,7 @@ MonoBehaviour:
   - Name: Magic Thundercats
     First: 5
     Second: 8
-    Ultimate: {fileID: 0}
+    Ultimate: {fileID: 180226, guid: 256c7f8430dc21f478f6067deb859a1b, type: 2}
 --- !u!114 &11438998
 MonoBehaviour:
   m_ObjectHideFlags: 1

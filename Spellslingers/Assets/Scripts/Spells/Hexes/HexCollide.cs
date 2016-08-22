@@ -21,6 +21,11 @@ public class HexCollide : MonoBehaviour {
             GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
         }
 
+        if(this.gameObject.GetComponent<Hex>().ExplosionSound != null) {
+            this.gameObject.GetComponent<Hex>().Audio.clip = this.gameObject.GetComponent<Hex>().ExplosionSound;
+            AudioSource.PlayClipAtPoint(this.gameObject.GetComponent<Hex>().Audio.clip, this.gameObject.transform.position);
+        }
+
 
         // Check that the spell isn't hitting another spell by the same sender
         if(col.gameObject.GetComponent<Hex>() != null && col.gameObject.GetComponent<Hex>().Source == this.gameObject.GetComponent<Hex>().Source || (col.gameObject.GetComponent<Targetable>() != null && this.gameObject.GetComponent<Hex>().Source == col.gameObject.GetComponent<Targetable>())) {
@@ -52,7 +57,9 @@ public class HexCollide : MonoBehaviour {
                 GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
             }
 
+
             Hex h = this.gameObject.GetComponent<Hex>();
+
             if (h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.GetComponent<Aura>().Target == h.Source)) {
                 return;
             }

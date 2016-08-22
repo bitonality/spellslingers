@@ -34,6 +34,10 @@ public abstract class Hex : Spell {
         set;
     }
 
+    public AudioClip ExplosionSound;
+    public AudioClip CastSound;
+    public AudioSource Audio;
+
     // The future scheduled destruction of the hex. We store this so we can cancel it if we manually destroy a hex through the hex.destroy() code.
     private IEnumerator ScheduledDestroy;
 
