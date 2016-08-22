@@ -9,6 +9,8 @@ public class Swarm : Aura {
 
     public override void InitializeAura(GameObject target) {
         base.InitializeAura(target);
+        target.GetComponent<ControlEntity>().ApplyInfluence(influences.ORBIT);
+        target.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.ORBIT, this.Length);
         // Get a list of targets that the player has.
         foreach (GameObject playerTargets in this.Target.GetComponent<Targetable>().Targets) {
             // If the player's target also targets the player (mutual targets).
@@ -28,7 +30,8 @@ public class Swarm : Aura {
     }
 
     public override IEnumerator IntervalAura() {
-        while(this.gameObject.transform.childCount > 0) {
+        while(this.gameObject.transform.childCount > 0 && CurrentLength < this.Length) {
+            CurrentLength += Interval;
             yield return new WaitForSeconds(this.Interval);
         }
         TerminateAura();
@@ -36,6 +39,7 @@ public class Swarm : Aura {
 
     public override void TerminateAura() {
         Destroy(this.gameObject);
+        this.Target.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.ORBIT, 0);
     }
 
     void Update() {

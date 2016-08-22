@@ -481,6 +481,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &175686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 407424}
+  - 23: {fileID: 2371424}
+  - 102: {fileID: 10222850}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &177758
 GameObject:
   m_ObjectHideFlags: 1
@@ -715,6 +732,19 @@ Transform:
   - {fileID: 483876}
   - {fileID: 487860}
   m_Father: {fileID: 471154}
+  m_RootOrder: 2
+--- !u!4 &407424
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.047, y: 0.181, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 490614}
   m_RootOrder: 2
 --- !u!4 &411152
 Transform:
@@ -1186,6 +1216,7 @@ Transform:
   m_Children:
   - {fileID: 471154}
   - {fileID: 411152}
+  - {fileID: 407424}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &498814
@@ -1277,6 +1308,32 @@ MeshRenderer:
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: b27fa8aa11d99d440bab56b1de24981f, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!23 &2371424
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175686}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1755,6 +1812,27 @@ TrailRenderer:
       rgba: 1842217
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!102 &10222850
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175686}
+  m_Text: Orbit
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 60
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4290824448
 --- !u!114 &11418824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1893,6 +1971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0a645d5c42f4543ae99a7f1527b8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Priority: 1
   InsepctorTargetPoint: {fileID: 0}
   Targets: []
   HealthBar: {fileID: 0}
@@ -1909,8 +1988,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AuraParticleEffect: {fileID: 198914}
-  Length: 0
-  Interval: 0
+  Length: 20
+  Interval: 7
   Position: {x: 0, y: 1, z: 0}
   DegreesPerSecond: 15
 --- !u!114 &11490274
@@ -1924,6 +2003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0a645d5c42f4543ae99a7f1527b8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Priority: 1
   InsepctorTargetPoint: {fileID: 0}
   Targets: []
   HealthBar: {fileID: 0}

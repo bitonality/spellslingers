@@ -53,16 +53,23 @@ public class HexCollide : MonoBehaviour {
     void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Forcefield") {
 
+
+            Hex h = this.gameObject.GetComponent<Hex>();
+
+            // If the player is shooting out of the force field.
+            if (h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.GetComponent<Aura>().Target == h.Source)) {
+                return;
+            }
+            // If the enemy player shooting into it has haste.
+            if(h.Source.GetComponent<ControlEntity>() != null && h.Source.GetComponent<ControlEntity>().influenceDict[influences.HASTE].GetStatus() == true) {
+                return;
+            }
+
+
             if (explosion != null) {
                 GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
             }
 
-
-            Hex h = this.gameObject.GetComponent<Hex>();
-
-            if (h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.GetComponent<Aura>().Target == h.Source)) {
-                return;
-            }
             // Hexes will never despawn because of this, produces swarm-like effect.
             h.MaxRotation = 360;
             HomingProjectile hp = this.gameObject.GetComponent<HomingProjectile>();

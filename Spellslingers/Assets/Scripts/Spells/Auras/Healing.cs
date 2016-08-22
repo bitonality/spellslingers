@@ -10,6 +10,8 @@ public class Healing : Aura {
 
     public override void InitializeAura(GameObject target) {
         base.InitializeAura(target);
+        target.GetComponent<ControlEntity>().ApplyInfluence(influences.HEALING);
+        target.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.HEALING, this.Length);
         this.TimeRestored = this.Length;
         this.IntervalEnumerator = IntervalAura();
         StartCoroutine(this.IntervalEnumerator);

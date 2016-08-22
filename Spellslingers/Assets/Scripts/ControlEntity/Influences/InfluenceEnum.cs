@@ -3,5 +3,7 @@
     DISARM,
     STUN,
     FORCEFIELD,
-    HASTE
+    HASTE,
+    ORBIT,
+    HEALING
 }

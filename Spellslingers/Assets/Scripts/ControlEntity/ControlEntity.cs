@@ -104,6 +104,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
         this.UltimateCounter = 0;
         GameObject instantiatedUltimate = Instantiate(ultimate, this.TargetPoint.transform.position, Quaternion.identity) as GameObject;
         instantiatedUltimate.GetComponent<Ultimate>().Cast(this.gameObject, target);
+        // TODO: Encapsulate this later.
+        this.UltimateChargeBar.GetComponent<Image>().fillAmount = 0F;
     }
 
 	public override void Awake() {
@@ -116,6 +118,8 @@ public abstract class ControlEntity : Targetable, Influenceable {
         influenceDict.Add(influences.DISARM, new InfluenceValue(false, 0, "Disarmed"));
         influenceDict.Add(influences.STUN, new InfluenceValue(false, 0, "Stunned"));
         influenceDict.Add(influences.FORCEFIELD, new InfluenceValue(false, 0, "Forcefield"));
+        influenceDict.Add(influences.ORBIT, new InfluenceValue(false, 0, "Orbiting"));
+        influenceDict.Add(influences.HEALING, new InfluenceValue(false, 0, "Healing"));
         this.Targets.Add(InitialEnemy);
         InvokeRepeating("RedrawInfluences", 0.1F, 0.5F);
         

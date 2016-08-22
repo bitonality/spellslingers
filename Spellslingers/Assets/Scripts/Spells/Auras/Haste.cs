@@ -9,6 +9,8 @@ public class Haste : Aura {
     public override void InitializeAura(GameObject target) {
         base.InitializeAura(target);
         this.IntervalEnumerator = IntervalAura();
+        target.GetComponent<ControlEntity>().ApplyInfluence(influences.HASTE);
+        target.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.HASTE, this.Length);
         StartCoroutine(this.IntervalEnumerator);
         this.Target.GetComponent<ControlEntity>().SpellSpeedModifier = SpellSpeedModifier;
     }
