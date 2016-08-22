@@ -202,8 +202,8 @@ public class NewAI : ControlEntity
             // TODO: Only move into IDLE if the player has a wand
             currentAction.Enqueue(validStates.IDLE);
         }
-        //else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].GetStatus() == false) {
-        else if (state == validStates.STUNNED) {
+        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].GetStatus() == false) {
+        
          currentAction.Enqueue(validStates.IDLE);
         }
         return null;
@@ -217,7 +217,7 @@ public class NewAI : ControlEntity
     public override void Awake()
     {
         base.Awake();
-        Difficulty = PlayerPrefs.GetInt("difficulty", 2);
+        Difficulty = PlayerPrefs.GetInt("difficulty", 3);
         
         currentAction = new Queue<validStates>();
         defaultSpeed = speed;

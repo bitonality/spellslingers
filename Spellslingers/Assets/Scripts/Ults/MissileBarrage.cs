@@ -20,7 +20,7 @@ public class MissileBarrage : Ultimate {
             hex.GetComponent<Hex>().MaxRotation = 179;
             this.Source.GetComponent<ControlEntity>().ActiveHexes.Add(hex.GetComponent<Hex>());
             hex.GetComponent<Hex>().ScheduleDestroy(hex.GetComponent<Hex>().Timeout);
-            Hexes.Add(new MissileBarrageProjectile(hex, source));
+            Hexes.Add(new MissileBarrageProjectile(hex, this.Source));
         }
 
         Invoke("EnableHoming", 2F);
@@ -40,7 +40,7 @@ public class MissileBarrage : Ultimate {
     private void EnableHoming() {
         foreach(MissileBarrageProjectile proj in Hexes) {
             // Reangle the missiles to avoid early destruction of them.
-            proj.Hex.transform.LookAt(proj.Source.GetComponent<ControlEntity>().CurrentTarget().transform);
+            proj.Hex.transform.LookAt(proj.Source.GetComponent<Targetable>().transform);
             proj.Hex.GetComponent<Hex>().LastRotation = proj.Hex.transform.rotation;
             proj.Hex.GetComponent<HomingProjectile>().LaunchProjectile(proj.Hex.GetComponent<Hex>(), proj.Source, proj.Source.GetComponent<ControlEntity>().CurrentTarget(), 10F, 4F);
         }

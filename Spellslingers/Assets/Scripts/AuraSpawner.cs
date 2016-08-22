@@ -41,7 +41,7 @@ public class AuraSpawner : MonoBehaviour {
     void Cleanup() {
         foreach (Transform t in this.gameObject.transform) {
             if (t.transform.childCount != 0) {
-                Destroy(t.transform.GetChild(0));
+                Destroy(t.transform.GetChild(0).gameObject);
             }
         }
     }

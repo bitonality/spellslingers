@@ -82,7 +82,9 @@ public class HexCollide : MonoBehaviour {
             GameObject cachedTarget = this.gameObject.GetComponent<HomingProjectile>().Target;
 
             this.gameObject.GetComponent<HomingProjectile>().Target = h.Source.gameObject;
-            h.Source = cachedTarget.GetComponent<ControlEntity>();
+
+                h.Source = cachedTarget.GetComponent<ControlEntity>();
+            
             
         }
     }

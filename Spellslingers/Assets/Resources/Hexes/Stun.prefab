@@ -503,14 +503,14 @@ MonoBehaviour:
   cooldown: 0
   HexName: Stun
   Timeout: 15
-  Damage: 10
+  Damage: 12
   Velocity: 20
   LastRotation: {x: 0, y: 0, z: 0, w: 0}
   ExplosionSound: {fileID: 8300000, guid: 31dbe1f047a081845bd95a5b256ee829, type: 3}
   CastSound: {fileID: 8300000, guid: da5aeec65dfce4d449024607b399a5ec, type: 3}
   Audio: {fileID: 8259146}
   duration: 5000
-  AIDuration: 8
+  AIDuration: 1
   interval: 0
 --- !u!114 &11492442
 MonoBehaviour:
