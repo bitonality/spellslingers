@@ -257,6 +257,7 @@ public class NewAI : ControlEntity
         h.Destroy();
         if (IsDead())
         {
+            GameObject.Find("[CameraRig]").GetComponent<Transform>().position = new Vector3(1617.369F,-3662.498F,-750.5566F); // Messy and hardcoded due to crunch time, clean this up later.
             influenceText.GetComponent<Text>().text = "Dead";
             Destroy(gameObject);
         }
