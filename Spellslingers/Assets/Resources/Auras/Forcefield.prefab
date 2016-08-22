@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AuraParticleEffect: {fileID: 177662}
-  Length: 10
+  Length: 5
   Interval: 1
   Position: {x: 0, y: 0.75, z: 0}
 --- !u!114 &11418574

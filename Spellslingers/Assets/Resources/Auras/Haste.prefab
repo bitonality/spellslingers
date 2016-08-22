@@ -1681,7 +1681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AuraParticleEffect: {fileID: 120558}
-  Length: 10
+  Length: 20
   Interval: 1
   Position: {x: 0, y: 0, z: 0}
   SpellSpeedModifier: 1.42

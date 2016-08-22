@@ -202,8 +202,9 @@ public class NewAI : ControlEntity
             // TODO: Only move into IDLE if the player has a wand
             currentAction.Enqueue(validStates.IDLE);
         }
-        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].GetStatus() == false) {
-            currentAction.Enqueue(validStates.IDLE);
+        //else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].GetStatus() == false) {
+        else if (state == validStates.STUNNED) {
+         currentAction.Enqueue(validStates.IDLE);
         }
         return null;
     }

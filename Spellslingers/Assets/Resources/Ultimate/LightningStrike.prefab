@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
   Target: {fileID: 0}
-  Damage: 300
+  Damage: 200
 --- !u!198 &19821268
 ParticleSystem:
   m_ObjectHideFlags: 1

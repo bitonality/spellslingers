@@ -43,7 +43,7 @@ MonoBehaviour:
   Source: {fileID: 0}
   Target: {fileID: 0}
   HexTemplate: {fileID: 145216, guid: 71dce5477f6c67e40b888baab6446d0c, type: 2}
-  NumberOfHexes: 20
+  NumberOfHexes: 15
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

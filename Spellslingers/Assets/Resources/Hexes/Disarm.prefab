@@ -425,12 +425,13 @@ MonoBehaviour:
   cooldown: 0
   HexName: Disarm
   Timeout: 15
-  Damage: 20
+  Damage: 10
   Velocity: 20
+  LastRotation: {x: 0, y: 0, z: 0, w: 0}
   ExplosionSound: {fileID: 8300000, guid: 222141dd968fb6447b5c790b6d87a27b, type: 3}
   CastSound: {fileID: 8300000, guid: 0b02c09b276fdeb40a0378331b9baef5, type: 3}
   Audio: {fileID: 8250836}
-  AiDisarmTime: 10
+  AiDisarmTime: 5
 --- !u!114 &11458700
 MonoBehaviour:
   m_ObjectHideFlags: 1

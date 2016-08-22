@@ -76,7 +76,7 @@ public class HexCollide : MonoBehaviour {
             HomingProjectile hp = this.gameObject.GetComponent<HomingProjectile>();
             hp.Sensitivity = 50;
             this.gameObject.GetComponent<Rigidbody>().velocity *= -1;
-            h.Damage = h.Damage / 2;
+            h.Damage = h.Damage * (3/5);
             this.gameObject.transform.rotation = Quaternion.Inverse(this.gameObject.transform.rotation);
 
             GameObject cachedTarget = this.gameObject.GetComponent<HomingProjectile>().Target;

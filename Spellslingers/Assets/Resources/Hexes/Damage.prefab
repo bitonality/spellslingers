@@ -677,8 +677,9 @@ MonoBehaviour:
   cooldown: 0
   HexName: Damage
   Timeout: 15
-  Damage: 5
+  Damage: 20
   Velocity: 20
+  LastRotation: {x: 0, y: 0, z: 0, w: 0}
   ExplosionSound: {fileID: 8300000, guid: 3bbe242bc37c8614fbe02c843ed5b465, type: 3}
   CastSound: {fileID: 8300000, guid: 074ccb664b11e1341a5ac9b972ea3ab8, type: 3}
   Audio: {fileID: 8244522}
