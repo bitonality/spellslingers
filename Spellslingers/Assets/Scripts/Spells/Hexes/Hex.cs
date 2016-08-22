@@ -20,7 +20,7 @@ public abstract class Hex : Spell {
 	public float Velocity;
 
     // The rotation of the object from the previous FixedUpdate.
-    private Quaternion LastRotation;
+    public Quaternion LastRotation;
 
     // Max rotation the game object can move before being destroyed.
     public float MaxRotation {

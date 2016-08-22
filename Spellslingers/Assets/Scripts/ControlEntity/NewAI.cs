@@ -133,7 +133,7 @@ public class NewAI : ControlEntity
                             this.Aura = null;
                         }
                         else if(this.UltimateCounter >= this.UltimateChargeTrigger) {
-                            this.CastUltimate(this.CurrentTarget().gameObject, Ultimates[0]);
+                            this.CastUltimate(this.CurrentTarget().gameObject, Ultimates[UnityEngine.Random.Range(0,Ultimates.Length)]);
                         }
                         else {
                             CastHex(h, gameObject.transform.GetChild(0).gameObject, this.CurrentTarget().GetComponent<Targetable>().gameObject, 4, 5);

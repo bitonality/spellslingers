@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AuraParticleEffect: {fileID: 198914}
   Length: 20
-  Interval: 7
+  Interval: 1
   Position: {x: 0, y: 1, z: 0}
   DegreesPerSecond: 15
 --- !u!114 &11490274

@@ -52,8 +52,7 @@ public class Castagon : MonoBehaviour {
                         Aura aura = this.AuraAttachPoint.gameObject.GetComponentInChildren<Aura>();
                         aura.InitializeAura(player.gameObject);
                         player.Aura = null;
-                        // Get rid of the rune label.
-                        Destroy(aura.GetComponentInChildren<TextMesh>());
+
                         
                     }
                     // This should destroy the parented rune.

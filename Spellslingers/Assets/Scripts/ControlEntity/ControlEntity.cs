@@ -120,6 +120,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
         influenceDict.Add(influences.FORCEFIELD, new InfluenceValue(false, 0, "Forcefield"));
         influenceDict.Add(influences.ORBIT, new InfluenceValue(false, 0, "Orbiting"));
         influenceDict.Add(influences.HEALING, new InfluenceValue(false, 0, "Healing"));
+        influenceDict.Add(influences.HASTE, new InfluenceValue(false, 0, "Haste"));
         this.Targets.Add(InitialEnemy);
         InvokeRepeating("RedrawInfluences", 0.1F, 0.5F);
         

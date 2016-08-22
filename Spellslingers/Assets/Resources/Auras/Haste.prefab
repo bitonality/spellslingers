@@ -1682,7 +1682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AuraParticleEffect: {fileID: 120558}
   Length: 10
-  Interval: 3
+  Interval: 1
   Position: {x: 0, y: 0, z: 0}
   SpellSpeedModifier: 1.42
 --- !u!114 &11414808

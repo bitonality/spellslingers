@@ -1684,7 +1684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AuraParticleEffect: {fileID: 124570}
   Length: 5
-  Interval: 2
+  Interval: 1
   Position: {x: 0, y: 0, z: 0}
   HealthToRestore: 50
 --- !u!114 &11426434

@@ -68,6 +68,7 @@ public class HexCollide : MonoBehaviour {
 
             if (explosion != null) {
                 GameObject effect = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
+                Destroy(effect, effect.GetComponent<ParticleSystem>().time);
             }
 
             // Hexes will never despawn because of this, produces swarm-like effect.
