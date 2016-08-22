@@ -42,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
   Target: {fileID: 0}
-  NumberOfMeteors: 20
+  NumberOfMeteors: 35
   MeteorTemplate: {fileID: 160776, guid: 650959a377c3ff34eb9522a73c161bf5, type: 2}
 --- !u!1001 &100100000
 Prefab:

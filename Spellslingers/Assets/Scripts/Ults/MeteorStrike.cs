@@ -4,18 +4,23 @@ using System.Collections;
 public class MeteorStrike : Ultimate {
 
     public int NumberOfMeteors;
+    private int MeteorCounter = 0;
     public GameObject MeteorTemplate;
 
     public override void Cast(GameObject source, GameObject target) {
         base.Cast(source, target);
-        Vector3 center = target.transform.position;
-        for (int i = 0; i < NumberOfMeteors; i++) {
-            GameObject meteor = Instantiate(MeteorTemplate, (center + new Vector3(0, 5, 0)) + (Random.insideUnitSphere * 3), Quaternion.identity) as GameObject;
-        }
-        this.Destroy();
+        InvokeRepeating("Meteor", 0.1F, 0.1F);
     }
 
-
+    private void Meteor() {
+        Vector3 center = this.Target.transform.position;
+        Vector3 mod = new Vector3(Random.Range(0, 2), Random.Range(10, 20), Random.Range(0, 2));
+        GameObject meteor = Instantiate(MeteorTemplate, center + mod, Quaternion.identity) as GameObject;
+        MeteorCounter++;
+        if (MeteorCounter > NumberOfMeteors) {
+            this.Destroy();
+        }
+    }
 
 
 
