@@ -17,6 +17,7 @@ TagManager:
   - UltimateOrb
   - Fire
   - Meteor
+  - MeteorCleanup
   layers:
   - Default
   - TransparentFX
