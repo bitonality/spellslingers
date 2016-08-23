@@ -217,7 +217,7 @@ public class NewAI : ControlEntity
     public override void Awake()
     {
         base.Awake();
-        Difficulty = PlayerPrefs.GetInt("difficulty", 3);
+        Difficulty = PlayerPrefs.GetInt("difficulty", 1);
         
         currentAction = new Queue<validStates>();
         defaultSpeed = speed;
