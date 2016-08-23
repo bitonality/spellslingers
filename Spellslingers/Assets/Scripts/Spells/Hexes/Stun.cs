@@ -37,12 +37,11 @@ public class Stun : Hex {
 
 	public override void aiCollide (GameObject aiBody) {
         
-        float delta = aiBody.GetComponent<NewAI> ().speed / 2;
+        float delta = aiBody.GetComponent<NewAI> ().speed / 3;
 		aiBody.GetComponent<NewAI> ().setSpeed (delta);
-		scheduleSetSpeed (aiBody, interval, aiBody.GetComponent<NewAI>().speed + delta);
+		scheduleSetSpeed (aiBody, AIDuration, aiBody.GetComponent<NewAI>().speed + delta);
         
-        aiBody.GetComponent<NewAI>().currentAction.Clear();
-        aiBody.GetComponent<NewAI>().currentAction.Enqueue(NewAI.validStates.STUNNED);
+
         aiBody.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
         aiBody.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, AIDuration);
     }

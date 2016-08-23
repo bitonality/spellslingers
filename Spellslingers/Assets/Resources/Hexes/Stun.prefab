@@ -510,7 +510,7 @@ MonoBehaviour:
   CastSound: {fileID: 8300000, guid: da5aeec65dfce4d449024607b399a5ec, type: 3}
   Audio: {fileID: 8259146}
   duration: 5000
-  AIDuration: 1
+  AIDuration: 5
   interval: 0
 --- !u!114 &11492442
 MonoBehaviour:

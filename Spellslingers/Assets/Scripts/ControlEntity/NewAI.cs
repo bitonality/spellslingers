@@ -63,7 +63,7 @@ public class NewAI : ControlEntity
         if (col.gameObject.tag == "AIBoundry")
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            gameObject.GetComponent<Rigidbody>().AddForce((originalPosition - gameObject.transform.position) * speed, ForceMode.Impulse);
+            gameObject.GetComponent<Rigidbody>().velocity = ((originalPosition - gameObject.transform.position) * speed);
         }
     }
 
@@ -72,7 +72,13 @@ public class NewAI : ControlEntity
     //Called every 0.02 seconds
     public override void FixedUpdate()
     {
+
         base.FixedUpdate();
+      /*  if(!currentAction.Contains(validStates.DANGER) && isInDanger().Count > 0) {
+            currentAction.Clear();
+            currentAction.Enqueue(validStates.DANGER);
+        }
+        */
         if (currentAction.Count <= 0)
         {
             //Something went wrong with starting the AI
@@ -96,7 +102,7 @@ public class NewAI : ControlEntity
     //Called only when changing state
     private object justLeft(validStates oldState, validStates newState)
     {
-        Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+       // Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState)
         {
             case validStates.HIT:
@@ -104,8 +110,8 @@ public class NewAI : ControlEntity
                 break;
             case validStates.IDLE:
                 //Move in a random direction
-                Vector3 Destination = new Vector3(UnityEngine.Random.Range(-5f, 5f) * speed, 0, UnityEngine.Random.Range(-5f, 5f) * speed);
-                gameObject.GetComponent<Rigidbody>().AddForce(Destination, ForceMode.Impulse);
+                Vector3 Destination = new Vector3(UnityEngine.Random.Range(-3f, 3f) * speed, 0, UnityEngine.Random.Range(-5f, 5f) * speed);
+                gameObject.GetComponent<Rigidbody>().velocity = (Destination);
                 //Schedule interruptable state change in {{ IdlePauseTime }} seconds
                 timeUntilChange = Time.time + IdlePauseTime;
                 currentAction.Enqueue(validStates.PRESHOOT);
@@ -190,7 +196,7 @@ public class NewAI : ControlEntity
             if (dangerousSpells.Count > 0) {
                 //Try to move out of the way
                 Vector3 direction = new Vector3(speed * Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
-                gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+                gameObject.GetComponent<Rigidbody>().velocity = direction;
                 currentAction.Clear();
                 currentAction.Enqueue(validStates.DANGER);
             }
@@ -202,10 +208,7 @@ public class NewAI : ControlEntity
             // TODO: Only move into IDLE if the player has a wand
             currentAction.Enqueue(validStates.IDLE);
         }
-        else if (state == validStates.STUNNED && GetComponent<ControlEntity>().influenceDict[influences.STUN].GetStatus() == false) {
-        
-         currentAction.Enqueue(validStates.IDLE);
-        }
+     
         return null;
     }
     
@@ -217,7 +220,7 @@ public class NewAI : ControlEntity
     public override void Awake()
     {
         base.Awake();
-        Difficulty = PlayerPrefs.GetInt("difficulty", 1);
+        Difficulty = PlayerPrefs.GetInt("difficulty", 3);
         
         currentAction = new Queue<validStates>();
         defaultSpeed = speed;

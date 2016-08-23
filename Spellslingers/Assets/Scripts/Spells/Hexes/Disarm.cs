@@ -21,6 +21,7 @@ public class Disarm : Hex {
 			wand.GetComponent<Rigidbody> ().angularVelocity = new Vector3 (8, 9, 10);
 		}
         playerCameraRig.GetComponent<ControlEntity>().ApplyInfluence(influences.DISARM);
+        playerCameraRig.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.DISARM, 0F);
     }
 
 	public override void aiCollide(GameObject aiBody) {

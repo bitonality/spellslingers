@@ -130,13 +130,13 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public virtual void ApplyInfluence(influences inf)
     {
-        Debug.Log("Influence " + inf + " applied at " + Time.time);
+       // Debug.Log("Influence " + inf + " applied at " + Time.time);
         influenceDict[inf].SetStatus(true);
         UpdateInfluenceText();
         return;
     }
 	public virtual void RemoveInfluence(influences inf) {
-        Debug.Log("Influence " + inf + " removed at " + Time.time);
+       // Debug.Log("Influence " + inf + " removed at " + Time.time);
         influenceDict[inf].SetStatus(false);
         UpdateInfluenceText();
         return;
@@ -144,7 +144,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public void RemoveInfluenceTimer(influences inf, float time)
     {
-        Debug.Log("Influence " + inf + " scheduled for removal in " + time + "s at " + Time.time);
+       // Debug.Log("Influence " + inf + " scheduled for removal in " + time + "s at " + Time.time);
         influenceDict[inf].SetTime(time);
         return;
     }
@@ -165,7 +165,7 @@ public abstract class ControlEntity : Targetable, Influenceable {
 
     public void CheckInfluenceTimers() {
         foreach (KeyValuePair<influences, InfluenceValue> influence in influenceDict) {
-            if (influence.Value.GetTime() <= Time.time) {
+            if (influence.Value.GetTime() != 0 && influence.Value.GetTime() <= Time.time) {
                 RemoveInfluence(influence.Key);
             }
         }

@@ -55,9 +55,10 @@ public class HexCollide : MonoBehaviour {
 
 
             Hex h = this.gameObject.GetComponent<Hex>();
+            GameObject c = col.gameObject;
 
             // If the player is shooting out of the force field.
-            if (h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.GetComponentInParent<Aura>().Target == h.Source)) {
+            if (h.Source.GetComponent<ControlEntity>() != null && (h.Source.GetComponent<ControlEntity>().influenceDict[influences.FORCEFIELD].GetStatus() == true && col.gameObject.GetComponentInParent<Aura>().Target.GetComponent<Targetable>() == h.Source)) {
                 return;
             }
             // If the enemy player shooting into it has haste.

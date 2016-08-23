@@ -60,6 +60,9 @@ public class Castagon : MonoBehaviour {
 				}
 				potential.order.RemoveAt (potential.order.Count - 1);
 			}
+            if(InspectorSpells.Count == 0) {
+                this.destroy();
+            }
 		}
 	}
 
