@@ -62,15 +62,8 @@ public class NewAI : ControlEntity
 
 
 
-    // Make sure it can't leave the AI boundry.
-    void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject.tag == "AIBoundry")
-        {
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            gameObject.GetComponent<Rigidbody>().velocity = ((originalPosition - gameObject.transform.position) * speed);
-        }
-    }
+    private float RandomMovementX = 0;
+    private float RandomMovementZ = 0;
 
     public Queue<validStates> currentAction;
 
@@ -147,7 +140,8 @@ public class NewAI : ControlEntity
                             this.CastUltimate(this.CurrentTarget().gameObject, Ultimates[UnityEngine.Random.Range(0,Ultimates.Length)]);
                         }
                         else {
-                            CastHex(h, gameObject.transform.GetChild(0).gameObject, this.CurrentTarget().GetComponent<Targetable>().gameObject, 4, 5);
+                            CastHex(h, gameObject.transform.FindChild("Bip01").FindChild("LaunchPoint").gameObject, this.CurrentTarget().GetComponent<Targetable>().gameObject, 4, 5);
+                            this.gameObject.GetComponent<Animation>().CrossFade("Sky_Attack1");
                             
                         }
                         currentAction.Enqueue(validStates.POSTSHOOT);
@@ -175,13 +169,16 @@ public class NewAI : ControlEntity
             default:
                 break;
         }
-        this.gameObject.GetComponent<Animation>().CrossFade("Levitate_sky");
+        this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_sky", 1F);
         return null;
     }
 
     //Called every time, but only if a state change did not occur.
     private object currentExclusive(validStates state)
     {
+        if(state == validStates.IDLE) {
+            currentAction.Enqueue(validStates.PRESHOOT);
+        }
         return null;
     }
 
@@ -197,34 +194,65 @@ public class NewAI : ControlEntity
     private object currentInclusive(validStates state)
     {
         if (state == validStates.DANGER) {
-            //Move out of danger
-            ArrayList dangerousSpells = isInDanger();
+            if (RandomMovementX == 0) {
+                RandomMovementX = UnityEngine.Random.Range(-1.0F, 1.0F);
+            }
+
+            if (RandomMovementZ == 0) {
+                RandomMovementZ = UnityEngine.Random.Range(-1.0F, 1.0F);
+            }
+                //Move out of danger
+                ArrayList dangerousSpells = isInDanger();
             if (dangerousSpells.Count > 0) {
                 //Try to move out of the way
-                Vector3 direction = new Vector3(speed * Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
-                gameObject.GetComponent<Rigidbody>().velocity = direction;
+                float xValue = RandomMovementX;
+                if (this.originalPosition.x - this.gameObject.transform.position.x < -2) {
+                    // need to move right
+                    xValue = -1;
+                
+                } else if (this.originalPosition.x - this.gameObject.transform.position.x > 2) {
+                    // need to move left
+                    xValue = 1;
+                 
+                }
+
+                float zValue = RandomMovementZ;
+                if (this.originalPosition.z - this.gameObject.transform.position.z < -2) {
+                    zValue = -1;
+                    // need to move backward
+                }
+                else if (this.originalPosition.z - this.gameObject.transform.position.z > 2) {
+                    zValue = 1;
+                    // need to move forward
+                }
+
+                Vector3 direction = new Vector3(xValue, 0, zValue).normalized;
+                gameObject.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.Acceleration);
                 if(direction.x > 0 && direction.z < 0) {
                     // forward to the left
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_L");
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F");
+                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_L", 1F);
+                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F", 1F);
                 } else if (direction.x < 0 && direction.z < 0) {
                     // forward to the right
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_R");
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F");
+                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_R", 1F);
+                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F", 1F);
                 } else if (direction.z < 0 && direction.x > 0  ) {
                     // backwards to the left
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_L");
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B");
+                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_L", 1F);
+                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B", 1F);
                 } else if(direction.z > 0 && direction.x < 0) {
                     // backwards to the right
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_R");
-                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B");
+                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_R", 1F);
+                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B", 1F);
                 }
                 currentAction.Clear();
                 currentAction.Enqueue(validStates.DANGER);
+
             }
             else {
                 currentAction.Enqueue(validStates.IDLE);
+                this.RandomMovementX = 0;
+                this.RandomMovementZ = 0;
             }
         }
         else if (state == validStates.STARTUP) {

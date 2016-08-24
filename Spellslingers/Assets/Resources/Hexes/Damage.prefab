@@ -117,7 +117,7 @@ GameObject:
   - 114: {fileID: 11498288}
   - 114: {fileID: 11442072}
   - 114: {fileID: 11419044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Damage
   m_TagString: Hex
   m_Icon: {fileID: 0}
