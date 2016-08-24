@@ -35,6 +35,11 @@ public class NewAI : ControlEntity
     // MaxAngle in CastListener. Default is 30
     public float MaxAngleMod = 10;
 
+    [HideInInspector]
+    private float RoamRadius = 1;
+    [HideInInspector]
+    private Vector3 StartPosition;
+
     private float defaultSpeed;
 
     //List of spells the AI is allowed to shoot
@@ -74,11 +79,11 @@ public class NewAI : ControlEntity
     {
 
         base.FixedUpdate();
-      /*  if(!currentAction.Contains(validStates.DANGER) && isInDanger().Count > 0) {
+        if(!currentAction.Contains(validStates.DANGER) && isInDanger().Count > 0) {
             currentAction.Clear();
             currentAction.Enqueue(validStates.DANGER);
         }
-        */
+        
         if (currentAction.Count <= 0)
         {
             //Something went wrong with starting the AI
@@ -110,8 +115,8 @@ public class NewAI : ControlEntity
                 break;
             case validStates.IDLE:
                 //Move in a random direction
-                Vector3 Destination = new Vector3(UnityEngine.Random.Range(-3f, 3f) * speed, 0, UnityEngine.Random.Range(-5f, 5f) * speed);
-                gameObject.GetComponent<Rigidbody>().velocity = (Destination);
+                    //Vector3 Destination = new Vector3(UnityEngine.Random.Range(-3f, 3f) * speed, 0, UnityEngine.Random.Range(-5f, 5f) * speed);
+                    //gameObject.GetComponent<Rigidbody>().velocity = (Destination);
                 //Schedule interruptable state change in {{ IdlePauseTime }} seconds
                 timeUntilChange = Time.time + IdlePauseTime;
                 currentAction.Enqueue(validStates.PRESHOOT);
@@ -170,6 +175,7 @@ public class NewAI : ControlEntity
             default:
                 break;
         }
+        this.gameObject.GetComponent<Animation>().CrossFade("Levitate_sky");
         return null;
     }
 
@@ -197,6 +203,23 @@ public class NewAI : ControlEntity
                 //Try to move out of the way
                 Vector3 direction = new Vector3(speed * Vector3.Cross(((GameObject)dangerousSpells[0]).transform.position, gameObject.transform.position).normalized.x, UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
                 gameObject.GetComponent<Rigidbody>().velocity = direction;
+                if(direction.x > 0 && direction.z < 0) {
+                    // forward to the left
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_L");
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F");
+                } else if (direction.x < 0 && direction.z < 0) {
+                    // forward to the right
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_R");
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F");
+                } else if (direction.z < 0 && direction.x > 0  ) {
+                    // backwards to the left
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_L");
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B");
+                } else if(direction.z > 0 && direction.x < 0) {
+                    // backwards to the right
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_R");
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B");
+                }
                 currentAction.Clear();
                 currentAction.Enqueue(validStates.DANGER);
             }
@@ -245,6 +268,10 @@ public class NewAI : ControlEntity
         }
         //Start out the queue with startup
         currentAction.Enqueue(validStates.STARTUP);
+    }
+
+    void Start() {
+        this.StartPosition = this.gameObject.transform.position;
     }
 
     public override bool CanShoot(Hex h, GameObject launchPoint)
