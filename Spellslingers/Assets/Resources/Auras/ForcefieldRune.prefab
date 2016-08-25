@@ -441,7 +441,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.6, y: 2.48, z: 4.18}
+  m_Size: {x: 3.6, y: 4.4, z: 4.18}
   m_Center: {x: 0.32, y: 0.44, z: -1.01}
 --- !u!114 &11476092
 MonoBehaviour:
@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf69d0c0a3a5e149a7364730f30b6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Priority: 1
   InsepctorTargetPoint: {fileID: 422240}
   Targets: []
   HealthBar: {fileID: 0}

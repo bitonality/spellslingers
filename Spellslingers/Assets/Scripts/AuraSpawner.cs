@@ -21,7 +21,7 @@ public class AuraSpawner : MonoBehaviour {
         this.gameObject.GetComponentInChildren<AudioSource>().Play();
         List<Transform> validPoints = new List<Transform>();
         foreach (Transform t in this.gameObject.transform) {
-            if (t.transform.childCount == 0) {
+            if (t.transform.childCount == 0 && t.gameObject.GetComponent<AudioSource>() == null) {
                 validPoints.Add(t);
             }
         }
@@ -32,13 +32,20 @@ public class AuraSpawner : MonoBehaviour {
             GameObject auraTemplate = SpawnableAuras[i];
             GameObject aura = Instantiate(auraTemplate, validPoints[i].transform.position, auraTemplate.transform.rotation) as GameObject;
             aura.transform.SetParent(validPoints[i]);
-            foreach (GameObject ob in AuraTargeters) {
+        }
+        
+        foreach (GameObject ob in AuraTargeters) {
+            foreach (Transform t in this.gameObject.transform) {
                 if (ob != null) {
-                    ob.GetComponent<ControlEntity>().AddTarget(aura);
+                    if(t.gameObject.GetComponent<AudioSource>() == null) {
+                        
+                        ob.GetComponent<ControlEntity>().AddTarget(t.GetChild(0).gameObject);
+                    }
+                    
                 }
             }
         }
-
+        
     }
 
     void Cleanup() {

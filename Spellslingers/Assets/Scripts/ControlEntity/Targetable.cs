@@ -101,6 +101,10 @@ public abstract class Targetable : MonoBehaviour {
         if (this.HealthBar != null) {
             this.HealthBar.GetComponent<Image>().fillAmount = (float)(this.Health / this.MaxHealth);
         }
+
+        if(this.Health <= 0 && this is NewAI) {
+            Destroy(this.gameObject);
+        }
     }
 
     public class TargetableComparer : IComparer<GameObject> {
