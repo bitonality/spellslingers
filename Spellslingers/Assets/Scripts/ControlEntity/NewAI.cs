@@ -47,6 +47,12 @@ public class NewAI : ControlEntity
 
     private Vector3 originalPosition;
 
+
+    public AudioClip[] AggroSounds;
+    public AudioClip[] PainSounds;
+   
+
+
     public enum ValidStates
     {
         STARTUP,
@@ -76,9 +82,11 @@ public class NewAI : ControlEntity
         if(!CurrentAction.Contains(ValidStates.DANGER) && isInDanger().Count > 0) {
             CurrentAction.Clear();
             CurrentAction.Enqueue(ValidStates.DANGER);
-        // If the state queue contains danger and there are no incoming spells, enqueue the idle state.
-        } else if(CurrentAction.Contains(ValidStates.DANGER) && isInDanger().Count == 0 ) {
-            CurrentAction.Enqueue(ValidStates.IDLE);
+            RandomMovementX = UnityEngine.Random.Range(-1.0F, 1.0F);
+            RandomMovementZ = UnityEngine.Random.Range(-1.0F, 1.0F);
+            // If the state queue contains danger and there are no incoming spells, enqueue the idle state.
+        } else if(CurrentAction.Contains(ValidStates.DANGER) && !CurrentAction.Contains(ValidStates.PRESHOOT) && isInDanger().Count == 0 ) {
+            CurrentAction.Enqueue(ValidStates.PRESHOOT);
         }
         
         if (CurrentAction.Count <= 0)
@@ -104,7 +112,7 @@ public class NewAI : ControlEntity
     //Called only when changing state
     private void justLeft(ValidStates oldState, ValidStates newState)
     {
-       // Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
+        Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState)
         {
             case ValidStates.IDLE:
@@ -114,6 +122,8 @@ public class NewAI : ControlEntity
                 break;
             case ValidStates.PRESHOOT:
                 //Stop movement
+                RandomMovementX = 0;
+                RandomMovementZ = 0;
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 // Wait {{ PreshootDelay }} seconds. If the AI doesn't get in danger, move this will move into SHOOTING stage.
                 timeUntilChange = Time.time + PreshootDelayMod;
@@ -133,16 +143,18 @@ public class NewAI : ControlEntity
                             Destroy(auraBall.GetComponentInChildren<CastagonPoint>().gameObject);
                             aura.InitializeAura(this.gameObject);
                             this.Aura = null;
-                            this.gameObject.GetComponent<Animation>().CrossFade("Sky_View");
+                            this.gameObject.GetComponent<Animation>().Play("Sky_View");
                         }
                         else if(this.UltimateCounter >= this.UltimateChargeTrigger) {
                             this.CastUltimate(this.CurrentTarget().gameObject, Ultimates[UnityEngine.Random.Range(0,Ultimates.Length)]);
-                            this.gameObject.GetComponent<Animation>().CrossFade("Sky_magic");
+                            this.gameObject.GetComponent<Animation>().Play("Sky_magic");
                         }
                         else {
                             CastHex(h, gameObject.transform.FindChild("Bip01").FindChild("LaunchPoint").gameObject, this.CurrentTarget().GetComponent<Targetable>().gameObject, 4, 5);
-                            this.gameObject.GetComponent<Animation>().CrossFade("Sky_Attack1");
-                            
+                            this.gameObject.GetComponent<Animation>().Play("Sky_Attack1");
+                            this.GetComponentInChildren<AudioSource>().clip = PainSounds[UnityEngine.Random.Range(0, AggroSounds.Length)];
+                            this.GetComponentInChildren<AudioSource>().Play();
+
                         }
                         CurrentAction.Enqueue(ValidStates.POSTSHOOT);
                     }
@@ -169,7 +181,8 @@ public class NewAI : ControlEntity
             default:
                 break;
         }
-        this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_sky", 1F);
+        this.gameObject.GetComponent<Animation>().CrossFade("Levitate_sky");
+
     }
 
     //Called every time, but only if a state change did not occur.
@@ -190,53 +203,34 @@ public class NewAI : ControlEntity
     {
         // This doesn't pop anything off the queue, so we don't enqueue anything in here.
         if (state == ValidStates.DANGER) {
-            if (RandomMovementX == 0) {
-                RandomMovementX = UnityEngine.Random.Range(-1.0F, 1.0F);
-            }
-
-            if (RandomMovementZ == 0) {
-                RandomMovementZ = UnityEngine.Random.Range(-1.0F, 1.0F);
-            }
                 //Move out of danger
                 ArrayList dangerousSpells = isInDanger();
             if (dangerousSpells.Count > 0) {
                 //Try to move out of the way
                 float xValue = RandomMovementX;
                 if (this.originalPosition.x - this.gameObject.transform.position.x < -2) {
-                    // need to move right
-                    xValue = -1;
-                
-                } else if (this.originalPosition.x - this.gameObject.transform.position.x > 2) {
-                    // need to move left
-                    xValue = 1;
-                 
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_R");
+                    if(RandomMovementX > 0) {
+                        xValue = -RandomMovementX;
+                    } else {
+                        xValue = RandomMovementX;
+                    }
+                }  if (this.originalPosition.x - this.gameObject.transform.position.x > 2) {
+               
+                    this.gameObject.GetComponent<Animation>().CrossFade("Levitate_L");
+                    if (RandomMovementX < 0) {
+                        xValue = -RandomMovementX;
+                    }
+                    else {
+                        xValue = RandomMovementX;
+                    }
                 }
 
-                float zValue = RandomMovementZ;
-                if (this.originalPosition.z - this.gameObject.transform.position.z < -2) {
-                    zValue = -1;
-                    // need to move backward
-                }
-                else if (this.originalPosition.z - this.gameObject.transform.position.z > 2) {
-                    zValue = 1;
-                    // need to move forward
-                }
-
+                float zValue = 0;
+               
                 Vector3 direction = new Vector3(xValue, 0, zValue).normalized;
                 gameObject.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.Acceleration);
-                if(direction.x > 0 && direction.z < 0) {
-                    // forward to the left
-                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_L", 1F);
-                } else if (direction.x < 0 && direction.z < 0) {
-                    // forward to the right
-                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_R", 1F);
-                } else if (direction.z < 0 && direction.x > 0  ) {
-                    // backwards to the left
-                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_L", 1F);
-                } else if(direction.z > 0 && direction.x < 0) {
-                    // backwards to the right
-                    this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_R", 1F);
-                }
+               
             }
             
         }
@@ -281,6 +275,15 @@ public class NewAI : ControlEntity
         }
         //Start out the queue with startup
         CurrentAction.Enqueue(ValidStates.STARTUP);
+        this.gameObject.GetComponent<Animation>().wrapMode = WrapMode.Loop;
+        this.gameObject.GetComponent<Animation>()["Sky_magic"].wrapMode = WrapMode.Once;
+        this.gameObject.GetComponent<Animation>()["Sky_Attack1"].wrapMode = WrapMode.Once;
+        this.gameObject.GetComponent<Animation>()["Sky_View"].wrapMode = WrapMode.Once;
+        this.gameObject.GetComponent<Animation>()["Sky_magic"].layer = 2;
+        this.gameObject.GetComponent<Animation>()["Sky_Attack1"].layer = 2;
+        this.gameObject.GetComponent<Animation>()["Sky_View"].layer = 2;
+        this.gameObject.GetComponent<Animation>()["Levitate_R"].normalizedSpeed = 0.5F;
+        this.gameObject.GetComponent<Animation>()["Levitate_L"].normalizedSpeed = 0.5F;
     }
 
     void Start() {
@@ -296,6 +299,8 @@ public class NewAI : ControlEntity
     //What to do when a hex hits the AI (this is generic for any hex. Other effects, such as disarm, are handled by the hex itself)
     public override void processHex(Hex h)
     {
+        this.GetComponentInChildren<AudioSource>().clip = PainSounds[UnityEngine.Random.Range(0, PainSounds.Length)];
+        this.GetComponentInChildren<AudioSource>().Play();
         h.aiCollide(gameObject);
         ApplyDamage(h.Damage);
         h.Destroy();

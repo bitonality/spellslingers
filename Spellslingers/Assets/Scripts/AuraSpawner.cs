@@ -8,6 +8,7 @@ public class AuraSpawner : MonoBehaviour {
     private static System.Random rng = new System.Random();
     public GameObject[] SpawnableAuras;
     public GameObject[] AuraTargeters;
+    public AudioClip SpawnSound;
 
    void Awake() {
         InvokeRepeating("SpawnAura", 20F, 20F);
@@ -16,6 +17,8 @@ public class AuraSpawner : MonoBehaviour {
 
 
     void SpawnAura() {
+        this.gameObject.GetComponentInChildren<AudioSource>().clip = SpawnSound;
+        this.gameObject.GetComponentInChildren<AudioSource>().Play();
         List<Transform> validPoints = new List<Transform>();
         foreach (Transform t in this.gameObject.transform) {
             if (t.transform.childCount == 0) {

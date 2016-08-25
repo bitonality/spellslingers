@@ -29,7 +29,7 @@ public class Stun : Hex {
         double iterations = (duration / 1000) / repeatRate;
         interval = this.blur.blurAmount / iterations;
         ScheduleBlur();
-
+        playerCameraRig.GetComponentInChildren<AudioReverbZone>(true).gameObject.SetActive(true);
         playerCameraRig.GetComponent<ControlEntity>().ApplyInfluence(influences.STUN);
         playerCameraRig.GetComponent<ControlEntity>().RemoveInfluenceTimer(influences.STUN, duration / 1000);
     }
@@ -67,6 +67,7 @@ public class Stun : Hex {
     void FadeBlur() {
         this.blur.blurAmount = (float)(this.blur.blurAmount - this.interval);
         if (this.blur.blurAmount <= 0) {
+            this.blur.gameObject.GetComponentInParent<Player>().gameObject.GetComponentInChildren<AudioReverbZone>(true).gameObject.SetActive(false);
             Destroy(this.gameObject);
         }
     }

@@ -417,7 +417,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -680,8 +680,8 @@ MonoBehaviour:
   Damage: 20
   Velocity: 20
   LastRotation: {x: 0, y: 0, z: 0, w: 0}
-  ExplosionSound: {fileID: 8300000, guid: 3bbe242bc37c8614fbe02c843ed5b465, type: 3}
-  CastSound: {fileID: 8300000, guid: 074ccb664b11e1341a5ac9b972ea3ab8, type: 3}
+  ExplosionSound: {fileID: 8300000, guid: a9e925ca095e74c6781bc9cceafc6743, type: 3}
+  CastSound: {fileID: 8300000, guid: 5aadc4dc07dd8c0448550fc57a19a72c, type: 3}
   Audio: {fileID: 8244522}
 --- !u!198 &19825268
 ParticleSystem:

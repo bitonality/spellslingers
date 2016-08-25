@@ -23,13 +23,17 @@ public class HexCollide : MonoBehaviour {
 
         if(this.gameObject.GetComponent<Hex>().ExplosionSound != null) {
             this.gameObject.GetComponent<Hex>().Audio.clip = this.gameObject.GetComponent<Hex>().ExplosionSound;
-            AudioSource.PlayClipAtPoint(this.gameObject.GetComponent<Hex>().Audio.clip, this.gameObject.transform.position);
+            AudioSource.PlayClipAtPoint(this.gameObject.GetComponent<Hex>().Audio.clip, this.gameObject.transform.position, 0.1F);
         }
 
 
         // Check that the spell isn't hitting another spell by the same sender
         if(col.gameObject.GetComponent<Hex>() != null && col.gameObject.GetComponent<Hex>().Source == this.gameObject.GetComponent<Hex>().Source || (col.gameObject.GetComponent<Targetable>() != null && this.gameObject.GetComponent<Hex>().Source == col.gameObject.GetComponent<Targetable>())) {
-            Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), col.gameObject.GetComponent<Collider>());
+            if (col.gameObject.GetComponent<ControlEntity>() is NewAI) {
+                Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), col.gameObject.GetComponentInChildren<Collider>());
+            }else {
+                Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), col.gameObject.GetComponent<Collider>());
+            }
             return;
         }
 
