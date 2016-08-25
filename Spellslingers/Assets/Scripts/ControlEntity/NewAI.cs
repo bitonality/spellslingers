@@ -47,7 +47,7 @@ public class NewAI : ControlEntity
 
     private Vector3 originalPosition;
 
-    public enum validStates
+    public enum ValidStates
     {
         STARTUP,
         STUNNED,
@@ -65,28 +65,32 @@ public class NewAI : ControlEntity
     private float RandomMovementX = 0;
     private float RandomMovementZ = 0;
 
-    public Queue<validStates> currentAction;
+    public Queue<ValidStates> CurrentAction;
 
     //Called every 0.02 seconds
     public override void FixedUpdate()
     {
 
         base.FixedUpdate();
-        if(!currentAction.Contains(validStates.DANGER) && isInDanger().Count > 0) {
-            currentAction.Clear();
-            currentAction.Enqueue(validStates.DANGER);
+        // If the AI is in danger, clear the state queue and enqueue the danger state.
+        if(!CurrentAction.Contains(ValidStates.DANGER) && isInDanger().Count > 0) {
+            CurrentAction.Clear();
+            CurrentAction.Enqueue(ValidStates.DANGER);
+        // If the state queue contains danger and there are no incoming spells, enqueue the idle state.
+        } else if(CurrentAction.Contains(ValidStates.DANGER) && isInDanger().Count == 0 ) {
+            CurrentAction.Enqueue(ValidStates.IDLE);
         }
         
-        if (currentAction.Count <= 0)
+        if (CurrentAction.Count <= 0)
         {
             //Something went wrong with starting the AI
             Debug.LogWarning("currentAction size is 0, meaning awake() was not called before fixedUpdate()");
             return;
         }
-        if (currentAction.Count != 1 && timeUntilChange <= Time.time)
+        if (CurrentAction.Count != 1 && timeUntilChange <= Time.time)
         {
             //Pop leading item off the queue and call justLeft with it
-            justLeft(currentAction.Dequeue(), getCurrentState());
+            justLeft(CurrentAction.Dequeue(), getCurrentState());
         }
         else
         {
@@ -98,30 +102,24 @@ public class NewAI : ControlEntity
     }
 
     //Called only when changing state
-    private object justLeft(validStates oldState, validStates newState)
+    private void justLeft(ValidStates oldState, ValidStates newState)
     {
        // Debug.Log("Changing state from  " + oldState + " to " + newState + " at time " + Time.time);
         switch (newState)
         {
-            case validStates.HIT:
-                currentAction.Enqueue(validStates.DANGER);
-                break;
-            case validStates.IDLE:
-                //Move in a random direction
-                    //Vector3 Destination = new Vector3(UnityEngine.Random.Range(-3f, 3f) * speed, 0, UnityEngine.Random.Range(-5f, 5f) * speed);
-                    //gameObject.GetComponent<Rigidbody>().velocity = (Destination);
-                //Schedule interruptable state change in {{ IdlePauseTime }} seconds
+            case ValidStates.IDLE:
+                // Schedule interruptable state change in {{ IdlePauseTime }} seconds
                 timeUntilChange = Time.time + IdlePauseTime;
-                currentAction.Enqueue(validStates.PRESHOOT);
+                CurrentAction.Enqueue(ValidStates.PRESHOOT);
                 break;
-            case validStates.PRESHOOT:
+            case ValidStates.PRESHOOT:
                 //Stop movement
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
-                //Wait {{ PreshootDelay }} seconds. If the AI doesn't get in danger, move this will move into SHOOTING stage.
+                // Wait {{ PreshootDelay }} seconds. If the AI doesn't get in danger, move this will move into SHOOTING stage.
                 timeUntilChange = Time.time + PreshootDelayMod;
-                currentAction.Enqueue(validStates.SHOOTING);
+                CurrentAction.Enqueue(ValidStates.SHOOTING);
                 break;
-            case validStates.SHOOTING:
+            case ValidStates.SHOOTING:
                 //Make sure there is a hex to chose from (otherwise, go back to POSTSHOOT stage)
                 if (spellsToShoot.Length != 0)
                 {
@@ -135,33 +133,35 @@ public class NewAI : ControlEntity
                             Destroy(auraBall.GetComponentInChildren<CastagonPoint>().gameObject);
                             aura.InitializeAura(this.gameObject);
                             this.Aura = null;
+                            this.gameObject.GetComponent<Animation>().CrossFade("Sky_View");
                         }
                         else if(this.UltimateCounter >= this.UltimateChargeTrigger) {
                             this.CastUltimate(this.CurrentTarget().gameObject, Ultimates[UnityEngine.Random.Range(0,Ultimates.Length)]);
+                            this.gameObject.GetComponent<Animation>().CrossFade("Sky_magic");
                         }
                         else {
                             CastHex(h, gameObject.transform.FindChild("Bip01").FindChild("LaunchPoint").gameObject, this.CurrentTarget().GetComponent<Targetable>().gameObject, 4, 5);
                             this.gameObject.GetComponent<Animation>().CrossFade("Sky_Attack1");
                             
                         }
-                        currentAction.Enqueue(validStates.POSTSHOOT);
+                        CurrentAction.Enqueue(ValidStates.POSTSHOOT);
                     }
                     else
                     {
-                        currentAction.Enqueue(validStates.IDLE);
+                        CurrentAction.Enqueue(ValidStates.IDLE);
                     }
                 }
                 else
                 {
                     Debug.LogWarning("No spells to choose from, defaulting back to POSTSHOOT");
-                    currentAction.Enqueue(validStates.POSTSHOOT);
+                    CurrentAction.Enqueue(ValidStates.POSTSHOOT);
                 }
                 break;
-            case validStates.POSTSHOOT:
+            case ValidStates.POSTSHOOT:
                 //For now head straight into IDLE
-                currentAction.Enqueue(validStates.IDLE);
+                CurrentAction.Enqueue(ValidStates.IDLE);
                 break;
-            case validStates.DEAD:
+            case ValidStates.DEAD:
                 influenceText.GetComponent<Text>().text = "Dead";
                 //Kill this script, so that it doesn't keep running this loop
                 enabled = false;
@@ -170,16 +170,11 @@ public class NewAI : ControlEntity
                 break;
         }
         this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_sky", 1F);
-        return null;
     }
 
     //Called every time, but only if a state change did not occur.
-    private object currentExclusive(validStates state)
-    {
-        if(state == validStates.IDLE) {
-            currentAction.Enqueue(validStates.PRESHOOT);
-        }
-        return null;
+    private void currentExclusive(ValidStates state) {
+       
     }
 
     //Pick the best hex for the situation
@@ -191,9 +186,10 @@ public class NewAI : ControlEntity
     }
 
     //Called every time, even if a state change occurred
-    private object currentInclusive(validStates state)
+    private object currentInclusive(ValidStates state)
     {
-        if (state == validStates.DANGER) {
+        // This doesn't pop anything off the queue, so we don't enqueue anything in here.
+        if (state == ValidStates.DANGER) {
             if (RandomMovementX == 0) {
                 RandomMovementX = UnityEngine.Random.Range(-1.0F, 1.0F);
             }
@@ -231,41 +227,30 @@ public class NewAI : ControlEntity
                 if(direction.x > 0 && direction.z < 0) {
                     // forward to the left
                     this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_L", 1F);
-                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F", 1F);
                 } else if (direction.x < 0 && direction.z < 0) {
                     // forward to the right
                     this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_R", 1F);
-                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_F", 1F);
                 } else if (direction.z < 0 && direction.x > 0  ) {
                     // backwards to the left
                     this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_L", 1F);
-                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B", 1F);
                 } else if(direction.z > 0 && direction.x < 0) {
                     // backwards to the right
                     this.gameObject.GetComponent<Animation>().CrossFadeQueued("Levitate_R", 1F);
-                    //this.gameObject.GetComponent<Animation>().CrossFade("Levitate_B", 1F);
                 }
-                currentAction.Clear();
-                currentAction.Enqueue(validStates.DANGER);
-
             }
-            else {
-                currentAction.Enqueue(validStates.IDLE);
-                this.RandomMovementX = 0;
-                this.RandomMovementZ = 0;
-            }
+            
         }
-        else if (state == validStates.STARTUP) {
+        else if (state == ValidStates.STARTUP) {
             // TODO: Only move into IDLE if the player has a wand
-            currentAction.Enqueue(validStates.IDLE);
+            CurrentAction.Enqueue(ValidStates.IDLE);
         }
      
         return null;
     }
     
-    private validStates getCurrentState()
+    private ValidStates getCurrentState()
     {
-        return currentAction.Peek();
+        return CurrentAction.Peek();
     }
     
     public override void Awake()
@@ -273,7 +258,7 @@ public class NewAI : ControlEntity
         base.Awake();
         Difficulty = PlayerPrefs.GetInt("difficulty", 3);
         
-        currentAction = new Queue<validStates>();
+        CurrentAction = new Queue<ValidStates>();
         defaultSpeed = speed;
         originalPosition = gameObject.transform.position;
         // Make sure 1 <= difficulty >= 3
@@ -295,7 +280,7 @@ public class NewAI : ControlEntity
             speed += SpeedMod;
         }
         //Start out the queue with startup
-        currentAction.Enqueue(validStates.STARTUP);
+        CurrentAction.Enqueue(ValidStates.STARTUP);
     }
 
     void Start() {
@@ -314,12 +299,7 @@ public class NewAI : ControlEntity
         h.aiCollide(gameObject);
         ApplyDamage(h.Damage);
         h.Destroy();
-        if (IsDead())
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position = new Vector3(1616.67F,-16.815F,-31.932F); // Messy and hardcoded due to crunch time, clean this up later.
-            influenceText.GetComponent<Text>().text = "Dead";
-            Destroy(gameObject);
-        }
+
     }
 
     private ArrayList isInDanger()
